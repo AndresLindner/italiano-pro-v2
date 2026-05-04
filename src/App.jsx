@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket } from 'lucide-react';
 
 const top50Verbs = [
   {
     infinitive: "essere",
     translation: "to be",
     presente: ["sono", "sei", "è", "siamo", "siete", "sono"],
+    imperfetto: ["ero", "eri", "era", "eravamo", "eravate", "erano"],
     passatoRemoto: ["fui", "fosti", "fu", "fummo", "foste", "furono"],
     imperativo: ["-", "sii", "sia", "siamo", "siate", "siano"],
     passatoProssimo: ["sono stato/a", "sei stato/a", "è stato/a", "siamo stati/e", "siete stati/e", "sono stati/e"],
     typePres: "Irregolare",
+    typeImperf: "Irregolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Irregolare"
@@ -18,591 +20,74 @@ const top50Verbs = [
     infinitive: "avere",
     translation: "to have",
     presente: ["ho", "hai", "ha", "abbiamo", "avete", "hanno"],
+    imperfetto: ["avevo", "avevi", "aveva", "avevamo", "avevate", "avevano"],
     passatoRemoto: ["ebbi", "avesti", "ebbe", "avemmo", "aveste", "ebbero"],
     imperativo: ["-", "abbi", "abbia", "abbiamo", "abbiate", "abbiano"],
     passatoProssimo: ["ho avuto", "hai avuto", "ha avuto", "abbiamo avuto", "avete avuto", "hanno avuto"],
     typePres: "Irregolare",
+    typeImperf: "Regolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Regolare"
-  },
-  {
-    infinitive: "fare",
-    translation: "to do/make",
-    presente: ["faccio", "fai", "fa", "facciamo", "fate", "fanno"],
-    passatoRemoto: ["feci", "facesti", "fece", "facemmo", "faceste", "fecero"],
-    imperativo: ["-", "fai / fa'", "faccia", "facciamo", "fate", "facciano"],
-    passatoProssimo: ["ho fatto", "hai fatto", "ha fatto", "abbiamo fatto", "avete fatto", "hanno fatto"],
-    typePres: "Irregolare",
-    typePR: "Irregolare",
-    typeImp: "Irregolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "dire",
-    translation: "to say/tell",
-    presente: ["dico", "dici", "dice", "diciamo", "dite", "dicono"],
-    passatoRemoto: ["dissi", "dicesti", "disse", "dicemmo", "diceste", "dissero"],
-    imperativo: ["-", "di'", "dica", "diciamo", "dite", "dicano"],
-    passatoProssimo: ["ho detto", "hai detto", "ha detto", "abbiamo detto", "avete detto", "hanno detto"],
-    typePres: "Irregolare",
-    typePR: "Irregolare",
-    typeImp: "Irregolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "potere",
-    translation: "to be able/can",
-    presente: ["posso", "puoi", "può", "possiamo", "potete", "possono"],
-    passatoRemoto: ["potei / potetti", "potesti", "poté / potette", "potemmo", "poteste", "poterono / potettero"],
-    imperativo: ["N/A", "Non ha imperativo", "", "", "", ""],
-    passatoProssimo: ["ho potuto", "hai potuto", "ha potuto", "abbiamo potuto", "avete potuto", "hanno potuto"],
-    typePres: "Irregolare",
-    typePR: "Irregolare",
-    typeImp: "N/A",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "volere",
-    translation: "to want",
-    presente: ["voglio", "vuoi", "vuole", "vogliamo", "volete", "vogliono"],
-    passatoRemoto: ["volli", "volesti", "volle", "volemmo", "voleste", "vollero"],
-    imperativo: ["-", "vogli", "voglia", "vogliamo", "vogliate", "vogliano"],
-    passatoProssimo: ["ho voluto", "hai voluto", "ha voluto", "abbiamo voluto", "avete voluto", "hanno voluto"],
-    typePres: "Irregolare",
-    typePR: "Irregolare",
-    typeImp: "Irregolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "sapere",
-    translation: "to know",
-    presente: ["so", "sai", "sa", "sappiamo", "sapete", "sanno"],
-    passatoRemoto: ["seppi", "sapesti", "seppe", "sapemmo", "sapeste", "seppero"],
-    imperativo: ["-", "sappi", "sappia", "sappiamo", "sappiate", "sappiano"],
-    passatoProssimo: ["ho saputo", "hai saputo", "ha saputo", "abbiamo saputo", "avete saputo", "hanno saputo"],
-    typePres: "Irregolare",
-    typePR: "Irregolare",
-    typeImp: "Irregolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "stare",
-    translation: "to stay/be",
-    presente: ["sto", "stai", "sta", "stiamo", "state", "stanno"],
-    passatoRemoto: ["stetti", "stesti", "stette", "stemmo", "steste", "stettero"],
-    imperativo: ["-", "stai / sta'", "stia", "stiamo", "state", "stiano"],
-    passatoProssimo: ["sono stato/a", "sei stato/a", "è stato/a", "siamo stati/e", "siete stati/e", "sono stati/e"],
-    typePres: "Irregolare",
-    typePR: "Irregolare",
-    typeImp: "Irregolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "dovere",
-    translation: "to have to/must",
-    presente: ["devo", "devi", "deve", "dobbiamo", "dovete", "devono"],
-    passatoRemoto: ["dovei / dovetti", "dovesti", "dové / dovette", "dovemmo", "doveste", "doverono / dovettero"],
-    imperativo: ["N/A", "Non ha imperativo", "", "", "", ""],
-    passatoProssimo: ["ho dovuto", "hai dovuto", "ha dovuto", "abbiamo dovuto", "avete dovuto", "hanno dovuto"],
-    typePres: "Irregolare",
-    typePR: "Irregolare",
-    typeImp: "N/A",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "vedere",
-    translation: "to see",
-    presente: ["vedo", "vedi", "vede", "vediamo", "vedete", "vedono"],
-    passatoRemoto: ["vidi", "vedesti", "vide", "vedemmo", "vedeste", "videro"],
-    imperativo: ["-", "vedi", "veda", "vediamo", "vedete", "vedano"],
-    passatoProssimo: ["ho visto", "hai visto", "ha visto", "abbiamo visto", "avete visto", "hanno visto"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "andare",
-    translation: "to go",
-    presente: ["vado", "vai", "va", "andiamo", "andate", "vanno"],
-    passatoRemoto: ["andai", "andasti", "andò", "andammo", "andaste", "andarono"],
-    imperativo: ["-", "vai / va'", "vada", "andiamo", "andate", "vadano"],
-    passatoProssimo: ["sono andato/a", "sei andato/a", "è andato/a", "siamo andati/e", "siete andati/e", "sono andati/e"],
-    typePres: "Irregolare",
-    typePR: "Regolare",
-    typeImp: "Irregolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "venire",
-    translation: "to come",
-    presente: ["vengo", "vieni", "viene", "veniamo", "venite", "vengono"],
-    passatoRemoto: ["venni", "venisti", "venne", "venimmo", "veniste", "vennero"],
-    imperativo: ["-", "vieni", "venga", "veniamo", "venite", "vengano"],
-    passatoProssimo: ["sono venuto/a", "sei venuto/a", "è venuto/a", "siamo venuti/e", "siete venuti/e", "sono venuti/e"],
-    typePres: "Irregolare",
-    typePR: "Irregolare",
-    typeImp: "Irregolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "dare",
-    translation: "to give",
-    presente: ["do", "dai", "dà", "diamo", "date", "danno"],
-    passatoRemoto: ["diedi / detti", "desti", "diede / dette", "demmo", "deste", "diedero / dettero"],
-    imperativo: ["-", "dai / da'", "dia", "diamo", "date", "diano"],
-    passatoProssimo: ["ho dato", "hai dato", "ha dato", "abbiamo dato", "avete dato", "hanno dato"],
-    typePres: "Irregolare",
-    typePR: "Irregolare",
-    typeImp: "Irregolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "parlare",
-    translation: "to speak",
-    presente: ["parlo", "parli", "parla", "parliamo", "parlate", "parlano"],
-    passatoRemoto: ["parlai", "parlasti", "parlò", "parlammo", "parlaste", "parlarono"],
-    imperativo: ["-", "parla", "parli", "parliamo", "parlate", "parlino"],
-    passatoProssimo: ["ho parlato", "hai parlato", "ha parlato", "abbiamo parlato", "avete parlato", "hanno parlato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "trovare",
-    translation: "to find",
-    presente: ["trovo", "trovi", "trova", "troviamo", "trovate", "trovano"],
-    passatoRemoto: ["trovai", "trovasti", "trovò", "trovammo", "trovaste", "trovarono"],
-    imperativo: ["-", "trova", "trovi", "troviamo", "trovate", "trovino"],
-    passatoProssimo: ["ho trovato", "hai trovato", "ha trovato", "abbiamo trovato", "avete trovato", "hanno trovato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "sentire",
-    translation: "to feel/hear",
-    presente: ["sento", "senti", "sente", "sentiamo", "sentite", "sentono"],
-    passatoRemoto: ["sentii", "sentisti", "sentì", "sentimmo", "sentiste", "sentirono"],
-    imperativo: ["-", "senti", "senta", "sentiamo", "sentite", "sentano"],
-    passatoProssimo: ["ho sentito", "hai sentito", "ha sentito", "abbiamo sentito", "avete sentito", "hanno sentito"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "lasciare",
-    translation: "to leave",
-    presente: ["lascio", "lasci", "lascia", "lasciamo", "lasciate", "lasciano"],
-    passatoRemoto: ["lasciai", "lasciasti", "lasciò", "lasciammo", "lasciaste", "lasciarono"],
-    imperativo: ["-", "lascia", "lasci", "lasciamo", "lasciate", "lascino"],
-    passatoProssimo: ["ho lasciato", "hai lasciato", "ha lasciato", "abbiamo lasciato", "avete lasciato", "hanno lasciato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "prendere",
-    translation: "to take",
-    presente: ["prendo", "prendi", "prende", "prendiamo", "prendete", "prendono"],
-    passatoRemoto: ["presi", "prendesti", "prese", "prendemmo", "prendeste", "presero"],
-    imperativo: ["-", "prendi", "prenda", "prendiamo", "prendete", "prendano"],
-    passatoProssimo: ["ho preso", "hai preso", "ha preso", "abbiamo preso", "avete preso", "hanno preso"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "guardare",
-    translation: "to look",
-    presente: ["guardo", "guardi", "guarda", "guardiamo", "guardate", "guardano"],
-    passatoRemoto: ["guardai", "guardasti", "guardò", "guardammo", "guardaste", "guardarono"],
-    imperativo: ["-", "guarda", "guardi", "guardiamo", "guardate", "guardino"],
-    passatoProssimo: ["ho guardato", "hai guardato", "ha guardato", "abbiamo guardato", "avete guardato", "hanno guardato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "mettere",
-    translation: "to put",
-    presente: ["metto", "metti", "mette", "mettiamo", "mettete", "mettono"],
-    passatoRemoto: ["misi", "mettesti", "mise", "mettemmo", "metteste", "misero"],
-    imperativo: ["-", "metti", "metta", "mettiamo", "mettete", "mettano"],
-    passatoProssimo: ["ho messo", "hai messo", "ha messo", "abbiamo messo", "avete messo", "hanno messo"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "capire",
-    translation: "to understand",
-    presente: ["capisco", "capisci", "capisce", "capiamo", "capite", "capiscono"],
-    passatoRemoto: ["capii", "capisti", "capì", "capimmo", "capiste", "capirono"],
-    imperativo: ["-", "capisci", "capisca", "capiamo", "capite", "capiscano"],
-    passatoProssimo: ["ho capito", "hai capito", "ha capito", "abbiamo capito", "avete capito", "hanno capito"],
-    typePres: "Irregolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "conoscere",
-    translation: "to know/meet",
-    presente: ["conosco", "conosci", "conosce", "conosciamo", "conoscete", "conoscono"],
-    passatoRemoto: ["conobbi", "conoscesti", "conobbe", "conoscemmo", "conosceste", "conobbero"],
-    imperativo: ["-", "conosci", "conosca", "conosciamo", "conoscete", "conoscano"],
-    passatoProssimo: ["ho conosciuto", "hai conosciuto", "ha conosciuto", "abbiamo conosciuto", "avete conosciuto", "hanno conosciuto"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "credere",
-    translation: "to believe",
-    presente: ["credo", "credi", "crede", "crediamo", "credete", "credono"],
-    passatoRemoto: ["credei / credetti", "credesti", "credé / credette", "credemmo", "credeste", "crederono / credettero"],
-    imperativo: ["-", "credi", "creda", "crediamo", "credete", "credano"],
-    passatoProssimo: ["ho creduto", "hai creduto", "ha creduto", "abbiamo creduto", "avete creduto", "hanno creduto"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "pensare",
-    translation: "to think",
-    presente: ["penso", "pensi", "pensa", "pensiamo", "pensate", "pensano"],
-    passatoRemoto: ["pensai", "pensasti", "pensò", "pensammo", "pensaste", "pensarono"],
-    imperativo: ["-", "pensa", "pensi", "pensiamo", "pensate", "pensino"],
-    passatoProssimo: ["ho pensato", "hai pensato", "ha pensato", "abbiamo pensato", "avete pensato", "hanno pensato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "portare",
-    translation: "to bring/wear",
-    presente: ["porto", "porti", "porta", "portiamo", "portate", "portano"],
-    passatoRemoto: ["portai", "portasti", "portò", "portammo", "portaste", "portarono"],
-    imperativo: ["-", "porta", "porti", "portiamo", "portate", "portino"],
-    passatoProssimo: ["ho portato", "hai portato", "ha portato", "abbiamo portato", "avete portato", "hanno portato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "chiamare",
-    translation: "to call",
-    presente: ["chiamo", "chiami", "chiama", "chiamiamo", "chiamate", "chiamano"],
-    passatoRemoto: ["chiamai", "chiamasti", "chiamò", "chiamammo", "chiamaste", "chiamarono"],
-    imperativo: ["-", "chiama", "chiami", "chiamiamo", "chiamate", "chiamino"],
-    passatoProssimo: ["ho chiamato", "hai chiamato", "ha chiamato", "abbiamo chiamato", "avete chiamato", "hanno chiamato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "chiedere",
-    translation: "to ask",
-    presente: ["chiedo", "chiedi", "chiede", "chiediamo", "chiedete", "chiedono"],
-    passatoRemoto: ["chiesi", "chiedesti", "chiese", "chiedemmo", "chiedeste", "chiesero"],
-    imperativo: ["-", "chiedi", "chieda", "chiediamo", "chiedete", "chiedano"],
-    passatoProssimo: ["ho chiesto", "hai chiesto", "ha chiesto", "abbiamo chiesto", "avete chiesto", "hanno chiesto"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "leggere",
-    translation: "to read",
-    presente: ["leggo", "leggi", "legge", "leggiamo", "leggete", "leggono"],
-    passatoRemoto: ["lessi", "leggesti", "lesse", "leggemmo", "leggeste", "lessero"],
-    imperativo: ["-", "leggi", "legga", "leggiamo", "leggete", "leggano"],
-    passatoProssimo: ["ho letto", "hai letto", "ha letto", "abbiamo letto", "avete letto", "hanno letto"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "scrivere",
-    translation: "to write",
-    presente: ["scrivo", "scrivi", "scrive", "scriviamo", "scrivete", "scrivono"],
-    passatoRemoto: ["scrissi", "scrivesti", "scrisse", "scrivemmo", "scriveste", "scrissero"],
-    imperativo: ["-", "scrivi", "scriva", "scriviamo", "scrivete", "scrivano"],
-    passatoProssimo: ["ho scritto", "hai scritto", "ha scritto", "abbiamo scritto", "avete scritto", "hanno scritto"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "vivere",
-    translation: "to live",
-    presente: ["vivo", "vivi", "vive", "viviamo", "vivete", "vivono"],
-    passatoRemoto: ["vissi", "vivesti", "visse", "vivemmo", "viveste", "vissero"],
-    imperativo: ["-", "vivi", "viva", "viviamo", "vivete", "vivano"],
-    passatoProssimo: ["ho vissuto", "hai vissuto", "ha vissuto", "abbiamo vissuto", "avete vissuto", "hanno vissuto"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "uscire",
-    translation: "to go out",
-    presente: ["esco", "esci", "esce", "usciamo", "uscite", "escono"],
-    passatoRemoto: ["uscii", "uscisti", "uscì", "uscimmo", "usciste", "uscirono"],
-    imperativo: ["-", "esci", "esca", "usciamo", "uscite", "escano"],
-    passatoProssimo: ["sono uscito/a", "sei uscito/a", "è uscito/a", "siamo usciti/e", "siete usciti/e", "sono usciti/e"],
-    typePres: "Irregolare",
-    typePR: "Regolare",
-    typeImp: "Irregolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "lavorare",
-    translation: "to work",
-    presente: ["lavoro", "lavori", "lavora", "lavoriamo", "lavorate", "lavorano"],
-    passatoRemoto: ["lavorai", "lavorasti", "lavorò", "lavorammo", "lavoraste", "lavorarono"],
-    imperativo: ["-", "lavora", "lavori", "lavoriamo", "lavorate", "lavorino"],
-    passatoProssimo: ["ho lavorato", "hai lavorato", "ha lavorato", "abbiamo lavorato", "avete lavorato", "hanno lavorato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "amare",
-    translation: "to love",
-    presente: ["amo", "ami", "ama", "amiamo", "amate", "amano"],
-    passatoRemoto: ["amai", "amasti", "amò", "amammo", "amaste", "amarono"],
-    imperativo: ["-", "ama", "ami", "amiamo", "amate", "amino"],
-    passatoProssimo: ["ho amato", "hai amato", "ha amato", "abbiamo amato", "avete amato", "hanno amato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "arrivare",
-    translation: "to arrive",
-    presente: ["arrivo", "arrivi", "arriva", "arriviamo", "arrivate", "arrivano"],
-    passatoRemoto: ["arrivai", "arrivasti", "arrivò", "arrivammo", "arrivaste", "arrivarono"],
-    imperativo: ["-", "arriva", "arrivi", "arriviamo", "arrivate", "arrivino"],
-    passatoProssimo: ["sono arrivato/a", "sei arrivato/a", "è arrivato/a", "siamo arrivati/e", "siete arrivati/e", "sono arrivati/e"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "partire",
-    translation: "to leave",
-    presente: ["parto", "parti", "parte", "partiamo", "partite", "partono"],
-    passatoRemoto: ["partii", "partisti", "partì", "partimmo", "partiste", "partirono"],
-    imperativo: ["-", "parti", "parta", "partiamo", "partite", "partano"],
-    passatoProssimo: ["sono partito/a", "sei partito/a", "è partito/a", "siamo partiti/e", "siete partiti/e", "sono partiti/e"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "rispondere",
-    translation: "to answer",
-    presente: ["rispondo", "rispondi", "risponde", "rispondiamo", "rispondete", "rispondono"],
-    passatoRemoto: ["risposi", "rispondesti", "rispose", "rispondemmo", "rispondeste", "risposero"],
-    imperativo: ["-", "rispondi", "risponda", "rispondiamo", "rispondete", "rispondano"],
-    passatoProssimo: ["ho risposto", "hai risposto", "ha risposto", "abbiamo risposto", "avete risposto", "hanno risposto"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "chiudere",
-    translation: "to close",
-    presente: ["chiudo", "chiudi", "chiude", "chiudiamo", "chiudete", "chiudono"],
-    passatoRemoto: ["chiusi", "chiudesti", "chiuse", "chiudemmo", "chiudeste", "chiusero"],
-    imperativo: ["-", "chiudi", "chiuda", "chiudiamo", "chiudete", "chiudano"],
-    passatoProssimo: ["ho chiuso", "hai chiuso", "ha chiuso", "abbiamo chiuso", "avete chiuso", "hanno chiuso"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "aprire",
-    translation: "to open",
-    presente: ["apro", "apri", "apre", "apriamo", "aprite", "aprono"],
-    passatoRemoto: ["aprii", "apristi", "aprì", "aprimmo", "apriste", "aprirono"],
-    imperativo: ["-", "apri", "apra", "apriamo", "aprite", "aprano"],
-    passatoProssimo: ["ho aperto", "hai aperto", "ha aperto", "abbiamo aperto", "avete aperto", "hanno aperto"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "bere",
-    translation: "to drink",
-    presente: ["bevo", "bevi", "beve", "beviamo", "bevete", "bevono"],
-    passatoRemoto: ["bevvi", "bevesti", "bevve", "bevemmo", "beveste", "bevvero"],
-    imperativo: ["-", "bevi", "beva", "beviamo", "bevete", "bevano"],
-    passatoProssimo: ["ho bevuto", "hai bevuto", "ha bevuto", "abbiamo bevuto", "avete bevuto", "hanno bevuto"],
-    typePres: "Irregolare",
-    typePR: "Irregolare",
-    typeImp: "Irregolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "mangiare",
-    translation: "to eat",
-    presente: ["mangio", "mangi", "mangia", "mangiamo", "mangiate", "mangiano"],
-    passatoRemoto: ["mangiai", "mangiasti", "mangiò", "mangiammo", "mangiaste", "mangiarono"],
-    imperativo: ["-", "mangia", "mangi", "mangiamo", "mangiate", "mangino"],
-    passatoProssimo: ["ho mangiato", "hai mangiato", "ha mangiato", "abbiamo mangiato", "avete mangiato", "hanno mangiato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "dormire",
-    translation: "to sleep",
-    presente: ["dormo", "dormi", "dorme", "dormiamo", "dormite", "dormono"],
-    passatoRemoto: ["dormii", "dormisti", "dormì", "dormimmo", "dormiste", "dormirono"],
-    imperativo: ["-", "dormi", "dorma", "dormiamo", "dormite", "dormano"],
-    passatoProssimo: ["ho dormito", "hai dormito", "ha dormito", "abbiamo dormito", "avete dormito", "hanno dormito"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "giocare",
-    translation: "to play",
-    presente: ["gioco", "giochi", "gioca", "giochiamo", "giocate", "giocano"],
-    passatoRemoto: ["giocai", "giocasti", "giocò", "giocammo", "giocaste", "giocarono"],
-    imperativo: ["-", "gioca", "giochi", "giochiamo", "giocate", "giochino"],
-    passatoProssimo: ["ho giocato", "hai giocato", "ha giocato", "abbiamo giocato", "avete giocato", "hanno giocato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "aspettare",
-    translation: "to wait",
-    presente: ["aspetto", "aspetti", "aspetta", "aspettiamo", "aspettate", "aspettano"],
-    passatoRemoto: ["aspettai", "aspettasti", "aspettò", "aspettammo", "aspettaste", "aspettarono"],
-    imperativo: ["-", "aspetta", "aspetti", "aspettiamo", "aspettate", "aspettino"],
-    passatoProssimo: ["ho aspettato", "hai aspettato", "ha aspettato", "abbiamo aspettato", "avete aspettato", "hanno aspettato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "cercare",
-    translation: "to search",
-    presente: ["cerco", "cerchi", "cerca", "cerchiamo", "cercate", "cercano"],
-    passatoRemoto: ["cercai", "cercasti", "cercò", "cercammo", "cercaste", "cercarono"],
-    imperativo: ["-", "cerca", "cerchi", "cerchiamo", "cercate", "cerchino"],
-    passatoProssimo: ["ho cercato", "hai cercato", "ha cercato", "abbiamo cercato", "avete cercato", "hanno cercato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "pagare",
-    translation: "to pay",
-    presente: ["pago", "paghi", "paga", "paghiamo", "pagate", "pagano"],
-    passatoRemoto: ["pagai", "pagasti", "pagò", "pagammo", "pagaste", "pagarono"],
-    imperativo: ["-", "paga", "paghi", "paghiamo", "pagate", "paghino"],
-    passatoProssimo: ["ho pagato", "hai pagato", "ha pagato", "abbiamo pagato", "avete pagato", "hanno pagato"],
-    typePres: "Regolare",
-    typePR: "Regolare",
-    typeImp: "Regolare",
-    typePP: "Regolare"
-  },
-  {
-    infinitive: "decidere",
-    translation: "to decide",
-    presente: ["decido", "decidi", "decide", "decidiamo", "decidete", "decidono"],
-    passatoRemoto: ["decisi", "decidesti", "decise", "decidemmo", "decideste", "decisero"],
-    imperativo: ["-", "decidi", "decida", "decidiamo", "decidete", "decidano"],
-    passatoProssimo: ["ho deciso", "hai deciso", "ha deciso", "abbiamo deciso", "avete deciso", "hanno deciso"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "morire",
-    translation: "to die",
-    presente: ["muoio", "muori", "muore", "moriamo", "morite", "muoiono"],
-    passatoRemoto: ["morii", "moristi", "morì", "morimmo", "moriste", "morirono"],
-    imperativo: ["-", "muori", "muoia", "moriamo", "morite", "muoiano"],
-    passatoProssimo: ["sono morto/a", "sei morto/a", "è morto/a", "siamo morti/e", "siete morti/e", "sono morti/e"],
-    typePres: "Irregolare",
-    typePR: "Regolare",
-    typeImp: "Irregolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "nascere",
-    translation: "to be born",
-    presente: ["nasco", "nasci", "nasce", "nasciamo", "nascete", "nascono"],
-    passatoRemoto: ["nacqui", "nascesti", "nacque", "nascemmo", "nasceste", "nacquero"],
-    imperativo: ["-", "nasci", "nasca", "nasciamo", "nascete", "nascano"],
-    passatoProssimo: ["sono nato/a", "sei nato/a", "è nato/a", "siamo nati/e", "siete nati/e", "sono nati/e"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "rimanere",
-    translation: "to remain/stay",
-    presente: ["rimango", "rimani", "rimane", "rimaniamo", "rimanete", "rimangono"],
-    passatoRemoto: ["rimasi", "rimanesti", "rimase", "rimanemmo", "rimaneste", "rimasero"],
-    imperativo: ["-", "rimani", "rimanga", "rimaniamo", "rimanete", "rimangano"],
-    passatoProssimo: ["sono rimasto/a", "sei rimasto/a", "è rimasto/a", "siamo rimasti/e", "siete rimasti/e", "sono rimasti/e"],
-    typePres: "Irregolare",
-    typePR: "Irregolare",
-    typeImp: "Irregolare",
-    typePP: "Irregolare"
-  },
-  {
-    infinitive: "correre",
-    translation: "to run",
-    presente: ["corro", "corri", "corre", "corriamo", "correte", "corrono"],
-    passatoRemoto: ["corsi", "corresti", "corse", "corremmo", "correste", "corsero"],
-    imperativo: ["-", "corri", "corra", "corriamo", "correte", "corrano"],
-    passatoProssimo: ["ho corso", "hai corso", "ha corso", "abbiamo corso", "avete corso", "hanno corso"],
-    typePres: "Regolare",
-    typePR: "Irregolare",
-    typeImp: "Regolare",
-    typePP: "Irregolare"
   }
 ];
+
+const futureRoots = {
+  "essere": "sar", "avere": "avr", "fare": "far", "dire": "dir", "potere": "potr",
+  "volere": "vorr", "sapere": "sapr", "stare": "star", "dovere": "dovr", "vedere": "vedr",
+  "andare": "andr", "venire": "verr", "dare": "dar", "vivere": "vivr", "bere": "berr",
+  "rimanere": "rimarr", "cercare": "cercher", "giocare": "giocher", "pagare": "pagher",
+  "mangiare": "manger", "lasciare": "lascer"
+};
+
+// Generazione dinamica del Trapassato Prossimo basata sul Passato Prossimo
+top50Verbs.forEach(verb => {
+  verb.trapassatoProssimo = verb.passatoProssimo.map((pp, index) => {
+    let tp = pp;
+    tp = tp.replace(/^sono /, index === 5 ? "erano " : "ero ");
+    tp = tp.replace(/^sei /, "eri ");
+    tp = tp.replace(/^è /, "era ");
+    tp = tp.replace(/^siamo /, "eravamo ");
+    tp = tp.replace(/^siete /, "eravate ");
+    tp = tp.replace(/^ho /, "avevo ");
+    tp = tp.replace(/^hai /, "avevi ");
+    tp = tp.replace(/^ha /, "aveva ");
+    tp = tp.replace(/^abbiamo /, "avevamo ");
+    tp = tp.replace(/^avete /, "avevate ");
+    tp = tp.replace(/^hanno /, "avevano ");
+    return tp;
+  });
+  verb.typeTP = verb.typePP;
+
+  // Generazione dinamica del Futuro Semplice
+  const inf = verb.infinitive;
+  let futRoot;
+  let futType = "Regolare";
+
+  if (futureRoots[inf]) {
+    futRoot = futureRoots[inf];
+    // I cambi ortografici (-care/-gare, -ciare/-giare) mantengono la classificazione "Regolare"
+    if (!["cercare", "giocare", "pagare", "mangiare", "lasciare"].includes(inf)) {
+      futType = "Irregolare";
+    }
+  } else {
+    if (inf.endsWith("are") || inf.endsWith("ere")) {
+      futRoot = inf.slice(0, -3) + "er";
+    } else if (inf.endsWith("ire")) {
+      futRoot = inf.slice(0, -3) + "ir";
+    }
+  }
+
+  verb.futuro = [
+    futRoot + "ò",
+    futRoot + "ai",
+    futRoot + "à",
+    futRoot + "emo",
+    futRoot + "ete",
+    futRoot + "anno"
+  ];
+  verb.typeFut = futType;
+});
 
 const pronouns = ["io", "tu", "lui/lei", "noi", "voi", "loro"];
 const imperativePronouns = ["(io)", "tu", "Lei (formale)", "noi", "voi"];
@@ -614,7 +99,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col md:flex-row">
       
       {/* Sidebar Navigation */}
-      <nav className="w-full md:w-64 bg-indigo-900 text-white flex flex-col shadow-xl flex-shrink-0 z-10 sticky top-0 md:h-screen">
+      <nav className="w-full md:w-64 bg-indigo-900 text-white flex flex-col shadow-xl flex-shrink-0 z-10 sticky top-0 md:h-screen overflow-y-auto">
         <div className="p-6 bg-indigo-950">
           <h1 className="text-2xl font-bold flex items-center gap-2">
             <BookOpen className="text-emerald-400" />
@@ -631,10 +116,28 @@ export default function App() {
             onClick={() => setActiveTab('presente')} 
           />
           <NavItem 
+            icon={<History size={20} />} 
+            label="L'Imperfetto" 
+            isActive={activeTab === 'imperfetto'} 
+            onClick={() => setActiveTab('imperfetto')} 
+          />
+          <NavItem 
             icon={<Clock size={20} />} 
             label="Passato Prossimo" 
             isActive={activeTab === 'prossimo'} 
             onClick={() => setActiveTab('prossimo')} 
+          />
+          <NavItem 
+            icon={<Archive size={20} />} 
+            label="Trapassato Prossimo" 
+            isActive={activeTab === 'trapassato'} 
+            onClick={() => setActiveTab('trapassato')} 
+          />
+          <NavItem 
+            icon={<Rocket size={20} />} 
+            label="Futuro Semplice" 
+            isActive={activeTab === 'futuro'} 
+            onClick={() => setActiveTab('futuro')} 
           />
           <NavItem 
             icon={<ScrollText size={20} />} 
@@ -664,9 +167,12 @@ export default function App() {
       </nav>
 
       {/* Main Content Area */}
-      <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full max-w-5xl mx-auto">
+      <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full max-w-6xl mx-auto">
         {activeTab === 'presente' && <PresenteSection />}
+        {activeTab === 'imperfetto' && <ImperfettoSection />}
+        {activeTab === 'futuro' && <FuturoSempliceSection />}
         {activeTab === 'prossimo' && <PassatoProssimoSection />}
+        {activeTab === 'trapassato' && <TrapassatoProssimoSection />}
         {activeTab === 'passato' && <PassatoRemotoSection />}
         {activeTab === 'imperativo' && <ImperativoSection />}
         {activeTab === 'verbi' && <TopVerbsSection />}
@@ -685,7 +191,7 @@ function NavItem({ icon, label, isActive, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-3 w-full p-4 text-left font-medium transition-colors whitespace-nowrap
+      className={`flex items-center gap-3 w-full p-4 text-left font-medium transition-colors whitespace-nowrap flex-shrink-0
         ${isActive 
           ? 'bg-indigo-800 border-l-4 border-emerald-400 text-white' 
           : 'text-indigo-100 hover:bg-indigo-800/50 hover:text-white border-l-4 border-transparent'
@@ -761,6 +267,103 @@ function PresenteSection() {
             <li><span className="inline-block w-8 text-slate-500">voi</span> cap-ite</li>
             <li><span className="inline-block w-8 text-purple-600 font-bold">loro</span> cap-<strong>isc</strong>-ono</li>
           </ul>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function FuturoSempliceSection() {
+  return (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Futuro Semplice</h2>
+        <p className="text-slate-600 mt-2 text-lg">Progetti, previsioni e ipotesi sul presente.</p>
+      </header>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <Info size={20} /> Quando si usa?
+        </h3>
+        <ul className="list-disc pl-6 space-y-4 text-slate-700 mt-4">
+          <li>
+            <strong>Progetti e intenzioni:</strong><br />
+            Azione che avverrà nel futuro.<br />
+            <span className="italic text-slate-500">Es: L'anno prossimo <strong>andrò</strong> in Italia.</span>
+          </li>
+          <li>
+            <strong>Previsioni:</strong><br />
+            Eventi che si pensa accadranno (o meteo).<br />
+            <span className="italic text-slate-500">Es: Domani <strong>pioverà</strong> tutto il giorno.</span>
+          </li>
+          <li>
+            <strong>Dubbi e ipotesi nel presente:</strong><br />
+            Per esprimere un'incertezza o fare una supposizione nel momento attuale.<br />
+            <span className="italic text-slate-500">Es: "Che ore sono?" - "Non lo so, <strong>saranno</strong> le 5."</span>
+          </li>
+        </ul>
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-4">Verbi Regolari: Le Desinenze</h3>
+        <p className="mb-4 text-slate-700">Attenzione ai verbi in <strong>-ARE</strong>: la "A" si trasforma in "E" prima di aggiungere la desinenza (parlare → parl<strong>e</strong>rò).</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-indigo-50 text-indigo-900">
+                <th className="p-3 border">Persona</th>
+                <th className="p-3 border">-ARE (Parlare)</th>
+                <th className="p-3 border">-ERE (Credere)</th>
+                <th className="p-3 border">-IRE (Dormire)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parl-<strong>erò</strong></td><td className="p-3 border">cred-<strong>erò</strong></td><td className="p-3 border">dorm-<strong>irò</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parl-<strong>erai</strong></td><td className="p-3 border">cred-<strong>erai</strong></td><td className="p-3 border">dorm-<strong>irai</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parl-<strong>erà</strong></td><td className="p-3 border">cred-<strong>erà</strong></td><td className="p-3 border">dorm-<strong>irà</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parl-<strong>eremo</strong></td><td className="p-3 border">cred-<strong>eremo</strong></td><td className="p-3 border">dorm-<strong>iremo</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parl-<strong>erete</strong></td><td className="p-3 border">cred-<strong>erete</strong></td><td className="p-3 border">dorm-<strong>irete</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parl-<strong>eranno</strong></td><td className="p-3 border">cred-<strong>eranno</strong></td><td className="p-3 border">dorm-<strong>iranno</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="bg-orange-50 p-6 rounded-xl border border-orange-200">
+        <h3 className="text-xl font-bold text-orange-800 mb-3 flex items-center gap-2">
+          💡 I Tre Gruppi di Irregolari
+        </h3>
+        <p className="mb-4 text-orange-900">
+          I verbi irregolari al futuro si dividono principalmente in tre gruppi, modificando la radice ma mantenendo le stesse desinenze finali:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
+            <h4 className="font-bold text-orange-700 border-b pb-2 mb-2">1. Perdono la vocale</h4>
+            <ul className="text-sm space-y-1 text-slate-700">
+              <li><strong>Avere:</strong> avrò, avrai...</li>
+              <li><strong>Andare:</strong> andrò, andrai...</li>
+              <li><strong>Potere:</strong> potrò, potrai...</li>
+              <li><strong>Vedere:</strong> vedrò, vedrai...</li>
+            </ul>
+          </div>
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
+            <h4 className="font-bold text-orange-700 border-b pb-2 mb-2">2. Raddoppiano la 'R'</h4>
+            <ul className="text-sm space-y-1 text-slate-700">
+              <li><strong>Venire:</strong> verrò, verrai...</li>
+              <li><strong>Volere:</strong> vorrò, vorrai...</li>
+              <li><strong>Bere:</strong> berrò, berrai...</li>
+              <li><strong>Rimanere:</strong> rimarrò, rimarrai...</li>
+            </ul>
+          </div>
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
+            <h4 className="font-bold text-orange-700 border-b pb-2 mb-2">3. Radici speciali</h4>
+            <ul className="text-sm space-y-1 text-slate-700">
+              <li><strong>Essere:</strong> sarò, sarai...</li>
+              <li><strong>Fare:</strong> farò, farai... (mantiene la a)</li>
+              <li><strong>Dare:</strong> darò, darai... (mantiene la a)</li>
+              <li><strong>Stare:</strong> starò, starai... (mantiene la a)</li>
+            </ul>
+          </div>
         </div>
       </section>
     </div>
@@ -875,6 +478,59 @@ function PassatoProssimoSection() {
           Se non sai quale scegliere, chiediti: <strong>"Posso mettere un oggetto dopo il verbo?"</strong>.<br />
           Se dici "Ho comprato...", puoi aggiungere "un giornale". Quindi usi <strong>AVERE</strong>.<br />
           Se dici "Sono andato...", non puoi aggiungere un oggetto. Quindi usi <strong>ESSERE</strong>.
+        </p>
+      </section>
+    </div>
+  );
+}
+
+function TrapassatoProssimoSection() {
+  return (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Trapassato Prossimo</h2>
+        <p className="text-slate-600 mt-2 text-lg">Il passato nel passato.</p>
+      </header>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <Info size={20} /> Quando si usa?
+        </h3>
+        <p className="mb-4 text-slate-700">
+          Il <strong>Trapassato Prossimo</strong> esprime un'azione passata che è avvenuta <em>prima</em> di un'altra azione anch'essa passata. 
+          Si usa spesso per spiegare l'antefatto o le cause di un evento passato.
+        </p>
+        <div className="bg-sky-50 border-l-4 border-sky-500 p-4 mt-4">
+          <p className="text-sky-900 italic">
+            "Quando sono arrivato in stazione, il treno <strong>era</strong> già <strong>partito</strong>."
+          </p>
+          <p className="text-sm mt-2 text-sky-800">
+            L'azione di partire (Trapassato Prossimo) è successa prima dell'azione di arrivare (Passato Prossimo).
+          </p>
+        </div>
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          Come si forma?
+        </h3>
+        <p className="mb-4 text-slate-700">
+          È un tempo composto, molto simile al Passato Prossimo, ma l'ausiliare (<strong>essere</strong> o <strong>avere</strong>) va coniugato all'<strong>Imperfetto</strong> anziché al presente.
+        </p>
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center">
+            <span className="block text-xs uppercase font-bold text-indigo-400 mb-1">Esempio con Avere</span>
+            <p className="text-xl font-bold text-indigo-900">Avevo mangiato</p>
+            <p className="text-sm text-indigo-600 mt-1">(Imperfetto di avere + Participio)</p>
+          </div>
+          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center">
+            <span className="block text-xs uppercase font-bold text-emerald-400 mb-1">Esempio con Essere</span>
+            <p className="text-xl font-bold text-emerald-900">Ero andato</p>
+            <p className="text-sm text-emerald-600 mt-1">(Imperfetto di essere + Participio)</p>
+          </div>
+        </div>
+        <p className="mt-4 text-sm text-slate-500">
+          Nota: Le regole per la scelta dell'ausiliare (essere vs avere) sono esattamente le stesse del Passato Prossimo!
         </p>
       </section>
     </div>
@@ -1057,12 +713,11 @@ function TopVerbsSection() {
   const speakWord = (word) => {
     if (!word || word === "-" || word.includes("N/A")) return;
     
-    // Migliora la pronuncia rimuovendo le forme alterative divise da slash per il TTS
     let cleanWord = word;
     if (word.endsWith('/a') || word.endsWith('/e')) {
-      cleanWord = word.slice(0, -2); // Es: "sono andato/a" -> "sono andato"
+      cleanWord = word.slice(0, -2);
     } else if (word.includes('/')) {
-      cleanWord = word.split('/')[0].trim(); // Es: "fai / fa'" -> "fai"
+      cleanWord = word.split('/')[0].trim();
     }
 
     const utterance = new SpeechSynthesisUtterance(cleanWord);
@@ -1075,7 +730,7 @@ function TopVerbsSection() {
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
       <header>
         <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">I 50 Verbi Più Comuni</h2>
-        <p className="text-slate-600 mt-2 text-lg">Esplora le coniugazioni per Presente, Passato Prossimo, Passato Remoto e Imperativo. Clicca su un verbo per espanderlo.</p>
+        <p className="text-slate-600 mt-2 text-lg">Esplora le coniugazioni per i 5 tempi verbali. Clicca su un verbo per espanderlo.</p>
       </header>
 
       <div className="space-y-3">
@@ -1104,7 +759,7 @@ function TopVerbsSection() {
               </button>
 
               {isOpen && (
-                <div className="p-4 bg-white border-t border-indigo-100 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="p-4 bg-white border-t border-indigo-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   
                   {/* Presente */}
                   <div className="bg-purple-50 p-4 rounded-lg border border-purple-100">
@@ -1135,6 +790,64 @@ function TopVerbsSection() {
                     </table>
                   </div>
 
+                  {/* Imperfetto */}
+                  <div className="bg-teal-50 p-4 rounded-lg border border-teal-100">
+                    <div className="flex justify-between items-center mb-3 border-b border-teal-200 pb-2">
+                      <h4 className="font-bold text-teal-800 text-lg">Imperfetto</h4>
+                      <TypeBadge type={verb.typeImperf} />
+                    </div>
+                    <table className="w-full text-sm">
+                      <tbody>
+                        {pronouns.map((p, i) => (
+                          <tr key={p} className={i % 2 === 0 ? 'bg-white' : ''}>
+                            <td className="py-2 px-3 text-slate-500 w-20">{p}</td>
+                            <td className="py-2 px-3 font-semibold text-slate-800">
+                              <div className="flex items-center justify-between gap-2">
+                                <span>{verb.imperfetto[i]}</span>
+                                <button 
+                                  onClick={(e) => { e.stopPropagation(); speakWord(verb.imperfetto[i]); }}
+                                  className="text-slate-400 hover:text-teal-600 transition-colors flex-shrink-0"
+                                  title="Ascolta la pronuncia"
+                                >
+                                  <Volume2 size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Futuro Semplice */}
+                  <div className="bg-orange-50 p-4 rounded-lg border border-orange-100">
+                    <div className="flex justify-between items-center mb-3 border-b border-orange-200 pb-2">
+                      <h4 className="font-bold text-orange-800 text-lg">Futuro Semplice</h4>
+                      <TypeBadge type={verb.typeFut} />
+                    </div>
+                    <table className="w-full text-sm">
+                      <tbody>
+                        {pronouns.map((p, i) => (
+                          <tr key={p} className={i % 2 === 0 ? 'bg-white' : ''}>
+                            <td className="py-2 px-3 text-slate-500 w-20">{p}</td>
+                            <td className="py-2 px-3 font-semibold text-slate-800">
+                              <div className="flex items-center justify-between gap-2">
+                                <span>{verb.futuro[i]}</span>
+                                <button 
+                                  onClick={(e) => { e.stopPropagation(); speakWord(verb.futuro[i]); }}
+                                  className="text-slate-400 hover:text-orange-600 transition-colors flex-shrink-0"
+                                  title="Ascolta la pronuncia"
+                                >
+                                  <Volume2 size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
                   {/* Passato Prossimo */}
                   <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
                     <div className="flex justify-between items-center mb-3 border-b border-blue-200 pb-2">
@@ -1152,6 +865,35 @@ function TopVerbsSection() {
                                 <button 
                                   onClick={(e) => { e.stopPropagation(); speakWord(verb.passatoProssimo[i]); }}
                                   className="text-slate-400 hover:text-blue-600 transition-colors flex-shrink-0"
+                                  title="Ascolta la pronuncia"
+                                >
+                                  <Volume2 size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Trapassato Prossimo */}
+                  <div className="bg-sky-50 p-4 rounded-lg border border-sky-100">
+                    <div className="flex justify-between items-center mb-3 border-b border-sky-200 pb-2">
+                      <h4 className="font-bold text-sky-800 text-lg">Trapassato Prossimo</h4>
+                      <TypeBadge type={verb.typeTP} />
+                    </div>
+                    <table className="w-full text-sm">
+                      <tbody>
+                        {pronouns.map((p, i) => (
+                          <tr key={p} className={i % 2 === 0 ? 'bg-white' : ''}>
+                            <td className="py-2 px-3 text-slate-500 w-20">{p}</td>
+                            <td className="py-2 px-3 font-semibold text-slate-800">
+                              <div className="flex items-center justify-between gap-2">
+                                <span>{verb.trapassatoProssimo[i]}</span>
+                                <button 
+                                  onClick={(e) => { e.stopPropagation(); speakWord(verb.trapassatoProssimo[i]); }}
+                                  className="text-slate-400 hover:text-sky-600 transition-colors flex-shrink-0"
                                   title="Ascolta la pronuncia"
                                 >
                                   <Volume2 size={16} />
@@ -1263,7 +1005,7 @@ function QuizSection() {
       selectedVerb = randomMistake.verb;
       selectedTense = randomMistake.tense;
     } else {
-      const tenses = actualMode === 'misto' ? ['presente', 'passatoProssimo', 'passatoRemoto', 'imperativo'] : [actualMode];
+      const tenses = actualMode === 'misto' ? ['presente', 'imperfetto', 'futuro', 'passatoProssimo', 'trapassatoProssimo', 'passatoRemoto', 'imperativo'] : [actualMode];
       selectedTense = tenses[Math.floor(Math.random() * tenses.length)];
       
       let validVerbs = top50Verbs;
@@ -1278,8 +1020,11 @@ function QuizSection() {
     
     let correctAnswers;
     if (selectedTense === 'presente') correctAnswers = selectedVerb.presente;
+    else if (selectedTense === 'imperfetto') correctAnswers = selectedVerb.imperfetto;
+    else if (selectedTense === 'futuro') correctAnswers = selectedVerb.futuro;
     else if (selectedTense === 'passatoRemoto') correctAnswers = selectedVerb.passatoRemoto;
     else if (selectedTense === 'passatoProssimo') correctAnswers = selectedVerb.passatoProssimo;
+    else if (selectedTense === 'trapassatoProssimo') correctAnswers = selectedVerb.trapassatoProssimo;
     else correctAnswers = selectedVerb.imperativo;
 
     setCurrentQuestion({
@@ -1312,10 +1057,9 @@ function QuizSection() {
     
     let options = [];
     
-    // Logica per supportare forme maschili/femminili flessibili ("sono andato/a" o "siamo andati/e")
     if (correctAns.endsWith('/a') || correctAns.endsWith('/e')) {
-      const option1 = correctAns.slice(0, -2); // "sono andato" o "siamo andati"
-      const option2 = option1.slice(0, -1) + correctAns.slice(-1); // "sono andata" o "siamo andate"
+      const option1 = correctAns.slice(0, -2); 
+      const option2 = option1.slice(0, -1) + correctAns.slice(-1); 
       options = [option1, option2, correctAns];
     } else if (correctAns.includes('/')) {
       options = correctAns.split('/').map(opt => opt.trim());
@@ -1404,19 +1148,23 @@ function QuizSection() {
 
   const isImperativeIo = (index) => currentQuestion.tense === 'imperativo' && index === 0;
   
-  // Determinare il titolo dinamico per il banner del quiz
   const getTenseTitle = (tense) => {
     if (tense === 'presente') return 'Il Presente';
+    if (tense === 'imperfetto') return "L'Imperfetto";
+    if (tense === 'futuro') return "Il Futuro Semplice";
     if (tense === 'passatoRemoto') return 'Il Passato Remoto';
     if (tense === 'passatoProssimo') return 'Il Passato Prossimo';
+    if (tense === 'trapassatoProssimo') return 'Il Trapassato Prossimo';
     return "L'Imperativo";
   };
 
-  // Determinare il badge regolare/irregolare per il quiz
   const getTenseBadgeType = (question) => {
     if (question.tense === 'presente') return question.verb.typePres;
+    if (question.tense === 'imperfetto') return question.verb.typeImperf;
+    if (question.tense === 'futuro') return question.verb.typeFut;
     if (question.tense === 'passatoRemoto') return question.verb.typePR;
     if (question.tense === 'passatoProssimo') return question.verb.typePP;
+    if (question.tense === 'trapassatoProssimo') return question.verb.typeTP;
     return question.verb.typeImp;
   };
 
@@ -1432,44 +1180,62 @@ function QuizSection() {
           <div className="flex flex-wrap justify-center gap-2 bg-white p-2 rounded-lg border border-slate-200 shadow-sm">
             <button
               onClick={() => handleModeChange('misto')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${quizMode === 'misto' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'misto' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
             >
               Misto
             </button>
             <button
               onClick={() => handleModeChange('presente')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${quizMode === 'presente' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'presente' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
             >
               Presente
             </button>
             <button
+              onClick={() => handleModeChange('imperfetto')}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'imperfetto' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
+            >
+              Imperfetto
+            </button>
+            <button
+              onClick={() => handleModeChange('futuro')}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'futuro' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
+            >
+              Futuro
+            </button>
+            <button
               onClick={() => handleModeChange('passatoProssimo')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${quizMode === 'passatoProssimo' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'passatoProssimo' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
             >
               P. Prossimo
             </button>
             <button
+              onClick={() => handleModeChange('trapassatoProssimo')}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'trapassatoProssimo' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
+            >
+              Trapassato
+            </button>
+            <button
               onClick={() => handleModeChange('passatoRemoto')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${quizMode === 'passatoRemoto' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'passatoRemoto' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
             >
               P. Remoto
             </button>
             <button
               onClick={() => handleModeChange('imperativo')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${quizMode === 'imperativo' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'imperativo' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
             >
               Imperativo
             </button>
             <button
               onClick={() => handleModeChange('ripasso')}
               disabled={mistakes.length === 0 && quizMode !== 'ripasso'}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors flex items-center gap-1.5
                 ${quizMode === 'ripasso' ? 'bg-amber-100 text-amber-800' : 
                   mistakes.length > 0 ? 'text-amber-600 hover:bg-amber-50 border border-amber-200' : 'text-slate-300 cursor-not-allowed border border-transparent'}`}
             >
-              Ripasso Errori
+              Errori
               {mistakes.length > 0 && (
-                <span className={`${quizMode === 'ripasso' ? 'bg-amber-800' : 'bg-amber-500'} text-white text-[10px] font-bold px-2 py-0.5 rounded-full`}>
+                <span className={`${quizMode === 'ripasso' ? 'bg-amber-800' : 'bg-amber-500'} text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full`}>
                   {mistakes.length}
                 </span>
               )}

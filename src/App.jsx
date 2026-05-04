@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun } from 'lucide-react';
 
 const top50Verbs = [
   {
     infinitive: "essere",
     translation: "to be",
+    presente: ["sono", "sei", "è", "siamo", "siete", "sono"],
     passatoRemoto: ["fui", "fosti", "fu", "fummo", "foste", "furono"],
     imperativo: ["-", "sii", "sia", "siamo", "siate", "siano"],
     passatoProssimo: ["sono stato/a", "sei stato/a", "è stato/a", "siamo stati/e", "siete stati/e", "sono stati/e"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Irregolare"
@@ -15,9 +17,11 @@ const top50Verbs = [
   {
     infinitive: "avere",
     translation: "to have",
+    presente: ["ho", "hai", "ha", "abbiamo", "avete", "hanno"],
     passatoRemoto: ["ebbi", "avesti", "ebbe", "avemmo", "aveste", "ebbero"],
     imperativo: ["-", "abbi", "abbia", "abbiamo", "abbiate", "abbiano"],
     passatoProssimo: ["ho avuto", "hai avuto", "ha avuto", "abbiamo avuto", "avete avuto", "hanno avuto"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Regolare"
@@ -25,9 +29,11 @@ const top50Verbs = [
   {
     infinitive: "fare",
     translation: "to do/make",
+    presente: ["faccio", "fai", "fa", "facciamo", "fate", "fanno"],
     passatoRemoto: ["feci", "facesti", "fece", "facemmo", "faceste", "fecero"],
     imperativo: ["-", "fai / fa'", "faccia", "facciamo", "fate", "facciano"],
     passatoProssimo: ["ho fatto", "hai fatto", "ha fatto", "abbiamo fatto", "avete fatto", "hanno fatto"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Irregolare"
@@ -35,9 +41,11 @@ const top50Verbs = [
   {
     infinitive: "dire",
     translation: "to say/tell",
+    presente: ["dico", "dici", "dice", "diciamo", "dite", "dicono"],
     passatoRemoto: ["dissi", "dicesti", "disse", "dicemmo", "diceste", "dissero"],
     imperativo: ["-", "di'", "dica", "diciamo", "dite", "dicano"],
     passatoProssimo: ["ho detto", "hai detto", "ha detto", "abbiamo detto", "avete detto", "hanno detto"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Irregolare"
@@ -45,9 +53,11 @@ const top50Verbs = [
   {
     infinitive: "potere",
     translation: "to be able/can",
+    presente: ["posso", "puoi", "può", "possiamo", "potete", "possono"],
     passatoRemoto: ["potei / potetti", "potesti", "poté / potette", "potemmo", "poteste", "poterono / potettero"],
     imperativo: ["N/A", "Non ha imperativo", "", "", "", ""],
     passatoProssimo: ["ho potuto", "hai potuto", "ha potuto", "abbiamo potuto", "avete potuto", "hanno potuto"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "N/A",
     typePP: "Regolare"
@@ -55,9 +65,11 @@ const top50Verbs = [
   {
     infinitive: "volere",
     translation: "to want",
+    presente: ["voglio", "vuoi", "vuole", "vogliamo", "volete", "vogliono"],
     passatoRemoto: ["volli", "volesti", "volle", "volemmo", "voleste", "vollero"],
     imperativo: ["-", "vogli", "voglia", "vogliamo", "vogliate", "vogliano"],
     passatoProssimo: ["ho voluto", "hai voluto", "ha voluto", "abbiamo voluto", "avete voluto", "hanno voluto"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Regolare"
@@ -65,9 +77,11 @@ const top50Verbs = [
   {
     infinitive: "sapere",
     translation: "to know",
+    presente: ["so", "sai", "sa", "sappiamo", "sapete", "sanno"],
     passatoRemoto: ["seppi", "sapesti", "seppe", "sapemmo", "sapeste", "seppero"],
     imperativo: ["-", "sappi", "sappia", "sappiamo", "sappiate", "sappiano"],
     passatoProssimo: ["ho saputo", "hai saputo", "ha saputo", "abbiamo saputo", "avete saputo", "hanno saputo"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Regolare"
@@ -75,9 +89,11 @@ const top50Verbs = [
   {
     infinitive: "stare",
     translation: "to stay/be",
+    presente: ["sto", "stai", "sta", "stiamo", "state", "stanno"],
     passatoRemoto: ["stetti", "stesti", "stette", "stemmo", "steste", "stettero"],
     imperativo: ["-", "stai / sta'", "stia", "stiamo", "state", "stiano"],
     passatoProssimo: ["sono stato/a", "sei stato/a", "è stato/a", "siamo stati/e", "siete stati/e", "sono stati/e"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Regolare"
@@ -85,9 +101,11 @@ const top50Verbs = [
   {
     infinitive: "dovere",
     translation: "to have to/must",
+    presente: ["devo", "devi", "deve", "dobbiamo", "dovete", "devono"],
     passatoRemoto: ["dovei / dovetti", "dovesti", "dové / dovette", "dovemmo", "doveste", "doverono / dovettero"],
     imperativo: ["N/A", "Non ha imperativo", "", "", "", ""],
     passatoProssimo: ["ho dovuto", "hai dovuto", "ha dovuto", "abbiamo dovuto", "avete dovuto", "hanno dovuto"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "N/A",
     typePP: "Regolare"
@@ -95,9 +113,11 @@ const top50Verbs = [
   {
     infinitive: "vedere",
     translation: "to see",
+    presente: ["vedo", "vedi", "vede", "vediamo", "vedete", "vedono"],
     passatoRemoto: ["vidi", "vedesti", "vide", "vedemmo", "vedeste", "videro"],
     imperativo: ["-", "vedi", "veda", "vediamo", "vedete", "vedano"],
     passatoProssimo: ["ho visto", "hai visto", "ha visto", "abbiamo visto", "avete visto", "hanno visto"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -105,9 +125,11 @@ const top50Verbs = [
   {
     infinitive: "andare",
     translation: "to go",
+    presente: ["vado", "vai", "va", "andiamo", "andate", "vanno"],
     passatoRemoto: ["andai", "andasti", "andò", "andammo", "andaste", "andarono"],
     imperativo: ["-", "vai / va'", "vada", "andiamo", "andate", "vadano"],
     passatoProssimo: ["sono andato/a", "sei andato/a", "è andato/a", "siamo andati/e", "siete andati/e", "sono andati/e"],
+    typePres: "Irregolare",
     typePR: "Regolare",
     typeImp: "Irregolare",
     typePP: "Regolare"
@@ -115,9 +137,11 @@ const top50Verbs = [
   {
     infinitive: "venire",
     translation: "to come",
+    presente: ["vengo", "vieni", "viene", "veniamo", "venite", "vengono"],
     passatoRemoto: ["venni", "venisti", "venne", "venimmo", "veniste", "vennero"],
     imperativo: ["-", "vieni", "venga", "veniamo", "venite", "vengano"],
     passatoProssimo: ["sono venuto/a", "sei venuto/a", "è venuto/a", "siamo venuti/e", "siete venuti/e", "sono venuti/e"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Irregolare"
@@ -125,9 +149,11 @@ const top50Verbs = [
   {
     infinitive: "dare",
     translation: "to give",
+    presente: ["do", "dai", "dà", "diamo", "date", "danno"],
     passatoRemoto: ["diedi / detti", "desti", "diede / dette", "demmo", "deste", "diedero / dettero"],
     imperativo: ["-", "dai / da'", "dia", "diamo", "date", "diano"],
     passatoProssimo: ["ho dato", "hai dato", "ha dato", "abbiamo dato", "avete dato", "hanno dato"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Regolare"
@@ -135,9 +161,11 @@ const top50Verbs = [
   {
     infinitive: "parlare",
     translation: "to speak",
+    presente: ["parlo", "parli", "parla", "parliamo", "parlate", "parlano"],
     passatoRemoto: ["parlai", "parlasti", "parlò", "parlammo", "parlaste", "parlarono"],
     imperativo: ["-", "parla", "parli", "parliamo", "parlate", "parlino"],
     passatoProssimo: ["ho parlato", "hai parlato", "ha parlato", "abbiamo parlato", "avete parlato", "hanno parlato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -145,9 +173,11 @@ const top50Verbs = [
   {
     infinitive: "trovare",
     translation: "to find",
+    presente: ["trovo", "trovi", "trova", "troviamo", "trovate", "trovano"],
     passatoRemoto: ["trovai", "trovasti", "trovò", "trovammo", "trovaste", "trovarono"],
     imperativo: ["-", "trova", "trovi", "troviamo", "trovate", "trovino"],
     passatoProssimo: ["ho trovato", "hai trovato", "ha trovato", "abbiamo trovato", "avete trovato", "hanno trovato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -155,9 +185,11 @@ const top50Verbs = [
   {
     infinitive: "sentire",
     translation: "to feel/hear",
+    presente: ["sento", "senti", "sente", "sentiamo", "sentite", "sentono"],
     passatoRemoto: ["sentii", "sentisti", "sentì", "sentimmo", "sentiste", "sentirono"],
     imperativo: ["-", "senti", "senta", "sentiamo", "sentite", "sentano"],
     passatoProssimo: ["ho sentito", "hai sentito", "ha sentito", "abbiamo sentito", "avete sentito", "hanno sentito"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -165,9 +197,11 @@ const top50Verbs = [
   {
     infinitive: "lasciare",
     translation: "to leave",
+    presente: ["lascio", "lasci", "lascia", "lasciamo", "lasciate", "lasciano"],
     passatoRemoto: ["lasciai", "lasciasti", "lasciò", "lasciammo", "lasciaste", "lasciarono"],
     imperativo: ["-", "lascia", "lasci", "lasciamo", "lasciate", "lascino"],
     passatoProssimo: ["ho lasciato", "hai lasciato", "ha lasciato", "abbiamo lasciato", "avete lasciato", "hanno lasciato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -175,9 +209,11 @@ const top50Verbs = [
   {
     infinitive: "prendere",
     translation: "to take",
+    presente: ["prendo", "prendi", "prende", "prendiamo", "prendete", "prendono"],
     passatoRemoto: ["presi", "prendesti", "prese", "prendemmo", "prendeste", "presero"],
     imperativo: ["-", "prendi", "prenda", "prendiamo", "prendete", "prendano"],
     passatoProssimo: ["ho preso", "hai preso", "ha preso", "abbiamo preso", "avete preso", "hanno preso"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -185,9 +221,11 @@ const top50Verbs = [
   {
     infinitive: "guardare",
     translation: "to look",
+    presente: ["guardo", "guardi", "guarda", "guardiamo", "guardate", "guardano"],
     passatoRemoto: ["guardai", "guardasti", "guardò", "guardammo", "guardaste", "guardarono"],
     imperativo: ["-", "guarda", "guardi", "guardiamo", "guardate", "guardino"],
     passatoProssimo: ["ho guardato", "hai guardato", "ha guardato", "abbiamo guardato", "avete guardato", "hanno guardato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -195,9 +233,11 @@ const top50Verbs = [
   {
     infinitive: "mettere",
     translation: "to put",
+    presente: ["metto", "metti", "mette", "mettiamo", "mettete", "mettono"],
     passatoRemoto: ["misi", "mettesti", "mise", "mettemmo", "metteste", "misero"],
     imperativo: ["-", "metti", "metta", "mettiamo", "mettete", "mettano"],
     passatoProssimo: ["ho messo", "hai messo", "ha messo", "abbiamo messo", "avete messo", "hanno messo"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -205,9 +245,11 @@ const top50Verbs = [
   {
     infinitive: "capire",
     translation: "to understand",
+    presente: ["capisco", "capisci", "capisce", "capiamo", "capite", "capiscono"],
     passatoRemoto: ["capii", "capisti", "capì", "capimmo", "capiste", "capirono"],
     imperativo: ["-", "capisci", "capisca", "capiamo", "capite", "capiscano"],
     passatoProssimo: ["ho capito", "hai capito", "ha capito", "abbiamo capito", "avete capito", "hanno capito"],
+    typePres: "Irregolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -215,9 +257,11 @@ const top50Verbs = [
   {
     infinitive: "conoscere",
     translation: "to know/meet",
+    presente: ["conosco", "conosci", "conosce", "conosciamo", "conoscete", "conoscono"],
     passatoRemoto: ["conobbi", "conoscesti", "conobbe", "conoscemmo", "conosceste", "conobbero"],
     imperativo: ["-", "conosci", "conosca", "conosciamo", "conoscete", "conoscano"],
     passatoProssimo: ["ho conosciuto", "hai conosciuto", "ha conosciuto", "abbiamo conosciuto", "avete conosciuto", "hanno conosciuto"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -225,9 +269,11 @@ const top50Verbs = [
   {
     infinitive: "credere",
     translation: "to believe",
+    presente: ["credo", "credi", "crede", "crediamo", "credete", "credono"],
     passatoRemoto: ["credei / credetti", "credesti", "credé / credette", "credemmo", "credeste", "crederono / credettero"],
     imperativo: ["-", "credi", "creda", "crediamo", "credete", "credano"],
     passatoProssimo: ["ho creduto", "hai creduto", "ha creduto", "abbiamo creduto", "avete creduto", "hanno creduto"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -235,9 +281,11 @@ const top50Verbs = [
   {
     infinitive: "pensare",
     translation: "to think",
+    presente: ["penso", "pensi", "pensa", "pensiamo", "pensate", "pensano"],
     passatoRemoto: ["pensai", "pensasti", "pensò", "pensammo", "pensaste", "pensarono"],
     imperativo: ["-", "pensa", "pensi", "pensiamo", "pensate", "pensino"],
     passatoProssimo: ["ho pensato", "hai pensato", "ha pensato", "abbiamo pensato", "avete pensato", "hanno pensato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -245,9 +293,11 @@ const top50Verbs = [
   {
     infinitive: "portare",
     translation: "to bring/wear",
+    presente: ["porto", "porti", "porta", "portiamo", "portate", "portano"],
     passatoRemoto: ["portai", "portasti", "portò", "portammo", "portaste", "portarono"],
     imperativo: ["-", "porta", "porti", "portiamo", "portate", "portino"],
     passatoProssimo: ["ho portato", "hai portato", "ha portato", "abbiamo portato", "avete portato", "hanno portato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -255,9 +305,11 @@ const top50Verbs = [
   {
     infinitive: "chiamare",
     translation: "to call",
+    presente: ["chiamo", "chiami", "chiama", "chiamiamo", "chiamate", "chiamano"],
     passatoRemoto: ["chiamai", "chiamasti", "chiamò", "chiamammo", "chiamaste", "chiamarono"],
     imperativo: ["-", "chiama", "chiami", "chiamiamo", "chiamate", "chiamino"],
     passatoProssimo: ["ho chiamato", "hai chiamato", "ha chiamato", "abbiamo chiamato", "avete chiamato", "hanno chiamato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -265,9 +317,11 @@ const top50Verbs = [
   {
     infinitive: "chiedere",
     translation: "to ask",
+    presente: ["chiedo", "chiedi", "chiede", "chiediamo", "chiedete", "chiedono"],
     passatoRemoto: ["chiesi", "chiedesti", "chiese", "chiedemmo", "chiedeste", "chiesero"],
     imperativo: ["-", "chiedi", "chieda", "chiediamo", "chiedete", "chiedano"],
     passatoProssimo: ["ho chiesto", "hai chiesto", "ha chiesto", "abbiamo chiesto", "avete chiesto", "hanno chiesto"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -275,9 +329,11 @@ const top50Verbs = [
   {
     infinitive: "leggere",
     translation: "to read",
+    presente: ["leggo", "leggi", "legge", "leggiamo", "leggete", "leggono"],
     passatoRemoto: ["lessi", "leggesti", "lesse", "leggemmo", "leggeste", "lessero"],
     imperativo: ["-", "leggi", "legga", "leggiamo", "leggete", "leggano"],
     passatoProssimo: ["ho letto", "hai letto", "ha letto", "abbiamo letto", "avete letto", "hanno letto"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -285,9 +341,11 @@ const top50Verbs = [
   {
     infinitive: "scrivere",
     translation: "to write",
+    presente: ["scrivo", "scrivi", "scrive", "scriviamo", "scrivete", "scrivono"],
     passatoRemoto: ["scrissi", "scrivesti", "scrisse", "scrivemmo", "scriveste", "scrissero"],
     imperativo: ["-", "scrivi", "scriva", "scriviamo", "scrivete", "scrivano"],
     passatoProssimo: ["ho scritto", "hai scritto", "ha scritto", "abbiamo scritto", "avete scritto", "hanno scritto"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -295,9 +353,11 @@ const top50Verbs = [
   {
     infinitive: "vivere",
     translation: "to live",
+    presente: ["vivo", "vivi", "vive", "viviamo", "vivete", "vivono"],
     passatoRemoto: ["vissi", "vivesti", "visse", "vivemmo", "viveste", "vissero"],
     imperativo: ["-", "vivi", "viva", "viviamo", "vivete", "vivano"],
     passatoProssimo: ["ho vissuto", "hai vissuto", "ha vissuto", "abbiamo vissuto", "avete vissuto", "hanno vissuto"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -305,9 +365,11 @@ const top50Verbs = [
   {
     infinitive: "uscire",
     translation: "to go out",
+    presente: ["esco", "esci", "esce", "usciamo", "uscite", "escono"],
     passatoRemoto: ["uscii", "uscisti", "uscì", "uscimmo", "usciste", "uscirono"],
     imperativo: ["-", "esci", "esca", "usciamo", "uscite", "escano"],
     passatoProssimo: ["sono uscito/a", "sei uscito/a", "è uscito/a", "siamo usciti/e", "siete usciti/e", "sono usciti/e"],
+    typePres: "Irregolare",
     typePR: "Regolare",
     typeImp: "Irregolare",
     typePP: "Regolare"
@@ -315,9 +377,11 @@ const top50Verbs = [
   {
     infinitive: "lavorare",
     translation: "to work",
+    presente: ["lavoro", "lavori", "lavora", "lavoriamo", "lavorate", "lavorano"],
     passatoRemoto: ["lavorai", "lavorasti", "lavorò", "lavorammo", "lavoraste", "lavorarono"],
     imperativo: ["-", "lavora", "lavori", "lavoriamo", "lavorate", "lavorino"],
     passatoProssimo: ["ho lavorato", "hai lavorato", "ha lavorato", "abbiamo lavorato", "avete lavorato", "hanno lavorato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -325,9 +389,11 @@ const top50Verbs = [
   {
     infinitive: "amare",
     translation: "to love",
+    presente: ["amo", "ami", "ama", "amiamo", "amate", "amano"],
     passatoRemoto: ["amai", "amasti", "amò", "amammo", "amaste", "amarono"],
     imperativo: ["-", "ama", "ami", "amiamo", "amate", "amino"],
     passatoProssimo: ["ho amato", "hai amato", "ha amato", "abbiamo amato", "avete amato", "hanno amato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -335,9 +401,11 @@ const top50Verbs = [
   {
     infinitive: "arrivare",
     translation: "to arrive",
+    presente: ["arrivo", "arrivi", "arriva", "arriviamo", "arrivate", "arrivano"],
     passatoRemoto: ["arrivai", "arrivasti", "arrivò", "arrivammo", "arrivaste", "arrivarono"],
     imperativo: ["-", "arriva", "arrivi", "arriviamo", "arrivate", "arrivino"],
     passatoProssimo: ["sono arrivato/a", "sei arrivato/a", "è arrivato/a", "siamo arrivati/e", "siete arrivati/e", "sono arrivati/e"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -345,9 +413,11 @@ const top50Verbs = [
   {
     infinitive: "partire",
     translation: "to leave",
+    presente: ["parto", "parti", "parte", "partiamo", "partite", "partono"],
     passatoRemoto: ["partii", "partisti", "partì", "partimmo", "partiste", "partirono"],
     imperativo: ["-", "parti", "parta", "partiamo", "partite", "partano"],
     passatoProssimo: ["sono partito/a", "sei partito/a", "è partito/a", "siamo partiti/e", "siete partiti/e", "sono partiti/e"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -355,9 +425,11 @@ const top50Verbs = [
   {
     infinitive: "rispondere",
     translation: "to answer",
+    presente: ["rispondo", "rispondi", "risponde", "rispondiamo", "rispondete", "rispondono"],
     passatoRemoto: ["risposi", "rispondesti", "rispose", "rispondemmo", "rispondeste", "risposero"],
     imperativo: ["-", "rispondi", "risponda", "rispondiamo", "rispondete", "rispondano"],
     passatoProssimo: ["ho risposto", "hai risposto", "ha risposto", "abbiamo risposto", "avete risposto", "hanno risposto"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -365,9 +437,11 @@ const top50Verbs = [
   {
     infinitive: "chiudere",
     translation: "to close",
+    presente: ["chiudo", "chiudi", "chiude", "chiudiamo", "chiudete", "chiudono"],
     passatoRemoto: ["chiusi", "chiudesti", "chiuse", "chiudemmo", "chiudeste", "chiusero"],
     imperativo: ["-", "chiudi", "chiuda", "chiudiamo", "chiudete", "chiudano"],
     passatoProssimo: ["ho chiuso", "hai chiuso", "ha chiuso", "abbiamo chiuso", "avete chiuso", "hanno chiuso"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -375,9 +449,11 @@ const top50Verbs = [
   {
     infinitive: "aprire",
     translation: "to open",
+    presente: ["apro", "apri", "apre", "apriamo", "aprite", "aprono"],
     passatoRemoto: ["aprii", "apristi", "aprì", "aprimmo", "apriste", "aprirono"],
     imperativo: ["-", "apri", "apra", "apriamo", "aprite", "aprano"],
     passatoProssimo: ["ho aperto", "hai aperto", "ha aperto", "abbiamo aperto", "avete aperto", "hanno aperto"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -385,9 +461,11 @@ const top50Verbs = [
   {
     infinitive: "bere",
     translation: "to drink",
+    presente: ["bevo", "bevi", "beve", "beviamo", "bevete", "bevono"],
     passatoRemoto: ["bevvi", "bevesti", "bevve", "bevemmo", "beveste", "bevvero"],
     imperativo: ["-", "bevi", "beva", "beviamo", "bevete", "bevano"],
     passatoProssimo: ["ho bevuto", "hai bevuto", "ha bevuto", "abbiamo bevuto", "avete bevuto", "hanno bevuto"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Irregolare"
@@ -395,9 +473,11 @@ const top50Verbs = [
   {
     infinitive: "mangiare",
     translation: "to eat",
+    presente: ["mangio", "mangi", "mangia", "mangiamo", "mangiate", "mangiano"],
     passatoRemoto: ["mangiai", "mangiasti", "mangiò", "mangiammo", "mangiaste", "mangiarono"],
     imperativo: ["-", "mangia", "mangi", "mangiamo", "mangiate", "mangino"],
     passatoProssimo: ["ho mangiato", "hai mangiato", "ha mangiato", "abbiamo mangiato", "avete mangiato", "hanno mangiato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -405,9 +485,11 @@ const top50Verbs = [
   {
     infinitive: "dormire",
     translation: "to sleep",
+    presente: ["dormo", "dormi", "dorme", "dormiamo", "dormite", "dormono"],
     passatoRemoto: ["dormii", "dormisti", "dormì", "dormimmo", "dormiste", "dormirono"],
     imperativo: ["-", "dormi", "dorma", "dormiamo", "dormite", "dormano"],
     passatoProssimo: ["ho dormito", "hai dormito", "ha dormito", "abbiamo dormito", "avete dormito", "hanno dormito"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -415,9 +497,11 @@ const top50Verbs = [
   {
     infinitive: "giocare",
     translation: "to play",
+    presente: ["gioco", "giochi", "gioca", "giochiamo", "giocate", "giocano"],
     passatoRemoto: ["giocai", "giocasti", "giocò", "giocammo", "giocaste", "giocarono"],
     imperativo: ["-", "gioca", "giochi", "giochiamo", "giocate", "giochino"],
     passatoProssimo: ["ho giocato", "hai giocato", "ha giocato", "abbiamo giocato", "avete giocato", "hanno giocato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -425,9 +509,11 @@ const top50Verbs = [
   {
     infinitive: "aspettare",
     translation: "to wait",
+    presente: ["aspetto", "aspetti", "aspetta", "aspettiamo", "aspettate", "aspettano"],
     passatoRemoto: ["aspettai", "aspettasti", "aspettò", "aspettammo", "aspettaste", "aspettarono"],
     imperativo: ["-", "aspetta", "aspetti", "aspettiamo", "aspettate", "aspettino"],
     passatoProssimo: ["ho aspettato", "hai aspettato", "ha aspettato", "abbiamo aspettato", "avete aspettato", "hanno aspettato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -435,9 +521,11 @@ const top50Verbs = [
   {
     infinitive: "cercare",
     translation: "to search",
+    presente: ["cerco", "cerchi", "cerca", "cerchiamo", "cercate", "cercano"],
     passatoRemoto: ["cercai", "cercasti", "cercò", "cercammo", "cercaste", "cercarono"],
     imperativo: ["-", "cerca", "cerchi", "cerchiamo", "cercate", "cerchino"],
     passatoProssimo: ["ho cercato", "hai cercato", "ha cercato", "abbiamo cercato", "avete cercato", "hanno cercato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -445,9 +533,11 @@ const top50Verbs = [
   {
     infinitive: "pagare",
     translation: "to pay",
+    presente: ["pago", "paghi", "paga", "paghiamo", "pagate", "pagano"],
     passatoRemoto: ["pagai", "pagasti", "pagò", "pagammo", "pagaste", "pagarono"],
     imperativo: ["-", "paga", "paghi", "paghiamo", "pagate", "paghino"],
     passatoProssimo: ["ho pagato", "hai pagato", "ha pagato", "abbiamo pagato", "avete pagato", "hanno pagato"],
+    typePres: "Regolare",
     typePR: "Regolare",
     typeImp: "Regolare",
     typePP: "Regolare"
@@ -455,9 +545,11 @@ const top50Verbs = [
   {
     infinitive: "decidere",
     translation: "to decide",
+    presente: ["decido", "decidi", "decide", "decidiamo", "decidete", "decidono"],
     passatoRemoto: ["decisi", "decidesti", "decise", "decidemmo", "decideste", "decisero"],
     imperativo: ["-", "decidi", "decida", "decidiamo", "decidete", "decidano"],
     passatoProssimo: ["ho deciso", "hai deciso", "ha deciso", "abbiamo deciso", "avete deciso", "hanno deciso"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -465,9 +557,11 @@ const top50Verbs = [
   {
     infinitive: "morire",
     translation: "to die",
+    presente: ["muoio", "muori", "muore", "moriamo", "morite", "muoiono"],
     passatoRemoto: ["morii", "moristi", "morì", "morimmo", "moriste", "morirono"],
     imperativo: ["-", "muori", "muoia", "moriamo", "morite", "muoiano"],
     passatoProssimo: ["sono morto/a", "sei morto/a", "è morto/a", "siamo morti/e", "siete morti/e", "sono morti/e"],
+    typePres: "Irregolare",
     typePR: "Regolare",
     typeImp: "Irregolare",
     typePP: "Irregolare"
@@ -475,9 +569,11 @@ const top50Verbs = [
   {
     infinitive: "nascere",
     translation: "to be born",
+    presente: ["nasco", "nasci", "nasce", "nasciamo", "nascete", "nascono"],
     passatoRemoto: ["nacqui", "nascesti", "nacque", "nascemmo", "nasceste", "nacquero"],
     imperativo: ["-", "nasci", "nasca", "nasciamo", "nascete", "nascano"],
     passatoProssimo: ["sono nato/a", "sei nato/a", "è nato/a", "siamo nati/e", "siete nati/e", "sono nati/e"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -485,9 +581,11 @@ const top50Verbs = [
   {
     infinitive: "rimanere",
     translation: "to remain/stay",
+    presente: ["rimango", "rimani", "rimane", "rimaniamo", "rimanete", "rimangono"],
     passatoRemoto: ["rimasi", "rimanesti", "rimase", "rimanemmo", "rimaneste", "rimasero"],
     imperativo: ["-", "rimani", "rimanga", "rimaniamo", "rimanete", "rimangano"],
     passatoProssimo: ["sono rimasto/a", "sei rimasto/a", "è rimasto/a", "siamo rimasti/e", "siete rimasti/e", "sono rimasti/e"],
+    typePres: "Irregolare",
     typePR: "Irregolare",
     typeImp: "Irregolare",
     typePP: "Irregolare"
@@ -495,9 +593,11 @@ const top50Verbs = [
   {
     infinitive: "correre",
     translation: "to run",
+    presente: ["corro", "corri", "corre", "corriamo", "correte", "corrono"],
     passatoRemoto: ["corsi", "corresti", "corse", "corremmo", "correste", "corsero"],
     imperativo: ["-", "corri", "corra", "corriamo", "correte", "corrano"],
     passatoProssimo: ["ho corso", "hai corso", "ha corso", "abbiamo corso", "avete corso", "hanno corso"],
+    typePres: "Regolare",
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
@@ -508,7 +608,7 @@ const pronouns = ["io", "tu", "lui/lei", "noi", "voi", "loro"];
 const imperativePronouns = ["(io)", "tu", "Lei (formale)", "noi", "voi"];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('verbi');
+  const [activeTab, setActiveTab] = useState('presente');
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col md:flex-row">
@@ -524,6 +624,12 @@ export default function App() {
         </div>
         
         <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible">
+          <NavItem 
+            icon={<Sun size={20} />} 
+            label="Il Presente" 
+            isActive={activeTab === 'presente'} 
+            onClick={() => setActiveTab('presente')} 
+          />
           <NavItem 
             icon={<Clock size={20} />} 
             label="Passato Prossimo" 
@@ -559,6 +665,7 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full max-w-5xl mx-auto">
+        {activeTab === 'presente' && <PresenteSection />}
         {activeTab === 'prossimo' && <PassatoProssimoSection />}
         {activeTab === 'passato' && <PassatoRemotoSection />}
         {activeTab === 'imperativo' && <ImperativoSection />}
@@ -588,6 +695,75 @@ function NavItem({ icon, label, isActive, onClick }) {
       {icon}
       {label}
     </button>
+  );
+}
+
+function PresenteSection() {
+  return (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Presente Indicativo</h2>
+        <p className="text-slate-600 mt-2 text-lg">Il tempo fondamentale per parlare di azioni attuali e abitudini.</p>
+      </header>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <Info size={20} /> Quando si usa?
+        </h3>
+        <p className="mb-4 text-slate-700">
+          Il <strong>Presente Indicativo</strong> si usa per descrivere:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-slate-700">
+          <li><strong>Azioni che avvengono nel momento in cui si parla:</strong> <em>Ora leggo un libro.</em></li>
+          <li><strong>Abitudini e azioni ripetute:</strong> <em>Ogni mattina bevo il caffè.</em></li>
+          <li><strong>Fatti sempre veri (leggi scientifiche, universali):</strong> <em>La Terra gira intorno al Sole.</em></li>
+          <li><strong>Eventi futuri (molto vicini o certi):</strong> <em>Domani parto per Roma.</em></li>
+        </ul>
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-4">Verbi Regolari: Le Desinenze</h3>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-indigo-50 text-indigo-900">
+                <th className="p-3 border">Persona</th>
+                <th className="p-3 border">-ARE (es. Parlare)</th>
+                <th className="p-3 border">-ERE (es. Credere)</th>
+                <th className="p-3 border">-IRE (es. Dormire)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parl-<strong>o</strong></td><td className="p-3 border">cred-<strong>o</strong></td><td className="p-3 border">dorm-<strong>o</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parl-<strong>i</strong></td><td className="p-3 border">cred-<strong>i</strong></td><td className="p-3 border">dorm-<strong>i</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parl-<strong>a</strong></td><td className="p-3 border">cred-<strong>e</strong></td><td className="p-3 border">dorm-<strong>e</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parl-<strong>iamo</strong></td><td className="p-3 border">cred-<strong>iamo</strong></td><td className="p-3 border">dorm-<strong>iamo</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parl-<strong>ate</strong></td><td className="p-3 border">cred-<strong>ete</strong></td><td className="p-3 border">dorm-<strong>ite</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parl-<strong>ano</strong></td><td className="p-3 border">cred-<strong>ono</strong></td><td className="p-3 border">dorm-<strong>ono</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="bg-purple-50 p-6 rounded-xl border border-purple-200">
+        <h3 className="text-xl font-bold text-purple-800 mb-3 flex items-center gap-2">
+          💡 I verbi in -IRE con il suffisso "-ISC-"
+        </h3>
+        <p className="mb-4 text-purple-900">
+          Molti verbi che finiscono in <strong>-IRE</strong> (come capire, finire, preferire, pulire) inseriscono il suffisso <strong>-isc-</strong> tra la radice e la desinenza, ma <strong>solo nelle prime tre persone singolari e nella terza plurale</strong>. Noi e Voi rimangono perfettamente normali.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <ul className="space-y-1 bg-white p-4 rounded-lg shadow-sm border border-purple-100">
+            <li><span className="inline-block w-8 text-purple-600 font-bold">io</span> cap-<strong>isc</strong>-o</li>
+            <li><span className="inline-block w-8 text-purple-600 font-bold">tu</span> cap-<strong>isc</strong>-i</li>
+            <li><span className="inline-block w-8 text-purple-600 font-bold">lui</span> cap-<strong>isc</strong>-e</li>
+            <li><span className="inline-block w-8 text-slate-500">noi</span> cap-iamo</li>
+            <li><span className="inline-block w-8 text-slate-500">voi</span> cap-ite</li>
+            <li><span className="inline-block w-8 text-purple-600 font-bold">loro</span> cap-<strong>isc</strong>-ono</li>
+          </ul>
+        </div>
+      </section>
+    </div>
   );
 }
 
@@ -899,7 +1075,7 @@ function TopVerbsSection() {
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
       <header>
         <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">I 50 Verbi Più Comuni</h2>
-        <p className="text-slate-600 mt-2 text-lg">Esplora le coniugazioni per il Passato Prossimo, Passato Remoto e Imperativo. Clicca su un verbo per espanderlo.</p>
+        <p className="text-slate-600 mt-2 text-lg">Esplora le coniugazioni per Presente, Passato Prossimo, Passato Remoto e Imperativo. Clicca su un verbo per espanderlo.</p>
       </header>
 
       <div className="space-y-3">
@@ -928,8 +1104,37 @@ function TopVerbsSection() {
               </button>
 
               {isOpen && (
-                <div className="p-4 bg-white border-t border-indigo-100 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="p-4 bg-white border-t border-indigo-100 grid grid-cols-1 lg:grid-cols-2 gap-6">
                   
+                  {/* Presente */}
+                  <div className="bg-purple-50 p-4 rounded-lg border border-purple-100">
+                    <div className="flex justify-between items-center mb-3 border-b border-purple-200 pb-2">
+                      <h4 className="font-bold text-purple-800 text-lg">Presente</h4>
+                      <TypeBadge type={verb.typePres} />
+                    </div>
+                    <table className="w-full text-sm">
+                      <tbody>
+                        {pronouns.map((p, i) => (
+                          <tr key={p} className={i % 2 === 0 ? 'bg-white' : ''}>
+                            <td className="py-2 px-3 text-slate-500 w-20">{p}</td>
+                            <td className="py-2 px-3 font-semibold text-slate-800">
+                              <div className="flex items-center justify-between gap-2">
+                                <span>{verb.presente[i]}</span>
+                                <button 
+                                  onClick={(e) => { e.stopPropagation(); speakWord(verb.presente[i]); }}
+                                  className="text-slate-400 hover:text-purple-600 transition-colors flex-shrink-0"
+                                  title="Ascolta la pronuncia"
+                                >
+                                  <Volume2 size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
                   {/* Passato Prossimo */}
                   <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
                     <div className="flex justify-between items-center mb-3 border-b border-blue-200 pb-2">
@@ -1058,7 +1263,7 @@ function QuizSection() {
       selectedVerb = randomMistake.verb;
       selectedTense = randomMistake.tense;
     } else {
-      const tenses = actualMode === 'misto' ? ['passatoProssimo', 'passatoRemoto', 'imperativo'] : [actualMode];
+      const tenses = actualMode === 'misto' ? ['presente', 'passatoProssimo', 'passatoRemoto', 'imperativo'] : [actualMode];
       selectedTense = tenses[Math.floor(Math.random() * tenses.length)];
       
       let validVerbs = top50Verbs;
@@ -1072,7 +1277,8 @@ function QuizSection() {
     const displayPronouns = selectedTense === 'imperativo' ? imperativePronouns : pronouns;
     
     let correctAnswers;
-    if (selectedTense === 'passatoRemoto') correctAnswers = selectedVerb.passatoRemoto;
+    if (selectedTense === 'presente') correctAnswers = selectedVerb.presente;
+    else if (selectedTense === 'passatoRemoto') correctAnswers = selectedVerb.passatoRemoto;
     else if (selectedTense === 'passatoProssimo') correctAnswers = selectedVerb.passatoProssimo;
     else correctAnswers = selectedVerb.imperativo;
 
@@ -1200,6 +1406,7 @@ function QuizSection() {
   
   // Determinare il titolo dinamico per il banner del quiz
   const getTenseTitle = (tense) => {
+    if (tense === 'presente') return 'Il Presente';
     if (tense === 'passatoRemoto') return 'Il Passato Remoto';
     if (tense === 'passatoProssimo') return 'Il Passato Prossimo';
     return "L'Imperativo";
@@ -1207,6 +1414,7 @@ function QuizSection() {
 
   // Determinare il badge regolare/irregolare per il quiz
   const getTenseBadgeType = (question) => {
+    if (question.tense === 'presente') return question.verb.typePres;
     if (question.tense === 'passatoRemoto') return question.verb.typePR;
     if (question.tense === 'passatoProssimo') return question.verb.typePP;
     return question.verb.typeImp;
@@ -1227,6 +1435,12 @@ function QuizSection() {
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${quizMode === 'misto' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
             >
               Misto
+            </button>
+            <button
+              onClick={() => handleModeChange('presente')}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${quizMode === 'presente' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
+            >
+              Presente
             </button>
             <button
               onClick={() => handleModeChange('passatoProssimo')}

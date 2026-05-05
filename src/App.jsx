@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard } from 'lucide-react';
 
 const top50Verbs = [
   {
@@ -797,7 +797,7 @@ const pronouns = ["io", "tu", "lui/lei", "noi", "voi", "loro"];
 const imperativePronouns = ["(io)", "tu", "Lei (formale)", "noi", "voi"];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('presente');
+  const [activeTab, setActiveTab] = useState('panoramica');
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col md:flex-row">
@@ -813,6 +813,12 @@ export default function App() {
         </div>
         
         <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible pb-16 md:pb-0">
+          <NavItem 
+            icon={<LayoutDashboard size={20} />} 
+            label="Panoramica B2" 
+            isActive={activeTab === 'panoramica'} 
+            onClick={() => setActiveTab('panoramica')} 
+          />
           <NavItem 
             icon={<Sun size={20} />} 
             label="Il Presente" 
@@ -884,6 +890,7 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full max-w-6xl mx-auto">
+        {activeTab === 'panoramica' && <PanoramicaSection />}
         {activeTab === 'presente' && <PresenteSection />}
         {activeTab === 'imperfetto' && <ImperfettoSection />}
         {activeTab === 'futuro' && <FuturoSempliceSection />}
@@ -919,6 +926,86 @@ function NavItem({ icon, label, isActive, onClick }) {
       {icon}
       {label}
     </button>
+  );
+}
+
+function PanoramicaSection() {
+  return (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Panoramica Livello B2</h2>
+        <p className="text-slate-600 mt-2 text-lg leading-relaxed">
+          Ecco la lista completa dei tempi verbali che devi padroneggiare per il livello B2. Ho inserito degli esempi legati a temi comuni degli esami (come il lavoro, l'ambiente e la società) per darti anche un po' di lessico utile:
+        </p>
+      </header>
+
+      {/* Indicativo */}
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 border-t-4 border-t-blue-500">
+        <h3 className="text-xl font-bold text-blue-800 mb-3">1. Modo Indicativo (La Realtà)</h3>
+        <p className="mb-4 text-slate-700">Al livello B2, l'uso corretto e l'alternanza fluida tra passato prossimo, imperfetto e trapassato prossimo sono fondamentali per raccontare eventi passati.</p>
+        <ul className="space-y-3 text-slate-700">
+          <li><strong>Presente:</strong> <em>Le energie rinnovabili rappresentano il futuro del nostro pianeta.</em></li>
+          <li><strong>Passato Prossimo:</strong> <em>Negli ultimi anni, la tecnologia ha cambiato radicalmente il nostro modo di comunicare.</em></li>
+          <li><strong>Imperfetto:</strong> <em>Prima della rivoluzione industriale, la società si basava principalmente sull'agricoltura.</em></li>
+          <li><strong>Trapassato Prossimo:</strong> <em>Quando il governo ha approvato la nuova legge, i cittadini avevano già protestato per settimane.</em></li>
+          <li><strong>Passato Remoto:</strong> <span className="text-sm text-slate-500">(La produzione attiva non è sempre richiesta all'orale in tutti gli esami, ma devi saperlo riconoscere e usare nella comprensione e produzione scritta formale):</span> <em>Nel 1946 l'Italia divenne una Repubblica.</em></li>
+          <li><strong>Futuro Semplice:</strong> <em>Si prevede che le macchine autonome ridurranno gli incidenti stradali.</em></li>
+          <li><strong>Futuro Anteriore:</strong> <em>Ti invierò il documento non appena avrò finito di scriverlo.</em></li>
+        </ul>
+      </section>
+
+      {/* Congiuntivo */}
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 border-t-4 border-t-purple-500">
+        <h3 className="text-xl font-bold text-purple-800 mb-3">2. Modo Congiuntivo (La Soggettività e l'Incertezza)</h3>
+        <p className="mb-4 text-slate-700">Questo è il cuore del livello B2! Devi saperlo usare per esprimere opinioni, dubbi, stati d'animo e dopo specifici connettivi subordinanti (come <em>sebbene, nonostante, affinché, a patto che</em>).</p>
+        <ul className="space-y-3 text-slate-700">
+          <li><strong>Presente:</strong> <em>Molti esperti credono che il cambiamento climatico sia un'emergenza assoluta.</em></li>
+          <li><strong>Passato:</strong> <em>Nonostante abbia studiato molto l'argomento, il test mi preoccupa ancora un po'.</em></li>
+          <li><strong>Imperfetto:</strong> <em>Sarebbe opportuno che le istituzioni investissero maggiori risorse nell'istruzione pubblica.</em></li>
+          <li><strong>Trapassato:</strong> <em>Se la riunione fosse finita prima, avrei partecipato volentieri al seminario.</em></li>
+        </ul>
+      </section>
+
+      {/* Condizionale */}
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 border-t-4 border-t-orange-500">
+        <h3 className="text-xl font-bold text-orange-800 mb-3">3. Modo Condizionale (La Possibilità e l'Ipotesi)</h3>
+        <ul className="space-y-3 text-slate-700">
+          <li><strong>Presente:</strong> <em>Mi piacerebbe approfondire le cause e le conseguenze della globalizzazione.</em></li>
+          <li><strong>Passato:</strong> <em>Sarei andato all'evento, tuttavia imprevisti lavorativi me lo hanno impedito.</em> <span className="text-sm text-slate-500">(Nota come l'uso del connettivo tuttavia renda la frase più elegante).</span></li>
+        </ul>
+      </section>
+
+      {/* Imperativo */}
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 border-t-4 border-t-emerald-500">
+        <h3 className="text-xl font-bold text-emerald-800 mb-3">4. Modo Imperativo</h3>
+        <p className="mb-4 text-slate-700">Serve padroneggiare bene non solo l'imperativo diretto, ma soprattutto la forma di cortesia (il "Lei" formale), molto comune nelle prove di gioco di ruolo (role-play) degli esami orali.</p>
+        <ul className="space-y-3 text-slate-700">
+          <li><strong>Diretto:</strong> <em>Leggi attentamente il contratto prima di firmare!</em></li>
+          <li><strong>Indiretto (Cortesia):</strong> <em>Signor Rossi, compili questo modulo e attenda in sala d'aspetto, per favore.</em></li>
+        </ul>
+      </section>
+
+      {/* Modi Indefiniti */}
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 border-t-4 border-t-slate-500">
+        <h3 className="text-xl font-bold text-slate-800 mb-3">5. Modi Indefiniti</h3>
+        <p className="mb-4 text-slate-700">L'uso di questi modi rende i tuoi testi e discorsi molto più coesi e naturali, tipici di un candidato B2 che sa unire le frasi senza ripetere continuamente il soggetto.</p>
+        <ul className="space-y-3 text-slate-700">
+          <li><strong>Infinito (Presente e Passato):</strong> <em>Dopo aver analizzato i dati, possiamo trarre delle conclusioni importanti.</em></li>
+          <li><strong>Gerundio (Presente e Passato):</strong> <em>Investendo nelle infrastrutture, la città ridurrà notevolmente il traffico.</em></li>
+          <li><strong>Participio (Presente e Passato):</strong> <em>Il candidato, una volta superato lo scritto, accederà all'esame orale.</em></li>
+        </ul>
+      </section>
+
+      {/* Conclusion */}
+      <section className="bg-amber-50 p-6 rounded-xl border border-amber-200">
+        <div className="flex items-start gap-3">
+          <Info className="text-amber-600 flex-shrink-0 mt-1" size={24} />
+          <p className="text-amber-900 leading-relaxed font-medium">
+            Ricorda sempre che la ricchezza grammaticale deve andare di pari passo con un buon uso dei "connettivi" per dare logica al discorso.
+          </p>
+        </div>
+      </section>
+    </div>
   );
 }
 

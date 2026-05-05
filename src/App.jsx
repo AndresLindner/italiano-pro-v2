@@ -149,7 +149,7 @@ const top50Verbs = [
     imperfetto: ["andavo", "andavi", "andava", "andavamo", "andavate", "andavano"],
     passatoRemoto: ["andai", "andasti", "andò", "andammo", "andaste", "andarono"],
     imperativo: ["-", "vai / va'", "vada", "andiamo", "andate", "vadano"],
-    passatoProssimo: ["sono andato/a", "sei andato/a", "è andato/a", "siamo andati/e", "siete andati/e", "sono andati/e"],
+    passatoProssimo: ["sono andato/a", "sei andato/a", "è তোলা/a", "siamo andati/e", "siete andati/e", "sono andati/e"],
     typePres: "Irregolare",
     typeImperf: "Regolare",
     typePR: "Regolare",
@@ -733,7 +733,7 @@ const futureRoots = {
   "mangiare": "manger", "lasciare": "lascer"
 };
 
-// Generazione dinamica per Trapassato Prossimo, Futuro Semplice, Condizionale, e Congiuntivo
+// Generazione dinamica per i vari tempi derivati
 top50Verbs.forEach(verb => {
   const inf = verb.infinitive;
 
@@ -742,16 +742,16 @@ top50Verbs.forEach(verb => {
     verb.congiuntivoPresente = congiuntivoPresenteMap[inf];
     verb.typeCongPres = "Irregolare";
   } else {
-    let p0 = verb.presente[0]; // Es: "parlo"
-    let root0 = p0.slice(0, -1); // Es: "parl"
-    let noiForm = verb.presente[3]; // Es: "parliamo"
-    let voiForm = noiForm.slice(0, -2) + "te"; // Es: "parliate"
+    let p0 = verb.presente[0]; 
+    let root0 = p0.slice(0, -1); 
+    let noiForm = verb.presente[3]; 
+    let voiForm = noiForm.slice(0, -2) + "te"; 
 
     if (inf.endsWith("are")) {
       if (root0.endsWith("c") || root0.endsWith("g")) {
-        root0 += "h"; // Es: cerch-, pagh-
+        root0 += "h"; 
       } else if (root0.endsWith("i")) {
-        root0 = root0.slice(0, -1); // Es: mangi- -> mang-
+        root0 = root0.slice(0, -1); 
       }
       verb.congiuntivoPresente = [root0 + "i", root0 + "i", root0 + "i", noiForm, voiForm, root0 + "ino"];
     } else {
@@ -784,7 +784,6 @@ top50Verbs.forEach(verb => {
 
   if (futureRoots[inf]) {
     futRoot = futureRoots[inf];
-    // I cambi ortografici mantengono l'etichetta "Regolare" per consistenza
     if (!["cercare", "giocare", "pagare", "mangiare", "lasciare"].includes(inf)) {
       futType = "Irregolare";
     }
@@ -888,96 +887,21 @@ export default function App() {
         </div>
         
         <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible pb-16 md:pb-0">
-          <NavItem 
-            icon={<LayoutDashboard size={20} />} 
-            label="Panoramica B2" 
-            isActive={activeTab === 'panoramica'} 
-            onClick={() => setActiveTab('panoramica')} 
-          />
-          <NavItem 
-            icon={<Sun size={20} />} 
-            label="Il Presente" 
-            isActive={activeTab === 'presente'} 
-            onClick={() => setActiveTab('presente')} 
-          />
-          <NavItem 
-            icon={<History size={20} />} 
-            label="L'Imperfetto" 
-            isActive={activeTab === 'imperfetto'} 
-            onClick={() => setActiveTab('imperfetto')} 
-          />
-          <NavItem 
-            icon={<Rocket size={20} />} 
-            label="Futuro Semplice" 
-            isActive={activeTab === 'futuro'} 
-            onClick={() => setActiveTab('futuro')} 
-          />
-          <NavItem 
-            icon={<Lightbulb size={20} />} 
-            label="Condizionale Pres." 
-            isActive={activeTab === 'condizionale'} 
-            onClick={() => setActiveTab('condizionale')} 
-          />
-          <NavItem 
-            icon={<Sparkles size={20} />} 
-            label="Condizionale Pass." 
-            isActive={activeTab === 'condizionalePassato'} 
-            onClick={() => setActiveTab('condizionalePassato')} 
-          />
-          <NavItem 
-            icon={<Brain size={20} />} 
-            label="Congiuntivo Pres." 
-            isActive={activeTab === 'congiuntivoPresente'} 
-            onClick={() => setActiveTab('congiuntivoPresente')} 
-          />
-          <NavItem 
-            icon={<Layers size={20} />} 
-            label="Congiuntivo Pass." 
-            isActive={activeTab === 'congiuntivoPassato'} 
-            onClick={() => setActiveTab('congiuntivoPassato')} 
-          />
-          <NavItem 
-            icon={<Milestone size={20} />} 
-            label="Congiuntivo Trap." 
-            isActive={activeTab === 'congiuntivoTrapassato'} 
-            onClick={() => setActiveTab('congiuntivoTrapassato')} 
-          />
-          <NavItem 
-            icon={<Clock size={20} />} 
-            label="Passato Prossimo" 
-            isActive={activeTab === 'prossimo'} 
-            onClick={() => setActiveTab('prossimo')} 
-          />
-          <NavItem 
-            icon={<Archive size={20} />} 
-            label="Trapassato Prossimo" 
-            isActive={activeTab === 'trapassato'} 
-            onClick={() => setActiveTab('trapassato')} 
-          />
-          <NavItem 
-            icon={<ScrollText size={20} />} 
-            label="Passato Remoto" 
-            isActive={activeTab === 'passato'} 
-            onClick={() => setActiveTab('passato')} 
-          />
-          <NavItem 
-            icon={<AlertCircle size={20} />} 
-            label="L'Imperativo" 
-            isActive={activeTab === 'imperativo'} 
-            onClick={() => setActiveTab('imperativo')} 
-          />
-          <NavItem 
-            icon={<List size={20} />} 
-            label="I 50 Verbi" 
-            isActive={activeTab === 'verbi'} 
-            onClick={() => setActiveTab('verbi')} 
-          />
-          <NavItem 
-            icon={<Gamepad2 size={20} />} 
-            label="Quiz Pratico" 
-            isActive={activeTab === 'quiz'} 
-            onClick={() => setActiveTab('quiz')} 
-          />
+          <NavItem icon={<LayoutDashboard size={20} />} label="Panoramica B2" isActive={activeTab === 'panoramica'} onClick={() => setActiveTab('panoramica')} />
+          <NavItem icon={<Sun size={20} />} label="Il Presente" isActive={activeTab === 'presente'} onClick={() => setActiveTab('presente')} />
+          <NavItem icon={<History size={20} />} label="L'Imperfetto" isActive={activeTab === 'imperfetto'} onClick={() => setActiveTab('imperfetto')} />
+          <NavItem icon={<Rocket size={20} />} label="Futuro Semplice" isActive={activeTab === 'futuro'} onClick={() => setActiveTab('futuro')} />
+          <NavItem icon={<Lightbulb size={20} />} label="Condizionale Pres." isActive={activeTab === 'condizionale'} onClick={() => setActiveTab('condizionale')} />
+          <NavItem icon={<Sparkles size={20} />} label="Condizionale Pass." isActive={activeTab === 'condizionalePassato'} onClick={() => setActiveTab('condizionalePassato')} />
+          <NavItem icon={<Brain size={20} />} label="Congiuntivo Pres." isActive={activeTab === 'congiuntivoPresente'} onClick={() => setActiveTab('congiuntivoPresente')} />
+          <NavItem icon={<Layers size={20} />} label="Congiuntivo Pass." isActive={activeTab === 'congiuntivoPassato'} onClick={() => setActiveTab('congiuntivoPassato')} />
+          <NavItem icon={<Milestone size={20} />} label="Congiuntivo Trap." isActive={activeTab === 'congiuntivoTrapassato'} onClick={() => setActiveTab('congiuntivoTrapassato')} />
+          <NavItem icon={<Clock size={20} />} label="Passato Prossimo" isActive={activeTab === 'prossimo'} onClick={() => setActiveTab('prossimo')} />
+          <NavItem icon={<Archive size={20} />} label="Trapassato Prossimo" isActive={activeTab === 'trapassato'} onClick={() => setActiveTab('trapassato')} />
+          <NavItem icon={<ScrollText size={20} />} label="Passato Remoto" isActive={activeTab === 'passato'} onClick={() => setActiveTab('passato')} />
+          <NavItem icon={<AlertCircle size={20} />} label="L'Imperativo" isActive={activeTab === 'imperativo'} onClick={() => setActiveTab('imperativo')} />
+          <NavItem icon={<List size={20} />} label="I 50 Verbi" isActive={activeTab === 'verbi'} onClick={() => setActiveTab('verbi')} />
+          <NavItem icon={<Gamepad2 size={20} />} label="Quiz Pratico" isActive={activeTab === 'quiz'} onClick={() => setActiveTab('quiz')} />
         </div>
       </nav>
 
@@ -1100,6 +1024,477 @@ function PanoramicaSection() {
             Ricorda sempre che la ricchezza grammaticale deve andare di pari passo con un buon uso dei "connettivi" per dare logica al discorso.
           </p>
         </div>
+      </section>
+    </div>
+  );
+}
+
+function PresenteSection() {
+  return (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Presente Indicativo</h2>
+        <p className="text-slate-600 mt-2 text-lg">Il tempo fondamentale per parlare di azioni attuali e abitudini.</p>
+      </header>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <Info size={20} /> Quando si usa?
+        </h3>
+        <p className="mb-4 text-slate-700">
+          Il <strong>Presente Indicativo</strong> si usa per descrivere:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-slate-700">
+          <li><strong>Azioni che avvengono nel momento in cui si parla:</strong> <em>Ora leggo un libro.</em></li>
+          <li><strong>Abitudini e azioni ripetute:</strong> <em>Ogni mattina bevo il caffè.</em></li>
+          <li><strong>Fatti sempre veri (leggi scientifiche, universali):</strong> <em>La Terra gira intorno al Sole.</em></li>
+          <li><strong>Eventi futuri (molto vicini o certi):</strong> <em>Domani parto per Roma.</em></li>
+        </ul>
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-4">Verbi Regolari: Le Desinenze</h3>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-indigo-50 text-indigo-900">
+                <th className="p-3 border">Persona</th>
+                <th className="p-3 border">-ARE (es. Parlare)</th>
+                <th className="p-3 border">-ERE (es. Credere)</th>
+                <th className="p-3 border">-IRE (es. Dormire)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parl-<strong>o</strong></td><td className="p-3 border">cred-<strong>o</strong></td><td className="p-3 border">dorm-<strong>o</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parl-<strong>i</strong></td><td className="p-3 border">cred-<strong>i</strong></td><td className="p-3 border">dorm-<strong>i</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parl-<strong>a</strong></td><td className="p-3 border">cred-<strong>e</strong></td><td className="p-3 border">dorm-<strong>e</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parl-<strong>iamo</strong></td><td className="p-3 border">cred-<strong>iamo</strong></td><td className="p-3 border">dorm-<strong>iamo</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parl-<strong>ate</strong></td><td className="p-3 border">cred-<strong>ete</strong></td><td className="p-3 border">dorm-<strong>ite</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parl-<strong>ano</strong></td><td className="p-3 border">cred-<strong>ono</strong></td><td className="p-3 border">dorm-<strong>ono</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="bg-purple-50 p-6 rounded-xl border border-purple-200">
+        <h3 className="text-xl font-bold text-purple-800 mb-3 flex items-center gap-2">
+          💡 I verbi in -IRE con il suffisso "-ISC-"
+        </h3>
+        <p className="mb-4 text-purple-900">
+          Molti verbi che finiscono in <strong>-IRE</strong> (come capire, finire, preferire, pulire) inseriscono il suffisso <strong>-isc-</strong> tra la radice e la desinenza, ma <strong>solo nelle prime tre persone singolari e nella terza plurale</strong>. Noi e Voi rimangono perfettamente normali.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <ul className="space-y-1 bg-white p-4 rounded-lg shadow-sm border border-purple-100">
+            <li><span className="inline-block w-8 text-purple-600 font-bold">io</span> cap-<strong>isc</strong>-o</li>
+            <li><span className="inline-block w-8 text-purple-600 font-bold">tu</span> cap-<strong>isc</strong>-i</li>
+            <li><span className="inline-block w-8 text-purple-600 font-bold">lui</span> cap-<strong>isc</strong>-e</li>
+            <li><span className="inline-block w-8 text-slate-500">noi</span> cap-iamo</li>
+            <li><span className="inline-block w-8 text-slate-500">voi</span> cap-ite</li>
+            <li><span className="inline-block w-8 text-purple-600 font-bold">loro</span> cap-<strong>isc</strong>-ono</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function ImperfettoSection() {
+  return (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">L'Imperfetto</h2>
+        <p className="text-slate-600 mt-2 text-lg">Il tempo delle descrizioni, delle abitudini passate e delle azioni in corso d'opera.</p>
+      </header>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <Info size={20} /> Quando si usa?
+        </h3>
+        <ul className="list-disc pl-6 space-y-4 text-slate-700 mt-4">
+          <li>
+            <strong>Abitudini nel passato:</strong><br />
+            Azioni che si ripetevano regolarmente.<br />
+            <span className="italic text-slate-500">Es: Da bambino <strong>giocavo</strong> sempre a calcio.</span>
+          </li>
+          <li>
+            <strong>Descrizioni nel passato:</strong><br />
+            Stato fisico, psicologico o meteorologico.<br />
+            <span className="italic text-slate-500">Es: <strong>Era</strong> una bella giornata e il sole <strong>splendeva</strong>.</span>
+          </li>
+          <li>
+            <strong>Azioni in corso interrotte:</strong><br />
+            Un'azione continuata (all'imperfetto) che viene interrotta da un'azione improvvisa (al passato prossimo).<br />
+            <span className="italic text-slate-500">Es: Mentre <strong>guardavo</strong> la TV, è suonato il telefono.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-4">Verbi Regolari: Le Desinenze</h3>
+        <p className="mb-4 text-slate-700">L'imperfetto è il tempo più regolare in italiano. Si mantiene la vocale tematica dell'infinito (a, e, i) e si aggiunge una <strong>v</strong>.</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-indigo-50 text-indigo-900">
+                <th className="p-3 border">Persona</th>
+                <th className="p-3 border">-ARE (Parlare)</th>
+                <th className="p-3 border">-ERE (Credere)</th>
+                <th className="p-3 border">-IRE (Dormire)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parl-<strong>avo</strong></td><td className="p-3 border">cred-<strong>evo</strong></td><td className="p-3 border">dorm-<strong>ivo</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parl-<strong>avi</strong></td><td className="p-3 border">cred-<strong>evi</strong></td><td className="p-3 border">dorm-<strong>ivi</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parl-<strong>ava</strong></td><td className="p-3 border">cred-<strong>eva</strong></td><td className="p-3 border">dorm-<strong>iva</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parl-<strong>avamo</strong></td><td className="p-3 border">cred-<strong>evamo</strong></td><td className="p-3 border">dorm-<strong>ivamo</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parl-<strong>avate</strong></td><td className="p-3 border">cred-<strong>evate</strong></td><td className="p-3 border">dorm-<strong>ivate</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parl-<strong>avano</strong></td><td className="p-3 border">cred-<strong>evano</strong></td><td className="p-3 border">dorm-<strong>ivano</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="bg-teal-50 p-6 rounded-xl border border-teal-200">
+        <h3 className="text-xl font-bold text-teal-800 mb-3 flex items-center gap-2">
+          💡 I pochi (ma importanti) Irregolari
+        </h3>
+        <p className="mb-4 text-teal-900">
+          A differenza degli altri tempi, l'imperfetto ha pochissimi verbi irregolari. I più usati sono <strong>Essere</strong> (che ha una radice propria) e <strong>Bere, Dire, Fare</strong> (che in realtà sono regolari se si guarda la loro antica radice latina: <em>bevere, dicere, facere</em>).
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-teal-100">
+            <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2">Essere</h4>
+            <ul className="text-sm space-y-1 text-center">
+              <li>ero</li><li>eri</li><li>era</li><li>eravamo</li><li>eravate</li><li>erano</li>
+            </ul>
+          </div>
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-teal-100">
+            <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2">Fare</h4>
+            <ul className="text-sm space-y-1 text-center">
+              <li>facevo</li><li>facevi</li><li>faceva</li><li>facevamo</li><li>facevate</li><li>facevano</li>
+            </ul>
+          </div>
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-teal-100">
+            <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2">Dire</h4>
+            <ul className="text-sm space-y-1 text-center">
+              <li>dicevo</li><li>dicevi</li><li>diceva</li><li>dicevamo</li><li>dicevate</li><li>dicevano</li>
+            </ul>
+          </div>
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-teal-100">
+            <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2">Bere</h4>
+            <ul className="text-sm space-y-1 text-center">
+              <li>bevevo</li><li>bevevi</li><li>beveva</li><li>bevevamo</li><li>bevevate</li><li>bevevano</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function FuturoSempliceSection() {
+  return (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Futuro Semplice</h2>
+        <p className="text-slate-600 mt-2 text-lg">Progetti, previsioni e ipotesi sul presente.</p>
+      </header>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <Info size={20} /> Quando si usa?
+        </h3>
+        <ul className="list-disc pl-6 space-y-4 text-slate-700 mt-4">
+          <li>
+            <strong>Progetti e intenzioni:</strong><br />
+            Azione che avverrà nel futuro.<br />
+            <span className="italic text-slate-500">Es: L'anno prossimo <strong>andrò</strong> in Italia.</span>
+          </li>
+          <li>
+            <strong>Previsioni:</strong><br />
+            Eventi che si pensa accadranno (o meteo).<br />
+            <span className="italic text-slate-500">Es: Domani <strong>pioverà</strong> tutto il giorno.</span>
+          </li>
+          <li>
+            <strong>Dubbi e ipotesi nel presente:</strong><br />
+            Per esprimere un'incertezza o fare una supposizione nel momento attuale.<br />
+            <span className="italic text-slate-500">Es: "Che ore sono?" - "Non lo so, <strong>saranno</strong> le 5."</span>
+          </li>
+        </ul>
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-4">Verbi Regolari: Le Desinenze</h3>
+        <p className="mb-4 text-slate-700">Attenzione ai verbi in <strong>-ARE</strong>: la "A" si trasforma in "E" prima di aggiungere la desinenza (parlare → parl<strong>e</strong>rò).</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-indigo-50 text-indigo-900">
+                <th className="p-3 border">Persona</th>
+                <th className="p-3 border">-ARE (Parlare)</th>
+                <th className="p-3 border">-ERE (Credere)</th>
+                <th className="p-3 border">-IRE (Dormire)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parl-<strong>erò</strong></td><td className="p-3 border">cred-<strong>erò</strong></td><td className="p-3 border">dorm-<strong>irò</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parl-<strong>erai</strong></td><td className="p-3 border">cred-<strong>erai</strong></td><td className="p-3 border">dorm-<strong>irai</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parl-<strong>erà</strong></td><td className="p-3 border">cred-<strong>erà</strong></td><td className="p-3 border">dorm-<strong>irà</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parl-<strong>eremo</strong></td><td className="p-3 border">cred-<strong>eremo</strong></td><td className="p-3 border">dorm-<strong>iremo</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parl-<strong>erete</strong></td><td className="p-3 border">cred-<strong>erete</strong></td><td className="p-3 border">dorm-<strong>irete</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parl-<strong>eranno</strong></td><td className="p-3 border">cred-<strong>eranno</strong></td><td className="p-3 border">dorm-<strong>iranno</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="bg-orange-50 p-6 rounded-xl border border-orange-200">
+        <h3 className="text-xl font-bold text-orange-800 mb-3 flex items-center gap-2">
+          💡 I Tre Gruppi di Irregolari
+        </h3>
+        <p className="mb-4 text-orange-900">
+          I verbi irregolari al futuro si dividono principalmente in tre gruppi, modificando la radice ma mantenendo le stesse desinenze finali:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
+            <h4 className="font-bold text-orange-700 border-b pb-2 mb-2">1. Perdono la vocale</h4>
+            <ul className="text-sm space-y-1 text-slate-700">
+              <li><strong>Avere:</strong> avrò, avrai...</li>
+              <li><strong>Andare:</strong> andrò, andrai...</li>
+              <li><strong>Potere:</strong> potrò, potrai...</li>
+              <li><strong>Vedere:</strong> vedrò, vedrai...</li>
+            </ul>
+          </div>
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
+            <h4 className="font-bold text-orange-700 border-b pb-2 mb-2">2. Raddoppiano la 'R'</h4>
+            <ul className="text-sm space-y-1 text-slate-700">
+              <li><strong>Venire:</strong> verrò, verrai...</li>
+              <li><strong>Volere:</strong> vorrò, vorrai...</li>
+              <li><strong>Bere:</strong> berrò, berrai...</li>
+              <li><strong>Rimanere:</strong> rimarrò, rimarrai...</li>
+            </ul>
+          </div>
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
+            <h4 className="font-bold text-orange-700 border-b pb-2 mb-2">3. Radici speciali</h4>
+            <ul className="text-sm space-y-1 text-slate-700">
+              <li><strong>Essere:</strong> sarò, sarai...</li>
+              <li><strong>Fare:</strong> farò, farai... (mantiene la a)</li>
+              <li><strong>Dare:</strong> darò, darai... (mantiene la a)</li>
+              <li><strong>Stare:</strong> starò, starai... (mantiene la a)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function CondizionaleSection() {
+  return (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Condizionale Presente</h2>
+        <p className="text-slate-600 mt-2 text-lg">Desideri, richieste cortesi e possibilità.</p>
+      </header>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <Info size={20} /> Quando si usa?
+        </h3>
+        <ul className="list-disc pl-6 space-y-4 text-slate-700 mt-4">
+          <li>
+            <strong>Richieste cortesi:</strong><br />
+            Per chiedere qualcosa in modo educato o attenuare un ordine.<br />
+            <span className="italic text-slate-500">Es: <strong>Vorrei</strong> un caffè, per favore. / Mi <strong>daresti</strong> una mano?</span>
+          </li>
+          <li>
+            <strong>Desideri e sogni:</strong><br />
+            Per esprimere qualcosa che si vorrebbe fare o avere.<br />
+            <span className="italic text-slate-500">Es: Mi <strong>piacerebbe</strong> viaggiare in Giappone.</span>
+          </li>
+          <li>
+            <strong>Consigli:</strong><br />
+            Per suggerire a qualcuno cosa fare (spesso con <em>Dovere</em>, <em>Potere</em> o espressioni come <em>Al posto tuo</em>).<br />
+            <span className="italic text-slate-500">Es: Al posto tuo, <strong>studierei</strong> di più.</span>
+          </li>
+          <li>
+            <strong>Informazioni non confermate:</strong><br />
+            Spesso usato nel giornalismo per riportare notizie non del tutto certe.<br />
+            <span className="italic text-slate-500">Es: Il sospettato <strong>sarebbe</strong> fuggito all'estero.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-4">Come si forma? Le Desinenze</h3>
+        <p className="mb-4 text-slate-700">La bellissima notizia è che il Condizionale Presente usa <strong>esattamente la stessa radice del Futuro Semplice</strong>! L'unica cosa che cambia sono le sei desinenze finali: <em>-ei, -esti, -ebbe, -emmo, -este, -ebbero</em>.</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-indigo-50 text-indigo-900">
+                <th className="p-3 border">Persona</th>
+                <th className="p-3 border">-ARE (Parlare)</th>
+                <th className="p-3 border">-ERE (Credere)</th>
+                <th className="p-3 border">-IRE (Dormire)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parler-<strong>ei</strong></td><td className="p-3 border">creder-<strong>ei</strong></td><td className="p-3 border">dormir-<strong>ei</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parler-<strong>esti</strong></td><td className="p-3 border">creder-<strong>esti</strong></td><td className="p-3 border">dormir-<strong>esti</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parler-<strong>ebbe</strong></td><td className="p-3 border">creder-<strong>ebbe</strong></td><td className="p-3 border">dormir-<strong>ebbe</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parler-<strong>emmo</strong></td><td className="p-3 border">creder-<strong>emmo</strong></td><td className="p-3 border">dormir-<strong>emmo</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parler-<strong>este</strong></td><td className="p-3 border">creder-<strong>este</strong></td><td className="p-3 border">dormir-<strong>este</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parler-<strong>ebbero</strong></td><td className="p-3 border">creder-<strong>ebbero</strong></td><td className="p-3 border">dormir-<strong>ebbero</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="bg-pink-50 p-6 rounded-xl border border-pink-200">
+        <h3 className="text-xl font-bold text-pink-800 mb-3 flex items-center gap-2">
+          💡 E i verbi Irregolari?
+        </h3>
+        <p className="text-pink-900 leading-relaxed">
+          Tutte le irregolarità che hai imparato per il <strong>Futuro Semplice</strong> si applicano in modo assolutamente identico al Condizionale Presente!<br />
+          Ad esempio, se "Avere" al futuro diventa <em>avr-ò</em>, al condizionale sarà <em>avr-ei</em>. Se "Essere" è <em>sar-ò</em>, diventerà <em>sar-ei</em>. Se "Andare" è <em>andr-ò</em>, diventerà <em>andr-ei</em>.
+          Non hai bisogno di imparare nuove eccezioni!
+        </p>
+      </section>
+    </div>
+  );
+}
+
+function CondizionalePassatoSection() {
+  return (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Condizionale Passato</h2>
+        <p className="text-slate-600 mt-2 text-lg">Desideri irrealizzati, rimpianti e il "futuro nel passato".</p>
+      </header>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <Info size={20} /> Quando si usa?
+        </h3>
+        <ul className="list-disc pl-6 space-y-4 text-slate-700 mt-4">
+          <li>
+            <strong>Azioni non realizzate e rimpianti:</strong><br />
+            Per esprimere un desiderio nel passato che non si è potuto concretizzare.<br />
+            <span className="italic text-slate-500">Es: <strong>Sarei andato</strong> alla festa, ma ero malato.</span>
+          </li>
+          <li>
+            <strong>Il "Futuro nel Passato":</strong><br />
+            Per indicare un'azione successiva a un'altra azione passata (spesso nei discorsi indiretti).<br />
+            <span className="italic text-slate-500">Es: Disse che <strong>sarebbe arrivato</strong> alle 8.</span>
+          </li>
+          <li>
+            <strong>Notizie non confermate nel passato:</strong><br />
+            Come il condizionale presente, ma per eventi passati.<br />
+            <span className="italic text-slate-500">Es: I ladri <strong>sarebbero fuggiti</strong> su un'auto rubata.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          Come si forma?
+        </h3>
+        <p className="mb-4 text-slate-700">
+          È un tempo composto facilissimo se conosci già gli altri tempi! Si forma con l'ausiliare (<strong>essere</strong> o <strong>avere</strong>) coniugato al <strong>Condizionale Presente</strong> + il <strong>Participio Passato</strong> del verbo principale.
+        </p>
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center">
+            <span className="block text-xs uppercase font-bold text-indigo-400 mb-1">Esempio con Avere</span>
+            <p className="text-xl font-bold text-indigo-900">Avrei mangiato</p>
+            <p className="text-sm text-indigo-600 mt-1">(Condizionale di avere + Participio)</p>
+          </div>
+          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center">
+            <span className="block text-xs uppercase font-bold text-emerald-400 mb-1">Esempio con Essere</span>
+            <p className="text-xl font-bold text-emerald-900">Sarei andato</p>
+            <p className="text-sm text-emerald-600 mt-1">(Condizionale di essere + Participio)</p>
+          </div>
+        </div>
+        <p className="mt-4 text-sm text-slate-500">
+          Nota: Le regole per la scelta dell'ausiliare sono identiche a quelle del Passato Prossimo.
+        </p>
+      </section>
+    </div>
+  );
+}
+
+function CongiuntivoPresenteSection() {
+  return (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Congiuntivo Presente</h2>
+        <p className="text-slate-600 mt-2 text-lg">Opinioni, dubbi, sentimenti e incertezze.</p>
+      </header>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <Info size={20} /> Quando si usa?
+        </h3>
+        <p className="mb-4 text-slate-700">
+          A differenza dell'indicativo (che esprime certezze), il <strong>Congiuntivo</strong> si usa per esprimere soggettività in frasi secondarie, spesso introdotte dalla congiunzione <em>"che"</em>:
+        </p>
+        <ul className="list-disc pl-6 space-y-4 text-slate-700">
+          <li>
+            <strong>Opinioni e pensieri:</strong> (Credere, pensare, ritenere, supporre)<br />
+            <span className="italic text-slate-500">Es: Penso che lui <strong>sia</strong> stanco.</span>
+          </li>
+          <li>
+            <strong>Sentimenti e stati d'animo:</strong> (Essere felice, avere paura, dispiacere)<br />
+            <span className="italic text-slate-500">Es: Sono felice che voi <strong>veniate</strong> alla festa.</span>
+          </li>
+          <li>
+            <strong>Volontà, ordini e desideri:</strong> (Volere, preferire, sperare)<br />
+            <span className="italic text-slate-500">Es: Voglio che tu <strong>studi</strong> di più.</span>
+          </li>
+          <li>
+            <strong>Espressioni impersonali:</strong> (È importante, bisogna, è probabile)<br />
+            <span className="italic text-slate-500">Es: È importante che tutti <strong>capiscano</strong>.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-4">Verbi Regolari: Le Desinenze</h3>
+        <p className="mb-4 text-slate-700">Nota la regola incrociata: i verbi in <em>-ARE</em> prendono la <strong>-i</strong>, mentre i verbi in <em>-ERE</em> e <em>-IRE</em> prendono la <strong>-a</strong>. Le prime tre persone singolari (io, tu, lui/lei) sono sempre uguali!</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-indigo-50 text-indigo-900">
+                <th className="p-3 border">Persona</th>
+                <th className="p-3 border">-ARE (Parlare)</th>
+                <th className="p-3 border">-ERE (Credere)</th>
+                <th className="p-3 border">-IRE (Dormire)</th>
+                <th className="p-3 border">-IRE (Finire) *</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parl-<strong>i</strong></td><td className="p-3 border">cred-<strong>a</strong></td><td className="p-3 border">dorm-<strong>a</strong></td><td className="p-3 border">fin-<strong>isca</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parl-<strong>i</strong></td><td className="p-3 border">cred-<strong>a</strong></td><td className="p-3 border">dorm-<strong>a</strong></td><td className="p-3 border">fin-<strong>isca</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parl-<strong>i</strong></td><td className="p-3 border">cred-<strong>a</strong></td><td className="p-3 border">dorm-<strong>a</strong></td><td className="p-3 border">fin-<strong>isca</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parl-<strong>iamo</strong></td><td className="p-3 border">cred-<strong>iamo</strong></td><td className="p-3 border">dorm-<strong>iamo</strong></td><td className="p-3 border">fin-<strong>iamo</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parl-<strong>iate</strong></td><td className="p-3 border">cred-<strong>iate</strong></td><td className="p-3 border">dorm-<strong>iate</strong></td><td className="p-3 border">fin-<strong>iate</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parl-<strong>ino</strong></td><td className="p-3 border">cred-<strong>ano</strong></td><td className="p-3 border">dorm-<strong>ano</strong></td><td className="p-3 border">fin-<strong>iscano</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="bg-violet-50 p-6 rounded-xl border border-violet-200">
+        <h3 className="text-xl font-bold text-violet-800 mb-3 flex items-center gap-2">
+          💡 Il "Trucco" per memorizzare il Congiuntivo
+        </h3>
+        <p className="mb-4 text-violet-900">
+          Anche i verbi più irregolari nel congiuntivo seguono in realtà degli schemi utilissimi:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-violet-900">
+          <li><strong>Le prime 3 persone sono identiche:</strong> Se sai dire "che io faccia", sai dire anche "che tu faccia" e "che lui faccia".</li>
+          <li><strong>Il 'Noi' e il 'Voi' sono facili:</strong> La forma "Noi" è <em>identica</em> a quella dell'Indicativo Presente ("noi facciamo" = "che noi facciamo"). Per il "Voi", ti basta cambiare <em>-mo</em> con <em>-te</em> ("facciamo" $\rightarrow$ "che voi facciate").</li>
+          <li><strong>Dalla 1ª persona singolare:</strong> Molti verbi irregolari formano tutto il loro congiuntivo partendo dal presente "Io". Es: io veng-o $\rightarrow$ che io veng-a. io esco $\rightarrow$ che io esca.</li>
+        </ul>
       </section>
     </div>
   );

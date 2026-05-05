@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles } from 'lucide-react';
 
 const top50Verbs = [
   {
@@ -704,7 +704,7 @@ const top50Verbs = [
   }
 ];
 
-// Radici irregolari per il Futuro Semplice
+// Radici irregolari per il Futuro Semplice (e Condizionale)
 const futureRoots = {
   "essere": "sar", "avere": "avr", "fare": "far", "dire": "dir", "potere": "potr",
   "volere": "vorr", "sapere": "sapr", "stare": "star", "dovere": "dovr", "vedere": "vedr",
@@ -713,7 +713,7 @@ const futureRoots = {
   "mangiare": "manger", "lasciare": "lascer"
 };
 
-// Generazione dinamica per Trapassato Prossimo e Futuro Semplice
+// Generazione dinamica per Trapassato Prossimo, Futuro Semplice, Condizionale Presente e Condizionale Passato
 top50Verbs.forEach(verb => {
   // Trapassato Prossimo
   verb.trapassatoProssimo = verb.passatoProssimo.map((pp, index) => {
@@ -733,7 +733,7 @@ top50Verbs.forEach(verb => {
   });
   verb.typeTP = verb.typePP;
 
-  // Futuro Semplice
+  // Futuro Semplice e Condizionale Presente
   const inf = verb.infinitive;
   let futRoot;
   let futType = "Regolare";
@@ -752,6 +752,7 @@ top50Verbs.forEach(verb => {
     }
   }
 
+  // Futuro
   verb.futuro = [
     futRoot + "ò",
     futRoot + "ai",
@@ -761,6 +762,35 @@ top50Verbs.forEach(verb => {
     futRoot + "anno"
   ];
   verb.typeFut = futType;
+
+  // Condizionale Presente
+  verb.condizionale = [
+    futRoot + "ei",
+    futRoot + "esti",
+    futRoot + "ebbe",
+    futRoot + "emmo",
+    futRoot + "este",
+    futRoot + "ebbero"
+  ];
+  verb.typeCond = futType;
+
+  // Condizionale Passato
+  verb.condizionalePassato = verb.passatoProssimo.map((pp, index) => {
+    let cp = pp;
+    cp = cp.replace(/^sono /, index === 5 ? "sarebbero " : "sarei ");
+    cp = cp.replace(/^sei /, "saresti ");
+    cp = cp.replace(/^è /, "sarebbe ");
+    cp = cp.replace(/^siamo /, "saremmo ");
+    cp = cp.replace(/^siete /, "sareste ");
+    cp = cp.replace(/^ho /, "avrei ");
+    cp = cp.replace(/^hai /, "avresti ");
+    cp = cp.replace(/^ha /, "avrebbe ");
+    cp = cp.replace(/^abbiamo /, "avremmo ");
+    cp = cp.replace(/^avete /, "avreste ");
+    cp = cp.replace(/^hanno /, "avrebbero ");
+    return cp;
+  });
+  verb.typeCondPass = verb.typePP;
 });
 
 const pronouns = ["io", "tu", "lui/lei", "noi", "voi", "loro"];
@@ -782,7 +812,7 @@ export default function App() {
           <p className="text-indigo-200 text-sm mt-1">Impara i verbi difficili</p>
         </div>
         
-        <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible">
+        <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible pb-16 md:pb-0">
           <NavItem 
             icon={<Sun size={20} />} 
             label="Il Presente" 
@@ -800,6 +830,18 @@ export default function App() {
             label="Futuro Semplice" 
             isActive={activeTab === 'futuro'} 
             onClick={() => setActiveTab('futuro')} 
+          />
+          <NavItem 
+            icon={<Lightbulb size={20} />} 
+            label="Condizionale Pres." 
+            isActive={activeTab === 'condizionale'} 
+            onClick={() => setActiveTab('condizionale')} 
+          />
+          <NavItem 
+            icon={<Sparkles size={20} />} 
+            label="Condizionale Pass." 
+            isActive={activeTab === 'condizionalePassato'} 
+            onClick={() => setActiveTab('condizionalePassato')} 
           />
           <NavItem 
             icon={<Clock size={20} />} 
@@ -845,6 +887,8 @@ export default function App() {
         {activeTab === 'presente' && <PresenteSection />}
         {activeTab === 'imperfetto' && <ImperfettoSection />}
         {activeTab === 'futuro' && <FuturoSempliceSection />}
+        {activeTab === 'condizionale' && <CondizionaleSection />}
+        {activeTab === 'condizionalePassato' && <CondizionalePassatoSection />}
         {activeTab === 'prossimo' && <PassatoProssimoSection />}
         {activeTab === 'trapassato' && <TrapassatoProssimoSection />}
         {activeTab === 'passato' && <PassatoRemotoSection />}
@@ -1133,6 +1177,139 @@ function FuturoSempliceSection() {
             </ul>
           </div>
         </div>
+      </section>
+    </div>
+  );
+}
+
+function CondizionaleSection() {
+  return (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Condizionale Presente</h2>
+        <p className="text-slate-600 mt-2 text-lg">Desideri, richieste cortesi e possibilità.</p>
+      </header>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <Info size={20} /> Quando si usa?
+        </h3>
+        <ul className="list-disc pl-6 space-y-4 text-slate-700 mt-4">
+          <li>
+            <strong>Richieste cortesi:</strong><br />
+            Per chiedere qualcosa in modo educato o attenuare un ordine.<br />
+            <span className="italic text-slate-500">Es: <strong>Vorrei</strong> un caffè, per favore. / Mi <strong>daresti</strong> una mano?</span>
+          </li>
+          <li>
+            <strong>Desideri e sogni:</strong><br />
+            Per esprimere qualcosa che si vorrebbe fare o avere.<br />
+            <span className="italic text-slate-500">Es: Mi <strong>piacerebbe</strong> viaggiare in Giappone.</span>
+          </li>
+          <li>
+            <strong>Consigli:</strong><br />
+            Per suggerire a qualcuno cosa fare (spesso con <em>Dovere</em>, <em>Potere</em> o espressioni come <em>Al posto tuo</em>).<br />
+            <span className="italic text-slate-500">Es: Al posto tuo, <strong>studierei</strong> di più.</span>
+          </li>
+          <li>
+            <strong>Informazioni non confermate:</strong><br />
+            Spesso usato nel giornalismo per riportare notizie non del tutto certe.<br />
+            <span className="italic text-slate-500">Es: Il sospettato <strong>sarebbe</strong> fuggito all'estero.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-4">Come si forma? Le Desinenze</h3>
+        <p className="mb-4 text-slate-700">La bellissima notizia è che il Condizionale Presente usa <strong>esattamente la stessa radice del Futuro Semplice</strong>! L'unica cosa che cambia sono le sei desinenze finali: <em>-ei, -esti, -ebbe, -emmo, -este, -ebbero</em>.</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-indigo-50 text-indigo-900">
+                <th className="p-3 border">Persona</th>
+                <th className="p-3 border">-ARE (Parlare)</th>
+                <th className="p-3 border">-ERE (Credere)</th>
+                <th className="p-3 border">-IRE (Dormire)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parler-<strong>ei</strong></td><td className="p-3 border">creder-<strong>ei</strong></td><td className="p-3 border">dormir-<strong>ei</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parler-<strong>esti</strong></td><td className="p-3 border">creder-<strong>esti</strong></td><td className="p-3 border">dormir-<strong>esti</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parler-<strong>ebbe</strong></td><td className="p-3 border">creder-<strong>ebbe</strong></td><td className="p-3 border">dormir-<strong>ebbe</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parler-<strong>emmo</strong></td><td className="p-3 border">creder-<strong>emmo</strong></td><td className="p-3 border">dormir-<strong>emmo</strong></td></tr>
+              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parler-<strong>este</strong></td><td className="p-3 border">creder-<strong>este</strong></td><td className="p-3 border">dormir-<strong>este</strong></td></tr>
+              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parler-<strong>ebbero</strong></td><td className="p-3 border">creder-<strong>ebbero</strong></td><td className="p-3 border">dormir-<strong>ebbero</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="bg-pink-50 p-6 rounded-xl border border-pink-200">
+        <h3 className="text-xl font-bold text-pink-800 mb-3 flex items-center gap-2">
+          💡 E i verbi Irregolari?
+        </h3>
+        <p className="text-pink-900 leading-relaxed">
+          Tutte le irregolarità che hai imparato per il <strong>Futuro Semplice</strong> si applicano in modo assolutamente identico al Condizionale Presente!<br />
+          Ad esempio, se "Avere" al futuro diventa <em>avr-ò</em>, al condizionale sarà <em>avr-ei</em>. Se "Essere" è <em>sar-ò</em>, diventerà <em>sar-ei</em>. Se "Andare" è <em>andr-ò</em>, diventerà <em>andr-ei</em>.
+          Non hai bisogno di imparare nuove eccezioni!
+        </p>
+      </section>
+    </div>
+  );
+}
+
+function CondizionalePassatoSection() {
+  return (
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Condizionale Passato</h2>
+        <p className="text-slate-600 mt-2 text-lg">Desideri irrealizzati, rimpianti e il "futuro nel passato".</p>
+      </header>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <Info size={20} /> Quando si usa?
+        </h3>
+        <ul className="list-disc pl-6 space-y-4 text-slate-700 mt-4">
+          <li>
+            <strong>Azioni non realizzate e rimpianti:</strong><br />
+            Per esprimere un desiderio nel passato che non si è potuto concretizzare.<br />
+            <span className="italic text-slate-500">Es: <strong>Sarei andato</strong> alla festa, ma ero malato.</span>
+          </li>
+          <li>
+            <strong>Il "Futuro nel Passato":</strong><br />
+            Per indicare un'azione successiva a un'altra azione passata (spesso nei discorsi indiretti).<br />
+            <span className="italic text-slate-500">Es: Disse che <strong>sarebbe arrivato</strong> alle 8.</span>
+          </li>
+          <li>
+            <strong>Notizie non confermate nel passato:</strong><br />
+            Come il condizionale presente, ma per eventi passati.<br />
+            <span className="italic text-slate-500">Es: I ladri <strong>sarebbero fuggiti</strong> su un'auto rubata.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          Come si forma?
+        </h3>
+        <p className="mb-4 text-slate-700">
+          È un tempo composto facilissimo se conosci già gli altri tempi! Si forma con l'ausiliare (<strong>essere</strong> o <strong>avere</strong>) coniugato al <strong>Condizionale Presente</strong> + il <strong>Participio Passato</strong> del verbo principale.
+        </p>
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center">
+            <span className="block text-xs uppercase font-bold text-indigo-400 mb-1">Esempio con Avere</span>
+            <p className="text-xl font-bold text-indigo-900">Avrei mangiato</p>
+            <p className="text-sm text-indigo-600 mt-1">(Condizionale di avere + Participio)</p>
+          </div>
+          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center">
+            <span className="block text-xs uppercase font-bold text-emerald-400 mb-1">Esempio con Essere</span>
+            <p className="text-xl font-bold text-emerald-900">Sarei andato</p>
+            <p className="text-sm text-emerald-600 mt-1">(Condizionale di essere + Participio)</p>
+          </div>
+        </div>
+        <p className="mt-4 text-sm text-slate-500">
+          Nota: Le regole per la scelta dell'ausiliare sono identiche a quelle del Passato Prossimo.
+        </p>
       </section>
     </div>
   );
@@ -1498,7 +1675,7 @@ function TopVerbsSection() {
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
       <header>
         <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">I 50 Verbi Più Comuni</h2>
-        <p className="text-slate-600 mt-2 text-lg">Esplora le coniugazioni per i 7 tempi verbali. Clicca su un verbo per espanderlo.</p>
+        <p className="text-slate-600 mt-2 text-lg">Esplora le coniugazioni per i 9 tempi verbali. Clicca su un verbo per espanderlo.</p>
       </header>
 
       <div className="space-y-3">
@@ -1616,6 +1793,64 @@ function TopVerbsSection() {
                     </table>
                   </div>
 
+                  {/* Condizionale Presente */}
+                  <div className="bg-pink-50 p-4 rounded-lg border border-pink-100">
+                    <div className="flex justify-between items-center mb-3 border-b border-pink-200 pb-2">
+                      <h4 className="font-bold text-pink-800 text-lg">Condizionale Pres.</h4>
+                      <TypeBadge type={verb.typeCond} />
+                    </div>
+                    <table className="w-full text-sm">
+                      <tbody>
+                        {pronouns.map((p, i) => (
+                          <tr key={p} className={i % 2 === 0 ? 'bg-white' : ''}>
+                            <td className="py-2 px-3 text-slate-500 w-20">{p}</td>
+                            <td className="py-2 px-3 font-semibold text-slate-800">
+                              <div className="flex items-center justify-between gap-2">
+                                <span>{verb.condizionale[i]}</span>
+                                <button 
+                                  onClick={(e) => { e.stopPropagation(); speakWord(verb.condizionale[i]); }}
+                                  className="text-slate-400 hover:text-pink-600 transition-colors flex-shrink-0"
+                                  title="Ascolta la pronuncia"
+                                >
+                                  <Volume2 size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Condizionale Passato */}
+                  <div className="bg-rose-50 p-4 rounded-lg border border-rose-100">
+                    <div className="flex justify-between items-center mb-3 border-b border-rose-200 pb-2">
+                      <h4 className="font-bold text-rose-800 text-lg">Condizionale Pass.</h4>
+                      <TypeBadge type={verb.typeCondPass} />
+                    </div>
+                    <table className="w-full text-sm">
+                      <tbody>
+                        {pronouns.map((p, i) => (
+                          <tr key={p} className={i % 2 === 0 ? 'bg-white' : ''}>
+                            <td className="py-2 px-3 text-slate-500 w-20">{p}</td>
+                            <td className="py-2 px-3 font-semibold text-slate-800">
+                              <div className="flex items-center justify-between gap-2">
+                                <span>{verb.condizionalePassato[i]}</span>
+                                <button 
+                                  onClick={(e) => { e.stopPropagation(); speakWord(verb.condizionalePassato[i]); }}
+                                  className="text-slate-400 hover:text-rose-600 transition-colors flex-shrink-0"
+                                  title="Ascolta la pronuncia"
+                                >
+                                  <Volume2 size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
                   {/* Passato Prossimo */}
                   <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
                     <div className="flex justify-between items-center mb-3 border-b border-blue-200 pb-2">
@@ -1648,7 +1883,7 @@ function TopVerbsSection() {
                   {/* Trapassato Prossimo */}
                   <div className="bg-sky-50 p-4 rounded-lg border border-sky-100">
                     <div className="flex justify-between items-center mb-3 border-b border-sky-200 pb-2">
-                      <h4 className="font-bold text-sky-800 text-lg">Trapassato Prossimo</h4>
+                      <h4 className="font-bold text-sky-800 text-lg">Trapassato P.</h4>
                       <TypeBadge type={verb.typeTP} />
                     </div>
                     <table className="w-full text-sm">
@@ -1773,7 +2008,7 @@ function QuizSection() {
       selectedVerb = randomMistake.verb;
       selectedTense = randomMistake.tense;
     } else {
-      const tenses = actualMode === 'misto' ? ['presente', 'imperfetto', 'futuro', 'passatoProssimo', 'trapassatoProssimo', 'passatoRemoto', 'imperativo'] : [actualMode];
+      const tenses = actualMode === 'misto' ? ['presente', 'imperfetto', 'futuro', 'condizionale', 'condizionalePassato', 'passatoProssimo', 'trapassatoProssimo', 'passatoRemoto', 'imperativo'] : [actualMode];
       selectedTense = tenses[Math.floor(Math.random() * tenses.length)];
       
       let validVerbs = top50Verbs;
@@ -1790,6 +2025,8 @@ function QuizSection() {
     if (selectedTense === 'presente') correctAnswers = selectedVerb.presente;
     else if (selectedTense === 'imperfetto') correctAnswers = selectedVerb.imperfetto;
     else if (selectedTense === 'futuro') correctAnswers = selectedVerb.futuro;
+    else if (selectedTense === 'condizionale') correctAnswers = selectedVerb.condizionale;
+    else if (selectedTense === 'condizionalePassato') correctAnswers = selectedVerb.condizionalePassato;
     else if (selectedTense === 'passatoRemoto') correctAnswers = selectedVerb.passatoRemoto;
     else if (selectedTense === 'passatoProssimo') correctAnswers = selectedVerb.passatoProssimo;
     else if (selectedTense === 'trapassatoProssimo') correctAnswers = selectedVerb.trapassatoProssimo;
@@ -1920,6 +2157,8 @@ function QuizSection() {
     if (tense === 'presente') return 'Il Presente';
     if (tense === 'imperfetto') return "L'Imperfetto";
     if (tense === 'futuro') return "Il Futuro Semplice";
+    if (tense === 'condizionale') return "Il Condizionale Presente";
+    if (tense === 'condizionalePassato') return "Il Condizionale Passato";
     if (tense === 'passatoRemoto') return 'Il Passato Remoto';
     if (tense === 'passatoProssimo') return 'Il Passato Prossimo';
     if (tense === 'trapassatoProssimo') return 'Il Trapassato Prossimo';
@@ -1930,6 +2169,8 @@ function QuizSection() {
     if (question.tense === 'presente') return question.verb.typePres;
     if (question.tense === 'imperfetto') return question.verb.typeImperf;
     if (question.tense === 'futuro') return question.verb.typeFut;
+    if (question.tense === 'condizionale') return question.verb.typeCond;
+    if (question.tense === 'condizionalePassato') return question.verb.typeCondPass;
     if (question.tense === 'passatoRemoto') return question.verb.typePR;
     if (question.tense === 'passatoProssimo') return question.verb.typePP;
     if (question.tense === 'trapassatoProssimo') return question.verb.typeTP;
@@ -1939,13 +2180,13 @@ function QuizSection() {
   const currentBadgeType = getTenseBadgeType(currentQuestion);
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 max-w-3xl mx-auto">
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 max-w-4xl mx-auto">
       <header className="text-center">
         <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2 inline-block">Mettiti alla prova!</h2>
         <p className="text-slate-600 mt-2 text-lg">Coniuga il verbo in tutte le persone.</p>
         
         <div className="mt-6 flex flex-col items-center gap-4">
-          <div className="flex flex-wrap justify-center gap-2 bg-white p-2 rounded-lg border border-slate-200 shadow-sm">
+          <div className="flex flex-wrap justify-center gap-2 bg-white p-2 rounded-lg border border-slate-200 shadow-sm max-w-full">
             <button
               onClick={() => handleModeChange('misto')}
               className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'misto' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
@@ -1969,6 +2210,18 @@ function QuizSection() {
               className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'futuro' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
             >
               Futuro
+            </button>
+            <button
+              onClick={() => handleModeChange('condizionale')}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'condizionale' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
+            >
+              Condizionale
+            </button>
+            <button
+              onClick={() => handleModeChange('condizionalePassato')}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'condizionalePassato' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
+            >
+              Cond. Passato
             </button>
             <button
               onClick={() => handleModeChange('passatoProssimo')}
@@ -2017,7 +2270,7 @@ function QuizSection() {
         </div>
       </header>
 
-      <div className="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden max-w-3xl mx-auto">
         <div className="bg-indigo-900 p-6 text-white text-center flex flex-col items-center">
           <p className="text-indigo-200 uppercase tracking-wider text-sm font-bold mb-1">
             {getTenseTitle(currentQuestion.tense)}

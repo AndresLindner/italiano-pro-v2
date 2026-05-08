@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square } from 'lucide-react';
 
 const top50Verbs = [
   {
@@ -149,7 +149,7 @@ const top50Verbs = [
     imperfetto: ["andavo", "andavi", "andava", "andavamo", "andavate", "andavano"],
     passatoRemoto: ["andai", "andasti", "andò", "andammo", "andaste", "andarono"],
     imperativo: ["-", "vai / va'", "vada", "andiamo", "andate", "vadano"],
-    passatoProssimo: ["sono andato/a", "sei andato/a", "è তোলা/a", "siamo andati/e", "siete andati/e", "sono andati/e"],
+    passatoProssimo: ["sono andato/a", "sei andato/a", "è andato/a", "siamo andati/e", "siete andati/e", "sono andati/e"],
     typePres: "Irregolare",
     typeImperf: "Regolare",
     typePR: "Regolare",
@@ -2378,7 +2378,113 @@ function QuizSection() {
   const [quizMode, setQuizMode] = useState('misto');
   const [mistakes, setMistakes] = useState([]);
 
+  // Dictation States & Refs
+  const [speechSupported, setSpeechSupported] = useState(true);
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
+  const currentQuestionRef = useRef(null);
+
+  // Keep ref updated to access inside the speech recognition event listener
+  useEffect(() => {
+    currentQuestionRef.current = currentQuestion;
+  }, [currentQuestion]);
+
+  // Initialize Speech Recognition
+  useEffect(() => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      setSpeechSupported(false);
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'it-IT';
+
+    recognition.onstart = () => setIsListening(true);
+    recognition.onend = () => setIsListening(false);
+    recognition.onerror = (e) => {
+      console.error("Speech error", e);
+      setIsListening(false);
+    };
+
+    recognition.onresult = (event) => {
+      let finalTrans = '';
+      let interimTrans = '';
+      for (let i = 0; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) finalTrans += event.results[i][0].transcript;
+        else interimTrans += event.results[i][0].transcript;
+      }
+
+      const fullText = (finalTrans + ' ' + interimTrans).toLowerCase().replace(/[.,!?]/g, '').trim();
+      const words = fullText.split(/\s+/).filter(w => w.length > 0);
+
+      // Filter out subject pronouns so users can dictate with or without them smoothly
+      const cleanWords = words.filter(w => !["io", "tu", "lui", "lei", "noi", "voi", "loro", "egli", "ella", "essi", "esse"].includes(w));
+
+      const q = currentQuestionRef.current;
+      if (!q) return;
+
+      const isCompound = ['condizionalePassato', 'congiuntivoPassato', 'congiuntivoTrapassato', 'passatoProssimo', 'trapassatoProssimo'].includes(q.tense);
+
+      const groupedWords = [];
+      if (isCompound) {
+        // Group compound tenses into pairs of words
+        for (let i = 0; i < cleanWords.length; i += 2) {
+          if (cleanWords[i + 1]) {
+            groupedWords.push(cleanWords[i] + ' ' + cleanWords[i + 1]);
+          } else {
+            groupedWords.push(cleanWords[i]);
+          }
+        }
+      } else {
+        groupedWords.push(...cleanWords);
+      }
+
+      setUserAnswers(prev => {
+        const newAnswers = [...prev];
+        let wordIndex = 0;
+        for (let i = 0; i < newAnswers.length; i++) {
+          if (newAnswers[i] === "-") continue; // Skip disabled fields like Imperativo "io"
+          
+          // Map transcribed words to the respective inputs dynamically
+          newAnswers[i] = wordIndex < groupedWords.length ? groupedWords[wordIndex] : "";
+          wordIndex++;
+        }
+        return newAnswers;
+      });
+    };
+
+    recognitionRef.current = recognition;
+
+    return () => {
+      if (recognitionRef.current) recognitionRef.current.stop();
+    };
+  }, []);
+
+  const toggleListening = () => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+    } else {
+      const q = currentQuestionRef.current;
+      if(q) {
+        // Clear current text fields to start fresh dictation
+        const emptyAnswers = Array(q.displayPronouns.length).fill("");
+        if (q.tense === 'imperativo') emptyAnswers[0] = "-";
+        setUserAnswers(emptyAnswers);
+      }
+      try {
+        recognitionRef.current?.start();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  };
+
   const generateQuestion = (mode = quizMode) => {
+    if (recognitionRef.current) recognitionRef.current.stop();
+    
     const actualMode = typeof mode === 'string' ? mode : quizMode;
     
     if (actualMode === 'ripasso' && mistakes.length === 0) {
@@ -2437,6 +2543,7 @@ function QuizSection() {
 
   useEffect(() => {
     generateQuestion();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleInputChange = (index, value) => {
@@ -2464,6 +2571,8 @@ function QuizSection() {
   };
 
   const checkAnswers = () => {
+    if (isListening) recognitionRef.current?.stop();
+
     let currentCorrect = 0;
     let hasError = false;
 
@@ -2577,7 +2686,7 @@ function QuizSection() {
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 max-w-4xl mx-auto">
       <header className="text-center">
         <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2 inline-block">Mettiti alla prova!</h2>
-        <p className="text-slate-600 mt-2 text-lg">Coniuga il verbo in tutte le persone.</p>
+        <p className="text-slate-600 mt-2 text-lg">Coniuga il verbo in tutte le persone (puoi usare la dettatura vocale).</p>
         
         <div className="mt-6 flex flex-col items-center gap-4">
           <div className="flex flex-wrap justify-center gap-2 bg-white p-2 rounded-lg border border-slate-200 shadow-sm max-w-full">
@@ -2779,22 +2888,46 @@ function QuizSection() {
           )}
         </div>
 
-        <div className="p-6 bg-slate-50 border-t border-slate-100 flex justify-end">
-          {!showResults ? (
-            <button
-              onClick={checkAnswers}
-              className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-sm transition-colors flex items-center gap-2"
-            >
-              <Check size={20} /> Controlla le risposte
-            </button>
-          ) : (
-            <button
-              onClick={() => generateQuestion()}
-              className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shadow-sm transition-colors flex items-center gap-2"
-            >
-              <RefreshCw size={20} /> Prossimo verbo
-            </button>
-          )}
+        <div className="p-6 bg-slate-50 border-t border-slate-100 flex flex-wrap justify-between items-center gap-4">
+          <div className="flex items-center gap-3">
+            {!showResults && speechSupported && (
+              <button
+                onClick={toggleListening}
+                className={`px-5 py-3 font-bold rounded-lg shadow-sm transition-all flex items-center gap-2 ${
+                  isListening 
+                    ? 'bg-red-500 hover:bg-red-600 text-white animate-pulse' 
+                    : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-100'
+                }`}
+                title="Dì i verbi per riempire automaticamente le risposte"
+              >
+                {isListening ? <Square size={20} /> : <Mic size={20} />}
+                <span className="hidden sm:inline">
+                  {isListening ? 'Ferma dettatura' : 'Dettatura vocale'}
+                </span>
+              </button>
+            )}
+            {isListening && (
+              <span className="text-sm text-red-500 font-medium animate-pulse">In ascolto...</span>
+            )}
+          </div>
+
+          <div>
+            {!showResults ? (
+              <button
+                onClick={checkAnswers}
+                className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-sm transition-colors flex items-center gap-2"
+              >
+                <Check size={20} /> Controlla le risposte
+              </button>
+            ) : (
+              <button
+                onClick={() => generateQuestion()}
+                className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shadow-sm transition-colors flex items-center gap-2"
+              >
+                <RefreshCw size={20} /> Prossimo verbo
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

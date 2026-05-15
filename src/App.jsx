@@ -3150,8 +3150,11 @@ function QuizSection() {
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState({ correct: 0, total: 0 });
   const [quizMode, setQuizMode] = useState('misto');
-  const [mistakes, setMistakes] = useState([]);
-  const { logError, resolveError } = useAuth() || {};
+  const { logError, resolveError, userErrors } = useAuth() || {};
+
+  const mistakes = Object.values(userErrors || {})
+    .filter(e => e.type === 'quiz_verb')
+    .map(e => ({ verb: e.verb, tense: e.tense }));
 
   // Dictation States & Refs
   const [speechSupported, setSpeechSupported] = useState(true);
@@ -3353,56 +3356,35 @@ function QuizSection() {
 
     currentQuestion.displayPronouns.forEach((pronoun, i) => {
       const correctAns = currentQuestion.correctAnswers[i];
-      const exId = `quiz_${currentQuestion.verb.infinitive}_${currentQuestion.tense}_${i}`;
-
       if (isAnswerCorrect(userAnswers[i], correctAns)) {
         currentCorrect++;
-        if (resolveError) resolveError(exId);
       } else {
         hasError = true;
-        if (logError && correctAns !== "-" && correctAns !== "") {
-          const exercise = {
-            id: exId,
-            sentence: `${pronoun} {blank} (${currentQuestion.verb.infinitive} - ${currentQuestion.tense.replace(/([A-Z])/g, ' $1').toLowerCase()})`,
-            answer: correctAns.includes('/') ? correctAns.split('/')[0].trim() : correctAns
-          };
-          logError(exercise, "Quiz Pratico");
-        }
       }
     });
+
+    const exId = `quiz_${currentQuestion.verb.infinitive}_${currentQuestion.tense}`;
+
+    if (hasError) {
+      if (logError) {
+        logError({
+          id: exId,
+          type: 'quiz_verb',
+          verb: currentQuestion.verb,
+          tense: currentQuestion.tense,
+          displayPronouns: currentQuestion.displayPronouns,
+          correctAnswers: currentQuestion.correctAnswers,
+          sentence: `Coniuga "${currentQuestion.verb.infinitive}" al ${currentQuestion.tense.replace(/([A-Z])/g, ' $1').toLowerCase()}`
+        }, "Quiz Pratico");
+      }
+    } else {
+      if (resolveError) resolveError(exId);
+    }
 
     setScore({
       correct: score.correct + currentCorrect,
       total: score.total + currentQuestion.displayPronouns.length
     });
-
-    if (hasError) {
-      setMistakes(prev => {
-        const existingIndex = prev.findIndex(m => m.verb.infinitive === currentQuestion.verb.infinitive && m.tense === currentQuestion.tense);
-        if (existingIndex === -1) {
-          return [...prev, { verb: currentQuestion.verb, tense: currentQuestion.tense, streak: 0 }];
-        } else {
-          const newMistakes = [...prev];
-          newMistakes[existingIndex] = { ...newMistakes[existingIndex], streak: 0 };
-          return newMistakes;
-        }
-      });
-    } else {
-      setMistakes(prev => {
-        const existingIndex = prev.findIndex(m => m.verb.infinitive === currentQuestion.verb.infinitive && m.tense === currentQuestion.tense);
-        if (existingIndex !== -1) {
-          const currentStreak = prev[existingIndex].streak || 0;
-          if (currentStreak + 1 >= 3) {
-            return prev.filter((_, idx) => idx !== existingIndex);
-          } else {
-            const newMistakes = [...prev];
-            newMistakes[existingIndex] = { ...newMistakes[existingIndex], streak: currentStreak + 1 };
-            return newMistakes;
-          }
-        }
-        return prev;
-      });
-    }
 
     setShowResults(true);
   };

@@ -6,8 +6,28 @@ export function ErrorReviewSection() {
   const { userErrors, resolveError } = useAuth();
   const [userAnswers, setUserAnswers] = useState({});
   const [checkedAnswers, setCheckedAnswers] = useState({});
+  const [randomPronounIndices, setRandomPronounIndices] = useState({});
 
   const errorList = Object.values(userErrors || {}).sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+  // Initialize random pronoun indices for quiz verbs
+  React.useEffect(() => {
+    const newIndices = { ...randomPronounIndices };
+    let hasChanges = false;
+    errorList.forEach(ex => {
+      if (ex.type === 'quiz_verb' && newIndices[ex.id] === undefined) {
+        const validIndices = ex.displayPronouns
+          .map((_, i) => i)
+          .filter(i => ex.correctAnswers[i] && ex.correctAnswers[i] !== "-" && ex.correctAnswers[i] !== "");
+        
+        if (validIndices.length > 0) {
+          newIndices[ex.id] = validIndices[Math.floor(Math.random() * validIndices.length)];
+          hasChanges = true;
+        }
+      }
+    });
+    if (hasChanges) setRandomPronounIndices(newIndices);
+  }, [errorList]);
 
   const handleInputChange = (id, value) => {
     setUserAnswers(prev => ({ ...prev, [id]: value }));
@@ -18,7 +38,25 @@ export function ErrorReviewSection() {
 
   const checkSingleAnswer = (ex) => {
     const userAnswer = userAnswers[ex.id] || '';
-    const isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
+    
+    let isCorrect = false;
+    if (ex.type === 'quiz_verb') {
+      const idx = randomPronounIndices[ex.id];
+      const correctAns = ex.correctAnswers[idx];
+      let options = [];
+      if (correctAns.endsWith('/a') || correctAns.endsWith('/e')) {
+        const option1 = correctAns.slice(0, -2);
+        const option2 = option1.slice(0, -1) + correctAns.slice(-1);
+        options = [option1, option2, correctAns];
+      } else if (correctAns.includes('/')) {
+        options = correctAns.split('/').map(opt => opt.trim());
+      } else {
+        options = [correctAns];
+      }
+      isCorrect = options.map(o => o.toLowerCase()).includes(userAnswer.trim().toLowerCase());
+    } else {
+      isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
+    }
     
     setCheckedAnswers(prev => ({ ...prev, [ex.id]: true }));
 
@@ -29,6 +67,7 @@ export function ErrorReviewSection() {
         // Clear local state for this item
         setUserAnswers(prev => { const n = {...prev}; delete n[ex.id]; return n; });
         setCheckedAnswers(prev => { const n = {...prev}; delete n[ex.id]; return n; });
+        setRandomPronounIndices(prev => { const n = {...prev}; delete n[ex.id]; return n; });
       }, 1500); // Wait 1.5s so they can see the green check before it disappears
     }
   };
@@ -61,10 +100,38 @@ export function ErrorReviewSection() {
 
       <div className="space-y-4">
         {errorList.map((ex, index) => {
-          const parts = ex.sentence.split('{blank}');
+          let parts = ["", ""];
+          let isCorrect = false;
+          let correctAnswerDisplay = "";
           const userAnswer = userAnswers[ex.id] || '';
           const isChecked = checkedAnswers[ex.id];
-          const isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
+
+          if (ex.type === 'quiz_verb') {
+            const pIdx = randomPronounIndices[ex.id];
+            if (pIdx !== undefined) {
+              const pronoun = ex.displayPronouns[pIdx];
+              const tenseName = ex.tense.replace(/([A-Z])/g, ' $1').toLowerCase();
+              parts = [`${pronoun} `, ` (${ex.verb.infinitive} - ${tenseName})`];
+              const correctAns = ex.correctAnswers[pIdx];
+              correctAnswerDisplay = correctAns.includes('/') ? correctAns.split('/')[0].trim() : correctAns;
+              
+              let options = [];
+              if (correctAns.endsWith('/a') || correctAns.endsWith('/e')) {
+                const option1 = correctAns.slice(0, -2);
+                const option2 = option1.slice(0, -1) + correctAns.slice(-1);
+                options = [option1, option2, correctAns];
+              } else if (correctAns.includes('/')) {
+                options = correctAns.split('/').map(opt => opt.trim());
+              } else {
+                options = [correctAns];
+              }
+              isCorrect = options.map(o => o.toLowerCase()).includes(userAnswer.trim().toLowerCase());
+            }
+          } else {
+            parts = ex.sentence.split('{blank}');
+            isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
+            correctAnswerDisplay = ex.answer;
+          }
           
           return (
             <div key={ex.id} className={`p-4 rounded-lg border bg-white border-slate-200 shadow-sm transition-all relative overflow-hidden`}>
@@ -77,7 +144,7 @@ export function ErrorReviewSection() {
               )}
               
               <div className="mb-2 inline-block px-2 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-md uppercase tracking-wider">
-                {ex.moduleName}
+                {ex.moduleName || 'Quiz Pratico'}
               </div>
 
               <div className="flex flex-col md:flex-row md:items-center gap-3">
@@ -121,7 +188,7 @@ export function ErrorReviewSection() {
               
               {isChecked && !isCorrect && (
                 <div className="mt-2 ml-9 text-sm">
-                  <span className="text-red-600 font-medium">Correzione:</span> <span className="font-bold text-slate-800 bg-emerald-100 px-2 py-0.5 rounded">{ex.answer}</span>
+                  <span className="text-red-600 font-medium">Correzione:</span> <span className="font-bold text-slate-800 bg-emerald-100 px-2 py-0.5 rounded">{correctAnswerDisplay}</span>
                 </div>
               )}
             </div>

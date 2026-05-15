@@ -6,6 +6,7 @@ export function Modulo4Section() {
   const [activeTab, setActiveTab] = useState('teoria'); 
   const [activeExerciseSection, setActiveExerciseSection] = useState('section4_1');
   const [userAnswers, setUserAnswers] = useState({});
+  const [checkedAnswers, setCheckedAnswers] = useState({});
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
 
@@ -13,7 +14,16 @@ export function Modulo4Section() {
 
   const handleInputChange = (id, value) => {
     setUserAnswers(prev => ({ ...prev, [id]: value }));
-    if (showResults) setShowResults(false);
+    if (showResults) {
+      setShowResults(false);
+    }
+    if (checkedAnswers[id]) {
+      setCheckedAnswers(prev => ({ ...prev, [id]: false }));
+    }
+  };
+
+  const checkSingleAnswer = (id) => {
+    setCheckedAnswers(prev => ({ ...prev, [id]: true }));
   };
 
   const checkAnswers = () => {
@@ -31,6 +41,7 @@ export function Modulo4Section() {
 
   const resetQuiz = () => {
     setUserAnswers({});
+    setCheckedAnswers({});
     setShowResults(false);
     setScore(0);
   };
@@ -77,10 +88,11 @@ export function Modulo4Section() {
             {currentExercises.map((ex, index) => {
               const parts = ex.sentence.split('{blank}');
               const userAnswer = userAnswers[ex.id] || '';
+              const isChecked = showResults || checkedAnswers[ex.id];
               const isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
               
               return (
-                <div key={ex.id} className={`p-4 rounded-lg border ${showResults ? (isCorrect ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200') : 'bg-slate-50 border-slate-200 hover:border-indigo-300'} transition-colors`}>
+                <div key={ex.id} className={`p-4 rounded-lg border ${isChecked ? (isCorrect ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200') : 'bg-slate-50 border-slate-200 hover:border-indigo-300'} transition-colors`}>
                   <div className="flex flex-col md:flex-row md:items-center gap-3">
                     <span className="font-bold text-slate-400 w-6 flex-shrink-0">{index + 1}.</span>
                     <div className="flex-1 text-slate-700 leading-relaxed flex flex-wrap items-center gap-1">
@@ -90,9 +102,9 @@ export function Modulo4Section() {
                           type="text"
                           value={userAnswer}
                           onChange={(e) => handleInputChange(ex.id, e.target.value)}
-                          disabled={showResults}
+                          disabled={isChecked}
                           className={`w-32 md:w-40 px-3 py-1 text-center font-semibold rounded-md border-2 outline-none transition-all
-                            ${showResults 
+                            ${isChecked 
                               ? (isCorrect ? 'border-emerald-500 bg-emerald-100 text-emerald-800' : 'border-red-500 bg-red-100 text-red-800')
                               : 'border-indigo-200 focus:border-indigo-500 text-indigo-900 bg-white'
                             }
@@ -103,14 +115,24 @@ export function Modulo4Section() {
                       <span>{parts[1]}</span>
                     </div>
                     
-                    {showResults && (
+                    {!isChecked && (
+                      <button
+                        onClick={() => checkSingleAnswer(ex.id)}
+                        disabled={!userAnswer.trim()}
+                        className="flex-shrink-0 text-slate-400 hover:text-indigo-600 disabled:opacity-30 transition-colors"
+                        title="Controlla risposta"
+                      >
+                        <CheckCircle2 size={24} />
+                      </button>
+                    )}
+                    {isChecked && (
                       <div className="flex-shrink-0 w-8 flex justify-center">
                         {isCorrect ? <CheckCircle2 className="text-emerald-500" size={24} /> : <XCircle className="text-red-500" size={24} />}
                       </div>
                     )}
                   </div>
                   
-                  {showResults && !isCorrect && (
+                  {isChecked && !isCorrect && (
                     <div className="mt-2 ml-9 text-sm">
                       <span className="text-red-600 font-medium">Correzione:</span> <span className="font-bold text-slate-800 bg-emerald-100 px-2 py-0.5 rounded">{ex.answer}</span>
                     </div>

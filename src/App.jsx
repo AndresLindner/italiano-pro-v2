@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward } from 'lucide-react';
 
 const top50Verbs = [
   {
@@ -2911,14 +2911,22 @@ function QuizSection() {
             )}
           </div>
 
-          <div>
+          <div className="flex gap-3">
             {!showResults ? (
-              <button
-                onClick={checkAnswers}
-                className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-sm transition-colors flex items-center gap-2"
-              >
-                <Check size={20} /> Controlla le risposte
-              </button>
+              <>
+                <button
+                  onClick={() => generateQuestion()}
+                  className="px-6 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-lg shadow-sm transition-colors flex items-center gap-2"
+                >
+                  <SkipForward size={20} /> Salta
+                </button>
+                <button
+                  onClick={checkAnswers}
+                  className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-sm transition-colors flex items-center gap-2"
+                >
+                  <Check size={20} /> Controlla le risposte
+                </button>
+              </>
             ) : (
               <button
                 onClick={() => generateQuestion()}

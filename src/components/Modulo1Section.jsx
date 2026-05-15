@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BookOpen, CheckCircle2, ChevronRight, XCircle, Play, Info, BrainCircuit } from 'lucide-react';
 import { modulo1Data } from '../data/modulo1_data';
+import { useAuth } from '../contexts/AuthContext';
 
 export function Modulo1Section() {
   const [activeTab, setActiveTab] = useState('teoria'); // 'teoria' or 'pratica'
@@ -9,6 +10,17 @@ export function Modulo1Section() {
   const [checkedAnswers, setCheckedAnswers] = useState({});
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
+
+  const { userProgress, saveProgress, logError, resolveError } = useAuth();
+
+  // Load progress from database
+  React.useEffect(() => {
+    if (userProgress && userProgress['modulo1']) {
+      // Only set if local is empty to avoid overwriting ongoing typing
+      setUserAnswers(prev => Object.keys(prev).length === 0 ? (userProgress['modulo1'].answers || {}) : prev);
+      setCheckedAnswers(prev => Object.keys(prev).length === 0 ? (userProgress['modulo1'].checked || {}) : prev);
+    }
+  }, [userProgress]);
 
   const currentExercises = modulo1Data[activeExerciseSection] || [];
 
@@ -20,10 +32,27 @@ export function Modulo1Section() {
     if (checkedAnswers[id]) {
       setCheckedAnswers(prev => ({ ...prev, [id]: false }));
     }
+    
+    // Save progress as they type
+    saveProgress('modulo1', { 
+      answers: { ...userAnswers, [id]: value },
+      checked: { ...checkedAnswers, [id]: false }
+    });
   };
 
-  const checkSingleAnswer = (id) => {
-    setCheckedAnswers(prev => ({ ...prev, [id]: true }));
+  const checkSingleAnswer = (ex) => {
+    const userAnswer = userAnswers[ex.id] || '';
+    const isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
+    
+    if (isCorrect) {
+      resolveError(ex.id);
+    } else {
+      logError(ex, "Modulo 1: Il Congiuntivo");
+    }
+
+    const newChecked = { ...checkedAnswers, [ex.id]: true };
+    setCheckedAnswers(newChecked);
+    saveProgress('modulo1', { answers: userAnswers, checked: newChecked });
   };
 
   const checkAnswers = () => {
@@ -32,14 +61,21 @@ export function Modulo1Section() {
       const userAnswer = (userAnswers[ex.id] || '').trim().toLowerCase();
       const correctAnswer = ex.answer.toLowerCase();
       
-      // Some answers have multiple options in the data like "dobbiamo (anche indicativo) / dobbiamo (congiuntivo)"
-      // The data provided in modulo1_data.js has single string answers so simple string matching works
       if (userAnswer === correctAnswer) {
         currentScore++;
+        resolveError(ex.id);
+      } else {
+        logError(ex, "Modulo 1: Il Congiuntivo");
       }
     });
     setScore(currentScore);
     setShowResults(true);
+
+    const newChecked = { ...checkedAnswers };
+    currentExercises.forEach(ex => newChecked[ex.id] = true);
+    setCheckedAnswers(newChecked);
+
+    saveProgress('modulo1', { answers: userAnswers, checked: newChecked });
   };
 
   const resetQuiz = () => {
@@ -47,6 +83,7 @@ export function Modulo1Section() {
     setCheckedAnswers({});
     setShowResults(false);
     setScore(0);
+    saveProgress('modulo1', { answers: {}, checked: {} });
   };
 
   const renderExerciseSection = () => {
@@ -120,7 +157,7 @@ export function Modulo1Section() {
                     
                     {!isChecked && (
                       <button
-                        onClick={() => checkSingleAnswer(ex.id)}
+                        onClick={() => checkSingleAnswer(ex)}
                         disabled={!userAnswer.trim()}
                         className="flex-shrink-0 text-slate-400 hover:text-indigo-600 disabled:opacity-30 transition-colors"
                         title="Controlla risposta"

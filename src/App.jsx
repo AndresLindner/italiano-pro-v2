@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut } from 'lucide-react';
 import { Modulo1Section } from './components/Modulo1Section';
 import { Modulo2Section } from './components/Modulo2Section';
 import { Modulo3Section } from './components/Modulo3Section';
 import { Modulo4Section } from './components/Modulo4Section';
+import { ErrorReviewSection } from './components/ErrorReviewSection';
+import { useAuth } from './contexts/AuthContext';
 
 const top100Verbs = [
   {
@@ -1576,6 +1578,8 @@ const imperativePronouns = ["(io)", "tu", "Lei (formale)", "noi", "voi"];
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('modulo1');
+  const { userErrors } = useAuth() || { userErrors: {} };
+  const errorCount = Object.keys(userErrors || {}).length;
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col md:flex-row">
@@ -1590,11 +1594,28 @@ export default function App() {
           <p className="text-indigo-200 text-sm mt-1">Impara i verbi difficili</p>
         </div>
 
+        <UserProfile />
+
         <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible pb-16 md:pb-0">
           <NavItem icon={<BookOpen size={20} />} label="Modulo 1" isActive={activeTab === 'modulo1'} onClick={() => setActiveTab('modulo1')} />
           <NavItem icon={<BookOpen size={20} />} label="Modulo 2" isActive={activeTab === 'modulo2'} onClick={() => setActiveTab('modulo2')} />
           <NavItem icon={<BookOpen size={20} />} label="Modulo 3" isActive={activeTab === 'modulo3'} onClick={() => setActiveTab('modulo3')} />
           <NavItem icon={<BookOpen size={20} />} label="Modulo 4" isActive={activeTab === 'modulo4'} onClick={() => setActiveTab('modulo4')} />
+          <NavItem 
+            icon={<RefreshCw size={20} />} 
+            label={
+              <div className="flex items-center gap-2">
+                Ripasso Errori
+                {errorCount > 0 && (
+                  <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    {errorCount}
+                  </span>
+                )}
+              </div>
+            } 
+            isActive={activeTab === 'errori'} 
+            onClick={() => setActiveTab('errori')} 
+          />
           <NavItem icon={<LayoutDashboard size={20} />} label="Panoramica B2" isActive={activeTab === 'panoramica'} onClick={() => setActiveTab('panoramica')} />
           <NavItem icon={<Sun size={20} />} label="Il Presente" isActive={activeTab === 'presente'} onClick={() => setActiveTab('presente')} />
           <NavItem icon={<History size={20} />} label="L'Imperfetto" isActive={activeTab === 'imperfetto'} onClick={() => setActiveTab('imperfetto')} />
@@ -1615,6 +1636,7 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full max-w-6xl mx-auto">
+        {activeTab === 'errori' && <ErrorReviewSection />}
         {activeTab === 'modulo1' && <Modulo1Section />}
         {activeTab === 'modulo2' && <Modulo2Section />}
         {activeTab === 'modulo3' && <Modulo3Section />}
@@ -1648,16 +1670,56 @@ function NavItem({ icon, label, isActive, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-3 w-full p-4 text-left font-medium transition-colors whitespace-nowrap flex-shrink-0
-        ${isActive
-          ? 'bg-indigo-800 border-l-4 border-emerald-400 text-white'
+      className={`w-full flex items-center gap-3 px-6 py-4 md:py-3 transition-colors ${
+        isActive
+          ? 'bg-indigo-800 text-emerald-400 border-l-4 border-emerald-400 font-bold'
           : 'text-indigo-100 hover:bg-indigo-800/50 hover:text-white border-l-4 border-transparent'
-        }
-      `}
+      }`}
     >
-      {icon}
-      {label}
+      <span className={isActive ? "text-emerald-400" : "text-indigo-300"}>{icon}</span>
+      <span className="whitespace-nowrap">{label}</span>
     </button>
+  );
+}
+
+export function UserProfile() {
+  const { currentUser, loginWithGoogle, logout } = useAuth();
+
+  if (currentUser) {
+    return (
+      <div className="p-4 bg-indigo-900 border-b border-indigo-800 flex flex-col gap-3">
+        <div className="flex items-center gap-3">
+          {currentUser.photoURL ? (
+            <img src={currentUser.photoURL} alt="Profile" className="w-10 h-10 rounded-full border-2 border-emerald-400" />
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-white">
+              {currentUser.email.charAt(0).toUpperCase()}
+            </div>
+          )}
+          <div className="flex flex-col overflow-hidden">
+            <span className="text-sm font-bold text-white truncate">{currentUser.displayName || 'Studente'}</span>
+            <span className="text-xs text-indigo-300 truncate">{currentUser.email}</span>
+          </div>
+        </div>
+        <button 
+          onClick={logout}
+          className="flex items-center justify-center gap-2 py-1.5 px-3 bg-indigo-800 hover:bg-indigo-700 text-indigo-200 text-sm rounded-md transition-colors"
+        >
+          <LogOut size={16} /> Disconnetti
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-4 bg-indigo-900 border-b border-indigo-800">
+      <button 
+        onClick={loginWithGoogle}
+        className="w-full flex items-center justify-center gap-2 py-2 px-4 bg-white text-indigo-900 font-bold rounded-md hover:bg-indigo-50 transition-colors"
+      >
+        <LogIn size={18} /> Accedi
+      </button>
+    </div>
   );
 }
 
@@ -3089,6 +3151,7 @@ function QuizSection() {
   const [score, setScore] = useState({ correct: 0, total: 0 });
   const [quizMode, setQuizMode] = useState('misto');
   const [mistakes, setMistakes] = useState([]);
+  const { logError, resolveError } = useAuth() || {};
 
   // Dictation States & Refs
   const [speechSupported, setSpeechSupported] = useState(true);
@@ -3288,11 +3351,23 @@ function QuizSection() {
     let currentCorrect = 0;
     let hasError = false;
 
-    currentQuestion.displayPronouns.forEach((_, i) => {
-      if (isAnswerCorrect(userAnswers[i], currentQuestion.correctAnswers[i])) {
+    currentQuestion.displayPronouns.forEach((pronoun, i) => {
+      const correctAns = currentQuestion.correctAnswers[i];
+      const exId = `quiz_${currentQuestion.verb.infinitive}_${currentQuestion.tense}_${i}`;
+
+      if (isAnswerCorrect(userAnswers[i], correctAns)) {
         currentCorrect++;
+        if (resolveError) resolveError(exId);
       } else {
         hasError = true;
+        if (logError && correctAns !== "-" && correctAns !== "") {
+          const exercise = {
+            id: exId,
+            sentence: `${pronoun} {blank} (${currentQuestion.verb.infinitive} - ${currentQuestion.tense.replace(/([A-Z])/g, ' $1').toLowerCase()})`,
+            answer: correctAns.includes('/') ? correctAns.split('/')[0].trim() : correctAns
+          };
+          logError(exercise, "Quiz Pratico");
+        }
       }
     });
 

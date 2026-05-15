@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BookOpen, CheckCircle2, ChevronRight, XCircle, Play, Info, BrainCircuit } from 'lucide-react';
 import { modulo2Data } from '../data/modulo2_data';
+import { useAuth } from '../contexts/AuthContext';
 
 export function Modulo2Section() {
   const [activeTab, setActiveTab] = useState('teoria'); // 'teoria' or 'pratica'
@@ -9,6 +10,15 @@ export function Modulo2Section() {
   const [checkedAnswers, setCheckedAnswers] = useState({});
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
+
+  const { userProgress, saveProgress, logError, resolveError } = useAuth();
+
+  React.useEffect(() => {
+    if (userProgress && userProgress['modulo2']) {
+      setUserAnswers(prev => Object.keys(prev).length === 0 ? (userProgress['modulo2'].answers || {}) : prev);
+      setCheckedAnswers(prev => Object.keys(prev).length === 0 ? (userProgress['modulo2'].checked || {}) : prev);
+    }
+  }, [userProgress]);
 
   const currentExercises = modulo2Data[activeExerciseSection] || [];
 
@@ -20,10 +30,26 @@ export function Modulo2Section() {
     if (checkedAnswers[id]) {
       setCheckedAnswers(prev => ({ ...prev, [id]: false }));
     }
+    
+    saveProgress('modulo2', { 
+      answers: { ...userAnswers, [id]: value },
+      checked: { ...checkedAnswers, [id]: false }
+    });
   };
 
-  const checkSingleAnswer = (id) => {
-    setCheckedAnswers(prev => ({ ...prev, [id]: true }));
+  const checkSingleAnswer = (ex) => {
+    const userAnswer = userAnswers[ex.id] || '';
+    const isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
+    
+    if (isCorrect) {
+      resolveError(ex.id);
+    } else {
+      logError(ex, "Modulo 2: Sintassi Avanzata");
+    }
+
+    const newChecked = { ...checkedAnswers, [ex.id]: true };
+    setCheckedAnswers(newChecked);
+    saveProgress('modulo2', { answers: userAnswers, checked: newChecked });
   };
 
   const checkAnswers = () => {
@@ -33,10 +59,19 @@ export function Modulo2Section() {
       const correctAnswer = ex.answer.toLowerCase();
       if (userAnswer === correctAnswer) {
         currentScore++;
+        resolveError(ex.id);
+      } else {
+        logError(ex, "Modulo 2: Sintassi Avanzata");
       }
     });
     setScore(currentScore);
     setShowResults(true);
+
+    const newChecked = { ...checkedAnswers };
+    currentExercises.forEach(ex => newChecked[ex.id] = true);
+    setCheckedAnswers(newChecked);
+
+    saveProgress('modulo2', { answers: userAnswers, checked: newChecked });
   };
 
   const resetQuiz = () => {
@@ -44,6 +79,7 @@ export function Modulo2Section() {
     setCheckedAnswers({});
     setShowResults(false);
     setScore(0);
+    saveProgress('modulo2', { answers: {}, checked: {} });
   };
 
   const renderExerciseSection = () => {
@@ -117,7 +153,7 @@ export function Modulo2Section() {
                     
                     {!isChecked && (
                       <button
-                        onClick={() => checkSingleAnswer(ex.id)}
+                        onClick={() => checkSingleAnswer(ex)}
                         disabled={!userAnswer.trim()}
                         className="flex-shrink-0 text-slate-400 hover:text-indigo-600 disabled:opacity-30 transition-colors"
                         title="Controlla risposta"

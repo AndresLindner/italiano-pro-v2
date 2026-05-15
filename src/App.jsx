@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward } from 'lucide-react';
 
-const top50Verbs = [
+const top100Verbs = [
   {
     infinitive: "essere",
     translation: "to be",
@@ -701,6 +701,706 @@ const top50Verbs = [
     typePR: "Irregolare",
     typeImp: "Regolare",
     typePP: "Irregolare"
+  },
+  {
+    infinitive: "sembrare",
+    translation: "to seem",
+    presente: ["sembro", "sembri", "sembra", "sembriamo", "sembrate", "sembrano"],
+    imperfetto: ["sembravo", "sembravi", "sembrava", "sembravamo", "sembravate", "sembravano"],
+    passatoRemoto: ["sembrai", "sembrasti", "sembrò", "sembrammo", "sembraste", "sembrarono"],
+    imperativo: ["-", "sembra", "sembri", "sembriamo", "sembrate", "sembrino"],
+    passatoProssimo: ["sono sembrato/a", "sei sembrato/a", "è sembrato/a", "siamo sembrati/e", "siete sembrati/e", "sono sembrati/e"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "tenere",
+    translation: "to hold/keep",
+    presente: ["tengo", "tieni", "tiene", "teniamo", "tenete", "tengono"],
+    imperfetto: ["tenevo", "tenevi", "teneva", "tenevamo", "tenevate", "tenevano"],
+    passatoRemoto: ["tenni", "tenesti", "tenne", "tenemmo", "teneste", "tennero"],
+    imperativo: ["-", "tieni", "tenga", "teniamo", "tenete", "tengano"],
+    passatoProssimo: ["ho tenuto", "hai tenuto", "ha tenuto", "abbiamo tenuto", "avete tenuto", "hanno tenuto"],
+    typePres: "Irregolare",
+    typeImperf: "Regolare",
+    typePR: "Irregolare",
+    typeImp: "Irregolare",
+    typePP: "Irregolare"
+  },
+  {
+    infinitive: "piacere",
+    translation: "to like/be pleasing",
+    presente: ["piaccio", "piaci", "piace", "piacciamo", "piacete", "piacciono"],
+    imperfetto: ["piacevo", "piacevi", "piaceva", "piacevamo", "piacevate", "piacevano"],
+    passatoRemoto: ["piacqui", "piacesti", "piacque", "piacemmo", "piaceste", "piacquero"],
+    imperativo: ["-", "piaci", "piaccia", "piacciamo", "piacete", "piacciano"],
+    passatoProssimo: ["sono piaciuto/a", "sei piaciuto/a", "è piaciuto/a", "siamo piaciuti/e", "siete piaciuti/e", "sono piaciuti/e"],
+    typePres: "Irregolare",
+    typeImperf: "Regolare",
+    typePR: "Irregolare",
+    typeImp: "Irregolare",
+    typePP: "Irregolare"
+  },
+  {
+    infinitive: "provare",
+    translation: "to try/feel",
+    presente: ["provo", "provi", "prova", "proviamo", "provate", "provano"],
+    imperfetto: ["provavo", "provavi", "provava", "provavamo", "provavate", "provavano"],
+    passatoRemoto: ["provai", "provasti", "provò", "provammo", "provaste", "provarono"],
+    imperativo: ["-", "prova", "provi", "proviamo", "provate", "provino"],
+    passatoProssimo: ["ho provato", "hai provato", "ha provato", "abbiamo provato", "avete provato", "hanno provato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "usare",
+    translation: "to use",
+    presente: ["uso", "usi", "usa", "usiamo", "usate", "usano"],
+    imperfetto: ["usavo", "usavi", "usava", "usavamo", "usavate", "usavano"],
+    passatoRemoto: ["usai", "usasti", "usò", "usammo", "usaste", "usarono"],
+    imperativo: ["-", "usa", "usi", "usiamo", "usate", "usino"],
+    passatoProssimo: ["ho usato", "hai usato", "ha usato", "abbiamo usato", "avete usato", "hanno usato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "ricordare",
+    translation: "to remember",
+    presente: ["ricordo", "ricordi", "ricorda", "ricordiamo", "ricordate", "ricordano"],
+    imperfetto: ["ricordavo", "ricordavi", "ricordava", "ricordavamo", "ricordavate", "ricordavano"],
+    passatoRemoto: ["ricordai", "ricordasti", "ricordò", "ricordammo", "ricordaste", "ricordarono"],
+    imperativo: ["-", "ricorda", "ricordi", "ricordiamo", "ricordate", "ricordino"],
+    passatoProssimo: ["ho ricordato", "hai ricordato", "ha ricordato", "abbiamo ricordato", "avete ricordato", "hanno ricordato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "dimenticare",
+    translation: "to forget",
+    presente: ["dimentico", "dimentichi", "dimentica", "dimentichiamo", "dimenticate", "dimenticano"],
+    imperfetto: ["dimenticavo", "dimenticavi", "dimenticava", "dimenticavamo", "dimenticavate", "dimenticavano"],
+    passatoRemoto: ["dimenticai", "dimenticasti", "dimenticò", "dimenticammo", "dimenticaste", "dimenticarono"],
+    imperativo: ["-", "dimentica", "dimentichi", "dimentichiamo", "dimenticate", "dimentichino"],
+    passatoProssimo: ["ho dimenticato", "hai dimenticato", "ha dimenticato", "abbiamo dimenticato", "avete dimenticato", "hanno dimenticato"],
+    typePres: "Irregolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Irregolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "succedere",
+    translation: "to happen",
+    presente: ["succedo", "succedi", "succede", "succediamo", "succedete", "succedono"],
+    imperfetto: ["succedevo", "succedevi", "succedeva", "succedevamo", "succedevate", "succedevano"],
+    passatoRemoto: ["successi", "succedesti", "successe", "succedemmo", "succedeste", "successero"],
+    imperativo: ["-", "succedi", "succeda", "succediamo", "succedete", "succedano"],
+    passatoProssimo: ["è successo/a", "sei successo/a", "è successo/a", "siamo successi/e", "siete successi/e", "sono successi/e"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Irregolare",
+    typeImp: "Regolare",
+    typePP: "Irregolare"
+  },
+  {
+    infinitive: "tornare",
+    translation: "to return/come back",
+    presente: ["torno", "torni", "torna", "torniamo", "tornate", "tornano"],
+    imperfetto: ["tornavo", "tornavi", "tornava", "tornavamo", "tornavate", "tornavano"],
+    passatoRemoto: ["tornai", "tornasti", "tornò", "tornammo", "tornaste", "tornarono"],
+    imperativo: ["-", "torna", "torni", "torniamo", "tornate", "tornino"],
+    passatoProssimo: ["sono tornato/a", "sei tornato/a", "è tornato/a", "siamo tornati/e", "siete tornati/e", "sono tornati/e"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "cambiare",
+    translation: "to change",
+    presente: ["cambio", "cambi", "cambia", "cambiamo", "cambiate", "cambiano"],
+    imperfetto: ["cambiavo", "cambiavi", "cambiava", "cambiavamo", "cambiavate", "cambiavano"],
+    passatoRemoto: ["cambiai", "cambiasti", "cambiò", "cambiammo", "cambiaste", "cambiarono"],
+    imperativo: ["-", "cambia", "cambi", "cambiamo", "cambiate", "cambino"],
+    passatoProssimo: ["ho cambiato", "hai cambiato", "ha cambiato", "abbiamo cambiato", "avete cambiato", "hanno cambiato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "continuare",
+    translation: "to continue",
+    presente: ["continuo", "continui", "continua", "continuiamo", "continuate", "continuano"],
+    imperfetto: ["continuavo", "continuavi", "continuava", "continuavamo", "continuavate", "continuavano"],
+    passatoRemoto: ["continuai", "continuasti", "continuò", "continuammo", "continuaste", "continuarono"],
+    imperativo: ["-", "continua", "continui", "continuiamo", "continuate", "continuino"],
+    passatoProssimo: ["ho continuato", "hai continuato", "ha continuato", "abbiamo continuato", "avete continuato", "hanno continuato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "iniziare",
+    translation: "to start",
+    presente: ["inizio", "inizi", "inizia", "iniziamo", "iniziate", "iniziano"],
+    imperfetto: ["iniziavo", "iniziavi", "iniziava", "iniziavamo", "iniziavate", "iniziavano"],
+    passatoRemoto: ["iniziai", "iniziasti", "iniziò", "iniziammo", "iniziaste", "iniziarono"],
+    imperativo: ["-", "inizia", "inizi", "iniziamo", "iniziate", "inizino"],
+    passatoProssimo: ["ho iniziato", "hai iniziato", "ha iniziato", "abbiamo iniziato", "avete iniziato", "hanno iniziato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "cominciare",
+    translation: "to begin",
+    presente: ["comincio", "cominci", "comincia", "cominciamo", "cominciate", "cominciano"],
+    imperfetto: ["cominciavo", "cominciavi", "cominciava", "cominciavamo", "cominciavate", "cominciavano"],
+    passatoRemoto: ["cominciai", "cominciasti", "cominciò", "cominciammo", "cominciaste", "cominciarono"],
+    imperativo: ["-", "comincia", "cominci", "cominciamo", "cominciate", "comincino"],
+    passatoProssimo: ["ho cominciato", "hai cominciato", "ha cominciato", "abbiamo cominciato", "avete cominciato", "hanno cominciato"],
+    typePres: "Irregolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Irregolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "finire",
+    translation: "to finish",
+    presente: ["finisco", "finisci", "finisce", "finiamo", "finite", "finiscono"],
+    imperfetto: ["finivo", "finivi", "finiva", "finivamo", "finivate", "finivano"],
+    passatoRemoto: ["finii", "finisti", "finì", "finimmo", "finiste", "finirono"],
+    imperativo: ["-", "finisci", "finisca", "finiamo", "finite", "finiscano"],
+    passatoProssimo: ["ho finito", "hai finito", "ha finito", "abbiamo finito", "avete finito", "hanno finito"],
+    typePres: "Irregolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Irregolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "fermare",
+    translation: "to stop",
+    presente: ["fermo", "fermi", "ferma", "fermiamo", "fermate", "fermano"],
+    imperfetto: ["fermavo", "fermavi", "fermava", "fermavamo", "fermavate", "fermavano"],
+    passatoRemoto: ["fermai", "fermasti", "fermò", "fermammo", "fermaste", "fermarono"],
+    imperativo: ["-", "ferma", "fermi", "fermiamo", "fermate", "fermino"],
+    passatoProssimo: ["ho fermato", "hai fermato", "ha fermato", "abbiamo fermato", "avete fermato", "hanno fermato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "scendere",
+    translation: "to go down/descend",
+    presente: ["scendo", "scendi", "scende", "scendiamo", "scendete", "scendono"],
+    imperfetto: ["scendevo", "scendevi", "scendeva", "scendevamo", "scendevate", "scendevano"],
+    passatoRemoto: ["scesi", "scendesti", "scese", "scendemmo", "scendeste", "scesero"],
+    imperativo: ["-", "scendi", "scenda", "scendiamo", "scendete", "scendano"],
+    passatoProssimo: ["sono sceso/a", "sei sceso/a", "è sceso/a", "siamo scesi/e", "siete scesi/e", "sono scesi/e"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Irregolare",
+    typeImp: "Regolare",
+    typePP: "Irregolare"
+  },
+  {
+    infinitive: "salire",
+    translation: "to go up/climb",
+    presente: ["salgo", "sali", "sale", "saliamo", "salite", "salgono"],
+    imperfetto: ["salivo", "salivi", "saliva", "salivamo", "salivate", "salivano"],
+    passatoRemoto: ["salii", "salisti", "salì", "salimmo", "saliste", "salirono"],
+    imperativo: ["-", "sali", "salga", "saliamo", "salite", "salgano"],
+    passatoProssimo: ["sono salito/a", "sei salito/a", "è salito/a", "siamo saliti/e", "siete saliti/e", "sono saliti/e"],
+    typePres: "Irregolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Irregolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "cadere",
+    translation: "to fall",
+    presente: ["cado", "cadi", "cade", "cadiamo", "cadete", "cadono"],
+    imperfetto: ["cadevo", "cadevi", "cadeva", "cadevamo", "cadevate", "cadevano"],
+    passatoRemoto: ["caddi", "cadesti", "cadde", "cademmo", "cadeste", "caddero"],
+    imperativo: ["-", "cadi", "cada", "cadiamo", "cadete", "cadano"],
+    passatoProssimo: ["sono caduto/a", "sei caduto/a", "è caduto/a", "siamo caduti/e", "siete caduti/e", "sono caduti/e"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Irregolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "perdere",
+    translation: "to lose",
+    presente: ["perdo", "perdi", "perde", "perdiamo", "perdete", "perdono"],
+    imperfetto: ["perdevo", "perdevi", "perdeva", "perdevamo", "perdevate", "perdevano"],
+    passatoRemoto: ["persi", "perdesti", "perse", "perdemmo", "perdeste", "persero"],
+    imperativo: ["-", "perdi", "perda", "perdiamo", "perdete", "perdano"],
+    passatoProssimo: ["ho perso", "hai perso", "ha perso", "abbiamo perso", "avete perso", "hanno perso"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Irregolare",
+    typeImp: "Regolare",
+    typePP: "Irregolare"
+  },
+  {
+    infinitive: "vincere",
+    translation: "to win",
+    presente: ["vinco", "vinci", "vince", "vinciamo", "vincete", "vincono"],
+    imperfetto: ["vincevo", "vincevi", "vinceva", "vincevamo", "vincevate", "vincevano"],
+    passatoRemoto: ["vinsi", "vincesti", "vinse", "vincemmo", "vinceste", "vinsero"],
+    imperativo: ["-", "vinci", "vinca", "vinciamo", "vincete", "vincano"],
+    passatoProssimo: ["ho vinto", "hai vinto", "ha vinto", "abbiamo vinto", "avete vinto", "hanno vinto"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Irregolare",
+    typeImp: "Regolare",
+    typePP: "Irregolare"
+  },
+  {
+    infinitive: "comprare",
+    translation: "to buy",
+    presente: ["compro", "compri", "compra", "compriamo", "comprate", "comprano"],
+    imperfetto: ["compravo", "compravi", "comprava", "compravamo", "compravate", "compravano"],
+    passatoRemoto: ["comprai", "comprasti", "comprò", "comprammo", "compraste", "comprarono"],
+    imperativo: ["-", "compra", "compri", "compriamo", "comprate", "comprino"],
+    passatoProssimo: ["ho comprato", "hai comprato", "ha comprato", "abbiamo comprato", "avete comprato", "hanno comprato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "vendere",
+    translation: "to sell",
+    presente: ["vendo", "vendi", "vende", "vendiamo", "vendete", "vendono"],
+    imperfetto: ["vendevo", "vendevi", "vendeva", "vendevamo", "vendevate", "vendevano"],
+    passatoRemoto: ["vendei / vendetti", "vendesti", "vendé / vendette", "vendemmo", "vendeste", "venderono / vendettero"],
+    imperativo: ["-", "vendi", "venda", "vendiamo", "vendete", "vendano"],
+    passatoProssimo: ["ho venduto", "hai venduto", "ha venduto", "abbiamo venduto", "avete venduto", "hanno venduto"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Irregolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "aiutare",
+    translation: "to help",
+    presente: ["aiuto", "aiuti", "aiuta", "aiutiamo", "aiutate", "aiutano"],
+    imperfetto: ["aiutavo", "aiutavi", "aiutava", "aiutavamo", "aiutavate", "aiutavano"],
+    passatoRemoto: ["aiutai", "aiutasti", "aiutò", "aiutammo", "aiutaste", "aiutarono"],
+    imperativo: ["-", "aiuta", "aiuti", "aiutiamo", "aiutate", "aiutino"],
+    passatoProssimo: ["ho aiutato", "hai aiutato", "ha aiutato", "abbiamo aiutato", "avete aiutato", "hanno aiutato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "sperare",
+    translation: "to hope",
+    presente: ["spero", "speri", "spera", "speriamo", "sperate", "sperano"],
+    imperfetto: ["speravo", "speravi", "sperava", "speravamo", "speravate", "speravano"],
+    passatoRemoto: ["sperai", "sperasti", "sperò", "sperammo", "speraste", "sperarono"],
+    imperativo: ["-", "spera", "speri", "speriamo", "sperate", "sperino"],
+    passatoProssimo: ["ho sperato", "hai sperato", "ha sperato", "abbiamo sperato", "avete sperato", "hanno sperato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "ascoltare",
+    translation: "to listen",
+    presente: ["ascolto", "ascolti", "ascolta", "ascoltiamo", "ascoltate", "ascoltano"],
+    imperfetto: ["ascoltavo", "ascoltavi", "ascoltava", "ascoltavamo", "ascoltavate", "ascoltavano"],
+    passatoRemoto: ["ascoltai", "ascoltasti", "ascoltò", "ascoltammo", "ascoltaste", "ascoltarono"],
+    imperativo: ["-", "ascolta", "ascolti", "ascoltiamo", "ascoltate", "ascoltino"],
+    passatoProssimo: ["ho ascoltato", "hai ascoltato", "ha ascoltato", "abbiamo ascoltato", "avete ascoltato", "hanno ascoltato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "mandare",
+    translation: "to send",
+    presente: ["mando", "mandi", "manda", "mandiamo", "mandate", "mandano"],
+    imperfetto: ["mandavo", "mandavi", "mandava", "mandavamo", "mandavate", "mandavano"],
+    passatoRemoto: ["mandai", "mandasti", "mandò", "mandammo", "mandaste", "mandarono"],
+    imperativo: ["-", "manda", "mandi", "mandiamo", "mandate", "mandino"],
+    passatoProssimo: ["ho mandato", "hai mandato", "ha mandato", "abbiamo mandato", "avete mandato", "hanno mandato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "ricevere",
+    translation: "to receive",
+    presente: ["ricevo", "ricevi", "riceve", "riceviamo", "ricevete", "ricevono"],
+    imperfetto: ["ricevevo", "ricevevi", "riceveva", "ricevevamo", "ricevevate", "ricevevano"],
+    passatoRemoto: ["ricevei", "ricevesti", "ricevé", "ricevemmo", "riceveste", "riceverono"],
+    imperativo: ["-", "ricevi", "riceva", "riceviamo", "ricevete", "ricevano"],
+    passatoProssimo: ["ho ricevuto", "hai ricevuto", "ha ricevuto", "abbiamo ricevuto", "avete ricevuto", "hanno ricevuto"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "spiegare",
+    translation: "to explain",
+    presente: ["spiego", "spieghi", "spiega", "spieghiamo", "spiegate", "spiegano"],
+    imperfetto: ["spiegavo", "spiegavi", "spiegava", "spiegavamo", "spiegavate", "spiegavano"],
+    passatoRemoto: ["spiegai", "spiegasti", "spiegò", "spiegammo", "spiegaste", "spiegarono"],
+    imperativo: ["-", "spiega", "spieghi", "spieghiamo", "spiegate", "spieghino"],
+    passatoProssimo: ["ho spiegato", "hai spiegato", "ha spiegato", "abbiamo spiegato", "avete spiegato", "hanno spiegato"],
+    typePres: "Irregolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Irregolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "imparare",
+    translation: "to learn",
+    presente: ["imparo", "impari", "impara", "impariamo", "imparate", "imparano"],
+    imperfetto: ["imparavo", "imparavi", "imparava", "imparavamo", "imparavate", "imparavano"],
+    passatoRemoto: ["imparai", "imparasti", "imparò", "imparammo", "imparaste", "impararono"],
+    imperativo: ["-", "impara", "impari", "impariamo", "imparate", "imparino"],
+    passatoProssimo: ["ho imparato", "hai imparato", "ha imparato", "abbiamo imparato", "avete imparato", "hanno imparato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "studiare",
+    translation: "to study",
+    presente: ["studio", "studi", "studia", "studiamo", "studiate", "studiano"],
+    imperfetto: ["studiavo", "studiavi", "studiava", "studiavamo", "studiavate", "studiavano"],
+    passatoRemoto: ["studiai", "studiasti", "studiò", "studiammo", "studiaste", "studiarono"],
+    imperativo: ["-", "studia", "studi", "studiamo", "studiate", "studino"],
+    passatoProssimo: ["ho studiato", "hai studiato", "ha studiato", "abbiamo studiato", "avete studiato", "hanno studiato"],
+    typePres: "Irregolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Irregolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "insegnare",
+    translation: "to teach",
+    presente: ["insegno", "insegni", "insegna", "insegniamo", "insegnate", "insegnano"],
+    imperfetto: ["insegnavo", "insegnavi", "insegnava", "insegnavamo", "insegnavate", "insegnavano"],
+    passatoRemoto: ["insegnai", "insegnasti", "insegnò", "insegnammo", "insegnaste", "insegnarono"],
+    imperativo: ["-", "insegna", "insegni", "insegniamo", "insegnate", "insegnino"],
+    passatoProssimo: ["ho insegnato", "hai insegnato", "ha insegnato", "abbiamo insegnato", "avete insegnato", "hanno insegnato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "incontrare",
+    translation: "to meet",
+    presente: ["incontro", "incontri", "incontra", "incontriamo", "incontrate", "incontrano"],
+    imperfetto: ["incontravo", "incontravi", "incontrava", "incontravamo", "incontravate", "incontravano"],
+    passatoRemoto: ["incontrai", "incontrasti", "incontrò", "incontrammo", "incontraste", "incontrarono"],
+    imperativo: ["-", "incontra", "incontri", "incontriamo", "incontrate", "incontrino"],
+    passatoProssimo: ["ho incontrato", "hai incontrato", "ha incontrato", "abbiamo incontrato", "avete incontrato", "hanno incontrato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "scegliere",
+    translation: "to choose",
+    presente: ["scelgo", "scegli", "sceglie", "scegliamo", "scegliete", "scelgono"],
+    imperfetto: ["sceglievo", "sceglievi", "sceglieva", "sceglievamo", "sceglievate", "sceglievano"],
+    passatoRemoto: ["scelsi", "scegliesti", "scelse", "scegliemmo", "sceglieste", "scelsero"],
+    imperativo: ["-", "scegli", "scelga", "scegliamo", "scegliete", "scelgano"],
+    passatoProssimo: ["ho scelto", "hai scelto", "ha scelto", "abbiamo scelto", "avete scelto", "hanno scelto"],
+    typePres: "Irregolare",
+    typeImperf: "Regolare",
+    typePR: "Irregolare",
+    typeImp: "Irregolare",
+    typePP: "Irregolare"
+  },
+  {
+    infinitive: "viaggiare",
+    translation: "to travel",
+    presente: ["viaggio", "viaggi", "viaggia", "viaggiamo", "viaggiate", "viaggiano"],
+    imperfetto: ["viaggiavo", "viaggiavi", "viaggiava", "viaggiavamo", "viaggiavate", "viaggiavano"],
+    passatoRemoto: ["viaggiai", "viaggiasti", "viaggiò", "viaggiammo", "viaggiaste", "viaggiarono"],
+    imperativo: ["-", "viaggia", "viaggi", "viaggiamo", "viaggiate", "viaggino"],
+    passatoProssimo: ["ho viaggiato", "hai viaggiato", "ha viaggiato", "abbiamo viaggiato", "avete viaggiato", "hanno viaggiato"],
+    typePres: "Irregolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Irregolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "camminare",
+    translation: "to walk",
+    presente: ["cammino", "cammini", "cammina", "camminiamo", "camminate", "camminano"],
+    imperfetto: ["camminavo", "camminavi", "camminava", "camminavamo", "camminavate", "camminavano"],
+    passatoRemoto: ["camminai", "camminasti", "camminò", "camminammo", "camminaste", "camminarono"],
+    imperativo: ["-", "cammina", "cammini", "camminiamo", "camminate", "camminino"],
+    passatoProssimo: ["ho camminato", "hai camminato", "ha camminato", "abbiamo camminato", "avete camminato", "hanno camminato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "guidare",
+    translation: "to drive",
+    presente: ["guido", "guidi", "guida", "guidiamo", "guidate", "guidano"],
+    imperfetto: ["guidavo", "guidavi", "guidava", "guidavamo", "guidavate", "guidavano"],
+    passatoRemoto: ["guidai", "guidasti", "guidò", "guidammo", "guidaste", "guidarono"],
+    imperativo: ["-", "guida", "guidi", "guidiamo", "guidate", "guidino"],
+    passatoProssimo: ["ho guidato", "hai guidato", "ha guidato", "abbiamo guidato", "avete guidato", "hanno guidato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "preparare",
+    translation: "to prepare",
+    presente: ["preparo", "prepari", "prepara", "prepariamo", "preparate", "preparano"],
+    imperfetto: ["preparavo", "preparavi", "preparava", "preparavamo", "preparavate", "preparavano"],
+    passatoRemoto: ["preparai", "preparasti", "preparò", "preparammo", "preparaste", "prepararono"],
+    imperativo: ["-", "prepara", "prepari", "prepariamo", "preparate", "preparino"],
+    passatoProssimo: ["ho preparato", "hai preparato", "ha preparato", "abbiamo preparato", "avete preparato", "hanno preparato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "cucinare",
+    translation: "to cook",
+    presente: ["cucino", "cucini", "cucina", "cuciniamo", "cucinate", "cucinano"],
+    imperfetto: ["cucinavo", "cucinavi", "cucinava", "cucinavamo", "cucinavate", "cucinavano"],
+    passatoRemoto: ["cucinai", "cucinasti", "cucinò", "cucinammo", "cucinaste", "cucinarono"],
+    imperativo: ["-", "cucina", "cucini", "cuciniamo", "cucinate", "cucinino"],
+    passatoProssimo: ["ho cucinato", "hai cucinato", "ha cucinato", "abbiamo cucinato", "avete cucinato", "hanno cucinato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "pulire",
+    translation: "to clean",
+    presente: ["pulisco", "pulisci", "pulisce", "puliamo", "pulite", "puliscono"],
+    imperfetto: ["pulivo", "pulivi", "puliva", "pulivamo", "pulivate", "pulivano"],
+    passatoRemoto: ["pulii", "pulisti", "pulì", "pulimmo", "puliste", "pulirono"],
+    imperativo: ["-", "pulisci", "pulisca", "puliamo", "pulite", "puliscano"],
+    passatoProssimo: ["ho pulito", "hai pulito", "ha pulito", "abbiamo pulito", "avete pulito", "hanno pulito"],
+    typePres: "Irregolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Irregolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "lavare",
+    translation: "to wash",
+    presente: ["lavo", "lavi", "lava", "laviamo", "lavate", "lavano"],
+    imperfetto: ["lavavo", "lavavi", "lavava", "lavavamo", "lavavate", "lavavano"],
+    passatoRemoto: ["lavai", "lavasti", "lavò", "lavammo", "lavaste", "lavarono"],
+    imperativo: ["-", "lava", "lavi", "laviamo", "lavate", "lavino"],
+    passatoProssimo: ["ho lavato", "hai lavato", "ha lavato", "abbiamo lavato", "avete lavato", "hanno lavato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "svegliare",
+    translation: "to wake up",
+    presente: ["sveglio", "svegli", "sveglia", "svegliamo", "svegliate", "svegliano"],
+    imperfetto: ["svegliavo", "svegliavi", "svegliava", "svegliavamo", "svegliavate", "svegliavano"],
+    passatoRemoto: ["svegliai", "svegliasti", "svegliò", "svegliammo", "svegliaste", "svegliarono"],
+    imperativo: ["-", "sveglia", "svegli", "svegliamo", "svegliate", "sveglino"],
+    passatoProssimo: ["ho svegliato", "hai svegliato", "ha svegliato", "abbiamo svegliato", "avete svegliato", "hanno svegliato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "ridere",
+    translation: "to laugh",
+    presente: ["rido", "ridi", "ride", "ridiamo", "ridete", "ridono"],
+    imperfetto: ["ridevo", "ridevi", "rideva", "ridevamo", "ridevate", "ridevano"],
+    passatoRemoto: ["risi", "ridesti", "rise", "ridemmo", "rideste", "risero"],
+    imperativo: ["-", "ridi", "rida", "ridiamo", "ridete", "ridano"],
+    passatoProssimo: ["ho riso", "hai riso", "ha riso", "abbiamo riso", "avete riso", "hanno riso"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Irregolare",
+    typeImp: "Regolare",
+    typePP: "Irregolare"
+  },
+  {
+    infinitive: "sorridere",
+    translation: "to smile",
+    presente: ["sorrido", "sorridi", "sorride", "sorridiamo", "sorridete", "sorridono"],
+    imperfetto: ["sorridevo", "sorridevi", "sorrideva", "sorridevamo", "sorridevate", "sorridevano"],
+    passatoRemoto: ["sorrisi", "sorridesti", "sorrise", "sorridemmo", "sorrideste", "sorrisero"],
+    imperativo: ["-", "sorridi", "sorrida", "sorridiamo", "sorridete", "sorridano"],
+    passatoProssimo: ["ho sorriso", "hai sorriso", "ha sorriso", "abbiamo sorriso", "avete sorriso", "hanno sorriso"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Irregolare",
+    typeImp: "Regolare",
+    typePP: "Irregolare"
+  },
+  {
+    infinitive: "piangere",
+    translation: "to cry",
+    presente: ["piango", "piangi", "piange", "piangiamo", "piangete", "piangono"],
+    imperfetto: ["piangevo", "piangevi", "piangeva", "piangevamo", "piangevate", "piangevano"],
+    passatoRemoto: ["piansi", "piangesti", "pianse", "piangemmo", "piangeste", "piansero"],
+    imperativo: ["-", "piangi", "pianga", "piangiamo", "piangete", "piangano"],
+    passatoProssimo: ["ho pianto", "hai pianto", "ha pianto", "abbiamo pianto", "avete pianto", "hanno pianto"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Irregolare",
+    typeImp: "Regolare",
+    typePP: "Irregolare"
+  },
+  {
+    infinitive: "cantare",
+    translation: "to sing",
+    presente: ["canto", "canti", "canta", "cantiamo", "cantate", "cantano"],
+    imperfetto: ["cantavo", "cantavi", "cantava", "cantavamo", "cantavate", "cantavano"],
+    passatoRemoto: ["cantai", "cantasti", "cantò", "cantammo", "cantaste", "cantarono"],
+    imperativo: ["-", "canta", "canti", "cantiamo", "cantate", "cantino"],
+    passatoProssimo: ["ho cantato", "hai cantato", "ha cantato", "abbiamo cantato", "avete cantato", "hanno cantato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "ballare",
+    translation: "to dance",
+    presente: ["ballo", "balli", "balla", "balliamo", "ballate", "ballano"],
+    imperfetto: ["ballavo", "ballavi", "ballava", "ballavamo", "ballavate", "ballavano"],
+    passatoRemoto: ["ballai", "ballasti", "ballò", "ballammo", "ballaste", "ballarono"],
+    imperativo: ["-", "balla", "balli", "balliamo", "ballate", "ballino"],
+    passatoProssimo: ["ho ballato", "hai ballato", "ha ballato", "abbiamo ballato", "avete ballato", "hanno ballato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "saltare",
+    translation: "to jump",
+    presente: ["salto", "salti", "salta", "saltiamo", "saltate", "saltano"],
+    imperfetto: ["saltavo", "saltavi", "saltava", "saltavamo", "saltavate", "saltavano"],
+    passatoRemoto: ["saltai", "saltasti", "saltò", "saltammo", "saltaste", "saltarono"],
+    imperativo: ["-", "salta", "salti", "saltiamo", "saltate", "saltino"],
+    passatoProssimo: ["ho saltato", "hai saltato", "ha saltato", "abbiamo saltato", "avete saltato", "hanno saltato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "mostrare",
+    translation: "to show",
+    presente: ["mostro", "mostri", "mostra", "mostriamo", "mostrate", "mostrano"],
+    imperfetto: ["mostravo", "mostravi", "mostrava", "mostravamo", "mostravate", "mostravano"],
+    passatoRemoto: ["mostrai", "mostrasti", "mostrò", "mostrammo", "mostraste", "mostrarono"],
+    imperativo: ["-", "mostra", "mostri", "mostriamo", "mostrate", "mostrino"],
+    passatoProssimo: ["ho mostrato", "hai mostrato", "ha mostrato", "abbiamo mostrato", "avete mostrato", "hanno mostrato"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "servire",
+    translation: "to serve/be needed",
+    presente: ["servo", "servi", "serve", "serviamo", "servite", "servono"],
+    imperfetto: ["servivo", "servivi", "serviva", "servivamo", "servivate", "servivano"],
+    passatoRemoto: ["servii", "servisti", "servì", "servimmo", "serviste", "servirono"],
+    imperativo: ["-", "servi", "serva", "serviamo", "servite", "servano"],
+    passatoProssimo: ["ho servito", "hai servito", "ha servito", "abbiamo servito", "avete servito", "hanno servito"],
+    typePres: "Regolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Regolare",
+    typePP: "Regolare"
+  },
+  {
+    infinitive: "ringraziare",
+    translation: "to thank",
+    presente: ["ringrazio", "ringrazi", "ringrazia", "ringraziamo", "ringraziate", "ringraziano"],
+    imperfetto: ["ringraziavo", "ringraziavi", "ringraziava", "ringraziavamo", "ringraziavate", "ringraziavano"],
+    passatoRemoto: ["ringraziai", "ringraziasti", "ringraziò", "ringraziammo", "ringraziaste", "ringraziarono"],
+    imperativo: ["-", "ringrazia", "ringrazi", "ringraziamo", "ringraziate", "ringrazino"],
+    passatoProssimo: ["ho ringraziato", "hai ringraziato", "ha ringraziato", "abbiamo ringraziato", "avete ringraziato", "hanno ringraziato"],
+    typePres: "Irregolare",
+    typeImperf: "Regolare",
+    typePR: "Regolare",
+    typeImp: "Irregolare",
+    typePP: "Regolare"
   }
 ];
 
@@ -734,7 +1434,7 @@ const futureRoots = {
 };
 
 // Generazione dinamica per i vari tempi derivati
-top50Verbs.forEach(verb => {
+top100Verbs.forEach(verb => {
   const inf = verb.infinitive;
 
   // Congiuntivo Presente Dinamico
@@ -900,7 +1600,7 @@ export default function App() {
           <NavItem icon={<Archive size={20} />} label="Trapassato Prossimo" isActive={activeTab === 'trapassato'} onClick={() => setActiveTab('trapassato')} />
           <NavItem icon={<ScrollText size={20} />} label="Passato Remoto" isActive={activeTab === 'passato'} onClick={() => setActiveTab('passato')} />
           <NavItem icon={<AlertCircle size={20} />} label="L'Imperativo" isActive={activeTab === 'imperativo'} onClick={() => setActiveTab('imperativo')} />
-          <NavItem icon={<List size={20} />} label="I 50 Verbi" isActive={activeTab === 'verbi'} onClick={() => setActiveTab('verbi')} />
+          <NavItem icon={<List size={20} />} label="I 100 Verbi" isActive={activeTab === 'verbi'} onClick={() => setActiveTab('verbi')} />
           <NavItem icon={<Gamepad2 size={20} />} label="Quiz Pratico" isActive={activeTab === 'quiz'} onClick={() => setActiveTab('quiz')} />
         </div>
       </nav>
@@ -1977,7 +2677,7 @@ function TopVerbsSection() {
       </header>
 
       <div className="space-y-3">
-        {top50Verbs.map((verb, index) => {
+        {top100Verbs.map((verb, index) => {
           const isOpen = openIndex === index;
           return (
             <div 
@@ -2502,9 +3202,9 @@ function QuizSection() {
       const tenses = actualMode === 'misto' ? ['presente', 'imperfetto', 'futuro', 'condizionale', 'condizionalePassato', 'congiuntivoPresente', 'congiuntivoPassato', 'congiuntivoTrapassato', 'passatoProssimo', 'trapassatoProssimo', 'passatoRemoto', 'imperativo'] : [actualMode];
       selectedTense = tenses[Math.floor(Math.random() * tenses.length)];
       
-      let validVerbs = top50Verbs;
+      let validVerbs = top100Verbs;
       if (selectedTense === 'imperativo') {
-        validVerbs = top50Verbs.filter(v => v.imperativo[1] !== "Non ha imperativo");
+        validVerbs = top100Verbs.filter(v => v.imperativo[1] !== "Non ha imperativo");
       }
       
       selectedVerb = validVerbs[Math.floor(Math.random() * validVerbs.length)];

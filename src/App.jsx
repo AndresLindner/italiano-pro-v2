@@ -1580,6 +1580,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('modulo1');
   const { userErrors } = useAuth() || { userErrors: {} };
   const errorCount = Object.keys(userErrors || {}).length;
+  const quizErrorCount = Object.values(userErrors || {}).filter(e => e.type === 'quiz_verb').length;
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col md:flex-row">
@@ -1630,7 +1631,21 @@ export default function App() {
           <NavItem icon={<ScrollText size={20} />} label="Passato Remoto" isActive={activeTab === 'passato'} onClick={() => setActiveTab('passato')} />
           <NavItem icon={<AlertCircle size={20} />} label="L'Imperativo" isActive={activeTab === 'imperativo'} onClick={() => setActiveTab('imperativo')} />
           <NavItem icon={<List size={20} />} label="I 100 Verbi" isActive={activeTab === 'verbi'} onClick={() => setActiveTab('verbi')} />
-          <NavItem icon={<Gamepad2 size={20} />} label="Quiz Pratico" isActive={activeTab === 'quiz'} onClick={() => setActiveTab('quiz')} />
+          <NavItem 
+            icon={<Gamepad2 size={20} />} 
+            label={
+              <div className="flex items-center gap-2">
+                Quiz Pratico
+                {quizErrorCount > 0 && (
+                  <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    {quizErrorCount}
+                  </span>
+                )}
+              </div>
+            }
+            isActive={activeTab === 'quiz'} 
+            onClick={() => setActiveTab('quiz')} 
+          />
         </div>
       </nav>
 

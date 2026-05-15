@@ -1442,16 +1442,16 @@ top100Verbs.forEach(verb => {
     verb.congiuntivoPresente = congiuntivoPresenteMap[inf];
     verb.typeCongPres = "Irregolare";
   } else {
-    let p0 = verb.presente[0]; 
-    let root0 = p0.slice(0, -1); 
-    let noiForm = verb.presente[3]; 
-    let voiForm = noiForm.slice(0, -2) + "te"; 
+    let p0 = verb.presente[0];
+    let root0 = p0.slice(0, -1);
+    let noiForm = verb.presente[3];
+    let voiForm = noiForm.slice(0, -2) + "te";
 
     if (inf.endsWith("are")) {
       if (root0.endsWith("c") || root0.endsWith("g")) {
-        root0 += "h"; 
+        root0 += "h";
       } else if (root0.endsWith("i")) {
-        root0 = root0.slice(0, -1); 
+        root0 = root0.slice(0, -1);
       }
       verb.congiuntivoPresente = [root0 + "i", root0 + "i", root0 + "i", noiForm, voiForm, root0 + "ino"];
     } else {
@@ -1575,7 +1575,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col md:flex-row">
-      
+
       {/* Sidebar Navigation */}
       <nav className="w-full md:w-64 bg-indigo-900 text-white flex flex-col shadow-xl flex-shrink-0 z-10 sticky top-0 md:h-screen overflow-y-auto">
         <div className="p-6 bg-indigo-950">
@@ -1585,7 +1585,7 @@ export default function App() {
           </h1>
           <p className="text-indigo-200 text-sm mt-1">Impara i verbi difficili</p>
         </div>
-        
+
         <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible pb-16 md:pb-0">
           <NavItem icon={<LayoutDashboard size={20} />} label="Panoramica B2" isActive={activeTab === 'panoramica'} onClick={() => setActiveTab('panoramica')} />
           <NavItem icon={<Sun size={20} />} label="Il Presente" isActive={activeTab === 'presente'} onClick={() => setActiveTab('presente')} />
@@ -1637,8 +1637,8 @@ function NavItem({ icon, label, isActive, onClick }) {
     <button
       onClick={onClick}
       className={`flex items-center gap-3 w-full p-4 text-left font-medium transition-colors whitespace-nowrap flex-shrink-0
-        ${isActive 
-          ? 'bg-indigo-800 border-l-4 border-emerald-400 text-white' 
+        ${isActive
+          ? 'bg-indigo-800 border-l-4 border-emerald-400 text-white'
           : 'text-indigo-100 hover:bg-indigo-800/50 hover:text-white border-l-4 border-transparent'
         }
       `}
@@ -2440,7 +2440,7 @@ function TrapassatoProssimoSection() {
           <Info size={20} /> Quando si usa?
         </h3>
         <p className="mb-4 text-slate-700">
-          Il <strong>Trapassato Prossimo</strong> esprime un'azione passata che è avvenuta <em>prima</em> di un'altra azione anch'essa passata. 
+          Il <strong>Trapassato Prossimo</strong> esprime un'azione passata che è avvenuta <em>prima</em> di un'altra azione anch'essa passata.
           Si usa spesso per spiegare l'antefatto o le cause di un evento passato.
         </p>
         <div className="bg-sky-50 border-l-4 border-sky-500 p-4 mt-4">
@@ -2557,7 +2557,7 @@ function ImperativoSection() {
           <Info size={20} /> Quando si usa?
         </h3>
         <p className="mb-3">
-          L'imperativo si usa per dare comandi, fare inviti, dare istruzioni o consigli. Esiste solo nel tempo <strong>Presente</strong>. 
+          L'imperativo si usa per dare comandi, fare inviti, dare istruzioni o consigli. Esiste solo nel tempo <strong>Presente</strong>.
           Non si usa mai con il pronome "io" (non puoi dare un ordine a te stesso!).
         </p>
         <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mt-4">
@@ -2602,7 +2602,7 @@ function ImperativoSection() {
           </table>
         </div>
         <p className="mt-3 text-sm text-slate-500">*Alcuni verbi in -ire prendono il suffisso -isc- come al presente indicativo.</p>
-        
+
         <div className="mt-4 p-4 border border-emerald-200 bg-emerald-50 rounded-lg">
           <p className="text-emerald-900 font-medium">💡 Nota la differenza "Incrociata":</p>
           <ul className="list-disc pl-5 text-emerald-800 mt-2">
@@ -2619,7 +2619,7 @@ function ImperativoSection() {
         <p className="mb-4 text-red-900">
           Per dire a qualcuno di NON fare qualcosa, la regola cambia solo per la persona <strong>"TU"</strong>.
         </p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white p-4 rounded-lg shadow-sm border border-red-100">
             <h4 className="font-bold text-red-700 mb-2 border-b pb-1">Per il "TU"</h4>
@@ -2627,7 +2627,7 @@ function ImperativoSection() {
             <p className="text-center text-slate-700">"Non parlare!"</p>
             <p className="text-center text-slate-700">"Non correre!"</p>
           </div>
-          
+
           <div className="bg-white p-4 rounded-lg shadow-sm border border-red-100">
             <h4 className="font-bold text-slate-700 mb-2 border-b pb-1">Per le altre persone</h4>
             <p className="text-2xl font-black text-center text-slate-600 my-4">NON + IMPERATIVO</p>
@@ -2655,7 +2655,7 @@ function TopVerbsSection() {
 
   const speakWord = (word) => {
     if (!word || word === "-" || word.includes("N/A")) return;
-    
+
     let cleanWord = word;
     if (word.endsWith('/a') || word.endsWith('/e')) {
       cleanWord = word.slice(0, -2);
@@ -2665,14 +2665,14 @@ function TopVerbsSection() {
 
     const utterance = new SpeechSynthesisUtterance(cleanWord);
     utterance.lang = 'it-IT';
-    utterance.rate = 0.85; 
+    utterance.rate = 0.85;
     window.speechSynthesis.speak(utterance);
   };
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
       <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">I 50 Verbi Più Comuni</h2>
+        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">I 100 Verbi Più Comuni</h2>
         <p className="text-slate-600 mt-2 text-lg">Esplora le coniugazioni per i 12 tempi verbali. Clicca su un verbo per espanderlo.</p>
       </header>
 
@@ -2680,13 +2680,13 @@ function TopVerbsSection() {
         {top100Verbs.map((verb, index) => {
           const isOpen = openIndex === index;
           return (
-            <div 
-              key={verb.infinitive} 
+            <div
+              key={verb.infinitive}
               className={`border rounded-xl overflow-hidden transition-all duration-300 shadow-sm
                 ${isOpen ? 'border-indigo-400 ring-1 ring-indigo-400' : 'border-slate-200 hover:border-indigo-300'}
               `}
             >
-              <button 
+              <button
                 onClick={() => setOpenIndex(isOpen ? -1 : index)}
                 className={`w-full flex items-center justify-between p-4 text-left transition-colors
                   ${isOpen ? 'bg-indigo-50' : 'bg-white hover:bg-slate-50'}
@@ -2703,7 +2703,7 @@ function TopVerbsSection() {
 
               {isOpen && (
                 <div className="p-4 bg-white border-t border-indigo-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  
+
                   {/* Presente */}
                   <div className="bg-purple-50 p-4 rounded-lg border border-purple-100">
                     <div className="flex justify-between items-center mb-3 border-b border-purple-200 pb-2">
@@ -2718,7 +2718,7 @@ function TopVerbsSection() {
                             <td className="py-2 px-3 font-semibold text-slate-800">
                               <div className="flex items-center justify-between gap-2">
                                 <span>{verb.presente[i]}</span>
-                                <button 
+                                <button
                                   onClick={(e) => { e.stopPropagation(); speakWord(verb.presente[i]); }}
                                   className="text-slate-400 hover:text-purple-600 transition-colors flex-shrink-0"
                                   title="Ascolta la pronuncia"
@@ -2747,7 +2747,7 @@ function TopVerbsSection() {
                             <td className="py-2 px-3 font-semibold text-slate-800">
                               <div className="flex items-center justify-between gap-2">
                                 <span>{verb.imperfetto[i]}</span>
-                                <button 
+                                <button
                                   onClick={(e) => { e.stopPropagation(); speakWord(verb.imperfetto[i]); }}
                                   className="text-slate-400 hover:text-teal-600 transition-colors flex-shrink-0"
                                   title="Ascolta la pronuncia"
@@ -2776,7 +2776,7 @@ function TopVerbsSection() {
                             <td className="py-2 px-3 font-semibold text-slate-800">
                               <div className="flex items-center justify-between gap-2">
                                 <span>{verb.futuro[i]}</span>
-                                <button 
+                                <button
                                   onClick={(e) => { e.stopPropagation(); speakWord(verb.futuro[i]); }}
                                   className="text-slate-400 hover:text-orange-600 transition-colors flex-shrink-0"
                                   title="Ascolta la pronuncia"
@@ -2805,7 +2805,7 @@ function TopVerbsSection() {
                             <td className="py-2 px-3 font-semibold text-slate-800">
                               <div className="flex items-center justify-between gap-2">
                                 <span>{verb.condizionale[i]}</span>
-                                <button 
+                                <button
                                   onClick={(e) => { e.stopPropagation(); speakWord(verb.condizionale[i]); }}
                                   className="text-slate-400 hover:text-pink-600 transition-colors flex-shrink-0"
                                   title="Ascolta la pronuncia"
@@ -2834,7 +2834,7 @@ function TopVerbsSection() {
                             <td className="py-2 px-3 font-semibold text-slate-800">
                               <div className="flex items-center justify-between gap-2">
                                 <span>{verb.congiuntivoPresente[i]}</span>
-                                <button 
+                                <button
                                   onClick={(e) => { e.stopPropagation(); speakWord(verb.congiuntivoPresente[i]); }}
                                   className="text-slate-400 hover:text-violet-600 transition-colors flex-shrink-0"
                                   title="Ascolta la pronuncia"
@@ -2863,7 +2863,7 @@ function TopVerbsSection() {
                             <td className="py-2 px-3 font-semibold text-slate-800">
                               <div className="flex items-center justify-between gap-2">
                                 <span>{verb.congiuntivoPassato[i]}</span>
-                                <button 
+                                <button
                                   onClick={(e) => { e.stopPropagation(); speakWord(verb.congiuntivoPassato[i]); }}
                                   className="text-slate-400 hover:text-fuchsia-600 transition-colors flex-shrink-0"
                                   title="Ascolta la pronuncia"
@@ -2892,7 +2892,7 @@ function TopVerbsSection() {
                             <td className="py-2 px-3 font-semibold text-slate-800">
                               <div className="flex items-center justify-between gap-2">
                                 <span>{verb.congiuntivoTrapassato[i]}</span>
-                                <button 
+                                <button
                                   onClick={(e) => { e.stopPropagation(); speakWord(verb.congiuntivoTrapassato[i]); }}
                                   className="text-slate-400 hover:text-cyan-600 transition-colors flex-shrink-0"
                                   title="Ascolta la pronuncia"
@@ -2921,7 +2921,7 @@ function TopVerbsSection() {
                             <td className="py-2 px-3 font-semibold text-slate-800">
                               <div className="flex items-center justify-between gap-2">
                                 <span>{verb.condizionalePassato[i]}</span>
-                                <button 
+                                <button
                                   onClick={(e) => { e.stopPropagation(); speakWord(verb.condizionalePassato[i]); }}
                                   className="text-slate-400 hover:text-rose-600 transition-colors flex-shrink-0"
                                   title="Ascolta la pronuncia"
@@ -2950,7 +2950,7 @@ function TopVerbsSection() {
                             <td className="py-2 px-3 font-semibold text-slate-800">
                               <div className="flex items-center justify-between gap-2">
                                 <span>{verb.passatoProssimo[i]}</span>
-                                <button 
+                                <button
                                   onClick={(e) => { e.stopPropagation(); speakWord(verb.passatoProssimo[i]); }}
                                   className="text-slate-400 hover:text-blue-600 transition-colors flex-shrink-0"
                                   title="Ascolta la pronuncia"
@@ -2979,7 +2979,7 @@ function TopVerbsSection() {
                             <td className="py-2 px-3 font-semibold text-slate-800">
                               <div className="flex items-center justify-between gap-2">
                                 <span>{verb.trapassatoProssimo[i]}</span>
-                                <button 
+                                <button
                                   onClick={(e) => { e.stopPropagation(); speakWord(verb.trapassatoProssimo[i]); }}
                                   className="text-slate-400 hover:text-sky-600 transition-colors flex-shrink-0"
                                   title="Ascolta la pronuncia"
@@ -3008,7 +3008,7 @@ function TopVerbsSection() {
                             <td className="py-2 px-3 font-semibold text-slate-800">
                               <div className="flex items-center justify-between gap-2">
                                 <span>{verb.passatoRemoto[i]}</span>
-                                <button 
+                                <button
                                   onClick={(e) => { e.stopPropagation(); speakWord(verb.passatoRemoto[i]); }}
                                   className="text-slate-400 hover:text-indigo-600 transition-colors flex-shrink-0"
                                   title="Ascolta la pronuncia"
@@ -3044,7 +3044,7 @@ function TopVerbsSection() {
                                 <div className="flex items-center justify-between gap-2">
                                   <span>{verb.imperativo[i] === "-" ? "-" : verb.imperativo[i]}</span>
                                   {verb.imperativo[i] !== "-" && verb.imperativo[i] !== "" && (
-                                    <button 
+                                    <button
                                       onClick={(e) => { e.stopPropagation(); speakWord(verb.imperativo[i]); }}
                                       className="text-emerald-400 hover:text-emerald-700 transition-colors flex-shrink-0"
                                       title="Ascolta la pronuncia"
@@ -3147,7 +3147,7 @@ function QuizSection() {
         let wordIndex = 0;
         for (let i = 0; i < newAnswers.length; i++) {
           if (newAnswers[i] === "-") continue; // Skip disabled fields like Imperativo "io"
-          
+
           // Map transcribed words to the respective inputs dynamically
           newAnswers[i] = wordIndex < groupedWords.length ? groupedWords[wordIndex] : "";
           wordIndex++;
@@ -3168,7 +3168,7 @@ function QuizSection() {
       recognitionRef.current?.stop();
     } else {
       const q = currentQuestionRef.current;
-      if(q) {
+      if (q) {
         // Clear current text fields to start fresh dictation
         const emptyAnswers = Array(q.displayPronouns.length).fill("");
         if (q.tense === 'imperativo') emptyAnswers[0] = "-";
@@ -3184,9 +3184,9 @@ function QuizSection() {
 
   const generateQuestion = (mode = quizMode) => {
     if (recognitionRef.current) recognitionRef.current.stop();
-    
+
     const actualMode = typeof mode === 'string' ? mode : quizMode;
-    
+
     if (actualMode === 'ripasso' && mistakes.length === 0) {
       setCurrentQuestion(null);
       return;
@@ -3201,17 +3201,17 @@ function QuizSection() {
     } else {
       const tenses = actualMode === 'misto' ? ['presente', 'imperfetto', 'futuro', 'condizionale', 'condizionalePassato', 'congiuntivoPresente', 'congiuntivoPassato', 'congiuntivoTrapassato', 'passatoProssimo', 'trapassatoProssimo', 'passatoRemoto', 'imperativo'] : [actualMode];
       selectedTense = tenses[Math.floor(Math.random() * tenses.length)];
-      
+
       let validVerbs = top100Verbs;
       if (selectedTense === 'imperativo') {
         validVerbs = top100Verbs.filter(v => v.imperativo[1] !== "Non ha imperativo");
       }
-      
+
       selectedVerb = validVerbs[Math.floor(Math.random() * validVerbs.length)];
     }
-    
+
     const displayPronouns = selectedTense === 'imperativo' ? imperativePronouns : pronouns;
-    
+
     let correctAnswers;
     if (selectedTense === 'presente') correctAnswers = selectedVerb.presente;
     else if (selectedTense === 'imperfetto') correctAnswers = selectedVerb.imperfetto;
@@ -3232,7 +3232,7 @@ function QuizSection() {
       correctAnswers: correctAnswers,
       displayPronouns: displayPronouns
     });
-    
+
     const initialAnswers = Array(displayPronouns.length).fill("");
     if (selectedTense === 'imperativo') {
       initialAnswers[0] = "-";
@@ -3254,19 +3254,19 @@ function QuizSection() {
 
   const isAnswerCorrect = (userAns = "", correctAns) => {
     if (correctAns === "-") return userAns.trim() === "" || userAns.trim() === "-";
-    
+
     let options = [];
-    
+
     if (correctAns.endsWith('/a') || correctAns.endsWith('/e')) {
-      const option1 = correctAns.slice(0, -2); 
-      const option2 = option1.slice(0, -1) + correctAns.slice(-1); 
+      const option1 = correctAns.slice(0, -2);
+      const option2 = option1.slice(0, -1) + correctAns.slice(-1);
       options = [option1, option2, correctAns];
     } else if (correctAns.includes('/')) {
       options = correctAns.split('/').map(opt => opt.trim());
     } else {
       options = [correctAns];
     }
-    
+
     return options.map(o => o.toLowerCase()).includes(userAns.trim().toLowerCase());
   };
 
@@ -3283,7 +3283,7 @@ function QuizSection() {
         hasError = true;
       }
     });
-    
+
     setScore({
       correct: score.correct + currentCorrect,
       total: score.total + currentQuestion.displayPronouns.length
@@ -3335,7 +3335,7 @@ function QuizSection() {
             </div>
             <h2 className="text-3xl font-bold text-emerald-800 mb-4">Bravissimo!</h2>
             <p className="text-slate-600 text-lg mb-8">Non hai più nessun errore da ripassare. Ottimo lavoro!</p>
-            <button 
+            <button
               onClick={() => handleModeChange('misto')}
               className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-sm transition-colors"
             >
@@ -3349,7 +3349,7 @@ function QuizSection() {
   }
 
   const isImperativeIo = (index) => currentQuestion.tense === 'imperativo' && index === 0;
-  
+
   const getTenseTitle = (tense) => {
     if (tense === 'presente') return 'Il Presente';
     if (tense === 'imperfetto') return "L'Imperfetto";
@@ -3387,7 +3387,7 @@ function QuizSection() {
       <header className="text-center">
         <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2 inline-block">Mettiti alla prova!</h2>
         <p className="text-slate-600 mt-2 text-lg">Coniuga il verbo in tutte le persone (puoi usare la dettatura vocale).</p>
-        
+
         <div className="mt-6 flex flex-col items-center gap-4">
           <div className="flex flex-wrap justify-center gap-2 bg-white p-2 rounded-lg border border-slate-200 shadow-sm max-w-full">
             <button
@@ -3472,7 +3472,7 @@ function QuizSection() {
               onClick={() => handleModeChange('ripasso')}
               disabled={mistakes.length === 0 && quizMode !== 'ripasso'}
               className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors flex items-center gap-1.5
-                ${quizMode === 'ripasso' ? 'bg-amber-100 text-amber-800' : 
+                ${quizMode === 'ripasso' ? 'bg-amber-100 text-amber-800' :
                   mistakes.length > 0 ? 'text-amber-600 hover:bg-amber-50 border border-amber-200' : 'text-slate-300 cursor-not-allowed border border-transparent'}`}
             >
               Errori
@@ -3499,11 +3499,10 @@ function QuizSection() {
           <h3 className="text-4xl font-black mb-1">{currentQuestion.verb.infinitive}</h3>
           <p className="text-indigo-300 text-sm mb-3">({currentQuestion.verb.translation})</p>
           <div className="mt-1">
-            <span className={`text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider ${
-              currentBadgeType === "Irregolare" 
-                ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30' 
-                : 'bg-emerald-400/20 text-emerald-300 border border-emerald-400/30'
-            }`}>
+            <span className={`text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider ${currentBadgeType === "Irregolare"
+              ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30'
+              : 'bg-emerald-400/20 text-emerald-300 border border-emerald-400/30'
+              }`}>
               {currentBadgeType}
             </span>
           </div>
@@ -3534,7 +3533,7 @@ function QuizSection() {
                       ${showResults && !isCorrect ? 'bg-red-50 border-red-400 text-red-800' : ''}
                     `}
                   />
-                  
+
                   {showResults && (
                     <div className="absolute right-3 top-1/2 -translate-y-1/2">
                       {isCorrect ? (
@@ -3593,11 +3592,10 @@ function QuizSection() {
             {!showResults && speechSupported && (
               <button
                 onClick={toggleListening}
-                className={`px-5 py-3 font-bold rounded-lg shadow-sm transition-all flex items-center gap-2 ${
-                  isListening 
-                    ? 'bg-red-500 hover:bg-red-600 text-white animate-pulse' 
-                    : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-100'
-                }`}
+                className={`px-5 py-3 font-bold rounded-lg shadow-sm transition-all flex items-center gap-2 ${isListening
+                  ? 'bg-red-500 hover:bg-red-600 text-white animate-pulse'
+                  : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-100'
+                  }`}
                 title="Dì i verbi per riempire automaticamente le risposte"
               >
                 {isListening ? <Square size={20} /> : <Mic size={20} />}

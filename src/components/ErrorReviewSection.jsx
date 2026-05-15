@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, CheckCircle2, XCircle, BrainCircuit, AlertCircle } from 'lucide-react';
+import { BookOpen, CheckCircle2, XCircle, BrainCircuit, AlertCircle, Trash2, RotateCcw } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 export function ErrorReviewSection() {
@@ -169,21 +169,47 @@ export function ErrorReviewSection() {
                   <span>{parts[1]}</span>
                 </div>
                 
-                {!isChecked && (
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  {!isChecked && (
+                    <button
+                      onClick={() => checkSingleAnswer(ex)}
+                      disabled={!userAnswer.trim()}
+                      className="text-slate-400 hover:text-indigo-600 disabled:opacity-30 transition-colors"
+                      title="Controlla risposta"
+                    >
+                      <CheckCircle2 size={24} />
+                    </button>
+                  )}
+                  {isChecked && !isCorrect && (
+                    <div className="flex items-center gap-1">
+                      <div className="w-8 flex justify-center">
+                        <XCircle className="text-red-500" size={24} />
+                      </div>
+                      <button
+                        onClick={() => {
+                          setUserAnswers(prev => ({ ...prev, [ex.id]: '' }));
+                          setCheckedAnswers(prev => ({ ...prev, [ex.id]: false }));
+                        }}
+                        className="text-slate-400 hover:text-indigo-600 transition-colors"
+                        title="Riprova"
+                      >
+                        <RotateCcw size={20} />
+                      </button>
+                    </div>
+                  )}
                   <button
-                    onClick={() => checkSingleAnswer(ex)}
-                    disabled={!userAnswer.trim()}
-                    className="flex-shrink-0 text-slate-400 hover:text-indigo-600 disabled:opacity-30 transition-colors"
-                    title="Controlla risposta"
+                    onClick={() => {
+                      // Instantly remove it from UI and database
+                      resolveError(ex.id);
+                      setUserAnswers(prev => { const n = {...prev}; delete n[ex.id]; return n; });
+                      setCheckedAnswers(prev => { const n = {...prev}; delete n[ex.id]; return n; });
+                    }}
+                    className="text-slate-300 hover:text-rose-500 transition-colors ml-2"
+                    title="Rimuovi questo esercizio"
                   >
-                    <CheckCircle2 size={24} />
+                    <Trash2 size={20} />
                   </button>
-                )}
-                {isChecked && !isCorrect && (
-                  <div className="flex-shrink-0 w-8 flex justify-center">
-                    <XCircle className="text-red-500" size={24} />
-                  </div>
-                )}
+                </div>
               </div>
               
               {isChecked && !isCorrect && (

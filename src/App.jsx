@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward } from 'lucide-react';
 import { Modulo1Section } from './components/Modulo1Section';
+import { Modulo2Section } from './components/Modulo2Section';
+import { Modulo3Section } from './components/Modulo3Section';
+import { Modulo4Section } from './components/Modulo4Section';
 
 const top100Verbs = [
   {
@@ -1589,6 +1592,9 @@ export default function App() {
 
         <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible pb-16 md:pb-0">
           <NavItem icon={<BookOpen size={20} />} label="Modulo 1" isActive={activeTab === 'modulo1'} onClick={() => setActiveTab('modulo1')} />
+          <NavItem icon={<BookOpen size={20} />} label="Modulo 2" isActive={activeTab === 'modulo2'} onClick={() => setActiveTab('modulo2')} />
+          <NavItem icon={<BookOpen size={20} />} label="Modulo 3" isActive={activeTab === 'modulo3'} onClick={() => setActiveTab('modulo3')} />
+          <NavItem icon={<BookOpen size={20} />} label="Modulo 4" isActive={activeTab === 'modulo4'} onClick={() => setActiveTab('modulo4')} />
           <NavItem icon={<LayoutDashboard size={20} />} label="Panoramica B2" isActive={activeTab === 'panoramica'} onClick={() => setActiveTab('panoramica')} />
           <NavItem icon={<Sun size={20} />} label="Il Presente" isActive={activeTab === 'presente'} onClick={() => setActiveTab('presente')} />
           <NavItem icon={<History size={20} />} label="L'Imperfetto" isActive={activeTab === 'imperfetto'} onClick={() => setActiveTab('imperfetto')} />
@@ -1610,6 +1616,9 @@ export default function App() {
       {/* Main Content Area */}
       <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full max-w-6xl mx-auto">
         {activeTab === 'modulo1' && <Modulo1Section />}
+        {activeTab === 'modulo2' && <Modulo2Section />}
+        {activeTab === 'modulo3' && <Modulo3Section />}
+        {activeTab === 'modulo4' && <Modulo4Section />}
         {activeTab === 'panoramica' && <PanoramicaSection />}
         {activeTab === 'presente' && <PresenteSection />}
         {activeTab === 'imperfetto' && <ImperfettoSection />}

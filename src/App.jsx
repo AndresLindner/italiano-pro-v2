@@ -164,6 +164,7 @@ const top100Verbs = [
   {
     infinitive: "andare",
     translation: "to go",
+    prep: "a",
     presente: ["vado", "vai", "va", "andiamo", "andate", "vanno"],
     imperfetto: ["andavo", "andavi", "andava", "andavamo", "andavate", "andavano"],
     passatoRemoto: ["andai", "andasti", "andò", "andammo", "andaste", "andarono"],
@@ -178,6 +179,7 @@ const top100Verbs = [
   {
     infinitive: "venire",
     translation: "to come",
+    prep: "a",
     presente: ["vengo", "vieni", "viene", "veniamo", "venite", "vengono"],
     imperfetto: ["venivo", "venivi", "veniva", "venivamo", "venivate", "venivano"],
     passatoRemoto: ["venni", "venisti", "venne", "venimmo", "veniste", "vennero"],
@@ -332,6 +334,7 @@ const top100Verbs = [
   {
     infinitive: "credere",
     translation: "to believe",
+    prep: "di",
     presente: ["credo", "credi", "crede", "crediamo", "credete", "credono"],
     imperfetto: ["credevo", "credevi", "credeva", "credevamo", "credevate", "credevano"],
     passatoRemoto: ["credei / credetti", "credesti", "credé / credette", "credemmo", "credeste", "crederono / credettero"],
@@ -346,6 +349,7 @@ const top100Verbs = [
   {
     infinitive: "pensare",
     translation: "to think",
+    prep: "di",
     presente: ["penso", "pensi", "pensa", "pensiamo", "pensate", "pensano"],
     imperfetto: ["pensavo", "pensavi", "pensava", "pensavamo", "pensavate", "pensavano"],
     passatoRemoto: ["pensai", "pensasti", "pensò", "pensammo", "pensaste", "pensarono"],
@@ -626,6 +630,7 @@ const top100Verbs = [
   {
     infinitive: "cercare",
     translation: "to search",
+    prep: "di",
     presente: ["cerco", "cerchi", "cerca", "cerchiamo", "cercate", "cercano"],
     imperfetto: ["cercavo", "cercavi", "cercava", "cercavamo", "cercavate", "cercavano"],
     passatoRemoto: ["cercai", "cercasti", "cercò", "cercammo", "cercaste", "cercarono"],
@@ -654,6 +659,7 @@ const top100Verbs = [
   {
     infinitive: "decidere",
     translation: "to decide",
+    prep: "di",
     presente: ["decido", "decidi", "decide", "decidiamo", "decidete", "decidono"],
     imperfetto: ["decidevo", "decidevi", "decideva", "decidevamo", "decidevate", "decidevano"],
     passatoRemoto: ["decisi", "decidesti", "decise", "decidemmo", "decideste", "decisero"],
@@ -766,6 +772,7 @@ const top100Verbs = [
   {
     infinitive: "provare",
     translation: "to try/feel",
+    prep: "a",
     presente: ["provo", "provi", "prova", "proviamo", "provate", "provano"],
     imperfetto: ["provavo", "provavi", "provava", "provavamo", "provavate", "provavano"],
     passatoRemoto: ["provai", "provasti", "provò", "provammo", "provaste", "provarono"],
@@ -808,6 +815,7 @@ const top100Verbs = [
   {
     infinitive: "dimenticare",
     translation: "to forget",
+    prep: "di",
     presente: ["dimentico", "dimentichi", "dimentica", "dimentichiamo", "dimenticate", "dimenticano"],
     imperfetto: ["dimenticavo", "dimenticavi", "dimenticava", "dimenticavamo", "dimenticavate", "dimenticavano"],
     passatoRemoto: ["dimenticai", "dimenticasti", "dimenticò", "dimenticammo", "dimenticaste", "dimenticarono"],
@@ -864,6 +872,7 @@ const top100Verbs = [
   {
     infinitive: "continuare",
     translation: "to continue",
+    prep: "a",
     presente: ["continuo", "continui", "continua", "continuiamo", "continuate", "continuano"],
     imperfetto: ["continuavo", "continuavi", "continuava", "continuavamo", "continuavate", "continuavano"],
     passatoRemoto: ["continuai", "continuasti", "continuò", "continuammo", "continuaste", "continuarono"],
@@ -878,6 +887,7 @@ const top100Verbs = [
   {
     infinitive: "iniziare",
     translation: "to start",
+    prep: "a",
     presente: ["inizio", "inizi", "inizia", "iniziamo", "iniziate", "iniziano"],
     imperfetto: ["iniziavo", "iniziavi", "iniziava", "iniziavamo", "iniziavate", "iniziavano"],
     passatoRemoto: ["iniziai", "iniziasti", "iniziò", "iniziammo", "iniziaste", "iniziarono"],
@@ -892,6 +902,7 @@ const top100Verbs = [
   {
     infinitive: "cominciare",
     translation: "to begin",
+    prep: "a",
     presente: ["comincio", "cominci", "comincia", "cominciamo", "cominciate", "cominciano"],
     imperfetto: ["cominciavo", "cominciavi", "cominciava", "cominciavamo", "cominciavate", "cominciavano"],
     passatoRemoto: ["cominciai", "cominciasti", "cominciò", "cominciammo", "cominciaste", "cominciarono"],
@@ -906,6 +917,7 @@ const top100Verbs = [
   {
     infinitive: "finire",
     translation: "to finish",
+    prep: "di",
     presente: ["finisco", "finisci", "finisce", "finiamo", "finite", "finiscono"],
     imperfetto: ["finivo", "finivi", "finiva", "finivamo", "finivate", "finivano"],
     passatoRemoto: ["finii", "finisti", "finì", "finimmo", "finiste", "finirono"],
@@ -1046,6 +1058,7 @@ const top100Verbs = [
   {
     infinitive: "sperare",
     translation: "to hope",
+    prep: "di",
     presente: ["spero", "speri", "spera", "speriamo", "sperate", "sperano"],
     imperfetto: ["speravo", "speravi", "sperava", "speravamo", "speravate", "speravano"],
     passatoRemoto: ["sperai", "sperasti", "sperò", "sperammo", "speraste", "sperarono"],
@@ -1116,6 +1129,7 @@ const top100Verbs = [
   {
     infinitive: "imparare",
     translation: "to learn",
+    prep: "a",
     presente: ["imparo", "impari", "impara", "impariamo", "imparate", "imparano"],
     imperfetto: ["imparavo", "imparavi", "imparava", "imparavamo", "imparavate", "imparavano"],
     passatoRemoto: ["imparai", "imparasti", "imparò", "imparammo", "imparaste", "impararono"],
@@ -2917,6 +2931,11 @@ function TopVerbsSection() {
               >
                 <div className="flex items-baseline gap-3">
                   <span className="text-2xl font-bold text-indigo-900">{verb.infinitive}</span>
+                  {verb.prep && (
+                    <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200">
+                      + {verb.prep}
+                    </span>
+                  )}
                   <span className="text-sm text-slate-500 italic">({verb.translation})</span>
                 </div>
                 <div className="text-indigo-400">

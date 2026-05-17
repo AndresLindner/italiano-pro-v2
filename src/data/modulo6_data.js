@@ -1,0 +1,53 @@
+export const modulo6Data = {
+  section6_1: [
+    { id: 'mod6_1_1', sentence: "Non riesco {blank} capire questo problema.", answer: "a" },
+    { id: 'mod6_1_2', sentence: "Ho imparato {blank} nuotare da piccolo.", answer: "a" },
+    { id: 'mod6_1_3', sentence: "Devi provare {blank} fare questo esercizio.", answer: "a" },
+    { id: 'mod6_1_4', sentence: "Ci siamo abituati {blank} vivere in città.", answer: "a" },
+    { id: 'mod6_1_5', sentence: "Marco ha cominciato {blank} lavorare ieri.", answer: "a" },
+    { id: 'mod6_1_6', sentence: "Aiutami {blank} portare queste borse pesanti.", answer: "a" },
+    { id: 'mod6_1_7', sentence: "Continua {blank} piovere da tre giorni.", answer: "a" },
+    { id: 'mod6_1_8', sentence: "Vado in camera {blank} studiare.", answer: "a" },
+    { id: 'mod6_1_9', sentence: "Si preparano {blank} partire per le vacanze.", answer: "a" },
+    { id: 'mod6_1_10', sentence: "Insegniamo ai bambini {blank} leggere.", answer: "a" },
+    { id: 'mod6_1_11', sentence: "Non si decide mai {blank} parlare.", answer: "a" },
+    { id: 'mod6_1_12', sentence: "Vieni {blank} trovarmi domani?", answer: "a" },
+    { id: 'mod6_1_13', sentence: "Si è messo {blank} piangere all'improvviso.", answer: "a" },
+    { id: 'mod6_1_14', sentence: "Sono rimasto in ufficio {blank} finire il progetto.", answer: "a" },
+    { id: 'mod6_1_15', sentence: "Resto a casa {blank} riposare.", answer: "a" }
+  ],
+  section6_2: [
+    { id: 'mod6_2_1', sentence: "Ho finito {blank} leggere il romanzo.", answer: "di" },
+    { id: 'mod6_2_2', sentence: "Cerco {blank} migliorare il mio italiano ogni giorno.", answer: "di" },
+    { id: 'mod6_2_3', sentence: "Mi sono dimenticato {blank} chiamare mia madre.", answer: "di" },
+    { id: 'mod6_2_4', sentence: "Abbiamo deciso {blank} comprare una casa nuova.", answer: "di" },
+    { id: 'mod6_2_5', sentence: "Devi smettere {blank} fumare per la tua salute.", answer: "di" },
+    { id: 'mod6_2_6', sentence: "Ricordati {blank} comprare il latte.", answer: "di" },
+    { id: 'mod6_2_7', sentence: "Hanno accettato {blank} aiutarci con il trasloco.", answer: "di" },
+    { id: 'mod6_2_8', sentence: "Spero {blank} superare l'esame domani.", answer: "di" },
+    { id: 'mod6_2_9', sentence: "Penso {blank} andare in Italia quest'estate.", answer: "di" },
+    { id: 'mod6_2_10', sentence: "Credo {blank} avere ragione questa volta.", answer: "di" },
+    { id: 'mod6_2_11', sentence: "Le ho chiesto {blank} accompagnarmi alla stazione.", answer: "di" },
+    { id: 'mod6_2_12', sentence: "Hanno proposto {blank} fare una pausa caffè.", answer: "di" },
+    { id: 'mod6_2_13', sentence: "Si è rifiutato {blank} rispondere alle domande.", answer: "di" },
+    { id: 'mod6_2_14', sentence: "Evita {blank} mangiare troppi dolci.", answer: "di" },
+    { id: 'mod6_2_15', sentence: "Mi ha suggerito {blank} leggere questo libro.", answer: "di" }
+  ],
+  section6_3: [
+    { id: 'mod6_3_1', sentence: "Vado {blank} Stati Uniti per lavoro.", answer: "negli" },
+    { id: 'mod6_3_2', sentence: "Il libro è {blank} scrivania del professore.", answer: "sulla" },
+    { id: 'mod6_3_3', sentence: "Domani vado {blank} medico per un controllo.", answer: "dal" },
+    { id: 'mod6_3_4', sentence: "Lavoro {blank} banca vicino alla piazza.", answer: "nella" },
+    { id: 'mod6_3_5', sentence: "Studio l'italiano {blank} tre anni.", answer: "da" },
+    { id: 'mod6_3_6', sentence: "Andiamo {blank} teatro stasera?", answer: "a" },
+    { id: 'mod6_3_7', sentence: "Il treno parte {blank} binario quattro.", answer: "dal" },
+    { id: 'mod6_3_8', sentence: "Non esco mai {blank} notte.", answer: "di" },
+    { id: 'mod6_3_9', sentence: "Ieri sono stato {blank} ristorante con amici.", answer: "al" },
+    { id: 'mod6_3_10', sentence: "Abita {blank} Milano, ma lavora {blank} Roma.", answer: "a" },
+    { id: 'mod6_3_11', sentence: "Abita a Milano, ma lavora {blank} Roma.", answer: "a" },
+    { id: 'mod6_3_12', sentence: "Andiamo in vacanza {blank} Sicilia quest'estate.", answer: "in" },
+    { id: 'mod6_3_13', sentence: "Questa è la borsa {blank} Marco.", answer: "di" },
+    { id: 'mod6_3_14', sentence: "Il regalo è {blank} tua sorella.", answer: "per" },
+    { id: 'mod6_3_15', sentence: "Ho trovato le chiavi {blank} cassetto della scrivania.", answer: "nel" }
+  ]
+};

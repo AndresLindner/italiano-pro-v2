@@ -5,6 +5,7 @@ import { Modulo2Section } from './components/Modulo2Section';
 import { Modulo3Section } from './components/Modulo3Section';
 import { Modulo4Section } from './components/Modulo4Section';
 import { Modulo5Section } from './components/Modulo5Section';
+import { Modulo6Section } from './components/Modulo6Section';
 import { ErrorReviewSection } from './components/ErrorReviewSection';
 import { CongiuntivoImperfettoSection } from './components/CongiuntivoImperfettoSection';
 import { useAuth } from './contexts/AuthContext';
@@ -1635,6 +1636,7 @@ export default function App() {
           <NavItem icon={<BookOpen size={20} />} label="Modulo 3" isActive={activeTab === 'modulo3'} onClick={() => setActiveTab('modulo3')} />
           <NavItem icon={<BookOpen size={20} />} label="Modulo 4" isActive={activeTab === 'modulo4'} onClick={() => setActiveTab('modulo4')} />
           <NavItem icon={<BookOpen size={20} />} label="Modulo 5" isActive={activeTab === 'modulo5'} onClick={() => setActiveTab('modulo5')} />
+          <NavItem icon={<BookOpen size={20} />} label="Modulo 6" isActive={activeTab === 'modulo6'} onClick={() => setActiveTab('modulo6')} />
           <NavItem 
             icon={<RefreshCw size={20} />} 
             label={
@@ -1691,6 +1693,7 @@ export default function App() {
         {activeTab === 'modulo3' && <Modulo3Section />}
         {activeTab === 'modulo4' && <Modulo4Section />}
         {activeTab === 'modulo5' && <Modulo5Section />}
+        {activeTab === 'modulo6' && <Modulo6Section />}
         {activeTab === 'panoramica' && <PanoramicaSection />}
         {activeTab === 'presente' && <PresenteSection />}
         {activeTab === 'imperfetto' && <ImperfettoSection />}

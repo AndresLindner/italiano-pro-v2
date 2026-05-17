@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA } from 'lucide-react';
 import { Modulo1Section } from './components/Modulo1Section';
 import { Modulo2Section } from './components/Modulo2Section';
 import { Modulo3Section } from './components/Modulo3Section';
@@ -8,6 +8,7 @@ import { Modulo5Section } from './components/Modulo5Section';
 import { Modulo6Section } from './components/Modulo6Section';
 import { Modulo7Section } from './components/Modulo7Section';
 import { Modulo8Section } from './components/Modulo8Section';
+import { LessicoTematicoSection } from './components/LessicoTematicoSection';
 import { ErrorReviewSection } from './components/ErrorReviewSection';
 import { CongiuntivoImperfettoSection } from './components/CongiuntivoImperfettoSection';
 import { useAuth } from './contexts/AuthContext';
@@ -1671,6 +1672,7 @@ export default function App() {
           <NavItem icon={<ScrollText size={20} />} label="Passato Remoto" isActive={activeTab === 'passato'} onClick={() => setActiveTab('passato')} />
           <NavItem icon={<AlertCircle size={20} />} label="L'Imperativo" isActive={activeTab === 'imperativo'} onClick={() => setActiveTab('imperativo')} />
           <NavItem icon={<List size={20} />} label="I 100 Verbi" isActive={activeTab === 'verbi'} onClick={() => setActiveTab('verbi')} />
+          <NavItem icon={<BookA size={20} />} label="Lessico Tematico" isActive={activeTab === 'lessico'} onClick={() => setActiveTab('lessico')} />
           <NavItem 
             icon={<Gamepad2 size={20} />} 
             label={
@@ -1715,6 +1717,7 @@ export default function App() {
         {activeTab === 'passato' && <PassatoRemotoSection />}
         {activeTab === 'imperativo' && <ImperativoSection />}
         {activeTab === 'verbi' && <TopVerbsSection />}
+        {activeTab === 'lessico' && <LessicoTematicoSection />}
         {activeTab === 'quiz' && <QuizSection />}
       </main>
 

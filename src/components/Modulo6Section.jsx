@@ -90,28 +90,21 @@ export function Modulo6Section() {
             onClick={() => { setActiveExerciseSection('section6_1'); resetQuiz(); }}
             className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${activeExerciseSection === 'section6_1' ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200'}`}
           >
-            6.1 Verbi + a
+            6.1 Verbi + a / di
           </button>
           <button 
             onClick={() => { setActiveExerciseSection('section6_2'); resetQuiz(); }}
             className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${activeExerciseSection === 'section6_2' ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200'}`}
           >
-            6.2 Verbi + di
-          </button>
-          <button 
-            onClick={() => { setActiveExerciseSection('section6_3'); resetQuiz(); }}
-            className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${activeExerciseSection === 'section6_3' ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200'}`}
-          >
-            6.3 Preposizioni di Luogo
+            6.2 Preposizioni di Luogo
           </button>
         </div>
 
         <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-xl font-bold text-slate-800">
-              {activeExerciseSection === 'section6_1' && "Completa con la preposizione corretta (di solito 'a')"}
-              {activeExerciseSection === 'section6_2' && "Completa con la preposizione corretta (di solito 'di')"}
-              {activeExerciseSection === 'section6_3' && "Inserisci la preposizione semplice o articolata corretta"}
+              {activeExerciseSection === 'section6_1' && "Completa con la preposizione corretta (a / di)"}
+              {activeExerciseSection === 'section6_2' && "Inserisci la preposizione semplice o articolata corretta"}
             </h3>
             {showResults && (
               <div className="text-lg font-bold px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg">

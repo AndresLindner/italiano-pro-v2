@@ -1,0 +1,53 @@
+export const modulo7Data = {
+  section7_1: [
+    { id: 'mod7_1_1', sentence: "{blank} sia tardi, voglio finire questo lavoro.", answer: "sebbene" },
+    { id: 'mod7_1_2', sentence: "Usciamo a fare una passeggiata {blank} piova.", answer: "nonostante" },
+    { id: 'mod7_1_3', sentence: "{blank} abbia studiato molto, non ha superato l'esame.", answer: "benché" },
+    { id: 'mod7_1_4', sentence: "Continuò a correre {blank} la stanchezza.", answer: "malgrado" },
+    { id: 'mod7_1_5', sentence: "Verrò alla festa {blank} non mi senta molto bene.", answer: "sebbene" },
+    { id: 'mod7_1_6', sentence: "{blank} fosse ricco, viveva in modo molto semplice.", answer: "benché" },
+    { id: 'mod7_1_7', sentence: "Il progetto è stato un successo {blank} le difficoltà iniziali.", answer: "nonostante" },
+    { id: 'mod7_1_8', sentence: "{blank} facesse freddo, i bambini giocavano in giardino.", answer: "sebbene" },
+    { id: 'mod7_1_9', sentence: "Sono andato al lavoro {blank} avessi la febbre.", answer: "malgrado" },
+    { id: 'mod7_1_10', sentence: "{blank} ci fossimo preparati, l'imprevisto ci ha sorpreso.", answer: "nonostante" },
+    { id: 'mod7_1_11', sentence: "Lo aiuterò {blank} lui non lo meriti.", answer: "sebbene" },
+    { id: 'mod7_1_12', sentence: "{blank} sia giovane, ha molta esperienza.", answer: "benché" },
+    { id: 'mod7_1_13', sentence: "Siamo arrivati in orario {blank} il traffico.", answer: "nonostante" },
+    { id: 'mod7_1_14', sentence: "{blank} non ci conoscessimo bene, mi ha prestato i soldi.", answer: "sebbene" },
+    { id: 'mod7_1_15', sentence: "Ho accettato l'offerta {blank} avessi dei dubbi.", answer: "benché" }
+  ],
+  section7_2: [
+    { id: 'mod7_2_1', sentence: "{blank} piove, restiamo a casa.", answer: "siccome" },
+    { id: 'mod7_2_2', sentence: "Te lo spiego {blank} tu possa capire meglio.", answer: "affinché" },
+    { id: 'mod7_2_3', sentence: "Non sono venuto {blank} stavo male.", answer: "perché" },
+    { id: 'mod7_2_4', sentence: "{blank} è tardi, preferisco andare a dormire.", answer: "dato che" },
+    { id: 'mod7_2_5', sentence: "Studio molto {blank} voglio passare l'esame.", answer: "poiché" },
+    { id: 'mod7_2_6', sentence: "Lavoro sodo {blank} i miei figli abbiano un futuro migliore.", answer: "affinché" },
+    { id: 'mod7_2_7', sentence: "{blank} non hai fame, mangerò io la tua pizza.", answer: "visto che" },
+    { id: 'mod7_2_8', sentence: "Ti ho chiamato {blank} avevo bisogno di parlarti.", answer: "perché" },
+    { id: 'mod7_2_9', sentence: "{blank} sei così bravo, fallo tu!", answer: "siccome" },
+    { id: 'mod7_2_10', sentence: "Gli parlo lentamente {blank} mi capisca.", answer: "affinché" },
+    { id: 'mod7_2_11', sentence: "Non esco {blank} fa troppo freddo.", answer: "poiché" },
+    { id: 'mod7_2_12', sentence: "{blank} nessuno mi ascolta, vado via.", answer: "dato che" },
+    { id: 'mod7_2_13', sentence: "Ho comprato il regalo {blank} sia contento.", answer: "affinché" },
+    { id: 'mod7_2_14', sentence: "{blank} la strada era bloccata, abbiamo fatto un'altra via.", answer: "siccome" },
+    { id: 'mod7_2_15', sentence: "Mi alleno ogni giorno {blank} voglio vincere la gara.", answer: "perché" }
+  ],
+  section7_3: [
+    { id: 'mod7_3_1', sentence: "Era molto stanco; {blank}, decise di continuare a studiare.", answer: "tuttavia" },
+    { id: 'mod7_3_2', sentence: "Non solo è intelligente, {blank} è anche molto simpatico.", answer: "ma" },
+    { id: 'mod7_3_3', sentence: "Il ristorante è costoso; {blank}, il cibo è ottimo.", answer: "invece" },
+    { id: 'mod7_3_4', sentence: "L'hotel offre la colazione e, {blank}, una piscina gratuita.", answer: "inoltre" },
+    { id: 'mod7_3_5', sentence: "Sembrava una brava persona; {blank} ci ha ingannati tutti.", answer: "eppure" },
+    { id: 'mod7_3_6', sentence: "Ho studiato tanto, {blank} non ho passato il test.", answer: "però" },
+    { id: 'mod7_3_7', sentence: "È una persona colta {blank} molto umile.", answer: "nonché" },
+    { id: 'mod7_3_8', sentence: "Vorrei comprare la macchina nuova; {blank}, non ho abbastanza soldi.", answer: "tuttavia" },
+    { id: 'mod7_3_9', sentence: "Pensavo che sarebbe venuto, {blank} ha cambiato idea all'ultimo.", answer: "invece" },
+    { id: 'mod7_3_10', sentence: "Questo telefono è veloce, elegante e {blank} costa poco.", answer: "inoltre" },
+    { id: 'mod7_3_11', sentence: "Ha commesso molti errori; {blank} si rifiuta di chiedere scusa.", answer: "eppure" },
+    { id: 'mod7_3_12', sentence: "Volevamo andare al mare, {blank} il tempo era brutto.", answer: "però" },
+    { id: 'mod7_3_13', sentence: "Il direttore è competente {blank} molto severo.", answer: "nonché" },
+    { id: 'mod7_3_14', sentence: "Tutti dicono che il film è noioso, a me {blank} è piaciuto molto.", answer: "invece" },
+    { id: 'mod7_3_15', sentence: "Il candidato ha un'ottima esperienza; {blank}, parla tre lingue.", answer: "inoltre" }
+  ]
+};

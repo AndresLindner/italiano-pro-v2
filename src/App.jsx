@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User } from 'lucide-react';
 import { Modulo1Section } from './components/Modulo1Section';
 import { Modulo2Section } from './components/Modulo2Section';
 import { Modulo3Section } from './components/Modulo3Section';
@@ -8,6 +8,11 @@ import { Modulo5Section } from './components/Modulo5Section';
 import { Modulo6Section } from './components/Modulo6Section';
 import { Modulo7Section } from './components/Modulo7Section';
 import { Modulo8Section } from './components/Modulo8Section';
+import { Modulo9Section } from './components/Modulo9Section';
+import { Modulo10Section } from './components/Modulo10Section';
+import { Modulo11Section } from './components/Modulo11Section';
+import { ProfiloSection } from './components/ProfiloSection';
+import { SimulazioneEsame } from './components/SimulazioneEsame';
 import { LessicoTematicoSection } from './components/LessicoTematicoSection';
 import { ErrorReviewSection } from './components/ErrorReviewSection';
 import { CongiuntivoImperfettoSection } from './components/CongiuntivoImperfettoSection';
@@ -1656,21 +1661,9 @@ export default function App() {
           <NavItem icon={<BookOpen size={20} />} label="Modulo 6" isActive={activeTab === 'modulo6'} onClick={() => setActiveTab('modulo6')} />
           <NavItem icon={<BookOpen size={20} />} label="Modulo 7" isActive={activeTab === 'modulo7'} onClick={() => setActiveTab('modulo7')} />
           <NavItem icon={<BookOpen size={20} />} label="Modulo 8" isActive={activeTab === 'modulo8'} onClick={() => setActiveTab('modulo8')} />
-          <NavItem 
-            icon={<RefreshCw size={20} />} 
-            label={
-              <div className="flex items-center gap-2">
-                Ripasso Errori
-                {errorCount > 0 && (
-                  <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                    {errorCount}
-                  </span>
-                )}
-              </div>
-            } 
-            isActive={activeTab === 'errori'} 
-            onClick={() => setActiveTab('errori')} 
-          />
+          <NavItem icon={<Headphones size={20} />} label="Modulo 9" isActive={activeTab === 'modulo9'} onClick={() => setActiveTab('modulo9')} />
+          <NavItem icon={<PenTool size={20} />} label="Modulo 10" isActive={activeTab === 'modulo10'} onClick={() => setActiveTab('modulo10')} />
+          <NavItem icon={<Layers size={20} />} label="Modulo 11" isActive={activeTab === 'modulo11'} onClick={() => setActiveTab('modulo11')} />
           <NavItem icon={<LayoutDashboard size={20} />} label="Panoramica B2" isActive={activeTab === 'panoramica'} onClick={() => setActiveTab('panoramica')} />
           <NavItem icon={<Sun size={20} />} label="Il Presente" isActive={activeTab === 'presente'} onClick={() => setActiveTab('presente')} />
           <NavItem icon={<History size={20} />} label="L'Imperfetto" isActive={activeTab === 'imperfetto'} onClick={() => setActiveTab('imperfetto')} />
@@ -1685,23 +1678,34 @@ export default function App() {
           <NavItem icon={<Archive size={20} />} label="Trapassato Prossimo" isActive={activeTab === 'trapassato'} onClick={() => setActiveTab('trapassato')} />
           <NavItem icon={<ScrollText size={20} />} label="Passato Remoto" isActive={activeTab === 'passato'} onClick={() => setActiveTab('passato')} />
           <NavItem icon={<AlertCircle size={20} />} label="L'Imperativo" isActive={activeTab === 'imperativo'} onClick={() => setActiveTab('imperativo')} />
-          <NavItem icon={<List size={20} />} label="I 100 Verbi" isActive={activeTab === 'verbi'} onClick={() => setActiveTab('verbi')} />
-          <NavItem icon={<BookA size={20} />} label="Lessico Tematico" isActive={activeTab === 'lessico'} onClick={() => setActiveTab('lessico')} />
-          <NavItem 
-            icon={<Gamepad2 size={20} />} 
-            label={
-              <div className="flex items-center gap-2">
-                Quiz Pratico
-                {quizErrorCount > 0 && (
-                  <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                    {quizErrorCount}
-                  </span>
-                )}
-              </div>
-            }
-            isActive={activeTab === 'quiz'} 
-            onClick={() => setActiveTab('quiz')} 
-          />
+          
+          {/* Tools & Resources */}
+          <div className="pt-4 pb-2">
+            <p className="px-4 text-xs font-black uppercase tracking-wider text-slate-400 mb-2">Risorse Extra</p>
+            <NavItem icon={<BookA size={20} />} label="Lessico Tematico" isActive={activeTab === 'lessico'} onClick={() => setActiveTab('lessico')} />
+            <NavItem 
+              icon={<History size={20} />} 
+              label={
+                <div className="flex items-center gap-2">
+                  Ripasso Errori
+                  {errorCount > 0 && (
+                    <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                      {errorCount}
+                    </span>
+                  )}
+                </div>
+              }
+              isActive={activeTab === 'errori'} 
+              onClick={() => setActiveTab('errori')} 
+            />
+            <NavItem icon={<Clock size={20} />} label="Simulazione Esame" isActive={activeTab === 'simulazione'} onClick={() => setActiveTab('simulazione')} />
+          </div>
+          
+          <div className="pt-4 pb-2 border-t border-slate-200">
+            <NavItem icon={<User size={20} />} label="Il Mio Profilo" isActive={activeTab === 'profilo'} onClick={() => setActiveTab('profilo')} />
+          </div>
+
+          {/* Removed Quiz Pratico as it's obsolete */}
         </div>
       </nav>
 
@@ -1716,6 +1720,11 @@ export default function App() {
         {activeTab === 'modulo6' && <Modulo6Section />}
         {activeTab === 'modulo7' && <Modulo7Section />}
         {activeTab === 'modulo8' && <Modulo8Section />}
+        {activeTab === 'modulo9' && <Modulo9Section />}
+        {activeTab === 'modulo10' && <Modulo10Section />}
+        {activeTab === 'modulo11' && <Modulo11Section />}
+        {activeTab === 'profilo' && <ProfiloSection />}
+        {activeTab === 'simulazione' && <SimulazioneEsame />}
         {activeTab === 'panoramica' && <PanoramicaSection />}
         {activeTab === 'presente' && <PresenteSection />}
         {activeTab === 'imperfetto' && <ImperfettoSection />}

@@ -14,6 +14,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [userProgress, setUserProgress] = useState({});
   const [userErrors, setUserErrors] = useState({});
+  const [userFlashcards, setUserFlashcards] = useState({});
 
   async function loginWithGoogle() {
     try {
@@ -38,11 +39,13 @@ export function AuthProvider({ children }) {
         const data = docSnap.data();
         setUserProgress(data.progress || {});
         setUserErrors(data.errors || {});
+        setUserFlashcards(data.flashcards || {});
       } else {
         // Initialize new user doc
-        await setDoc(docRef, { progress: {}, errors: {} }, { merge: true });
+        await setDoc(docRef, { progress: {}, errors: {}, flashcards: {} }, { merge: true });
         setUserProgress({});
         setUserErrors({});
+        setUserFlashcards({});
       }
     } catch (error) {
       console.error("Error loading progress", error);
@@ -111,6 +114,28 @@ export function AuthProvider({ children }) {
     }
   }
 
+  // Save SRS flashcard data
+  async function saveFlashcardProgress(wordId, srsData) {
+    if (!currentUser) return;
+    
+    const updatedFlashcards = {
+      ...userFlashcards,
+      [wordId]: {
+        ...srsData,
+        lastReviewed: Date.now()
+      }
+    };
+    
+    setUserFlashcards(updatedFlashcards);
+    
+    try {
+      const docRef = doc(db, 'users', currentUser.uid);
+      await setDoc(docRef, { flashcards: updatedFlashcards }, { merge: true });
+    } catch (error) {
+      console.error("Error saving flashcard progress", error);
+    }
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
@@ -119,6 +144,7 @@ export function AuthProvider({ children }) {
       } else {
         setUserProgress({});
         setUserErrors({});
+        setUserFlashcards({});
       }
       setLoading(false);
     });
@@ -134,7 +160,9 @@ export function AuthProvider({ children }) {
     saveProgress,
     userErrors,
     logError,
-    resolveError
+    resolveError,
+    userFlashcards,
+    saveFlashcardProgress
   };
 
   return (

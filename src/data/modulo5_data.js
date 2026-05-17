@@ -1,0 +1,53 @@
+export const modulo5Data = {
+  section5_1: [
+    { id: 'mod5_1_1', sentence: "Hai dato il libro a Maria? Sì, {blank} ho dato ieri.", answer: "glielo" },
+    { id: 'mod5_1_2', sentence: "Hai comprato le mele per i bambini? Sì, {blank} ho comprate.", answer: "gliele" },
+    { id: 'mod5_1_3', sentence: "Mi presti la tua macchina? Sì, {blank} presto volentieri.", answer: "te la" },
+    { id: 'mod5_1_4', sentence: "Ci racconti quella storia? Certo, {blank} racconto subito.", answer: "ve la" },
+    { id: 'mod5_1_5', sentence: "Hai spedito i documenti al direttore? Sì, {blank} ho spediti stamattina.", answer: "glieli" },
+    { id: 'mod5_1_6', sentence: "Puoi spiegare il problema a noi? No, non {blank} posso spiegare ora.", answer: "ve lo" },
+    { id: 'mod5_1_7', sentence: "Chi ti ha regalato questi fiori? {blank} ha regalati Marco.", answer: "me li" },
+    { id: 'mod5_1_8', sentence: "Hai restituito le chiavi a Luca? Sì, {blank} ho restituite.", answer: "gliele" },
+    { id: 'mod5_1_9', sentence: "Mi dai un passaggio? Mi dispiace, ma non {blank} posso dare.", answer: "te lo" },
+    { id: 'mod5_1_10', sentence: "Hanno inviato la mail a te? Sì, {blank} hanno inviata ieri.", answer: "me l'" },
+    { id: 'mod5_1_11', sentence: "Vuoi dire la verità ai tuoi genitori? Sì, voglio dir{blank} oggi.", answer: "gliela" },
+    { id: 'mod5_1_12', sentence: "Hai fatto vedere le foto a Giulia? Certo, {blank} ho fatte vedere.", answer: "gliele" },
+    { id: 'mod5_1_13', sentence: "Ci prestate i vostri appunti? No, non {blank} prestiamo.", answer: "ve li" },
+    { id: 'mod5_1_14', sentence: "Devi portare il caffè al capo? Sì, devo portar{blank} adesso.", answer: "glielo" },
+    { id: 'mod5_1_15', sentence: "Chi vi ha preparato la cena? {blank} ha preparata nostra madre.", answer: "ce l'" }
+  ],
+  section5_2: [
+    { id: 'mod5_2_1', sentence: "Vai spesso a Roma? Sì, {blank} vado due volte al mese.", answer: "ci" },
+    { id: 'mod5_2_2', sentence: "Quanti caffè bevi al giorno? {blank} bevo tre.", answer: "ne" },
+    { id: 'mod5_2_3', sentence: "Credi ancora alle favole? No, non {blank} credo più.", answer: "ci" },
+    { id: 'mod5_2_4', sentence: "Hai parlato del problema con Anna? Sì, {blank} abbiamo parlato ieri.", answer: "ne" },
+    { id: 'mod5_2_5', sentence: "Sei andato al supermercato? No, {blank} vado più tardi.", answer: "ci" },
+    { id: 'mod5_2_6', sentence: "Hai comprato il pane? Sì, {blank} ho comprato un chilo.", answer: "ne" },
+    { id: 'mod5_2_7', sentence: "Cosa pensi di questa situazione? Non {blank} penso niente di buono.", answer: "ne" },
+    { id: 'mod5_2_8', sentence: "Riesci a risolvere l'esercizio? No, non {blank} riesco proprio.", answer: "ci" },
+    { id: 'mod5_2_9', sentence: "Vuoi della torta? Sì grazie, {blank} vorrei una fetta.", answer: "ne" },
+    { id: 'mod5_2_10', sentence: "Siete stati in quel nuovo ristorante? Sì, {blank} siamo stati sabato scorso.", answer: "ci" },
+    { id: 'mod5_2_11', sentence: "Hai bisogno di aiuto? No grazie, non {blank} ho bisogno.", answer: "ne" },
+    { id: 'mod5_2_12', sentence: "Hai messo lo zucchero nel caffè? Sì, {blank} ho messo due cucchiaini.", answer: "ne" },
+    { id: 'mod5_2_13', sentence: "Vieni con noi in montagna? Mi dispiace, ma non {blank} vengo.", answer: "ci" },
+    { id: 'mod5_2_14', sentence: "Hai paura dei cani? Prima sì, ma adesso non {blank} ho più paura.", answer: "ne" },
+    { id: 'mod5_2_15', sentence: "Abituate a questa città? Sì, {blank} siamo ormai abituati.", answer: "ci" }
+  ],
+  section5_3: [
+    { id: 'mod5_3_1', sentence: "Il libro di {blank} mi hai parlato è fantastico.", answer: "cui" },
+    { id: 'mod5_3_2', sentence: "La ragazza {blank} lavora con me è di Milano.", answer: "che" },
+    { id: 'mod5_3_3', sentence: "Il motivo per {blank} sono qui è molto semplice.", answer: "cui" },
+    { id: 'mod5_3_4', sentence: "{blank} rompe paga.", answer: "chi" },
+    { id: 'mod5_3_5', sentence: "L'azienda per la {blank} lavoro sta assumendo personale.", answer: "quale" },
+    { id: 'mod5_3_6', sentence: "Questa è la casa in {blank} sono nato.", answer: "cui" },
+    { id: 'mod5_3_7', sentence: "Ho incontrato Paolo, il {blank} mi ha salutato affettuosamente.", answer: "quale" },
+    { id: 'mod5_3_8', sentence: "La persona a {blank} ho dato le chiavi non si trova.", answer: "cui" },
+    { id: 'mod5_3_9', sentence: "Non capisco {blank} stai dicendo.", answer: "quello che" },
+    { id: 'mod5_3_10', sentence: "I colleghi con i {blank} viaggio sono simpaticissimi.", answer: "quali" },
+    { id: 'mod5_3_11', sentence: "Il treno {blank} ho preso era in ritardo.", answer: "che" },
+    { id: 'mod5_3_12', sentence: "Non c'è nessuno {blank} mi possa aiutare.", answer: "che" },
+    { id: 'mod5_3_13', sentence: "La città {blank} vivo è molto inquinata.", answer: "in cui" },
+    { id: 'mod5_3_14', sentence: "{blank} dorme non piglia pesci.", answer: "chi" },
+    { id: 'mod5_3_15', sentence: "Ho parlato con il direttore, al {blank} ho spiegato il problema.", answer: "quale" }
+  ]
+};

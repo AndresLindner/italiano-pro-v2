@@ -7,6 +7,13 @@ import { Modulo4Section } from './components/Modulo4Section';
 import { ErrorReviewSection } from './components/ErrorReviewSection';
 import { CongiuntivoImperfettoSection } from './components/CongiuntivoImperfettoSection';
 import { useAuth } from './contexts/AuthContext';
+import { TensePractice } from './components/TensePractice';
+import { 
+  eserciziPresente, eserciziImperfetto, eserciziFuturo, eserciziCondizionale, 
+  eserciziCondizionalePassato, eserciziCongiuntivoPresente, eserciziCongiuntivoPassato, 
+  eserciziCongiuntivoTrapassato, eserciziPassatoProssimo, eserciziTrapassatoProssimo, 
+  eserciziPassatoRemoto, eserciziImperativo 
+} from './data/esercizi_tempi';
 
 const top100Verbs = [
   {
@@ -1845,13 +1852,8 @@ function PanoramicaSection() {
 }
 
 function PresenteSection() {
-  return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Presente Indicativo</h2>
-        <p className="text-slate-600 mt-2 text-lg">Il tempo fondamentale per parlare di azioni attuali e abitudini.</p>
-      </header>
-
+  const theory = (
+    <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
           <Info size={20} /> Quando si usa?
@@ -1911,16 +1913,23 @@ function PresenteSection() {
       </section>
     </div>
   );
+
+  return (
+    <TensePractice
+      id="presente"
+      title="Il Presente Indicativo"
+      subtitle="Il tempo fondamentale per parlare di azioni attuali e abitudini."
+      icon={BookOpen}
+      exercises={eserciziPresente}
+      errorPrefix="Il Presente"
+      theoryComponent={theory}
+    />
+  );
 }
 
 function ImperfettoSection() {
-  return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">L'Imperfetto</h2>
-        <p className="text-slate-600 mt-2 text-lg">Il tempo delle descrizioni, delle abitudini passate e delle azioni in corso d'opera.</p>
-      </header>
-
+  const theory = (
+    <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
           <Info size={20} /> Quando si usa?
@@ -2005,16 +2014,23 @@ function ImperfettoSection() {
       </section>
     </div>
   );
+
+  return (
+    <TensePractice
+      id="imperfetto"
+      title="L'Imperfetto"
+      subtitle="Il tempo delle descrizioni, delle abitudini passate e delle azioni in corso d'opera."
+      icon={BookOpen}
+      exercises={eserciziImperfetto}
+      errorPrefix="L'Imperfetto"
+      theoryComponent={theory}
+    />
+  );
 }
 
 function FuturoSempliceSection() {
-  return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Futuro Semplice</h2>
-        <p className="text-slate-600 mt-2 text-lg">Progetti, previsioni e ipotesi sul presente.</p>
-      </header>
-
+  const theory = (
+    <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
           <Info size={20} /> Quando si usa?
@@ -2102,16 +2118,23 @@ function FuturoSempliceSection() {
       </section>
     </div>
   );
+
+  return (
+    <TensePractice
+      id="futuro"
+      title="Il Futuro Semplice"
+      subtitle="Progetti, previsioni e ipotesi sul presente."
+      icon={BookOpen}
+      exercises={eserciziFuturo}
+      errorPrefix="Il Futuro Semplice"
+      theoryComponent={theory}
+    />
+  );
 }
 
 function CondizionaleSection() {
-  return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Condizionale Presente</h2>
-        <p className="text-slate-600 mt-2 text-lg">Desideri, richieste cortesi e possibilità.</p>
-      </header>
-
+  const theory = (
+    <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
           <Info size={20} /> Quando si usa?
@@ -2177,16 +2200,23 @@ function CondizionaleSection() {
       </section>
     </div>
   );
+
+  return (
+    <TensePractice
+      id="condizionale"
+      title="Il Condizionale Presente"
+      subtitle="Desideri, richieste cortesi e possibilità."
+      icon={BookOpen}
+      exercises={eserciziCondizionale}
+      errorPrefix="Il Condizionale Presente"
+      theoryComponent={theory}
+    />
+  );
 }
 
 function CondizionalePassatoSection() {
-  return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Condizionale Passato</h2>
-        <p className="text-slate-600 mt-2 text-lg">Desideri irrealizzati, rimpianti e il "futuro nel passato".</p>
-      </header>
-
+  const theory = (
+    <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
           <Info size={20} /> Quando si usa?
@@ -2235,16 +2265,23 @@ function CondizionalePassatoSection() {
       </section>
     </div>
   );
+
+  return (
+    <TensePractice
+      id="condizionale_passato"
+      title="Il Condizionale Passato"
+      subtitle="Desideri irrealizzati, rimpianti e il 'futuro nel passato'."
+      icon={BookOpen}
+      exercises={eserciziCondizionalePassato}
+      errorPrefix="Il Condizionale Passato"
+      theoryComponent={theory}
+    />
+  );
 }
 
 function CongiuntivoPresenteSection() {
-  return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Congiuntivo Presente</h2>
-        <p className="text-slate-600 mt-2 text-lg">Opinioni, dubbi, sentimenti e incertezze.</p>
-      </header>
-
+  const theory = (
+    <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
           <Info size={20} /> Quando si usa?
@@ -2313,16 +2350,23 @@ function CongiuntivoPresenteSection() {
       </section>
     </div>
   );
+
+  return (
+    <TensePractice
+      id="cong_pres"
+      title="Il Congiuntivo Presente"
+      subtitle="Opinioni, dubbi, sentimenti e incertezze."
+      icon={BookOpen}
+      exercises={eserciziCongiuntivoPresente}
+      errorPrefix="Il Congiuntivo Presente"
+      theoryComponent={theory}
+    />
+  );
 }
 
 function CongiuntivoPassatoSection() {
-  return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Congiuntivo Passato</h2>
-        <p className="text-slate-600 mt-2 text-lg">Opinioni, dubbi e sentimenti su azioni già concluse nel passato.</p>
-      </header>
-
+  const theory = (
+    <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
           <Info size={20} /> Quando si usa?
@@ -2371,16 +2415,23 @@ function CongiuntivoPassatoSection() {
       </section>
     </div>
   );
+
+  return (
+    <TensePractice
+      id="cong_passato"
+      title="Il Congiuntivo Passato"
+      subtitle="Opinioni, dubbi e sentimenti su azioni già concluse nel passato."
+      icon={BookOpen}
+      exercises={eserciziCongiuntivoPassato}
+      errorPrefix="Il Congiuntivo Passato"
+      theoryComponent={theory}
+    />
+  );
 }
 
 function CongiuntivoTrapassatoSection() {
-  return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Congiuntivo Trapassato</h2>
-        <p className="text-slate-600 mt-2 text-lg">Ipotesi irreali nel passato, rimpianti e anteriorità.</p>
-      </header>
-
+  const theory = (
+    <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
           <Info size={20} /> Quando si usa?
@@ -2426,16 +2477,23 @@ function CongiuntivoTrapassatoSection() {
       </section>
     </div>
   );
+
+  return (
+    <TensePractice
+      id="cong_trapassato"
+      title="Il Congiuntivo Trapassato"
+      subtitle="Ipotesi irreali nel passato, rimpianti e anteriorità."
+      icon={BookOpen}
+      exercises={eserciziCongiuntivoTrapassato}
+      errorPrefix="Il Congiuntivo Trapassato"
+      theoryComponent={theory}
+    />
+  );
 }
 
 function PassatoProssimoSection() {
-  return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Passato Prossimo</h2>
-        <p className="text-slate-600 mt-2 text-lg">Il tempo del passato recente e della vita quotidiana.</p>
-      </header>
-
+  const theory = (
+    <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
           <Info size={20} /> Cos'è e come si forma?
@@ -2540,16 +2598,23 @@ function PassatoProssimoSection() {
       </section>
     </div>
   );
+
+  return (
+    <TensePractice
+      id="passato_prossimo"
+      title="Il Passato Prossimo"
+      subtitle="Il tempo del passato recente e della vita quotidiana."
+      icon={BookOpen}
+      exercises={eserciziPassatoProssimo}
+      errorPrefix="Il Passato Prossimo"
+      theoryComponent={theory}
+    />
+  );
 }
 
 function TrapassatoProssimoSection() {
-  return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Trapassato Prossimo</h2>
-        <p className="text-slate-600 mt-2 text-lg">Il passato nel passato.</p>
-      </header>
-
+  const theory = (
+    <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
           <Info size={20} /> Quando si usa?
@@ -2593,15 +2658,23 @@ function TrapassatoProssimoSection() {
       </section>
     </div>
   );
+
+  return (
+    <TensePractice
+      id="trapassato_prossimo"
+      title="Il Trapassato Prossimo"
+      subtitle="Il passato nel passato."
+      icon={BookOpen}
+      exercises={eserciziTrapassatoProssimo}
+      errorPrefix="Il Trapassato Prossimo"
+      theoryComponent={theory}
+    />
+  );
 }
 
 function PassatoRemotoSection() {
-  return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">Il Passato Remoto</h2>
-        <p className="text-slate-600 mt-2 text-lg">Il tempo del passato lontano e della letteratura.</p>
-      </header>
+  const theory = (
+    <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
           <Info size={20} /> Quando si usa?
@@ -2658,15 +2731,23 @@ function PassatoRemotoSection() {
       </section>
     </div>
   );
+
+  return (
+    <TensePractice
+      id="passato_remoto"
+      title="Il Passato Remoto"
+      subtitle="Il tempo del passato lontano e della letteratura."
+      icon={BookOpen}
+      exercises={eserciziPassatoRemoto}
+      errorPrefix="Il Passato Remoto"
+      theoryComponent={theory}
+    />
+  );
 }
 
 function ImperativoSection() {
-  return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-bold text-indigo-900 border-b-2 border-indigo-100 pb-2">L'Imperativo</h2>
-        <p className="text-slate-600 mt-2 text-lg">Ordini, consigli, istruzioni e preghiere.</p>
-      </header>
+  const theory = (
+    <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
           <Info size={20} /> Quando si usa?
@@ -2752,6 +2833,18 @@ function ImperativoSection() {
         </div>
       </section>
     </div>
+  );
+
+  return (
+    <TensePractice
+      id="imperativo"
+      title="L'Imperativo"
+      subtitle="Ordini, consigli, istruzioni e preghiere."
+      icon={BookOpen}
+      exercises={eserciziImperativo}
+      errorPrefix="L'Imperativo"
+      theoryComponent={theory}
+    />
   );
 }
 

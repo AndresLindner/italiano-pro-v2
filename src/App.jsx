@@ -5,6 +5,7 @@ import { Modulo2Section } from './components/Modulo2Section';
 import { Modulo3Section } from './components/Modulo3Section';
 import { Modulo4Section } from './components/Modulo4Section';
 import { ErrorReviewSection } from './components/ErrorReviewSection';
+import { CongiuntivoImperfettoSection } from './components/CongiuntivoImperfettoSection';
 import { useAuth } from './contexts/AuthContext';
 
 const top100Verbs = [
@@ -1571,6 +1572,29 @@ top100Verbs.forEach(verb => {
     return ct;
   });
   verb.typeCongTrap = verb.typePP;
+
+  // Congiuntivo Imperfetto
+  let congImpStem;
+  if (inf === "essere") {
+    congImpStem = "fo";
+  } else if (inf === "dare") {
+    congImpStem = "de";
+  } else if (inf === "stare") {
+    congImpStem = "ste";
+  } else {
+    congImpStem = verb.imperfetto[0].slice(0, -2);
+  }
+  
+  verb.congiuntivoImperfetto = [
+    congImpStem + "ssi",
+    congImpStem + "ssi",
+    congImpStem + "sse",
+    congImpStem + "ssimo",
+    congImpStem + "ste",
+    congImpStem + "ssero"
+  ];
+  
+  verb.typeCongImp = ["essere", "dare", "stare"].includes(inf) ? "Irregolare" : verb.typeImperf;
 });
 
 const pronouns = ["io", "tu", "lui/lei", "noi", "voi", "loro"];
@@ -1624,6 +1648,7 @@ export default function App() {
           <NavItem icon={<Lightbulb size={20} />} label="Condizionale Pres." isActive={activeTab === 'condizionale'} onClick={() => setActiveTab('condizionale')} />
           <NavItem icon={<Sparkles size={20} />} label="Condizionale Pass." isActive={activeTab === 'condizionalePassato'} onClick={() => setActiveTab('condizionalePassato')} />
           <NavItem icon={<Brain size={20} />} label="Congiuntivo Pres." isActive={activeTab === 'congiuntivoPresente'} onClick={() => setActiveTab('congiuntivoPresente')} />
+          <NavItem icon={<Layers size={20} />} label="Congiuntivo Imp." isActive={activeTab === 'congiuntivoImperfetto'} onClick={() => setActiveTab('congiuntivoImperfetto')} />
           <NavItem icon={<Layers size={20} />} label="Congiuntivo Pass." isActive={activeTab === 'congiuntivoPassato'} onClick={() => setActiveTab('congiuntivoPassato')} />
           <NavItem icon={<Milestone size={20} />} label="Congiuntivo Trap." isActive={activeTab === 'congiuntivoTrapassato'} onClick={() => setActiveTab('congiuntivoTrapassato')} />
           <NavItem icon={<Clock size={20} />} label="Passato Prossimo" isActive={activeTab === 'prossimo'} onClick={() => setActiveTab('prossimo')} />
@@ -1663,6 +1688,7 @@ export default function App() {
         {activeTab === 'condizionale' && <CondizionaleSection />}
         {activeTab === 'condizionalePassato' && <CondizionalePassatoSection />}
         {activeTab === 'congiuntivoPresente' && <CongiuntivoPresenteSection />}
+        {activeTab === 'congiuntivoImperfetto' && <CongiuntivoImperfettoSection />}
         {activeTab === 'congiuntivoPassato' && <CongiuntivoPassatoSection />}
         {activeTab === 'congiuntivoTrapassato' && <CongiuntivoTrapassatoSection />}
         {activeTab === 'prossimo' && <PassatoProssimoSection />}
@@ -2938,6 +2964,35 @@ function TopVerbsSection() {
                     </table>
                   </div>
 
+                  {/* Congiuntivo Imperfetto */}
+                  <div className="bg-fuchsia-50 p-4 rounded-lg border border-fuchsia-100">
+                    <div className="flex justify-between items-center mb-3 border-b border-fuchsia-200 pb-2">
+                      <h4 className="font-bold text-fuchsia-800 text-lg">Congiuntivo Imp.</h4>
+                      <TypeBadge type={verb.typeCongImp} />
+                    </div>
+                    <table className="w-full text-sm">
+                      <tbody>
+                        {pronouns.map((p, i) => (
+                          <tr key={p} className={i % 2 === 0 ? 'bg-white' : ''}>
+                            <td className="py-2 px-3 text-slate-500 w-20">{p}</td>
+                            <td className="py-2 px-3 font-semibold text-slate-800">
+                              <div className="flex items-center justify-between gap-2">
+                                <span>{verb.congiuntivoImperfetto[i]}</span>
+                                <button
+                                  onClick={(e) => { e.stopPropagation(); speakWord(verb.congiuntivoImperfetto[i]); }}
+                                  className="text-slate-400 hover:text-fuchsia-600 transition-colors flex-shrink-0"
+                                  title="Ascolta la pronuncia"
+                                >
+                                  <Volume2 size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
                   {/* Congiuntivo Passato */}
                   <div className="bg-fuchsia-50 p-4 rounded-lg border border-fuchsia-100">
                     <div className="flex justify-between items-center mb-3 border-b border-fuchsia-200 pb-2">
@@ -3292,7 +3347,7 @@ function QuizSection() {
       selectedVerb = randomMistake.verb;
       selectedTense = randomMistake.tense;
     } else {
-      const tenses = actualMode === 'misto' ? ['presente', 'imperfetto', 'futuro', 'condizionale', 'condizionalePassato', 'congiuntivoPresente', 'congiuntivoPassato', 'congiuntivoTrapassato', 'passatoProssimo', 'trapassatoProssimo', 'passatoRemoto', 'imperativo'] : [actualMode];
+      const tenses = actualMode === 'misto' ? ['presente', 'imperfetto', 'futuro', 'condizionale', 'condizionalePassato', 'congiuntivoPresente', 'congiuntivoImperfetto', 'congiuntivoPassato', 'congiuntivoTrapassato', 'passatoProssimo', 'trapassatoProssimo', 'passatoRemoto', 'imperativo'] : [actualMode];
       selectedTense = tenses[Math.floor(Math.random() * tenses.length)];
 
       let validVerbs = top100Verbs;
@@ -3312,6 +3367,7 @@ function QuizSection() {
     else if (selectedTense === 'condizionale') correctAnswers = selectedVerb.condizionale;
     else if (selectedTense === 'condizionalePassato') correctAnswers = selectedVerb.condizionalePassato;
     else if (selectedTense === 'congiuntivoPresente') correctAnswers = selectedVerb.congiuntivoPresente;
+    else if (selectedTense === 'congiuntivoImperfetto') correctAnswers = selectedVerb.congiuntivoImperfetto;
     else if (selectedTense === 'congiuntivoPassato') correctAnswers = selectedVerb.congiuntivoPassato;
     else if (selectedTense === 'congiuntivoTrapassato') correctAnswers = selectedVerb.congiuntivoTrapassato;
     else if (selectedTense === 'passatoRemoto') correctAnswers = selectedVerb.passatoRemoto;
@@ -3441,6 +3497,7 @@ function QuizSection() {
     if (tense === 'condizionale') return "Il Condizionale Presente";
     if (tense === 'condizionalePassato') return "Il Condizionale Passato";
     if (tense === 'congiuntivoPresente') return "Il Congiuntivo Presente";
+    if (tense === 'congiuntivoImperfetto') return "Il Congiuntivo Imperfetto";
     if (tense === 'congiuntivoPassato') return "Il Congiuntivo Passato";
     if (tense === 'congiuntivoTrapassato') return "Il Congiuntivo Trapassato";
     if (tense === 'passatoRemoto') return 'Il Passato Remoto';
@@ -3456,6 +3513,7 @@ function QuizSection() {
     if (question.tense === 'condizionale') return question.verb.typeCond;
     if (question.tense === 'condizionalePassato') return question.verb.typeCondPass;
     if (question.tense === 'congiuntivoPresente') return question.verb.typeCongPres;
+    if (question.tense === 'congiuntivoImperfetto') return question.verb.typeCongImp;
     if (question.tense === 'congiuntivoPassato') return question.verb.typeCongPass;
     if (question.tense === 'congiuntivoTrapassato') return question.verb.typeCongTrap;
     if (question.tense === 'passatoRemoto') return question.verb.typePR;
@@ -3515,6 +3573,12 @@ function QuizSection() {
               className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'congiuntivoPresente' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
             >
               Congiuntivo Pres.
+            </button>
+            <button
+              onClick={() => handleModeChange('congiuntivoImperfetto')}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${quizMode === 'congiuntivoImperfetto' ? 'bg-indigo-100 text-indigo-800' : 'text-slate-600 hover:bg-slate-50'}`}
+            >
+              Congiuntivo Imp.
             </button>
             <button
               onClick={() => handleModeChange('congiuntivoPassato')}

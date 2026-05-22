@@ -1685,6 +1685,7 @@ export default function App() {
           <div className="pt-4 pb-2">
             <p className="px-4 text-xs font-black uppercase tracking-wider text-slate-400 mb-2">Risorse Extra</p>
             <NavItem icon={<BookA size={20} />} label="Lessico Tematico" isActive={activeTab === 'lessico'} onClick={() => setActiveTab('lessico')} />
+            <NavItem icon={<List size={20} />} label="I 100 Verbi" isActive={activeTab === 'topVerbs'} onClick={() => setActiveTab('topVerbs')} />
             <NavItem icon={<Sliders size={20} />} label="Coniugatore Verbi" isActive={activeTab === 'verbi'} onClick={() => setActiveTab('verbi')} />
             <NavItem 
               icon={<History size={20} />} 
@@ -1743,6 +1744,7 @@ export default function App() {
         {activeTab === 'passato' && <PassatoRemotoSection />}
         {activeTab === 'imperativo' && <ImperativoSection />}
         {activeTab === 'verbi' && <VerbConjugatorSection verbs={top100Verbs} />}
+        {activeTab === 'topVerbs' && <TopVerbsSection />}
         {activeTab === 'lessico' && <LessicoTematicoSection />}
         {activeTab === 'quiz' && <QuizSection />}
       </main>

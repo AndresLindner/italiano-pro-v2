@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User, Sliders } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User, Sliders, Menu } from 'lucide-react';
 import { Modulo1Section } from './components/Modulo1Section';
 import { VerbConjugatorSection } from './components/VerbConjugatorSection';
 import { Modulo2Section } from './components/Modulo2Section';
@@ -1634,15 +1634,72 @@ const imperativePronouns = ["(io)", "tu", "Lei (formale)", "noi", "voi"];
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('modulo1');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { userErrors } = useAuth() || { userErrors: {} };
   const errorCount = Object.keys(userErrors || {}).length;
   const quizErrorCount = Object.values(userErrors || {}).filter(e => e.type === 'quiz_verb').length;
 
+  const selectTab = (tab) => {
+    setActiveTab(tab);
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-indigo-50/30 text-slate-800 font-sans flex flex-col md:flex-row">
 
-      {/* Sidebar Navigation */}
-      <nav className="w-full md:w-64 bg-gradient-to-b from-indigo-950 via-slate-900 to-indigo-950 text-white flex flex-col shadow-2xl flex-shrink-0 z-10 sticky top-0 md:h-screen overflow-y-auto border-r border-indigo-950/20">
+      {/* Mobile Top Header Bar */}
+      <header className="md:hidden w-full bg-gradient-to-r from-indigo-950 to-slate-900 text-white flex items-center justify-between px-5 py-4 sticky top-0 z-30 shadow-md border-b border-indigo-900/30">
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+            className="p-1.5 hover:bg-white/10 rounded-lg text-indigo-200 hover:text-white transition-colors"
+            aria-label="Apri menu"
+          >
+            <Menu size={24} />
+          </button>
+          <h1 className="text-xl font-black flex items-center gap-2">
+            <BookOpen className="text-emerald-400" size={20} />
+            Italiano<span className="text-indigo-300 font-medium">Pro</span>
+          </h1>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-black tracking-wider bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full border border-emerald-500/30">B2</span>
+        </div>
+      </header>
+
+      {/* Mobile Drawer Backdrop Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 transition-opacity duration-300"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Mobile Drawer Sidebar */}
+      <nav className={`md:hidden fixed inset-y-0 left-0 w-72 bg-gradient-to-b from-indigo-950 via-slate-900 to-indigo-950 text-white flex flex-col z-50 shadow-2xl transition-transform duration-300 ease-in-out border-r border-indigo-950/20 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="p-5 bg-indigo-950/40 border-b border-indigo-900/30 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <BookOpen className="text-emerald-400" size={22} />
+            <span className="text-xl font-black">Italiano<span className="text-indigo-300 font-medium">Pro</span></span>
+          </div>
+          <button 
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="p-1.5 hover:bg-white/10 rounded-lg text-indigo-200 hover:text-white transition-colors"
+            aria-label="Chiudi menu"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        <UserProfile />
+
+        <div className="flex-1 overflow-y-auto">
+          <NavigationContent activeTab={activeTab} selectTab={selectTab} errorCount={errorCount} />
+        </div>
+      </nav>
+
+      {/* Desktop Sidebar Navigation (Always Visible on Desktop) */}
+      <nav className="hidden md:flex w-64 bg-gradient-to-b from-indigo-950 via-slate-900 to-indigo-950 text-white flex-col shadow-2xl flex-shrink-0 z-10 sticky top-0 h-screen overflow-y-auto border-r border-indigo-950/20">
         <div className="p-6 bg-indigo-950/40 backdrop-blur-md border-b border-indigo-900/30 flex flex-col relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-xl pointer-events-none"></div>
           <h1 className="text-2xl font-black flex items-center gap-2 relative z-10">
@@ -1654,62 +1711,8 @@ export default function App() {
 
         <UserProfile />
 
-        <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible pb-16 md:pb-0">
-          <NavItem icon={<BookOpen size={20} />} label="Modulo 1" isActive={activeTab === 'modulo1'} onClick={() => setActiveTab('modulo1')} />
-          <NavItem icon={<BookOpen size={20} />} label="Modulo 2" isActive={activeTab === 'modulo2'} onClick={() => setActiveTab('modulo2')} />
-          <NavItem icon={<BookOpen size={20} />} label="Modulo 3" isActive={activeTab === 'modulo3'} onClick={() => setActiveTab('modulo3')} />
-          <NavItem icon={<BookOpen size={20} />} label="Modulo 4" isActive={activeTab === 'modulo4'} onClick={() => setActiveTab('modulo4')} />
-          <NavItem icon={<BookOpen size={20} />} label="Modulo 5" isActive={activeTab === 'modulo5'} onClick={() => setActiveTab('modulo5')} />
-          <NavItem icon={<BookOpen size={20} />} label="Modulo 6" isActive={activeTab === 'modulo6'} onClick={() => setActiveTab('modulo6')} />
-          <NavItem icon={<BookOpen size={20} />} label="Modulo 7" isActive={activeTab === 'modulo7'} onClick={() => setActiveTab('modulo7')} />
-          <NavItem icon={<BookOpen size={20} />} label="Modulo 8" isActive={activeTab === 'modulo8'} onClick={() => setActiveTab('modulo8')} />
-          <NavItem icon={<Headphones size={20} />} label="Modulo 9" isActive={activeTab === 'modulo9'} onClick={() => setActiveTab('modulo9')} />
-          <NavItem icon={<PenTool size={20} />} label="Modulo 10" isActive={activeTab === 'modulo10'} onClick={() => setActiveTab('modulo10')} />
-          <NavItem icon={<Layers size={20} />} label="Modulo 11" isActive={activeTab === 'modulo11'} onClick={() => setActiveTab('modulo11')} />
-          <NavItem icon={<LayoutDashboard size={20} />} label="Panoramica B2" isActive={activeTab === 'panoramica'} onClick={() => setActiveTab('panoramica')} />
-          <NavItem icon={<Sun size={20} />} label="Il Presente" isActive={activeTab === 'presente'} onClick={() => setActiveTab('presente')} />
-          <NavItem icon={<History size={20} />} label="L'Imperfetto" isActive={activeTab === 'imperfetto'} onClick={() => setActiveTab('imperfetto')} />
-          <NavItem icon={<Rocket size={20} />} label="Futuro Semplice" isActive={activeTab === 'futuro'} onClick={() => setActiveTab('futuro')} />
-          <NavItem icon={<Lightbulb size={20} />} label="Condizionale Pres." isActive={activeTab === 'condizionale'} onClick={() => setActiveTab('condizionale')} />
-          <NavItem icon={<Sparkles size={20} />} label="Condizionale Pass." isActive={activeTab === 'condizionalePassato'} onClick={() => setActiveTab('condizionalePassato')} />
-          <NavItem icon={<Brain size={20} />} label="Congiuntivo Pres." isActive={activeTab === 'congiuntivoPresente'} onClick={() => setActiveTab('congiuntivoPresente')} />
-          <NavItem icon={<Layers size={20} />} label="Congiuntivo Imp." isActive={activeTab === 'congiuntivoImperfetto'} onClick={() => setActiveTab('congiuntivoImperfetto')} />
-          <NavItem icon={<Layers size={20} />} label="Congiuntivo Pass." isActive={activeTab === 'congiuntivoPassato'} onClick={() => setActiveTab('congiuntivoPassato')} />
-          <NavItem icon={<Milestone size={20} />} label="Congiuntivo Trap." isActive={activeTab === 'congiuntivoTrapassato'} onClick={() => setActiveTab('congiuntivoTrapassato')} />
-          <NavItem icon={<Clock size={20} />} label="Passato Prossimo" isActive={activeTab === 'prossimo'} onClick={() => setActiveTab('prossimo')} />
-          <NavItem icon={<Archive size={20} />} label="Trapassato Prossimo" isActive={activeTab === 'trapassato'} onClick={() => setActiveTab('trapassato')} />
-          <NavItem icon={<ScrollText size={20} />} label="Passato Remoto" isActive={activeTab === 'passato'} onClick={() => setActiveTab('passato')} />
-          <NavItem icon={<AlertCircle size={20} />} label="L'Imperativo" isActive={activeTab === 'imperativo'} onClick={() => setActiveTab('imperativo')} />
-          
-          {/* Tools & Resources */}
-          <div className="pt-4 pb-2">
-            <p className="px-4 text-xs font-black uppercase tracking-wider text-slate-400 mb-2">Risorse Extra</p>
-            <NavItem icon={<BookA size={20} />} label="Lessico Tematico" isActive={activeTab === 'lessico'} onClick={() => setActiveTab('lessico')} />
-            <NavItem icon={<List size={20} />} label="I 100 Verbi" isActive={activeTab === 'topVerbs'} onClick={() => setActiveTab('topVerbs')} />
-            <NavItem icon={<Sliders size={20} />} label="Coniugatore Verbi" isActive={activeTab === 'verbi'} onClick={() => setActiveTab('verbi')} />
-            <NavItem 
-              icon={<History size={20} />} 
-              label={
-                <div className="flex items-center gap-2">
-                  Ripasso Errori
-                  {errorCount > 0 && (
-                    <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                      {errorCount}
-                    </span>
-                  )}
-                </div>
-              }
-              isActive={activeTab === 'errori'} 
-              onClick={() => setActiveTab('errori')} 
-            />
-            <NavItem icon={<Clock size={20} />} label="Simulazione Esame" isActive={activeTab === 'simulazione'} onClick={() => setActiveTab('simulazione')} />
-          </div>
-          
-          <div className="pt-4 pb-2 border-t border-slate-200">
-            <NavItem icon={<User size={20} />} label="Il Mio Profilo" isActive={activeTab === 'profilo'} onClick={() => setActiveTab('profilo')} />
-          </div>
-
-          {/* Removed Quiz Pratico as it's obsolete */}
+        <div className="flex-1 overflow-y-auto">
+          <NavigationContent activeTab={activeTab} selectTab={selectTab} errorCount={errorCount} />
         </div>
       </nav>
 
@@ -1756,6 +1759,69 @@ export default function App() {
 /* -----------------------------------------
    COMPONENTS
 ----------------------------------------- */
+
+function NavigationContent({ activeTab, selectTab, errorCount }) {
+  return (
+    <div className="flex flex-col select-none">
+      <NavItem icon={<BookOpen size={20} />} label="Modulo 1" isActive={activeTab === 'modulo1'} onClick={() => selectTab('modulo1')} />
+      <NavItem icon={<BookOpen size={20} />} label="Modulo 2" isActive={activeTab === 'modulo2'} onClick={() => selectTab('modulo2')} />
+      <NavItem icon={<BookOpen size={20} />} label="Modulo 3" isActive={activeTab === 'modulo3'} onClick={() => selectTab('modulo3')} />
+      <NavItem icon={<BookOpen size={20} />} label="Modulo 4" isActive={activeTab === 'modulo4'} onClick={() => selectTab('modulo4')} />
+      <NavItem icon={<BookOpen size={20} />} label="Modulo 5" isActive={activeTab === 'modulo5'} onClick={() => selectTab('modulo5')} />
+      <NavItem icon={<BookOpen size={20} />} label="Modulo 6" isActive={activeTab === 'modulo6'} onClick={() => selectTab('modulo6')} />
+      <NavItem icon={<BookOpen size={20} />} label="Modulo 7" isActive={activeTab === 'modulo7'} onClick={() => selectTab('modulo7')} />
+      <NavItem icon={<BookOpen size={20} />} label="Modulo 8" isActive={activeTab === 'modulo8'} onClick={() => selectTab('modulo8')} />
+      <NavItem icon={<Headphones size={20} />} label="Modulo 9" isActive={activeTab === 'modulo9'} onClick={() => selectTab('modulo9')} />
+      <NavItem icon={<PenTool size={20} />} label="Modulo 10" isActive={activeTab === 'modulo10'} onClick={() => selectTab('modulo10')} />
+      <NavItem icon={<Layers size={20} />} label="Modulo 11" isActive={activeTab === 'modulo11'} onClick={() => selectTab('modulo11')} />
+      
+      <div className="pt-4 pb-2 border-t border-white/5">
+        <p className="px-6 text-[10px] font-black uppercase tracking-wider text-indigo-400 mb-2">Grammatica B2</p>
+        <NavItem icon={<LayoutDashboard size={20} />} label="Panoramica B2" isActive={activeTab === 'panoramica'} onClick={() => selectTab('panoramica')} />
+        <NavItem icon={<Sun size={20} />} label="Il Presente" isActive={activeTab === 'presente'} onClick={() => selectTab('presente')} />
+        <NavItem icon={<History size={20} />} label="L'Imperfetto" isActive={activeTab === 'imperfetto'} onClick={() => selectTab('imperfetto')} />
+        <NavItem icon={<Rocket size={20} />} label="Futuro Semplice" isActive={activeTab === 'futuro'} onClick={() => selectTab('futuro')} />
+        <NavItem icon={<Lightbulb size={20} />} label="Condizionale Pres." isActive={activeTab === 'condizionale'} onClick={() => selectTab('condizionale')} />
+        <NavItem icon={<Sparkles size={20} />} label="Condizionale Pass." isActive={activeTab === 'condizionalePassato'} onClick={() => selectTab('condizionalePassato')} />
+        <NavItem icon={<Brain size={20} />} label="Congiuntivo Pres." isActive={activeTab === 'congiuntivoPresente'} onClick={() => selectTab('congiuntivoPresente')} />
+        <NavItem icon={<Layers size={20} />} label="Congiuntivo Imp." isActive={activeTab === 'congiuntivoImperfetto'} onClick={() => selectTab('congiuntivoImperfetto')} />
+        <NavItem icon={<Layers size={20} />} label="Congiuntivo Pass." isActive={activeTab === 'congiuntivoPassato'} onClick={() => selectTab('congiuntivoPassato')} />
+        <NavItem icon={<Milestone size={20} />} label="Congiuntivo Trap." isActive={activeTab === 'congiuntivoTrapassato'} onClick={() => selectTab('congiuntivoTrapassato')} />
+        <NavItem icon={<Clock size={20} />} label="Passato Prossimo" isActive={activeTab === 'prossimo'} onClick={() => selectTab('prossimo')} />
+        <NavItem icon={<Archive size={20} />} label="Trapassato Prossimo" isActive={activeTab === 'trapassato'} onClick={() => selectTab('trapassato')} />
+        <NavItem icon={<ScrollText size={20} />} label="Passato Remoto" isActive={activeTab === 'passato'} onClick={() => selectTab('passato')} />
+        <NavItem icon={<AlertCircle size={20} />} label="L'Imperativo" isActive={activeTab === 'imperativo'} onClick={() => selectTab('imperativo')} />
+      </div>
+
+      <div className="pt-4 pb-2 border-t border-white/5">
+        <p className="px-6 text-[10px] font-black uppercase tracking-wider text-indigo-400 mb-2">Risorse Extra</p>
+        <NavItem icon={<BookA size={20} />} label="Lessico Tematico" isActive={activeTab === 'lessico'} onClick={() => selectTab('lessico')} />
+        <NavItem icon={<List size={20} />} label="I 100 Verbi" isActive={activeTab === 'topVerbs'} onClick={() => selectTab('topVerbs')} />
+        <NavItem icon={<Sliders size={20} />} label="Coniugatore Verbi" isActive={activeTab === 'verbi'} onClick={() => selectTab('verbi')} />
+        <NavItem 
+          icon={<History size={20} />} 
+          label={
+            <div className="flex items-center gap-2">
+              Ripasso Errori
+              {errorCount > 0 && (
+                <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                  {errorCount}
+                </span>
+              )}
+            </div>
+          }
+          isActive={activeTab === 'errori'} 
+          onClick={() => selectTab('errori')} 
+        />
+        <NavItem icon={<Clock size={20} />} label="Simulazione Esame" isActive={activeTab === 'simulazione'} onClick={() => selectTab('simulazione')} />
+      </div>
+      
+      <div className="pt-4 pb-2 border-t border-white/5">
+        <NavItem icon={<User size={20} />} label="Il Mio Profilo" isActive={activeTab === 'profilo'} onClick={() => selectTab('profilo')} />
+      </div>
+    </div>
+  );
+}
 
 function NavItem({ icon, label, isActive, onClick }) {
   return (

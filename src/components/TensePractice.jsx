@@ -73,6 +73,14 @@ export function TensePractice({
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'it-IT';
       utterance.rate = 0.95;
+
+      const voices = window.speechSynthesis.getVoices();
+      const itVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-') === 'it-it') || 
+                      voices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith('it'));
+      if (itVoice) {
+        utterance.voice = itVoice;
+      }
+
       window.speechSynthesis.speak(utterance);
     }
   };

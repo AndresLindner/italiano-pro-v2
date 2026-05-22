@@ -43,7 +43,8 @@ export function Modulo9Section() {
         utterance.rate = 0.9;
         
         const voices = window.speechSynthesis.getVoices();
-        const itVoice = voices.find(voice => voice.lang.includes('it-IT') && voice.localService);
+        const itVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-') === 'it-it') || 
+                        voices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith('it'));
         if (itVoice) {
           utterance.voice = itVoice;
         }

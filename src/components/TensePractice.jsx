@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, CheckCircle2, XCircle } from 'lucide-react';
+import { BookOpen, CheckCircle2, XCircle, Mic, Square, Volume2 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 export function TensePractice({ 
@@ -16,6 +16,66 @@ export function TensePractice({
   const [checkedAnswers, setCheckedAnswers] = useState({});
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
+  const [listeningId, setListeningId] = useState(null);
+  const [speechSupported, setSpeechSupported] = useState(false);
+
+  useEffect(() => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      setSpeechSupported(true);
+    }
+  }, []);
+
+  const startListening = (exId) => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) return;
+
+    if (listeningId) {
+      setListeningId(null);
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'it-IT';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onstart = () => {
+      setListeningId(exId);
+    };
+
+    recognition.onresult = (event) => {
+      const resultText = event.results[0][0].transcript;
+      const cleaned = resultText.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+      handleInputChange(exId, cleaned);
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error", event.error);
+      setListeningId(null);
+    };
+
+    recognition.onend = () => {
+      setListeningId(null);
+    };
+
+    try {
+      recognition.start();
+    } catch (e) {
+      console.error(e);
+      setListeningId(null);
+    }
+  };
+
+  const speakText = (text) => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'it-IT';
+      utterance.rate = 0.95;
+      window.speechSynthesis.speak(utterance);
+    }
+  };
 
   const { userProgress, saveProgress, logError, resolveError } = useAuth() || {};
 
@@ -132,46 +192,81 @@ export function TensePractice({
                 const userAnswer = userAnswers[ex.id] || '';
                 const isChecked = showResults || checkedAnswers[ex.id];
                 const isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
-                
+                const isListening = listeningId === ex.id;
+                const fullSentenceToSpeak = ex.sentence.replace('{blank}', isChecked ? ex.answer : (userAnswer || '...'));
+
                 return (
-                  <div key={ex.id} className={`p-4 rounded-lg border ${isChecked ? (isCorrect ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200') : 'bg-slate-50 border-slate-200 hover:border-indigo-300'} transition-colors`}>
+                  <div key={ex.id} className={`p-4 rounded-lg border ${isChecked ? (isCorrect ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200') : 'bg-slate-50 border-slate-200 hover:border-indigo-300'} transition-all duration-300`}>
                     <div className="flex flex-col md:flex-row md:items-center gap-3">
                       <span className="font-bold text-slate-400 w-6 flex-shrink-0">{index + 1}.</span>
-                      <div className="flex-1 text-slate-700 leading-relaxed flex flex-wrap items-center gap-1">
+                      <div className="flex-1 text-slate-700 leading-relaxed flex flex-wrap items-center gap-1.5">
                         <span>{parts[0]}</span>
-                        <input
-                          type="text"
-                          value={userAnswer}
-                          onChange={(e) => handleInputChange(ex.id, e.target.value)}
-                          disabled={isChecked}
-                          className={`w-32 md:w-40 px-3 py-1 text-center font-semibold rounded-md border-2 outline-none transition-all
-                            ${isChecked 
-                              ? (isCorrect ? 'border-emerald-500 bg-emerald-100 text-emerald-800' : 'border-red-500 bg-red-100 text-red-800')
-                              : 'border-indigo-200 focus:border-indigo-500 text-indigo-900 bg-white'
-                            }
-                          `}
-                        />
+                        <div className="relative inline-flex items-center">
+                          <input
+                            type="text"
+                            value={userAnswer}
+                            onChange={(e) => handleInputChange(ex.id, e.target.value)}
+                            disabled={isChecked}
+                            className={`w-32 md:w-40 px-3 py-1 pr-8 text-center font-semibold rounded-md border-2 outline-none transition-all
+                              ${isChecked 
+                                ? (isCorrect ? 'border-emerald-500 bg-emerald-100 text-emerald-800' : 'border-red-500 bg-red-100 text-red-800')
+                                : 'border-indigo-200 focus:border-indigo-500 text-indigo-900 bg-white'
+                              }
+                            `}
+                          />
+                          {!isChecked && speechSupported && (
+                            <button
+                              onClick={() => startListening(ex.id)}
+                              className={`absolute right-1.5 p-1 rounded-full transition-all ${isListening ? 'text-red-500 bg-red-50 animate-pulse border border-red-200 scale-110' : 'text-slate-400 hover:text-indigo-600'}`}
+                              title={isListening ? "Sto ascoltando... premi per interrompere" : "Rispondi a voce (in italiano)"}
+                            >
+                              {isListening ? <Square size={12} fill="currentColor" /> : <Mic size={12} />}
+                            </button>
+                          )}
+                        </div>
                         <span>{parts[1]}</span>
                       </div>
                       
-                      {!isChecked && (
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        {/* Audio Pronunciation */}
                         <button
-                          onClick={() => checkSingleAnswer(ex)}
-                          disabled={!userAnswer.trim()}
-                          className="flex-shrink-0 text-slate-400 hover:text-indigo-600 disabled:opacity-30 transition-colors"
+                          onClick={() => speakText(fullSentenceToSpeak)}
+                          className="p-1.5 bg-white rounded-lg shadow-sm border border-slate-100 hover:border-indigo-300 text-slate-400 hover:text-indigo-600 transition-colors"
+                          title="Ascolta la frase completa"
                         >
-                          <CheckCircle2 size={24} />
+                          <Volume2 size={16} />
                         </button>
-                      )}
-                      {isChecked && !isCorrect && (
-                        <div className="flex-shrink-0 w-8 flex justify-center">
-                          <XCircle className="text-red-500" size={24} />
-                        </div>
-                      )}
+
+                        {!isChecked && (
+                          <button
+                            onClick={() => checkSingleAnswer(ex)}
+                            disabled={!userAnswer.trim()}
+                            className="flex-shrink-0 text-slate-400 hover:text-indigo-600 disabled:opacity-30 transition-colors p-1.5"
+                            title="Controlla risposta"
+                          >
+                            <CheckCircle2 size={20} />
+                          </button>
+                        )}
+                        {isChecked && !isCorrect && (
+                          <div className="flex-shrink-0 w-8 flex justify-center">
+                            <XCircle className="text-red-500" size={20} />
+                          </div>
+                        )}
+                      </div>
                     </div>
                     {isChecked && !isCorrect && (
-                      <div className="mt-2 ml-9 text-sm">
-                        <span className="text-red-600 font-medium">Correzione:</span> <span className="font-bold text-slate-800">{ex.answer}</span>
+                      <div className="mt-2 ml-9 text-sm flex items-center gap-2">
+                        <span className="text-red-600 font-medium">Correzione:</span>
+                        <span className="font-bold text-slate-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded flex items-center gap-1.5">
+                          {ex.answer}
+                          <button
+                            onClick={() => speakText(ex.answer)}
+                            className="text-slate-400 hover:text-indigo-600 transition-colors"
+                            title="Ascolta la parola corretta"
+                          >
+                            <Volume2 size={12} />
+                          </button>
+                        </span>
                       </div>
                     )}
                   </div>

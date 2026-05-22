@@ -8,6 +8,7 @@ import { modulo6Data } from '../data/modulo6_data';
 import { modulo7Data } from '../data/modulo7_data';
 import { modulo8Data } from '../data/modulo8_data';
 import { modulo11Data } from '../data/modulo11_data';
+import { useAuth } from '../contexts/AuthContext';
 
 // Helper to get random elements from array
 const getRandomElements = (arr, num) => {
@@ -16,6 +17,7 @@ const getRandomElements = (arr, num) => {
 };
 
 export function SimulazioneEsame() {
+  const { saveProgress } = useAuth() || {};
   const [examState, setExamState] = useState('start'); // start, running, finished
   const [timeLeft, setTimeLeft] = useState(3600); // 60 minutes in seconds
   const [examData, setExamData] = useState(null);
@@ -81,14 +83,23 @@ export function SimulazioneEsame() {
 
     const totalQuestions = 10 + examData.reading.questions.length;
     const finalScore = grammarScore + readingScore;
+    const finalPercent = Math.round((finalScore / totalQuestions) * 100);
     
-    setScore({
+    const examScore = {
       grammar: grammarScore,
       reading: readingScore,
       total: finalScore,
       max: totalQuestions,
-      percent: Math.round((finalScore / totalQuestions) * 100)
-    });
+      percent: finalPercent,
+      timestamp: Date.now()
+    };
+    
+    setScore(examScore);
+    
+    // Save to user progress so it is persistent!
+    if (saveProgress) {
+      saveProgress('esame', { lastExam: examScore });
+    }
     
     setExamState('finished');
   };

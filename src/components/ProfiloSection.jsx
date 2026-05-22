@@ -8,7 +8,7 @@ import { modulo9Data } from '../data/modulo9_data';
 import { modulo11Data } from '../data/modulo11_data';
 
 export function ProfiloSection() {
-  const { currentUser, userProgress } = useAuth();
+  const { currentUser, userProgress, userFlashcards } = useAuth();
 
   // Helper to calculate module completion
   const calculateCompletion = (moduleId, totalExercises) => {
@@ -99,6 +99,100 @@ export function ProfiloSection() {
         </div>
       </div>
 
+      {/* Gamified Achievements / Medals Grid */}
+      <h3 className="text-2xl font-black text-slate-800 mt-12 mb-6">I Miei Traguardi (Medaglie)</h3>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {/* Medal 1: Pioniere del Congiuntivo */}
+        <MedalCard
+          title="Pioniere del Congiuntivo"
+          description="Completato il Modulo 1 al 100%"
+          isUnlocked={calculateCompletion('modulo1', 45).percent >= 100}
+          unlockedColor="from-amber-400 to-yellow-500 text-amber-950"
+          criteria="Completa il Modulo 1 (Il Congiuntivo) al 100% per sbloccare questa medaglia d'oro."
+          icon={
+            <svg viewBox="0 0 24 24" className="w-16 h-16 drop-shadow-md" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <defs>
+                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#fbbf24" />
+                  <stop offset="50%" stopColor="#f59e0b" />
+                  <stop offset="100%" stopColor="#d97706" />
+                </linearGradient>
+              </defs>
+              <circle cx="12" cy="8" r="7" fill="url(#goldGrad)" />
+              <path d="M12 4v8M8 8h8" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              <path d="M7 14l-2 7 7-3 7 3-2-7" stroke="#b45309" strokeWidth="1.5" fill="#fef3c7" strokeLinejoin="round" />
+              <circle cx="12" cy="8" r="4" stroke="#78350f" strokeWidth="1" strokeDasharray="2 1" />
+            </svg>
+          }
+        />
+
+        {/* Medal 2: Inarrestabile */}
+        <MedalCard
+          title="Inarrestabile"
+          description="Punteggio d'esame >= 85%"
+          isUnlocked={(userProgress?.esame?.lastExam?.percent || 0) >= 85}
+          unlockedColor="from-rose-500 to-red-600 text-rose-950"
+          criteria="Ottieni un punteggio superiore all'85% in una simulazione d'esame per sbloccare questo trofeo."
+          icon={
+            <svg viewBox="0 0 24 24" className="w-16 h-16 drop-shadow-md" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <defs>
+                <linearGradient id="fireGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#f43f5e" />
+                  <stop offset="100%" stopColor="#be123c" />
+                </linearGradient>
+              </defs>
+              <path d="M12 2C7.5 7.5 12 11 12 14c0 2.2-1.8 4-4 4s-4-1.8-4-4c0-4.5 4.5-8 4.5-8S3 9 3 14c0 5 4 9 9 9s9-4 9-9c0-5-4.5-8-4.5-8S21 9 21 14c0 4.5-4.5 8-4.5 8" fill="url(#fireGrad)" stroke="none" />
+              <path d="M12 8c-2 2-1 4-1 6 0 1.1-.9 2-2 2s-2-.9-2-2c0-2.5 2.5-4.5 2.5-4.5" fill="#fecdd3" stroke="none" />
+            </svg>
+          }
+        />
+
+        {/* Medal 3: Cacciatore di Errori */}
+        <MedalCard
+          title="Cacciatore di Errori"
+          description="Risolti 5 errori in ripasso"
+          isUnlocked={(userProgress?.stats?.errorsResolved || 0) >= 5}
+          unlockedColor="from-emerald-400 to-teal-500 text-emerald-950"
+          criteria={`Risolvi correttamente 5 errori nella sezione "Ripasso Errori". (Attuale: ${userProgress?.stats?.errorsResolved || 0}/5)`}
+          icon={
+            <svg viewBox="0 0 24 24" className="w-16 h-16 drop-shadow-md" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <defs>
+                <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#34d399" />
+                  <stop offset="100%" stopColor="#0f766e" />
+                </linearGradient>
+              </defs>
+              <rect x="3" y="3" width="18" height="18" rx="9" fill="url(#emeraldGrad)" />
+              <path d="M9 12l2 2 4-4" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="12" cy="12" r="7" stroke="#115e59" strokeWidth="1" strokeDasharray="3 2" />
+            </svg>
+          }
+        />
+
+        {/* Medal 4: Lessicologo */}
+        <MedalCard
+          title="Lessicologo"
+          description="Ripassate 20+ parole"
+          isUnlocked={Object.keys(userFlashcards || {}).length >= 20}
+          unlockedColor="from-indigo-400 to-purple-600 text-indigo-950"
+          criteria={`Ripassa almeno 20 parole nelle flashcard del Lessico Tematico. (Attuale: ${Object.keys(userFlashcards || {}).length}/20)`}
+          icon={
+            <svg viewBox="0 0 24 24" className="w-16 h-16 drop-shadow-md" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <defs>
+                <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#818cf8" />
+                  <stop offset="100%" stopColor="#4f46e5" />
+                </linearGradient>
+              </defs>
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#312e81" strokeWidth="1.5" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" fill="url(#purpleGrad)" />
+              <path d="M9 6h7M9 10h7M9 14h5" stroke="white" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          }
+        />
+      </div>
+
       <h3 className="text-2xl font-black text-slate-800 mt-12 mb-6">Progressi per Modulo</h3>
 
       {/* Progress Bars */}
@@ -124,6 +218,52 @@ export function ProfiloSection() {
             </p>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+// Sub-component for individual medal card
+function MedalCard({ title, description, isUnlocked, unlockedColor, criteria, icon }) {
+  return (
+    <div className={`relative bg-white rounded-3xl p-6 shadow-sm border transition-all duration-300 flex flex-col items-center text-center group ${
+      isUnlocked 
+        ? 'border-slate-200 hover:-translate-y-1 hover:shadow-md' 
+        : 'border-slate-100 opacity-75'
+    }`}>
+      {/* Medal Icon Wrapper */}
+      <div className={`w-24 h-24 rounded-full flex items-center justify-center mb-4 transition-all duration-500 ${
+        isUnlocked 
+          ? `bg-gradient-to-br ${unlockedColor} scale-100` 
+          : 'bg-slate-100 filter grayscale opacity-45'
+      }`}>
+        {isUnlocked ? icon : (
+          <div className="relative">
+            {icon}
+            <div className="absolute inset-0 flex items-center justify-center bg-slate-200/50 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-slate-500"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <h4 className="font-extrabold text-slate-800 text-lg leading-tight mb-1">{title}</h4>
+      <p className={`text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-3 ${
+        isUnlocked 
+          ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' 
+          : 'bg-slate-100 text-slate-400 border border-slate-200'
+      }`}>
+        {isUnlocked ? 'Sbloccato' : 'Bloccato'}
+      </p>
+      
+      <p className="text-xs text-slate-500 leading-relaxed px-2 font-medium">{description}</p>
+
+      {/* Tooltip on hover */}
+      <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-64 bg-slate-900 text-white text-xs rounded-xl p-3 shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-300 z-20">
+        <div className="font-bold border-b border-slate-700 pb-1 mb-1 text-slate-200">Requisito di sblocco:</div>
+        <p className="text-slate-300 font-medium leading-relaxed">{criteria}</p>
+        {/* Tooltip triangle */}
+        <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-900"></div>
       </div>
     </div>
   );

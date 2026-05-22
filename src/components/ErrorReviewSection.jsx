@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, CheckCircle2, XCircle, BrainCircuit, AlertCircle, Trash2, RotateCcw } from 'lucide-react';
+import { BookOpen, CheckCircle2, XCircle, BrainCircuit, AlertCircle, Trash2, RotateCcw, Mic, Square, Volume2 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 export function ErrorReviewSection() {
@@ -7,6 +7,66 @@ export function ErrorReviewSection() {
   const [userAnswers, setUserAnswers] = useState({});
   const [checkedAnswers, setCheckedAnswers] = useState({});
   const [randomPronounIndices, setRandomPronounIndices] = useState({});
+  const [listeningId, setListeningId] = useState(null);
+  const [speechSupported, setSpeechSupported] = useState(false);
+
+  React.useEffect(() => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      setSpeechSupported(true);
+    }
+  }, []);
+
+  const startListening = (exId) => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) return;
+
+    if (listeningId) {
+      setListeningId(null);
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'it-IT';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onstart = () => {
+      setListeningId(exId);
+    };
+
+    recognition.onresult = (event) => {
+      const resultText = event.results[0][0].transcript;
+      const cleaned = resultText.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+      handleInputChange(exId, cleaned);
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error", event.error);
+      setListeningId(null);
+    };
+
+    recognition.onend = () => {
+      setListeningId(null);
+    };
+
+    try {
+      recognition.start();
+    } catch (e) {
+      console.error(e);
+      setListeningId(null);
+    }
+  };
+
+  const speakText = (text) => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'it-IT';
+      utterance.rate = 0.95;
+      window.speechSynthesis.speak(utterance);
+    }
+  };
 
   const errorList = Object.values(userErrors || {}).sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 
@@ -105,6 +165,9 @@ export function ErrorReviewSection() {
           let correctAnswerDisplay = "";
           const userAnswer = userAnswers[ex.id] || '';
           const isChecked = checkedAnswers[ex.id];
+          const isListening = listeningId === ex.id;
+
+          let textToSpeak = "";
 
           if (ex.type === 'quiz_verb') {
             const pIdx = randomPronounIndices[ex.id];
@@ -126,11 +189,15 @@ export function ErrorReviewSection() {
                 options = [correctAns];
               }
               isCorrect = options.map(o => o.toLowerCase()).includes(userAnswer.trim().toLowerCase());
+              
+              textToSpeak = `${pronoun} ${isChecked ? correctAnswerDisplay : (userAnswer || '...')}`;
             }
           } else {
             parts = ex.sentence.split('{blank}');
             isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
             correctAnswerDisplay = ex.answer;
+            
+            textToSpeak = ex.sentence.replace('{blank}', isChecked ? ex.answer : (userAnswer || '...'));
           }
           
           return (
@@ -149,15 +216,15 @@ export function ErrorReviewSection() {
 
               <div className="flex flex-col md:flex-row md:items-center gap-3">
                 <span className="font-bold text-slate-400 w-6 flex-shrink-0">{index + 1}.</span>
-                <div className="flex-1 text-slate-700 leading-relaxed flex flex-wrap items-center gap-1">
+                <div className="flex-1 text-slate-700 leading-relaxed flex flex-wrap items-center gap-1.5">
                   <span>{parts[0]}</span>
-                  <div className="relative inline-block">
+                  <div className="relative inline-flex items-center">
                     <input
                       type="text"
                       value={userAnswer}
                       onChange={(e) => handleInputChange(ex.id, e.target.value)}
                       disabled={isChecked && isCorrect}
-                      className={`w-32 md:w-48 px-3 py-1 text-center font-semibold rounded-md border-2 outline-none transition-all
+                      className={`w-32 md:w-48 px-3 py-1 pr-8 text-center font-semibold rounded-md border-2 outline-none transition-all
                         ${isChecked 
                           ? (isCorrect ? 'border-emerald-500 bg-emerald-100 text-emerald-800' : 'border-red-500 bg-red-100 text-red-800')
                           : 'border-amber-200 focus:border-amber-500 text-amber-900 bg-amber-50'
@@ -165,16 +232,34 @@ export function ErrorReviewSection() {
                       `}
                       placeholder="..."
                     />
+                    {!(isChecked && isCorrect) && speechSupported && (
+                      <button
+                        onClick={() => startListening(ex.id)}
+                        className={`absolute right-1.5 p-1 rounded-full transition-all ${isListening ? 'text-red-500 bg-red-50 animate-pulse border border-red-200 scale-110' : 'text-slate-400 hover:text-indigo-600'}`}
+                        title={isListening ? "Sto ascoltando... premi per interrompere" : "Rispondi a voce (in italiano)"}
+                      >
+                        {isListening ? <Square size={12} fill="currentColor" /> : <Mic size={12} />}
+                      </button>
+                    )}
                   </div>
                   <span>{parts[1]}</span>
                 </div>
                 
                 <div className="flex items-center gap-2 flex-shrink-0">
+                  {/* Speaker Button to listen to full pronunciation */}
+                  <button
+                    onClick={() => speakText(textToSpeak)}
+                    className="p-1.5 bg-white rounded-lg shadow-sm border border-slate-100 hover:border-indigo-300 text-slate-400 hover:text-indigo-600 transition-colors"
+                    title="Ascolta la pronuncia della frase o espressione"
+                  >
+                    <Volume2 size={16} />
+                  </button>
+
                   {!isChecked && (
                     <button
                       onClick={() => checkSingleAnswer(ex)}
                       disabled={!userAnswer.trim()}
-                      className="text-slate-400 hover:text-indigo-600 disabled:opacity-30 transition-colors"
+                      className="text-slate-400 hover:text-indigo-600 disabled:opacity-30 transition-colors p-1"
                       title="Controlla risposta"
                     >
                       <CheckCircle2 size={24} />
@@ -190,7 +275,7 @@ export function ErrorReviewSection() {
                           setUserAnswers(prev => ({ ...prev, [ex.id]: '' }));
                           setCheckedAnswers(prev => ({ ...prev, [ex.id]: false }));
                         }}
-                        className="text-slate-400 hover:text-indigo-600 transition-colors"
+                        className="text-slate-400 hover:text-indigo-600 transition-colors p-1"
                         title="Riprova"
                       >
                         <RotateCcw size={20} />
@@ -204,7 +289,7 @@ export function ErrorReviewSection() {
                       setUserAnswers(prev => { const n = {...prev}; delete n[ex.id]; return n; });
                       setCheckedAnswers(prev => { const n = {...prev}; delete n[ex.id]; return n; });
                     }}
-                    className="text-slate-300 hover:text-rose-500 transition-colors ml-2"
+                    className="text-slate-300 hover:text-rose-500 transition-colors ml-2 p-1"
                     title="Rimuovi questo esercizio"
                   >
                     <Trash2 size={20} />
@@ -213,8 +298,18 @@ export function ErrorReviewSection() {
               </div>
               
               {isChecked && !isCorrect && (
-                <div className="mt-2 ml-9 text-sm">
-                  <span className="text-red-600 font-medium">Correzione:</span> <span className="font-bold text-slate-800 bg-emerald-100 px-2 py-0.5 rounded">{correctAnswerDisplay}</span>
+                <div className="mt-2 ml-9 text-sm flex items-center gap-2">
+                  <span className="text-red-600 font-medium">Correzione:</span>
+                  <span className="font-bold text-slate-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded flex items-center gap-1.5">
+                    {correctAnswerDisplay}
+                    <button
+                      onClick={() => speakText(correctAnswerDisplay)}
+                      className="text-slate-400 hover:text-indigo-600 transition-colors"
+                      title="Ascolta la parola corretta"
+                    >
+                      <Volume2 size={12} />
+                    </button>
+                  </span>
                 </div>
               )}
             </div>

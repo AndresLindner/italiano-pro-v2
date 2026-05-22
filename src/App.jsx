@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User, Sliders } from 'lucide-react';
 import { Modulo1Section } from './components/Modulo1Section';
+import { VerbConjugatorSection } from './components/VerbConjugatorSection';
 import { Modulo2Section } from './components/Modulo2Section';
 import { Modulo3Section } from './components/Modulo3Section';
 import { Modulo4Section } from './components/Modulo4Section';
@@ -1638,16 +1639,17 @@ export default function App() {
   const quizErrorCount = Object.values(userErrors || {}).filter(e => e.type === 'quiz_verb').length;
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col md:flex-row">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-indigo-50/30 text-slate-800 font-sans flex flex-col md:flex-row">
 
       {/* Sidebar Navigation */}
-      <nav className="w-full md:w-64 bg-indigo-900 text-white flex flex-col shadow-xl flex-shrink-0 z-10 sticky top-0 md:h-screen overflow-y-auto">
-        <div className="p-6 bg-indigo-950">
-          <h1 className="text-2xl font-bold flex items-center gap-2">
-            <BookOpen className="text-emerald-400" />
-            Italiano<span className="text-indigo-300">Pro</span>
+      <nav className="w-full md:w-64 bg-gradient-to-b from-indigo-950 via-slate-900 to-indigo-950 text-white flex flex-col shadow-2xl flex-shrink-0 z-10 sticky top-0 md:h-screen overflow-y-auto border-r border-indigo-950/20">
+        <div className="p-6 bg-indigo-950/40 backdrop-blur-md border-b border-indigo-900/30 flex flex-col relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-xl pointer-events-none"></div>
+          <h1 className="text-2xl font-black flex items-center gap-2 relative z-10">
+            <BookOpen className="text-emerald-400 animate-pulse" />
+            Italiano<span className="text-indigo-300 font-medium">Pro</span>
           </h1>
-          <p className="text-indigo-200 text-sm mt-1">Impara i verbi difficili</p>
+          <p className="text-indigo-200/80 text-xs mt-1 font-bold tracking-wider uppercase relative z-10">B2 Maestro</p>
         </div>
 
         <UserProfile />
@@ -1683,6 +1685,7 @@ export default function App() {
           <div className="pt-4 pb-2">
             <p className="px-4 text-xs font-black uppercase tracking-wider text-slate-400 mb-2">Risorse Extra</p>
             <NavItem icon={<BookA size={20} />} label="Lessico Tematico" isActive={activeTab === 'lessico'} onClick={() => setActiveTab('lessico')} />
+            <NavItem icon={<Sliders size={20} />} label="Coniugatore Verbi" isActive={activeTab === 'verbi'} onClick={() => setActiveTab('verbi')} />
             <NavItem 
               icon={<History size={20} />} 
               label={
@@ -1739,7 +1742,7 @@ export default function App() {
         {activeTab === 'trapassato' && <TrapassatoProssimoSection />}
         {activeTab === 'passato' && <PassatoRemotoSection />}
         {activeTab === 'imperativo' && <ImperativoSection />}
-        {activeTab === 'verbi' && <TopVerbsSection />}
+        {activeTab === 'verbi' && <VerbConjugatorSection verbs={top100Verbs} />}
         {activeTab === 'lessico' && <LessicoTematicoSection />}
         {activeTab === 'quiz' && <QuizSection />}
       </main>
@@ -1756,14 +1759,17 @@ function NavItem({ icon, label, isActive, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`w-full flex items-center gap-3 px-6 py-4 md:py-3 transition-colors ${
+      className={`w-full flex items-center gap-3 px-6 py-3.5 transition-all duration-200 group relative border-l-4 ${
         isActive
-          ? 'bg-indigo-800 text-emerald-400 border-l-4 border-emerald-400 font-bold'
-          : 'text-indigo-100 hover:bg-indigo-800/50 hover:text-white border-l-4 border-transparent'
+          ? 'bg-white/10 backdrop-blur-md text-emerald-400 border-emerald-400 font-extrabold shadow-inner'
+          : 'text-indigo-100 hover:bg-white/5 hover:text-white border-transparent hover:translate-x-0.5'
       }`}
     >
-      <span className={isActive ? "text-emerald-400" : "text-indigo-300"}>{icon}</span>
-      <span className="whitespace-nowrap">{label}</span>
+      <span className={`transition-transform duration-200 group-hover:scale-110 ${isActive ? "text-emerald-400" : "text-indigo-300 group-hover:text-emerald-300"}`}>{icon}</span>
+      <span className="text-sm text-left tracking-wide font-semibold whitespace-nowrap">{label}</span>
+      {isActive && (
+        <span className="absolute right-4 w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      )}
     </button>
   );
 }
@@ -1773,37 +1779,37 @@ export function UserProfile() {
 
   if (currentUser) {
     return (
-      <div className="p-4 bg-indigo-900 border-b border-indigo-800 flex flex-col gap-3">
+      <div className="p-4 bg-white/5 backdrop-blur-md border-b border-indigo-500/10 flex flex-col gap-3 transition-all duration-300">
         <div className="flex items-center gap-3">
           {currentUser.photoURL ? (
-            <img src={currentUser.photoURL} alt="Profile" className="w-10 h-10 rounded-full border-2 border-emerald-400" />
+            <img src={currentUser.photoURL} alt="Profile" className="w-10 h-10 rounded-full border-2 border-emerald-400 transition-transform duration-300 hover:scale-105" />
           ) : (
-            <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-white">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-400 to-teal-500 flex items-center justify-center font-black text-white shadow-sm">
               {currentUser.email.charAt(0).toUpperCase()}
             </div>
           )}
           <div className="flex flex-col overflow-hidden">
-            <span className="text-sm font-bold text-white truncate">{currentUser.displayName || 'Studente'}</span>
-            <span className="text-xs text-indigo-300 truncate">{currentUser.email}</span>
+            <span className="text-sm font-black text-white truncate leading-snug">{currentUser.displayName || 'Studente'}</span>
+            <span className="text-xs text-indigo-300/80 truncate leading-none">{currentUser.email}</span>
           </div>
         </div>
         <button 
           onClick={logout}
-          className="flex items-center justify-center gap-2 py-1.5 px-3 bg-indigo-800 hover:bg-indigo-700 text-indigo-200 text-sm rounded-md transition-colors"
+          className="flex items-center justify-center gap-2 py-2 px-3 bg-white/5 hover:bg-red-500/10 hover:text-red-200 border border-white/10 hover:border-red-500/20 text-indigo-200 text-xs font-bold rounded-xl transition-all duration-200"
         >
-          <LogOut size={16} /> Disconnetti
+          <LogOut size={14} /> Disconnetti
         </button>
       </div>
     );
   }
 
   return (
-    <div className="p-4 bg-indigo-900 border-b border-indigo-800">
+    <div className="p-4 bg-white/5 backdrop-blur-md border-b border-indigo-500/10 transition-all duration-300">
       <button 
         onClick={loginWithGoogle}
-        className="w-full flex items-center justify-center gap-2 py-2 px-4 bg-white text-indigo-900 font-bold rounded-md hover:bg-indigo-50 transition-colors"
+        className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-gradient-to-r from-emerald-400 to-teal-500 text-white font-extrabold rounded-xl hover:from-emerald-300 hover:to-teal-400 transition-all duration-300 shadow-md shadow-emerald-500/10 active:scale-98"
       >
-        <LogIn size={18} /> Accedi
+        <LogIn size={18} /> Accedi con Google
       </button>
     </div>
   );

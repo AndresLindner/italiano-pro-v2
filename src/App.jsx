@@ -2392,6 +2392,40 @@ function CondizionalePassatoSection() {
 }
 
 function CongiuntivoPresenteSection() {
+  const speakWord = (word) => {
+    if (!word) return;
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'it-IT';
+      utterance.rate = 0.85;
+
+      const voices = window.speechSynthesis.getVoices();
+      const itVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-') === 'it-it') || 
+                      voices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith('it'));
+      if (itVoice) {
+        utterance.voice = itVoice;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  const renderCell = (display, speakText) => (
+    <td className="p-3 border">
+      <div className="flex items-center justify-between gap-2 min-w-[120px]">
+        <span>{display}</span>
+        <button
+          onClick={() => speakWord(speakText)}
+          className="p-1 rounded-md text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-colors flex-shrink-0"
+          title="Ascolta la pronuncia"
+        >
+          <Volume2 size={15} />
+        </button>
+      </div>
+    </td>
+  );
+
   const theory = (
     <div className="space-y-8">
       <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
@@ -2399,7 +2433,7 @@ function CongiuntivoPresenteSection() {
           <Info size={20} /> Quando si usa?
         </h3>
         <p className="mb-4 text-slate-700">
-          A differenza dell'indicativo (che esprime certezze), il <strong>Congiuntivo</strong> si usa per esprimere soggettività in frasi secondarie, spesso introdotte dalla congiunzione <em>"che"</em>:
+          A differenza dell'indicativo (che esprime certezze), il <strong>Congiuntivo</strong> si usa per espressare soggettività in frasi secondarie, spesso introdotte dalla congiunzione <em>"che"</em>:
         </p>
         <ul className="list-disc pl-6 space-y-4 text-slate-700">
           <li>
@@ -2436,12 +2470,48 @@ function CongiuntivoPresenteSection() {
               </tr>
             </thead>
             <tbody>
-              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parl-<strong>i</strong></td><td className="p-3 border">cred-<strong>a</strong></td><td className="p-3 border">dorm-<strong>a</strong></td><td className="p-3 border">fin-<strong>isca</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parl-<strong>i</strong></td><td className="p-3 border">cred-<strong>a</strong></td><td className="p-3 border">dorm-<strong>a</strong></td><td className="p-3 border">fin-<strong>isca</strong></td></tr>
-              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parl-<strong>i</strong></td><td className="p-3 border">cred-<strong>a</strong></td><td className="p-3 border">dorm-<strong>a</strong></td><td className="p-3 border">fin-<strong>isca</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parl-<strong>iamo</strong></td><td className="p-3 border">cred-<strong>iamo</strong></td><td className="p-3 border">dorm-<strong>iamo</strong></td><td className="p-3 border">fin-<strong>iamo</strong></td></tr>
-              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parl-<strong>iate</strong></td><td className="p-3 border">cred-<strong>iate</strong></td><td className="p-3 border">dorm-<strong>iate</strong></td><td className="p-3 border">fin-<strong>iate</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parl-<strong>ino</strong></td><td className="p-3 border">cred-<strong>ano</strong></td><td className="p-3 border">dorm-<strong>ano</strong></td><td className="p-3 border">fin-<strong>iscano</strong></td></tr>
+              <tr>
+                <td className="p-3 border font-semibold">io</td>
+                {renderCell(<>parl-<strong>i</strong></>, "parli")}
+                {renderCell(<>cred-<strong>a</strong></>, "creda")}
+                {renderCell(<>dorm-<strong>a</strong></>, "dorma")}
+                {renderCell(<>fin-<strong>isca</strong></>, "finisca")}
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">tu</td>
+                {renderCell(<>parl-<strong>i</strong></>, "parli")}
+                {renderCell(<>cred-<strong>a</strong></>, "creda")}
+                {renderCell(<>dorm-<strong>a</strong></>, "dorma")}
+                {renderCell(<>fin-<strong>isca</strong></>, "finisca")}
+              </tr>
+              <tr>
+                <td className="p-3 border font-semibold">lui/lei</td>
+                {renderCell(<>parl-<strong>i</strong></>, "parli")}
+                {renderCell(<>cred-<strong>a</strong></>, "creda")}
+                {renderCell(<>dorm-<strong>a</strong></>, "dorma")}
+                {renderCell(<>fin-<strong>isca</strong></>, "finisca")}
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">noi</td>
+                {renderCell(<>parl-<strong>iamo</strong></>, "parliamo")}
+                {renderCell(<>cred-<strong>iamo</strong></>, "crediamo")}
+                {renderCell(<>dorm-<strong>iamo</strong></>, "dormiamo")}
+                {renderCell(<>fin-<strong>iamo</strong></>, "finiamo")}
+              </tr>
+              <tr>
+                <td className="p-3 border font-semibold">voi</td>
+                {renderCell(<>parl-<strong>iate</strong></>, "parliate")}
+                {renderCell(<>cred-<strong>iate</strong></>, "crediate")}
+                {renderCell(<>dorm-<strong>iate</strong></>, "dormiate")}
+                {renderCell(<>fin-<strong>iate</strong></>, "finiate")}
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">loro</td>
+                {renderCell(<>parl-<strong>ino</strong></>, "parlino")}
+                {renderCell(<>cred-<strong>ano</strong></>, "credano")}
+                {renderCell(<>dorm-<strong>ano</strong></>, "dormano")}
+                {renderCell(<>fin-<strong>iscano</strong></>, "finiscano")}
+              </tr>
             </tbody>
           </table>
         </div>

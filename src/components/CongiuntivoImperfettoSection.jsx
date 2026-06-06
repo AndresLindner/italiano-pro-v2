@@ -1,13 +1,26 @@
 import React from 'react';
-import { BookOpen, BrainCircuit } from 'lucide-react';
+import { BookOpen, BrainCircuit, Volume2 } from 'lucide-react';
 import { TensePractice } from './TensePractice';
+import { speakItalian } from '../utils/speech';
+
+function PlayButton({ text }) {
+  return (
+    <button
+      onClick={() => speakItalian(text)}
+      className="p-1 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors inline-flex items-center justify-center flex-shrink-0"
+      title="Ascolta la pronuncia"
+    >
+      <Volume2 size={14} />
+    </button>
+  );
+}
 
 const exerciseData = [
   { id: 'cong_imp_1', sentence: "Pensavo che Luigi {blank} (andare) al supermercato.", answer: "andasse" },
   { id: 'cong_imp_2', sentence: "Vorrei che tu mi {blank} (dire) la verità.", answer: "dicessi" },
   { id: 'cong_imp_3', sentence: "Era probabile che noi {blank} (essere) in ritardo.", answer: "fossimo" },
   { id: 'cong_imp_4', sentence: "Speravo che loro {blank} (fare) un buon lavoro.", answer: "facessero" },
-  { id: 'cong_imp_5', sentence: "Voleva che voi {blank} (capire) la situazione.", answer: "capiste" },
+  { id: 'cong_imp_5', sentence: "Voleva che voi {blank} (capire) la situatione.", answer: "capiste" },
   { id: 'cong_imp_6', sentence: "Mi sembrava che Maria {blank} (bere) troppa acqua.", answer: "bevesse" },
   { id: 'cong_imp_7', sentence: "Credevo che voi gli {blank} (dare) una mano.", answer: "deste" },
   { id: 'cong_imp_8', sentence: "Non sapevo che loro {blank} (stare) così male.", answer: "stessero" },
@@ -71,46 +84,186 @@ export function CongiuntivoImperfettoSection() {
           <div className="bg-indigo-50 rounded-xl p-6 border border-indigo-100">
             <h4 className="font-bold text-indigo-800 text-xl mb-4 text-center border-b border-indigo-200 pb-2">Parlare</h4>
             <ul className="space-y-2 text-indigo-900 text-lg">
-              <li><span className="text-slate-500 inline-block w-12">io</span> parlassi</li>
-              <li><span className="text-slate-500 inline-block w-12">tu</span> parlassi</li>
-              <li><span className="text-slate-500 inline-block w-12">lui</span> parlasse</li>
-              <li><span className="text-slate-500 inline-block w-12">noi</span> parlassimo</li>
-              <li><span className="text-slate-500 inline-block w-12">voi</span> parlaste</li>
-              <li><span className="text-slate-500 inline-block w-12">loro</span> parlassero</li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">io</span> parlassi</span>
+                <PlayButton text="parlassi" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">tu</span> parlassi</span>
+                <PlayButton text="parlassi" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">lui</span> parlasse</span>
+                <PlayButton text="parlasse" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">noi</span> parlassimo</span>
+                <PlayButton text="parlassimo" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">voi</span> parlaste</span>
+                <PlayButton text="parlaste" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">loro</span> parlassero</span>
+                <PlayButton text="parlassero" />
+              </li>
             </ul>
           </div>
           <div className="bg-indigo-50 rounded-xl p-6 border border-indigo-100">
             <h4 className="font-bold text-indigo-800 text-xl mb-4 text-center border-b border-indigo-200 pb-2">Credere</h4>
             <ul className="space-y-2 text-indigo-900 text-lg">
-              <li><span className="text-slate-500 inline-block w-12">io</span> credessi</li>
-              <li><span className="text-slate-500 inline-block w-12">tu</span> credessi</li>
-              <li><span className="text-slate-500 inline-block w-12">lui</span> credesse</li>
-              <li><span className="text-slate-500 inline-block w-12">noi</span> credessimo</li>
-              <li><span className="text-slate-500 inline-block w-12">voi</span> credeste</li>
-              <li><span className="text-slate-500 inline-block w-12">loro</span> credessero</li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">io</span> credessi</span>
+                <PlayButton text="credessi" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">tu</span> credessi</span>
+                <PlayButton text="credessi" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">lui</span> credesse</span>
+                <PlayButton text="credesse" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">noi</span> credessimo</span>
+                <PlayButton text="credessimo" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">voi</span> credeste</span>
+                <PlayButton text="credeste" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">loro</span> credessero</span>
+                <PlayButton text="credessero" />
+              </li>
             </ul>
           </div>
           <div className="bg-indigo-50 rounded-xl p-6 border border-indigo-100">
             <h4 className="font-bold text-indigo-800 text-xl mb-4 text-center border-b border-indigo-200 pb-2">Sentire</h4>
             <ul className="space-y-2 text-indigo-900 text-lg">
-              <li><span className="text-slate-500 inline-block w-12">io</span> sentissi</li>
-              <li><span className="text-slate-500 inline-block w-12">tu</span> sentissi</li>
-              <li><span className="text-slate-500 inline-block w-12">lui</span> sentisse</li>
-              <li><span className="text-slate-500 inline-block w-12">noi</span> sentissimo</li>
-              <li><span className="text-slate-500 inline-block w-12">voi</span> sentiste</li>
-              <li><span className="text-slate-500 inline-block w-12">loro</span> sentissero</li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">io</span> sentissi</span>
+                <PlayButton text="sentissi" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">tu</span> sentissi</span>
+                <PlayButton text="sentissi" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">lui</span> sentisse</span>
+                <PlayButton text="sentisse" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">noi</span> sentissimo</span>
+                <PlayButton text="sentissimo" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">voi</span> sentiste</span>
+                <PlayButton text="sentiste" />
+              </li>
+              <li className="flex items-center justify-between">
+                <span><span className="text-slate-500 inline-block w-12">loro</span> sentissero</span>
+                <PlayButton text="sentissero" />
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
-          <h4 className="font-bold text-amber-800">Le 3 Eccezioni Assolute!</h4>
-          <p className="text-amber-900 mt-2">
+        <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-lg">
+          <h4 className="font-bold text-amber-800 text-lg mb-2">Le 3 Eccezioni Assolute!</h4>
+          <p className="text-amber-900 mb-4">
             Esistono solo tre verbi in italiano che non seguono questa regola:
-            <br/><strong>Essere</strong>: fossi, fossi, fosse, fossimo, foste, fossero
-            <br/><strong>Dare</strong>: dessi, dessi, desse, dessimo, deste, dessero
-            <br/><strong>Stare</strong>: stessi, stessi, stesse, stessimo, steste, stessero
           </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-xl p-4 border border-amber-200">
+              <h5 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-2">Essere</h5>
+              <ul className="space-y-1 text-slate-800 text-base">
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">io</span> fossi</span>
+                  <PlayButton text="fossi" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">tu</span> fossi</span>
+                  <PlayButton text="fossi" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">lui</span> fosse</span>
+                  <PlayButton text="fosse" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">noi</span> fossimo</span>
+                  <PlayButton text="fossimo" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">voi</span> foste</span>
+                  <PlayButton text="foste" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">loro</span> fossero</span>
+                  <PlayButton text="fossero" />
+                </li>
+              </ul>
+            </div>
+            <div className="bg-white rounded-xl p-4 border border-amber-200">
+              <h5 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-2">Dare</h5>
+              <ul className="space-y-1 text-slate-800 text-base">
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">io</span> dessi</span>
+                  <PlayButton text="dessi" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">tu</span> dessi</span>
+                  <PlayButton text="dessi" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">lui</span> desse</span>
+                  <PlayButton text="desse" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">noi</span> dessimo</span>
+                  <PlayButton text="dessimo" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">voi</span> deste</span>
+                  <PlayButton text="deste" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">loro</span> dessero</span>
+                  <PlayButton text="dessero" />
+                </li>
+              </ul>
+            </div>
+            <div className="bg-white rounded-xl p-4 border border-amber-200">
+              <h5 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-2">Stare</h5>
+              <ul className="space-y-1 text-slate-800 text-base">
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">io</span> stessi</span>
+                  <PlayButton text="stessi" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">tu</span> stessi</span>
+                  <PlayButton text="stessi" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">lui</span> stesse</span>
+                  <PlayButton text="stesse" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">noi</span> stessimo</span>
+                  <PlayButton text="stessimo" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">voi</span> steste</span>
+                  <PlayButton text="steste" />
+                </li>
+                <li className="flex items-center justify-between">
+                  <span><span className="text-slate-500 inline-block w-12 text-sm">loro</span> stessero</span>
+                  <PlayButton text="stessero" />
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
     </div>

@@ -25,6 +25,30 @@ import {
   eserciziCongiuntivoTrapassato, eserciziPassatoProssimo, eserciziTrapassatoProssimo, 
   eserciziPassatoRemoto, eserciziImperativo 
 } from './data/esercizi_tempi';
+import { speakItalian } from './utils/speech';
+
+function PlayButton({ text, size = 14 }) {
+  return (
+    <button
+      onClick={() => speakItalian(text)}
+      className="p-1 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors inline-flex items-center justify-center flex-shrink-0"
+      title="Ascolta la pronuncia"
+    >
+      <Volume2 size={size} />
+    </button>
+  );
+}
+
+function VerbCell({ display, speakText, className = "" }) {
+  return (
+    <td className={`p-3 border ${className}`}>
+      <div className="flex items-center justify-between gap-2 min-w-[120px]">
+        <span>{display}</span>
+        <PlayButton text={speakText} size={15} />
+      </div>
+    </td>
+  );
+}
 
 const top100Verbs = [
   {
@@ -1994,12 +2018,42 @@ function PresenteSection() {
               </tr>
             </thead>
             <tbody>
-              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parl-<strong>o</strong></td><td className="p-3 border">cred-<strong>o</strong></td><td className="p-3 border">dorm-<strong>o</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parl-<strong>i</strong></td><td className="p-3 border">cred-<strong>i</strong></td><td className="p-3 border">dorm-<strong>i</strong></td></tr>
-              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parl-<strong>a</strong></td><td className="p-3 border">cred-<strong>e</strong></td><td className="p-3 border">dorm-<strong>e</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parl-<strong>iamo</strong></td><td className="p-3 border">cred-<strong>iamo</strong></td><td className="p-3 border">dorm-<strong>iamo</strong></td></tr>
-              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parl-<strong>ate</strong></td><td className="p-3 border">cred-<strong>ete</strong></td><td className="p-3 border">dorm-<strong>ite</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parl-<strong>ano</strong></td><td className="p-3 border">cred-<strong>ono</strong></td><td className="p-3 border">dorm-<strong>ono</strong></td></tr>
+              <tr>
+                <td className="p-3 border font-semibold">io</td>
+                <VerbCell display={<>parl-<strong>o</strong></>} speakText="parlo" />
+                <VerbCell display={<>cred-<strong>o</strong></>} speakText="credo" />
+                <VerbCell display={<>dorm-<strong>o</strong></>} speakText="dormo" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">tu</td>
+                <VerbCell display={<>parl-<strong>i</strong></>} speakText="parli" />
+                <VerbCell display={<>cred-<strong>i</strong></>} speakText="credi" />
+                <VerbCell display={<>dorm-<strong>i</strong></>} speakText="dormi" />
+              </tr>
+              <tr>
+                <td className="p-3 border font-semibold">lui/lei</td>
+                <VerbCell display={<>parl-<strong>a</strong></>} speakText="parla" />
+                <VerbCell display={<>cred-<strong>e</strong></>} speakText="crede" />
+                <VerbCell display={<>dorm-<strong>e</strong></>} speakText="dorme" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">noi</td>
+                <VerbCell display={<>parl-<strong>iamo</strong></>} speakText="parliamo" />
+                <VerbCell display={<>cred-<strong>iamo</strong></>} speakText="crediamo" />
+                <VerbCell display={<>dorm-<strong>iamo</strong></>} speakText="dormiamo" />
+              </tr>
+              <tr>
+                <td className="p-3 border font-semibold">voi</td>
+                <VerbCell display={<>parl-<strong>ate</strong></>} speakText="parlate" />
+                <VerbCell display={<>cred-<strong>ete</strong></>} speakText="credete" />
+                <VerbCell display={<>dorm-<strong>ite</strong></>} speakText="dormite" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">loro</td>
+                <VerbCell display={<>parl-<strong>ano</strong></>} speakText="parlano" />
+                <VerbCell display={<>cred-<strong>ono</strong></>} speakText="credono" />
+                <VerbCell display={<>dorm-<strong>ono</strong></>} speakText="dormono" />
+              </tr>
             </tbody>
           </table>
         </div>
@@ -2013,13 +2067,31 @@ function PresenteSection() {
           Molti verbi che finiscono in <strong>-IRE</strong> (come capire, finire, preferire, pulire) inseriscono il suffisso <strong>-isc-</strong> tra la radice e la desinenza, ma <strong>solo nelle prime tre persone singolari e nella terza plurale</strong>. Noi e Voi rimangono perfettamente normali.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <ul className="space-y-1 bg-white p-4 rounded-lg shadow-sm border border-purple-100">
-            <li><span className="inline-block w-8 text-purple-600 font-bold">io</span> cap-<strong>isc</strong>-o</li>
-            <li><span className="inline-block w-8 text-purple-600 font-bold">tu</span> cap-<strong>isc</strong>-i</li>
-            <li><span className="inline-block w-8 text-purple-600 font-bold">lui</span> cap-<strong>isc</strong>-e</li>
-            <li><span className="inline-block w-8 text-slate-500">noi</span> cap-iamo</li>
-            <li><span className="inline-block w-8 text-slate-500">voi</span> cap-ite</li>
-            <li><span className="inline-block w-8 text-purple-600 font-bold">loro</span> cap-<strong>isc</strong>-ono</li>
+          <ul className="space-y-2 bg-white p-4 rounded-lg shadow-sm border border-purple-100">
+            <li className="flex items-center justify-between">
+              <span><span className="inline-block w-8 text-purple-600 font-bold">io</span> cap-<strong>isc</strong>-o</span>
+              <PlayButton text="capisco" />
+            </li>
+            <li className="flex items-center justify-between">
+              <span><span className="inline-block w-8 text-purple-600 font-bold">tu</span> cap-<strong>isc</strong>-i</span>
+              <PlayButton text="capisci" />
+            </li>
+            <li className="flex items-center justify-between">
+              <span><span className="inline-block w-8 text-purple-600 font-bold">lui</span> cap-<strong>isc</strong>-e</span>
+              <PlayButton text="capisce" />
+            </li>
+            <li className="flex items-center justify-between">
+              <span><span className="inline-block w-8 text-slate-500">noi</span> cap-iamo</span>
+              <PlayButton text="capiamo" />
+            </li>
+            <li className="flex items-center justify-between">
+              <span><span className="inline-block w-8 text-slate-500">voi</span> cap-ite</span>
+              <PlayButton text="capite" />
+            </li>
+            <li className="flex items-center justify-between">
+              <span><span className="inline-block w-8 text-purple-600 font-bold">loro</span> cap-<strong>isc</strong>-ono</span>
+              <PlayButton text="capiscono" />
+            </li>
           </ul>
         </div>
       </section>
@@ -2079,12 +2151,42 @@ function ImperfettoSection() {
               </tr>
             </thead>
             <tbody>
-              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parl-<strong>avo</strong></td><td className="p-3 border">cred-<strong>evo</strong></td><td className="p-3 border">dorm-<strong>ivo</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parl-<strong>avi</strong></td><td className="p-3 border">cred-<strong>evi</strong></td><td className="p-3 border">dorm-<strong>ivi</strong></td></tr>
-              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parl-<strong>ava</strong></td><td className="p-3 border">cred-<strong>eva</strong></td><td className="p-3 border">dorm-<strong>iva</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parl-<strong>avamo</strong></td><td className="p-3 border">cred-<strong>evamo</strong></td><td className="p-3 border">dorm-<strong>ivamo</strong></td></tr>
-              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parl-<strong>avate</strong></td><td className="p-3 border">cred-<strong>evate</strong></td><td className="p-3 border">dorm-<strong>ivate</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parl-<strong>avano</strong></td><td className="p-3 border">cred-<strong>evano</strong></td><td className="p-3 border">dorm-<strong>ivano</strong></td></tr>
+              <tr>
+                <td className="p-3 border font-semibold">io</td>
+                <VerbCell display={<>parl-<strong>avo</strong></>} speakText="parlavo" />
+                <VerbCell display={<>cred-<strong>evo</strong></>} speakText="credevo" />
+                <VerbCell display={<>dorm-<strong>ivo</strong></>} speakText="dormivo" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">tu</td>
+                <VerbCell display={<>parl-<strong>avi</strong></>} speakText="parlavi" />
+                <VerbCell display={<>cred-<strong>evi</strong></>} speakText="credevi" />
+                <VerbCell display={<>dorm-<strong>ivi</strong></>} speakText="dormivi" />
+              </tr>
+              <tr>
+                <td className="p-3 border font-semibold">lui/lei</td>
+                <VerbCell display={<>parl-<strong>ava</strong></>} speakText="parlava" />
+                <VerbCell display={<>cred-<strong>eva</strong></>} speakText="credeva" />
+                <VerbCell display={<>dorm-<strong>iva</strong></>} speakText="dormiva" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">noi</td>
+                <VerbCell display={<>parl-<strong>avamo</strong></>} speakText="parlavamo" />
+                <VerbCell display={<>cred-<strong>evamo</strong></>} speakText="credevamo" />
+                <VerbCell display={<>dorm-<strong>ivamo</strong></>} speakText="dormivamo" />
+              </tr>
+              <tr>
+                <td className="p-3 border font-semibold">voi</td>
+                <VerbCell display={<>parl-<strong>avate</strong></>} speakText="parlavate" />
+                <VerbCell display={<>cred-<strong>evate</strong></>} speakText="credevate" />
+                <VerbCell display={<>dorm-<strong>ivate</strong></>} speakText="dormivate" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">loro</td>
+                <VerbCell display={<>parl-<strong>avano</strong></>} speakText="parlavano" />
+                <VerbCell display={<>cred-<strong>evano</strong></>} speakText="credevano" />
+                <VerbCell display={<>dorm-<strong>ivano</strong></>} speakText="dormivano" />
+              </tr>
             </tbody>
           </table>
         </div>
@@ -2097,29 +2199,49 @@ function ImperfettoSection() {
         <p className="mb-4 text-teal-900">
           A differenza degli altri tempi, l'imperfetto ha pochissimi verbi irregolari. I più usati sono <strong>Essere</strong> (che ha una radice propria) e <strong>Bere, Dire, Fare</strong> (che in realtà sono regolari se si guarda la loro antica radice latina: <em>bevere, dicere, facere</em>).
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white p-4 rounded-lg shadow-sm border border-teal-100">
             <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2">Essere</h4>
-            <ul className="text-sm space-y-1 text-center">
-              <li>ero</li><li>eri</li><li>era</li><li>eravamo</li><li>eravate</li><li>erano</li>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>ero</span><PlayButton text="ero" /></li>
+              <li className="flex items-center justify-between"><span>eri</span><PlayButton text="eri" /></li>
+              <li className="flex items-center justify-between"><span>era</span><PlayButton text="era" /></li>
+              <li className="flex items-center justify-between"><span>eravamo</span><PlayButton text="eravamo" /></li>
+              <li className="flex items-center justify-between"><span>eravate</span><PlayButton text="eravate" /></li>
+              <li className="flex items-center justify-between"><span>erano</span><PlayButton text="erano" /></li>
             </ul>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm border border-teal-100">
             <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2">Fare</h4>
-            <ul className="text-sm space-y-1 text-center">
-              <li>facevo</li><li>facevi</li><li>faceva</li><li>facevamo</li><li>facevate</li><li>facevano</li>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>facevo</span><PlayButton text="facevo" /></li>
+              <li className="flex items-center justify-between"><span>facevi</span><PlayButton text="facevi" /></li>
+              <li className="flex items-center justify-between"><span>faceva</span><PlayButton text="faceva" /></li>
+              <li className="flex items-center justify-between"><span>facevamo</span><PlayButton text="facevamo" /></li>
+              <li className="flex items-center justify-between"><span>facevate</span><PlayButton text="facevate" /></li>
+              <li className="flex items-center justify-between"><span>facevano</span><PlayButton text="facevano" /></li>
             </ul>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm border border-teal-100">
             <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2">Dire</h4>
-            <ul className="text-sm space-y-1 text-center">
-              <li>dicevo</li><li>dicevi</li><li>diceva</li><li>dicevamo</li><li>dicevate</li><li>dicevano</li>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>dicevo</span><PlayButton text="dicevo" /></li>
+              <li className="flex items-center justify-between"><span>dicevi</span><PlayButton text="dicevi" /></li>
+              <li className="flex items-center justify-between"><span>diceva</span><PlayButton text="diceva" /></li>
+              <li className="flex items-center justify-between"><span>dicevamo</span><PlayButton text="dicevamo" /></li>
+              <li className="flex items-center justify-between"><span>dicevate</span><PlayButton text="dicevate" /></li>
+              <li className="flex items-center justify-between"><span>dicevano</span><PlayButton text="dicevano" /></li>
             </ul>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm border border-teal-100">
             <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2">Bere</h4>
-            <ul className="text-sm space-y-1 text-center">
-              <li>bevevo</li><li>bevevi</li><li>beveva</li><li>bevevamo</li><li>bevevate</li><li>bevevano</li>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>bevevo</span><PlayButton text="bevevo" /></li>
+              <li className="flex items-center justify-between"><span>bevevi</span><PlayButton text="bevevi" /></li>
+              <li className="flex items-center justify-between"><span>beveva</span><PlayButton text="beveva" /></li>
+              <li className="flex items-center justify-between"><span>bevevamo</span><PlayButton text="bevevamo" /></li>
+              <li className="flex items-center justify-between"><span>bevevate</span><PlayButton text="bevevate" /></li>
+              <li className="flex items-center justify-between"><span>bevevano</span><PlayButton text="bevevano" /></li>
             </ul>
           </div>
         </div>
@@ -2180,12 +2302,42 @@ function FuturoSempliceSection() {
               </tr>
             </thead>
             <tbody>
-              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parl-<strong>erò</strong></td><td className="p-3 border">cred-<strong>erò</strong></td><td className="p-3 border">dorm-<strong>irò</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parl-<strong>erai</strong></td><td className="p-3 border">cred-<strong>erai</strong></td><td className="p-3 border">dorm-<strong>irai</strong></td></tr>
-              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parl-<strong>erà</strong></td><td className="p-3 border">cred-<strong>erà</strong></td><td className="p-3 border">dorm-<strong>irà</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parl-<strong>eremo</strong></td><td className="p-3 border">cred-<strong>eremo</strong></td><td className="p-3 border">dorm-<strong>iremo</strong></td></tr>
-              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parl-<strong>erete</strong></td><td className="p-3 border">cred-<strong>erete</strong></td><td className="p-3 border">dorm-<strong>irete</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parl-<strong>eranno</strong></td><td className="p-3 border">cred-<strong>eranno</strong></td><td className="p-3 border">dorm-<strong>iranno</strong></td></tr>
+              <tr>
+                <td className="p-3 border font-semibold">io</td>
+                <VerbCell display={<>parl-<strong>erò</strong></>} speakText="parlerò" />
+                <VerbCell display={<>cred-<strong>erò</strong></>} speakText="crederò" />
+                <VerbCell display={<>dorm-<strong>irò</strong></>} speakText="dormirò" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">tu</td>
+                <VerbCell display={<>parl-<strong>erai</strong></>} speakText="parlerai" />
+                <VerbCell display={<>cred-<strong>erai</strong></>} speakText="crederai" />
+                <VerbCell display={<>dorm-<strong>irai</strong></>} speakText="dormirai" />
+              </tr>
+              <tr>
+                <td className="p-3 border font-semibold">lui/lei</td>
+                <VerbCell display={<>parl-<strong>erà</strong></>} speakText="parlerà" />
+                <VerbCell display={<>cred-<strong>erà</strong></>} speakText="crederà" />
+                <VerbCell display={<>dorm-<strong>irà</strong></>} speakText="dormirà" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">noi</td>
+                <VerbCell display={<>parl-<strong>eremo</strong></>} speakText="parleremo" />
+                <VerbCell display={<>cred-<strong>eremo</strong></>} speakText="crederemo" />
+                <VerbCell display={<>dorm-<strong>iremo</strong></>} speakText="dormiremo" />
+              </tr>
+              <tr>
+                <td className="p-3 border font-semibold">voi</td>
+                <VerbCell display={<>parl-<strong>erete</strong></>} speakText="parlerete" />
+                <VerbCell display={<>cred-<strong>erete</strong></>} speakText="crederete" />
+                <VerbCell display={<>dorm-<strong>irete</strong></>} speakText="dormirete" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">loro</td>
+                <VerbCell display={<>parl-<strong>eranno</strong></>} speakText="parleranno" />
+                <VerbCell display={<>cred-<strong>eranno</strong></>} speakText="crederanno" />
+                <VerbCell display={<>dorm-<strong>iranno</strong></>} speakText="dormiranno" />
+              </tr>
             </tbody>
           </table>
         </div>
@@ -2201,29 +2353,29 @@ function FuturoSempliceSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
             <h4 className="font-bold text-orange-700 border-b pb-2 mb-2">1. Perdono la vocale</h4>
-            <ul className="text-sm space-y-1 text-slate-700">
-              <li><strong>Avere:</strong> avrò, avrai...</li>
-              <li><strong>Andare:</strong> andrò, andrai...</li>
-              <li><strong>Potere:</strong> potrò, potrai...</li>
-              <li><strong>Vedere:</strong> vedrò, vedrai...</li>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span><strong>Avere:</strong> avrò, avrai...</span><PlayButton text="avrò, avrai" /></li>
+              <li className="flex items-center justify-between"><span><strong>Andare:</strong> andrò, andrai...</span><PlayButton text="andrò, andrai" /></li>
+              <li className="flex items-center justify-between"><span><strong>Potere:</strong> potrò, potrai...</span><PlayButton text="potrò, potrai" /></li>
+              <li className="flex items-center justify-between"><span><strong>Vedere:</strong> vedrò, vedrai...</span><PlayButton text="vedrò, vedrai" /></li>
             </ul>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
             <h4 className="font-bold text-orange-700 border-b pb-2 mb-2">2. Raddoppiano la 'R'</h4>
-            <ul className="text-sm space-y-1 text-slate-700">
-              <li><strong>Venire:</strong> verrò, verrai...</li>
-              <li><strong>Volere:</strong> vorrò, vorrai...</li>
-              <li><strong>Bere:</strong> berrò, berrai...</li>
-              <li><strong>Rimanere:</strong> rimarrò, rimarrai...</li>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span><strong>Venire:</strong> verrò, verrai...</span><PlayButton text="verrò, verrai" /></li>
+              <li className="flex items-center justify-between"><span><strong>Volere:</strong> vorrò, vorrai...</span><PlayButton text="vorrò, vorrai" /></li>
+              <li className="flex items-center justify-between"><span><strong>Bere:</strong> berrò, berrai...</span><PlayButton text="berrò, berrai" /></li>
+              <li className="flex items-center justify-between"><span><strong>Rimanere:</strong> rimarrò...</span><PlayButton text="rimarrò, rimarrai" /></li>
             </ul>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
             <h4 className="font-bold text-orange-700 border-b pb-2 mb-2">3. Radici speciali</h4>
-            <ul className="text-sm space-y-1 text-slate-700">
-              <li><strong>Essere:</strong> sarò, sarai...</li>
-              <li><strong>Fare:</strong> farò, farai... (mantiene la a)</li>
-              <li><strong>Dare:</strong> darò, darai... (mantiene la a)</li>
-              <li><strong>Stare:</strong> starò, starai... (mantiene la a)</li>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span><strong>Essere:</strong> sarò, sarai...</span><PlayButton text="sarò, sarai" /></li>
+              <li className="flex items-center justify-between"><span><strong>Fare:</strong> farò, farai...</span><PlayButton text="farò, farai" /></li>
+              <li className="flex items-center justify-between"><span><strong>Dare:</strong> darò, darai...</span><PlayButton text="darò, darai" /></li>
+              <li className="flex items-center justify-between"><span><strong>Stare:</strong> starò, starai...</span><PlayButton text="starò, starai" /></li>
             </ul>
           </div>
         </div>
@@ -2289,12 +2441,42 @@ function CondizionaleSection() {
               </tr>
             </thead>
             <tbody>
-              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parler-<strong>ei</strong></td><td className="p-3 border">creder-<strong>ei</strong></td><td className="p-3 border">dormir-<strong>ei</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parler-<strong>esti</strong></td><td className="p-3 border">creder-<strong>esti</strong></td><td className="p-3 border">dormir-<strong>esti</strong></td></tr>
-              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parler-<strong>ebbe</strong></td><td className="p-3 border">creder-<strong>ebbe</strong></td><td className="p-3 border">dormir-<strong>ebbe</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parler-<strong>emmo</strong></td><td className="p-3 border">creder-<strong>emmo</strong></td><td className="p-3 border">dormir-<strong>emmo</strong></td></tr>
-              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parler-<strong>este</strong></td><td className="p-3 border">creder-<strong>este</strong></td><td className="p-3 border">dormir-<strong>este</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parler-<strong>ebbero</strong></td><td className="p-3 border">creder-<strong>ebbero</strong></td><td className="p-3 border">dormir-<strong>ebbero</strong></td></tr>
+              <tr>
+                <td className="p-3 border font-semibold">io</td>
+                <VerbCell display={<>parler-<strong>ei</strong></>} speakText="parlerei" />
+                <VerbCell display={<>creder-<strong>ei</strong></>} speakText="crederei" />
+                <VerbCell display={<>dormir-<strong>ei</strong></>} speakText="dormirei" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">tu</td>
+                <VerbCell display={<>parler-<strong>esti</strong></>} speakText="parleresti" />
+                <VerbCell display={<>creder-<strong>esti</strong></>} speakText="crederesti" />
+                <VerbCell display={<>dormir-<strong>esti</strong></>} speakText="dormiresti" />
+              </tr>
+              <tr>
+                <td className="p-3 border font-semibold">lui/lei</td>
+                <VerbCell display={<>parler-<strong>ebbe</strong></>} speakText="parlerebbe" />
+                <VerbCell display={<>creder-<strong>ebbe</strong></>} speakText="crederebbe" />
+                <VerbCell display={<>dormir-<strong>ebbe</strong></>} speakText="dormirebbe" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">noi</td>
+                <VerbCell display={<>parler-<strong>emmo</strong></>} speakText="parleremmo" />
+                <VerbCell display={<>creder-<strong>emmo</strong></>} speakText="crederemmo" />
+                <VerbCell display={<>dormir-<strong>emmo</strong></>} speakText="dormiremmo" />
+              </tr>
+              <tr>
+                <td className="p-3 border font-semibold">voi</td>
+                <VerbCell display={<>parler-<strong>este</strong></>} speakText="parlereste" />
+                <VerbCell display={<>creder-<strong>este</strong></>} speakText="credereste" />
+                <VerbCell display={<>dormir-<strong>este</strong></>} speakText="dormireste" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">loro</td>
+                <VerbCell display={<>parler-<strong>ebbero</strong></>} speakText="parlerebbero" />
+                <VerbCell display={<>creder-<strong>ebbero</strong></>} speakText="crederebbero" />
+                <VerbCell display={<>dormir-<strong>ebbero</strong></>} speakText="dormirebbero" />
+              </tr>
             </tbody>
           </table>
         </div>
@@ -2360,14 +2542,20 @@ function CondizionalePassatoSection() {
           È un tempo composto facilissimo se conosci già gli altri tempi! Si forma con l'ausiliare (<strong>essere</strong> o <strong>avere</strong>) coniugato al <strong>Condizionale Presente</strong> + il <strong>Participio Passato</strong> del verbo principale.
         </p>
         <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center">
+          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-indigo-400 mb-1">Esempio con Avere</span>
-            <p className="text-xl font-bold text-indigo-900">Avrei mangiato</p>
+            <div className="flex items-center gap-2">
+              <p className="text-xl font-bold text-indigo-900">Avrei mangiato</p>
+              <PlayButton text="avrei mangiato" />
+            </div>
             <p className="text-sm text-indigo-600 mt-1">(Condizionale di avere + Participio)</p>
           </div>
-          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center">
+          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-emerald-400 mb-1">Esempio con Essere</span>
-            <p className="text-xl font-bold text-emerald-900">Sarei andato</p>
+            <div className="flex items-center gap-2">
+              <p className="text-xl font-bold text-emerald-900">Sarei andato</p>
+              <PlayButton text="sarei andato" />
+            </div>
             <p className="text-sm text-emerald-600 mt-1">(Condizionale di essere + Participio)</p>
           </div>
         </div>
@@ -2392,38 +2580,8 @@ function CondizionalePassatoSection() {
 }
 
 function CongiuntivoPresenteSection() {
-  const speakWord = (word) => {
-    if (!word) return;
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(word);
-      utterance.lang = 'it-IT';
-      utterance.rate = 0.85;
-
-      const voices = window.speechSynthesis.getVoices();
-      const itVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-') === 'it-it') || 
-                      voices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith('it'));
-      if (itVoice) {
-        utterance.voice = itVoice;
-      }
-
-      window.speechSynthesis.speak(utterance);
-    }
-  };
-
   const renderCell = (display, speakText) => (
-    <td className="p-3 border">
-      <div className="flex items-center justify-between gap-2 min-w-[120px]">
-        <span>{display}</span>
-        <button
-          onClick={() => speakWord(speakText)}
-          className="p-1 rounded-md text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-colors flex-shrink-0"
-          title="Ascolta la pronuncia"
-        >
-          <Volume2 size={15} />
-        </button>
-      </div>
-    </td>
+    <VerbCell display={display} speakText={speakText} />
   );
 
   const theory = (
@@ -2580,14 +2738,20 @@ function CongiuntivoPassatoSection() {
           È un tempo composto facilissimo: basta prendere l'ausiliare (<strong>essere</strong> o <strong>avere</strong>) coniugato al <strong>Congiuntivo Presente</strong> e aggiungere il <strong>Participio Passato</strong>.
         </p>
         <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center">
+          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-indigo-400 mb-1">Esempio con Avere</span>
-            <p className="text-xl font-bold text-indigo-900">Io abbia mangiato</p>
+            <div className="flex items-center gap-2">
+              <p className="text-xl font-bold text-indigo-900">Io abbia mangiato</p>
+              <PlayButton text="io abbia mangiato" />
+            </div>
             <p className="text-sm text-indigo-600 mt-1">(Congiuntivo di avere + Participio)</p>
           </div>
-          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center">
+          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-emerald-400 mb-1">Esempio con Essere</span>
-            <p className="text-xl font-bold text-emerald-900">Lui sia andato</p>
+            <div className="flex items-center gap-2">
+              <p className="text-xl font-bold text-emerald-900">Lui sia andato</p>
+              <PlayButton text="lui sia andato" />
+            </div>
             <p className="text-sm text-emerald-600 mt-1">(Congiuntivo di essere + Participio)</p>
           </div>
         </div>
@@ -2645,14 +2809,20 @@ function CongiuntivoTrapassatoSection() {
           Il Congiuntivo Trapassato è un tempo composto: si forma combinando l'ausiliare (<strong>essere</strong> o <strong>avere</strong>) al <strong>Congiuntivo Imperfetto</strong> con il <strong>Participio Passato</strong> del verbo principale.
         </p>
         <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center">
+          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-indigo-400 mb-1">Esempio con Avere</span>
-            <p className="text-xl font-bold text-indigo-900">Io avessi mangiato</p>
+            <div className="flex items-center gap-2">
+              <p className="text-xl font-bold text-indigo-900">Io avessi mangiato</p>
+              <PlayButton text="io avessi mangiato" />
+            </div>
             <p className="text-sm text-indigo-600 mt-1">(Congiuntivo Imperfetto di avere + Participio)</p>
           </div>
-          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center">
+          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-emerald-400 mb-1">Esempio con Essere</span>
-            <p className="text-xl font-bold text-emerald-900">Lui fosse andato</p>
+            <div className="flex items-center gap-2">
+              <p className="text-xl font-bold text-emerald-900">Lui fosse andato</p>
+              <PlayButton text="lui fosse andato" />
+            </div>
             <p className="text-sm text-emerald-600 mt-1">(Congiuntivo Imperfetto di essere + Participio)</p>
           </div>
         </div>
@@ -2684,13 +2854,19 @@ function PassatoProssimoSection() {
           Il <strong>Passato Prossimo</strong> esprime un'azione avvenuta nel passato che ha ancora legami con il presente. Si forma con l'ausiliare (<strong>Essere</strong> o <strong>Avere</strong>) al presente + il <strong>Participio Passato</strong> del verbo.
         </p>
         <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center">
+          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-indigo-400 mb-1">Esempio con Avere</span>
-            <p className="text-xl font-bold text-indigo-900">Ho mangiato</p>
+            <div className="flex items-center gap-2">
+              <p className="text-xl font-bold text-indigo-900">Ho mangiato</p>
+              <PlayButton text="ho mangiato" />
+            </div>
           </div>
-          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center">
+          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-emerald-400 mb-1">Esempio con Essere</span>
-            <p className="text-xl font-bold text-emerald-900">Sono andato</p>
+            <div className="flex items-center gap-2">
+              <p className="text-xl font-bold text-emerald-900">Sono andato</p>
+              <PlayButton text="sono andato" />
+            </div>
           </div>
         </div>
       </section>
@@ -2823,14 +2999,20 @@ function TrapassatoProssimoSection() {
           È un tempo composto, molto simile al Passato Prossimo, ma l'ausiliare (<strong>essere</strong> o <strong>avere</strong>) va coniugato all'<strong>Imperfetto</strong> anziché al presente.
         </p>
         <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center">
+          <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-indigo-400 mb-1">Esempio con Avere</span>
-            <p className="text-xl font-bold text-indigo-900">Avevo mangiato</p>
+            <div className="flex items-center gap-2">
+              <p className="text-xl font-bold text-indigo-900">Avevo mangiato</p>
+              <PlayButton text="avevo mangiato" />
+            </div>
             <p className="text-sm text-indigo-600 mt-1">(Imperfetto di avere + Participio)</p>
           </div>
-          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center">
+          <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-emerald-400 mb-1">Esempio con Essere</span>
-            <p className="text-xl font-bold text-emerald-900">Ero andato</p>
+            <div className="flex items-center gap-2">
+              <p className="text-xl font-bold text-emerald-900">Ero andato</p>
+              <PlayButton text="ero andato" />
+            </div>
             <p className="text-sm text-emerald-600 mt-1">(Imperfetto di essere + Participio)</p>
           </div>
         </div>
@@ -2882,12 +3064,42 @@ function PassatoRemotoSection() {
               </tr>
             </thead>
             <tbody>
-              <tr><td className="p-3 border font-semibold">io</td><td className="p-3 border">parl-<strong>ai</strong></td><td className="p-3 border">cred-<strong>ei</strong> (o -etti)</td><td className="p-3 border">dorm-<strong>ii</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">tu</td><td className="p-3 border">parl-<strong>asti</strong></td><td className="p-3 border">cred-<strong>esti</strong></td><td className="p-3 border">dorm-<strong>isti</strong></td></tr>
-              <tr><td className="p-3 border font-semibold">lui/lei</td><td className="p-3 border">parl-<strong>ò</strong></td><td className="p-3 border">cred-<strong>é</strong> (o -ette)</td><td className="p-3 border">dorm-<strong>ì</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">noi</td><td className="p-3 border">parl-<strong>ammo</strong></td><td className="p-3 border">cred-<strong>emmo</strong></td><td className="p-3 border">dorm-<strong>immo</strong></td></tr>
-              <tr><td className="p-3 border font-semibold">voi</td><td className="p-3 border">parl-<strong>aste</strong></td><td className="p-3 border">cred-<strong>este</strong></td><td className="p-3 border">dorm-<strong>iste</strong></td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">loro</td><td className="p-3 border">parl-<strong>arono</strong></td><td className="p-3 border">cred-<strong>erono</strong> (o -ettero)</td><td className="p-3 border">dorm-<strong>irono</strong></td></tr>
+              <tr>
+                <td className="p-3 border font-semibold">io</td>
+                <VerbCell display={<>parl-<strong>ai</strong></>} speakText="parlai" />
+                <VerbCell display={<>cred-<strong>ei</strong> <span className="text-xs text-slate-400">(o -etti)</span></>} speakText="credei" />
+                <VerbCell display={<>dorm-<strong>ii</strong></>} speakText="dormii" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">tu</td>
+                <VerbCell display={<>parl-<strong>asti</strong></>} speakText="parlasti" />
+                <VerbCell display={<>cred-<strong>esti</strong></>} speakText="credesti" />
+                <VerbCell display={<>dorm-<strong>isti</strong></>} speakText="dormisti" />
+              </tr>
+              <tr>
+                <td className="p-3 border font-semibold">lui/lei</td>
+                <VerbCell display={<>parl-<strong>ò</strong></>} speakText="parlò" />
+                <VerbCell display={<>cred-<strong>é</strong> <span className="text-xs text-slate-400">(o -ette)</span></>} speakText="credé" />
+                <VerbCell display={<>dorm-<strong>ì</strong></>} speakText="dormì" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">noi</td>
+                <VerbCell display={<>parl-<strong>ammo</strong></>} speakText="parlammo" />
+                <VerbCell display={<>cred-<strong>emmo</strong></>} speakText="credemmo" />
+                <VerbCell display={<>dorm-<strong>immo</strong></>} speakText="dormimmo" />
+              </tr>
+              <tr>
+                <td className="p-3 border font-semibold">voi</td>
+                <VerbCell display={<>parl-<strong>aste</strong></>} speakText="parlaste" />
+                <VerbCell display={<>cred-<strong>este</strong></>} speakText="credeste" />
+                <VerbCell display={<>dorm-<strong>iste</strong></>} speakText="dormisti" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">loro</td>
+                <VerbCell display={<>parl-<strong>arono</strong></>} speakText="parlarono" />
+                <VerbCell display={<>cred-<strong>erono</strong> <span className="text-xs text-slate-400">(o -ettero)</span></>} speakText="crederono" />
+                <VerbCell display={<>dorm-<strong>irono</strong></>} speakText="dormirono" />
+              </tr>
             </tbody>
           </table>
         </div>
@@ -2901,13 +3113,13 @@ function PassatoRemotoSection() {
         </p>
         <p className="font-semibold text-amber-800 mb-2">Esempio con PRENDERE (radice reg. "prend-", radice irreg. "pres-"):</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <ul className="space-y-1 bg-white p-4 rounded-lg shadow-sm border border-amber-100">
-            <li><span className="inline-block w-6 text-amber-600 font-bold">1</span> <strong>Io pres-i</strong> (Irregolare)</li>
-            <li><span className="inline-block w-6 text-slate-400">2</span> Tu prend-esti (Regolare)</li>
-            <li><span className="inline-block w-6 text-amber-600 font-bold">3</span> <strong>Lui pres-e</strong> (Irregolare)</li>
-            <li><span className="inline-block w-6 text-slate-400">4</span> Noi prend-emmo (Regolare)</li>
-            <li><span className="inline-block w-6 text-slate-400">5</span> Voi prend-este (Regolare)</li>
-            <li><span className="inline-block w-6 text-amber-600 font-bold">6</span> <strong>Loro pres-ero</strong> (Irregolare)</li>
+          <ul className="space-y-2 bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+            <li className="flex items-center justify-between"><span><span className="inline-block w-6 text-amber-600 font-bold">1</span> <strong>Io pres-i</strong> (Irregolare)</span><PlayButton text="presi" /></li>
+            <li className="flex items-center justify-between"><span><span className="inline-block w-6 text-slate-400">2</span> Tu prend-esti (Regolare)</span><PlayButton text="prendesti" /></li>
+            <li className="flex items-center justify-between"><span><span className="inline-block w-6 text-amber-600 font-bold">3</span> <strong>Lui pres-e</strong> (Irregolare)</span><PlayButton text="prese" /></li>
+            <li className="flex items-center justify-between"><span><span className="inline-block w-6 text-slate-400">4</span> Noi prend-emmo (Regolare)</span><PlayButton text="prendemmo" /></li>
+            <li className="flex items-center justify-between"><span><span className="inline-block w-6 text-slate-400">5</span> Voi prend-este (Regolare)</span><PlayButton text="prendeste" /></li>
+            <li className="flex items-center justify-between"><span><span className="inline-block w-6 text-amber-600 font-bold">6</span> <strong>Loro pres-ero</strong> (Irregolare)</span><PlayButton text="presero" /></li>
           </ul>
         </div>
       </section>
@@ -2962,20 +3174,32 @@ function ImperativoSection() {
             <tbody>
               <tr>
                 <td className="p-3 border font-semibold text-emerald-600">tu</td>
-                <td className="p-3 border text-emerald-700 font-bold">guard-a</td>
-                <td className="p-3 border">prend-i</td>
-                <td className="p-3 border">apr-i</td>
-                <td className="p-3 border">fin-isc-i</td>
+                <VerbCell display={<>guard-a</>} speakText="guarda" className="text-emerald-700 font-bold" />
+                <VerbCell display={<>prend-i</>} speakText="prendi" />
+                <VerbCell display={<>apr-i</>} speakText="apri" />
+                <VerbCell display={<>fin-isc-i</>} speakText="finisci" />
               </tr>
               <tr className="bg-slate-50">
                 <td className="p-3 border font-semibold text-purple-600">Lei (Cortesia)</td>
-                <td className="p-3 border text-purple-700 font-bold">guard-i</td>
-                <td className="p-3 border">prend-a</td>
-                <td className="p-3 border">apr-a</td>
-                <td className="p-3 border">fin-isc-a</td>
+                <VerbCell display={<>guard-i</>} speakText="guardi" className="text-purple-700 font-bold" />
+                <VerbCell display={<>prend-a</>} speakText="prenda" />
+                <VerbCell display={<>apr-a</>} speakText="apra" />
+                <VerbCell display={<>fin-isc-a</>} speakText="finisca" />
               </tr>
-              <tr><td className="p-3 border font-semibold">noi</td><td className="p-3 border">guard-iamo</td><td className="p-3 border">prend-iamo</td><td className="p-3 border">apr-iamo</td><td className="p-3 border">fin-iamo</td></tr>
-              <tr className="bg-slate-50"><td className="p-3 border font-semibold">voi</td><td className="p-3 border">guard-ate</td><td className="p-3 border">prend-ete</td><td className="p-3 border">apr-ite</td><td className="p-3 border">fin-ite</td></tr>
+              <tr>
+                <td className="p-3 border font-semibold">noi</td>
+                <VerbCell display={<>guard-iamo</>} speakText="guardiamo" />
+                <VerbCell display={<>prend-iamo</>} speakText="prendiamo" />
+                <VerbCell display={<>apr-iamo</>} speakText="apriamo" />
+                <VerbCell display={<>fin-iamo</>} speakText="finiamo" />
+              </tr>
+              <tr className="bg-slate-50">
+                <td className="p-3 border font-semibold">voi</td>
+                <VerbCell display={<>guard-ate</>} speakText="guardate" />
+                <VerbCell display={<>prend-ete</>} speakText="prendete" />
+                <VerbCell display={<>apr-ite</>} speakText="aprite" />
+                <VerbCell display={<>fin-ite</>} speakText="finite" />
+              </tr>
             </tbody>
           </table>
         </div>
@@ -3002,15 +3226,31 @@ function ImperativoSection() {
           <div className="bg-white p-4 rounded-lg shadow-sm border border-red-100">
             <h4 className="font-bold text-red-700 mb-2 border-b pb-1">Per il "TU"</h4>
             <p className="text-2xl font-black text-center text-red-600 my-4">NON + INFINITO</p>
-            <p className="text-center text-slate-700">"Non parlare!"</p>
-            <p className="text-center text-slate-700">"Non correre!"</p>
+            <div className="flex flex-col items-center gap-2">
+              <div className="flex items-center gap-2">
+                <span className="text-slate-700">"Non parlare!"</span>
+                <PlayButton text="Non parlare!" />
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-slate-700">"Non correre!"</span>
+                <PlayButton text="Non correre!" />
+              </div>
+            </div>
           </div>
 
           <div className="bg-white p-4 rounded-lg shadow-sm border border-red-100">
             <h4 className="font-bold text-slate-700 mb-2 border-b pb-1">Per le altre persone</h4>
             <p className="text-2xl font-black text-center text-slate-600 my-4">NON + IMPERATIVO</p>
-            <p className="text-center text-slate-700">"Non parli (Lei)!"</p>
-            <p className="text-center text-slate-700">"Non correte (voi)!"</p>
+            <div className="flex flex-col items-center gap-2">
+              <div className="flex items-center gap-2">
+                <span className="text-slate-700">"Non parli (Lei)!"</span>
+                <PlayButton text="Non parli!" />
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-slate-700">"Non correte (voi)!"</span>
+                <PlayButton text="Non correte!" />
+              </div>
+            </div>
           </div>
         </div>
       </section>

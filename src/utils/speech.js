@@ -11,6 +11,8 @@ export const speakItalian = (text) => {
     .replace(/\b(o\s+)?-ettero\b/g, '')
     .replace(/\b(o\s+)?-etto\b/g, '')
     .replace(/\s*\(.*?\)\s*/g, ' ') // remove parentheses content
+    .replace(/\.{3,}/g, ' ') // remove ellipsis
+    .replace(/_{3,}/g, ' ') // remove underscores
     .trim();
     
   if (typeof window !== 'undefined' && 'speechSynthesis' in window) {

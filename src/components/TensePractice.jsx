@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, CheckCircle2, XCircle, Mic, Square, Volume2 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { speakItalian } from '../utils/speech';
 
 export function TensePractice({ 
   id, 
@@ -68,23 +69,7 @@ export function TensePractice({
   };
 
   const speakText = (text) => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      // Clean up text in parentheses (e.g. "(andare)") and trim extra spaces
-      const cleanedText = text.replace(/\s*\(.*?\)\s*/g, ' ').trim();
-      const utterance = new SpeechSynthesisUtterance(cleanedText);
-      utterance.lang = 'it-IT';
-      utterance.rate = 0.95;
-
-      const voices = window.speechSynthesis.getVoices();
-      const itVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-') === 'it-it') || 
-                      voices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith('it'));
-      if (itVoice) {
-        utterance.voice = itVoice;
-      }
-
-      window.speechSynthesis.speak(utterance);
-    }
+    speakItalian(text);
   };
 
   const { userProgress, saveProgress, logError, resolveError } = useAuth() || {};

@@ -70,7 +70,9 @@ export function TensePractice({
   const speakText = (text) => {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
+      // Clean up text in parentheses (e.g. "(andare)") and trim extra spaces
+      const cleanedText = text.replace(/\s*\(.*?\)\s*/g, ' ').trim();
+      const utterance = new SpeechSynthesisUtterance(cleanedText);
       utterance.lang = 'it-IT';
       utterance.rate = 0.95;
 

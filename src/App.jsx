@@ -3228,6 +3228,18 @@ function PassatoRemotoSection() {
               <li className="flex items-center justify-between"><span>loro <strong>diedero</strong> <span className="text-[10px] text-slate-400">(dettero)</span></span><PlayButton text="diedero" /></li>
             </ul>
           </div>
+          {/* Card Stare */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Stare</h4>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>stetti</strong></span><PlayButton text="stetti" /></li>
+              <li className="flex items-center justify-between"><span>tu stesti</span><PlayButton text="stesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>stette</strong></span><PlayButton text="stette" /></li>
+              <li className="flex items-center justify-between"><span>noi stemmo</span><PlayButton text="stemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi steste</span><PlayButton text="steste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>stettero</strong></span><PlayButton text="stettero" /></li>
+            </ul>
+          </div>
         </div>
       </section>
     </div>

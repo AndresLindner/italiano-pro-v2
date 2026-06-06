@@ -3123,6 +3123,113 @@ function PassatoRemotoSection() {
           </ul>
         </div>
       </section>
+
+      <section className="bg-indigo-50 p-6 rounded-xl border border-indigo-200">
+        <h3 className="text-xl font-bold text-indigo-900 mb-3 flex items-center gap-2">
+          🌟 Coniugazione dei Verbi Irregolari più Importanti
+        </h3>
+        <p className="mb-4 text-indigo-950 text-sm">
+          Tutti i verbi elencati qui sotto (ad eccezione di <em>essere</em> che è completamente irregolare) seguono rigorosamente la <strong>regola del 1-3-6</strong>. Le persone 1, 3 e 6 (in grassetto) utilizzano la radice irregolare, mentre le persone 2, 4 e 5 usano la radice regolare del verbo.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {/* Card Essere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Essere</h4>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>fui</strong></span><PlayButton text="fui" /></li>
+              <li className="flex items-center justify-between"><span>tu fosti</span><PlayButton text="fosti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>fu</strong></span><PlayButton text="fu" /></li>
+              <li className="flex items-center justify-between"><span>noi fummo</span><PlayButton text="fummo" /></li>
+              <li className="flex items-center justify-between"><span>voi foste</span><PlayButton text="foste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>furono</strong></span><PlayButton text="furono" /></li>
+            </ul>
+          </div>
+          {/* Card Avere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Avere</h4>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>ebbi</strong></span><PlayButton text="ebbi" /></li>
+              <li className="flex items-center justify-between"><span>tu avesti</span><PlayButton text="avesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>ebbe</strong></span><PlayButton text="ebbe" /></li>
+              <li className="flex items-center justify-between"><span>noi avemmo</span><PlayButton text="avemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi aveste</span><PlayButton text="aveste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>ebbero</strong></span><PlayButton text="ebbero" /></li>
+            </ul>
+          </div>
+          {/* Card Fare */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Fare</h4>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>feci</strong></span><PlayButton text="feci" /></li>
+              <li className="flex items-center justify-between"><span>tu facesti</span><PlayButton text="facesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>fece</strong></span><PlayButton text="fece" /></li>
+              <li className="flex items-center justify-between"><span>noi facemmo</span><PlayButton text="facemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi faceste</span><PlayButton text="faceste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>fecero</strong></span><PlayButton text="fecero" /></li>
+            </ul>
+          </div>
+          {/* Card Dire */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Dire</h4>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>dissi</strong></span><PlayButton text="dissi" /></li>
+              <li className="flex items-center justify-between"><span>tu dicesti</span><PlayButton text="dicesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>disse</strong></span><PlayButton text="disse" /></li>
+              <li className="flex items-center justify-between"><span>noi dicemmo</span><PlayButton text="dicemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi diceste</span><PlayButton text="diceste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>dissero</strong></span><PlayButton text="dissero" /></li>
+            </ul>
+          </div>
+          {/* Card Venire */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Venire</h4>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>venni</strong></span><PlayButton text="venni" /></li>
+              <li className="flex items-center justify-between"><span>tu venisti</span><PlayButton text="venisti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>venne</strong></span><PlayButton text="venne" /></li>
+              <li className="flex items-center justify-between"><span>noi venimmo</span><PlayButton text="venimmo" /></li>
+              <li className="flex items-center justify-between"><span>voi veniste</span><PlayButton text="veniste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>vennero</strong></span><PlayButton text="vennero" /></li>
+            </ul>
+          </div>
+          {/* Card Vedere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Vedere</h4>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>vidi</strong></span><PlayButton text="vidi" /></li>
+              <li className="flex items-center justify-between"><span>tu vedesti</span><PlayButton text="vedesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>vide</strong></span><PlayButton text="vide" /></li>
+              <li className="flex items-center justify-between"><span>noi vedemmo</span><PlayButton text="vedemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi vedeste</span><PlayButton text="vedeste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>videro</strong></span><PlayButton text="videro" /></li>
+            </ul>
+          </div>
+          {/* Card Volere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Volere</h4>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>volli</strong></span><PlayButton text="volli" /></li>
+              <li className="flex items-center justify-between"><span>tu volesti</span><PlayButton text="volesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>volle</strong></span><PlayButton text="volle" /></li>
+              <li className="flex items-center justify-between"><span>noi volemmo</span><PlayButton text="volemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi voleste</span><PlayButton text="voleste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>vollero</strong></span><PlayButton text="vollero" /></li>
+            </ul>
+          </div>
+          {/* Card Dare */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Dare</h4>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>diedi</strong> <span className="text-[10px] text-slate-400">(detti)</span></span><PlayButton text="diedi" /></li>
+              <li className="flex items-center justify-between"><span>tu desti</span><PlayButton text="desti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>diede</strong> <span className="text-[10px] text-slate-400">(dette)</span></span><PlayButton text="diede" /></li>
+              <li className="flex items-center justify-between"><span>noi demmo</span><PlayButton text="demmo" /></li>
+              <li className="flex items-center justify-between"><span>voi deste</span><PlayButton text="deste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>diedero</strong> <span className="text-[10px] text-slate-400">(dettero)</span></span><PlayButton text="diedero" /></li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </div>
   );
 

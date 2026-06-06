@@ -3240,6 +3240,42 @@ function PassatoRemotoSection() {
               <li className="flex items-center justify-between"><span>loro <strong>stettero</strong></span><PlayButton text="stettero" /></li>
             </ul>
           </div>
+          {/* Card Bere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Bere</h4>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>bevvi</strong></span><PlayButton text="bevvi" /></li>
+              <li className="flex items-center justify-between"><span>tu bevesti</span><PlayButton text="bevesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>bevve</strong></span><PlayButton text="bevve" /></li>
+              <li className="flex items-center justify-between"><span>noi bevemmo</span><PlayButton text="bevemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi beveste</span><PlayButton text="beveste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>bevvero</strong></span><PlayButton text="bevvero" /></li>
+            </ul>
+          </div>
+          {/* Card Mettere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Mettere</h4>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>misi</strong></span><PlayButton text="misi" /></li>
+              <li className="flex items-center justify-between"><span>tu mettesti</span><PlayButton text="mettesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>mise</strong></span><PlayButton text="mise" /></li>
+              <li className="flex items-center justify-between"><span>noi mettemmo</span><PlayButton text="mettemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi metteste</span><PlayButton text="metteste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>misero</strong></span><PlayButton text="misero" /></li>
+            </ul>
+          </div>
+          {/* Card Scrivere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Scrivere</h4>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>scrissi</strong></span><PlayButton text="scrissi" /></li>
+              <li className="flex items-center justify-between"><span>tu scrivesti</span><PlayButton text="scrivesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>scrisse</strong></span><PlayButton text="scrisse" /></li>
+              <li className="flex items-center justify-between"><span>noi scrivemmo</span><PlayButton text="scrivemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi scriveste</span><PlayButton text="scriveste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>scrissero</strong></span><PlayButton text="scrissero" /></li>
+            </ul>
+          </div>
         </div>
       </section>
     </div>

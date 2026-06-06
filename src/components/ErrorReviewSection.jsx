@@ -61,7 +61,9 @@ export function ErrorReviewSection() {
   const speakText = (text) => {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
+      // Clean up text in parentheses (e.g. "(andare)") and trim extra spaces
+      const cleanedText = text.replace(/\s*\(.*?\)\s*/g, ' ').trim();
+      const utterance = new SpeechSynthesisUtterance(cleanedText);
       utterance.lang = 'it-IT';
       utterance.rate = 0.95;
 
@@ -231,6 +233,11 @@ export function ErrorReviewSection() {
                       type="text"
                       value={userAnswer}
                       onChange={(e) => handleInputChange(ex.id, e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && userAnswer.trim()) {
+                          checkSingleAnswer(ex);
+                        }
+                      }}
                       disabled={isChecked && isCorrect}
                       className={`w-32 md:w-48 px-3 py-1 pr-8 text-center font-semibold rounded-md border-2 outline-none transition-all
                         ${isChecked 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User, Sliders, Menu } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User, Sliders, Menu, Home } from 'lucide-react';
 import { Modulo1Section } from './components/Modulo1Section';
 import { VerbConjugatorSection } from './components/VerbConjugatorSection';
 import { Modulo2Section } from './components/Modulo2Section';
@@ -21,6 +21,7 @@ import { Modulo12Section } from './components/Modulo12Section';
 import { StrategieB2Section } from './components/StrategieB2Section';
 import { SyllabusModuliB2Section } from './components/SyllabusModuliB2Section';
 import { WordFormationSection } from './components/WordFormationSection';
+import { HomeSection } from './components/HomeSection';
 import { useAuth } from './contexts/AuthContext';
 import { TensePractice } from './components/TensePractice';
 import { 
@@ -1661,7 +1662,7 @@ const pronouns = ["io", "tu", "lui/lei", "noi", "voi", "loro"];
 const imperativePronouns = ["(io)", "tu", "Lei (formale)", "noi", "voi"];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('modulo1');
+  const [activeTab, setActiveTab] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { userErrors } = useAuth() || { userErrors: {} };
   const errorCount = Object.keys(userErrors || {}).length;
@@ -1746,6 +1747,7 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full max-w-6xl mx-auto">
+        {activeTab === 'home' && <HomeSection selectTab={selectTab} />}
         {activeTab === 'errori' && <ErrorReviewSection />}
         {activeTab === 'modulo1' && <Modulo1Section />}
         {activeTab === 'modulo2' && <Modulo2Section />}
@@ -1796,6 +1798,9 @@ export default function App() {
 function NavigationContent({ activeTab, selectTab, errorCount }) {
   return (
     <div className="flex flex-col select-none">
+      <div className="pb-3 border-b border-white/5 mb-3">
+        <NavItem icon={<Home size={20} />} label="Pagina Iniziale" isActive={activeTab === 'home'} onClick={() => selectTab('home')} />
+      </div>
       <div className="pb-2">
         <p className="px-6 text-[10px] font-black uppercase tracking-wider text-indigo-400 mb-2">Moduli B2</p>
         <NavItem icon={<LayoutDashboard size={20} />} label="Syllabus Moduli B2" isActive={activeTab === 'syllabus'} onClick={() => selectTab('syllabus')} />

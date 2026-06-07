@@ -3,14 +3,16 @@ import { Calendar, CheckCircle2, ChevronRight, Clock, Award, BookOpen, Sparkles,
 import { useAuth } from '../contexts/AuthContext';
 
 export function HomeSection({ selectTab }) {
-  const { userProgress, saveProgress } = useAuth() || { userProgress: {}, saveProgress: () => {} };
+  const { currentUser, userProgress, saveProgress } = useAuth() || {};
   const [checkedTasks, setCheckedTasks] = useState({});
 
   useEffect(() => {
-    if (userProgress && userProgress['studyProgram']) {
+    if (currentUser && userProgress && userProgress['studyProgram']) {
       setCheckedTasks(userProgress['studyProgram'].checkedTasks || {});
+    } else if (!currentUser) {
+      setCheckedTasks({});
     }
-  }, [userProgress]);
+  }, [userProgress, currentUser]);
 
   const studyProgram = [
     {
@@ -116,7 +118,9 @@ export function HomeSection({ selectTab }) {
   const handleToggleTask = (taskId) => {
     const updated = { ...checkedTasks, [taskId]: !checkedTasks[taskId] };
     setCheckedTasks(updated);
-    saveProgress('studyProgram', { checkedTasks: updated });
+    if (currentUser && saveProgress) {
+      saveProgress('studyProgram', { checkedTasks: updated });
+    }
   };
 
   const totalTasks = studyProgram.reduce((acc, curr) => acc + curr.tasks.length, 0);
@@ -132,6 +136,11 @@ export function HomeSection({ selectTab }) {
 
   const daysRemaining = getCountdownDays();
 
+  const welcomeTitle = currentUser ? "Ciao, Andres! 🇮🇹" : "Benvenuto nel Programma di Studio B2! 🇮🇹";
+  const welcomeSubtitle = currentUser 
+    ? `Mancano solo ${daysRemaining} giorni al tuo esame B2 di italiano il 16 giugno. Ecco il tuo piano di studio personalizzato giorno per giorno, progettato per massimizzare la tua preparazione.`
+    : `Mancano ${daysRemaining} giorni all'esame del 16 giugno. Questo piano di studio ti guiderà passo dopo passo attraverso tutti i moduli essenziali per superare la prova con successo.`;
+
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 max-w-5xl mx-auto">
       {/* Welcome Header */}
@@ -139,10 +148,10 @@ export function HomeSection({ selectTab }) {
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
         <div className="space-y-3 text-center md:text-left z-10">
           <h2 className="text-3xl md:text-4xl font-black tracking-tight flex items-center justify-center md:justify-start gap-2">
-            <Home className="text-indigo-400" size={32} /> Ciao, Andres! 🇮🇹
+            <Home className="text-indigo-400" size={32} /> {welcomeTitle}
           </h2>
           <p className="text-indigo-200 text-sm md:text-base max-w-xl leading-relaxed">
-            Mancano solo <strong>{daysRemaining} giorni</strong> al tuo esame B2 di italiano il 16 giugno. Ecco il tuo piano di studio personalizzato giorno per giorno, progettato per massimizzare la tua preparazione.
+            {welcomeSubtitle}
           </p>
         </div>
 
@@ -153,6 +162,16 @@ export function HomeSection({ selectTab }) {
           <span className="text-[10px] font-bold text-indigo-200 block mt-1">Giorni Rimasti</span>
         </div>
       </div>
+
+      {/* Guest Notice */}
+      {!currentUser && (
+        <div className="bg-amber-50 border border-amber-200 p-4 rounded-2xl flex items-center gap-3 shadow-xs animate-in fade-in duration-300">
+          <AlertCircle className="text-amber-600 flex-shrink-0" size={20} />
+          <p className="text-xs md:text-sm text-amber-800 font-medium">
+            Stai visualizzando il programma di studio generico. <strong>Effettua l'accesso</strong> tramite la sidebar laterale per salvare permanentemente i progressi del tuo studio.
+          </p>
+        </div>
+      )}
 
       {/* Program Summary & Dynamic Progress */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
@@ -255,12 +274,12 @@ export function HomeSection({ selectTab }) {
 
           <div className="bg-amber-50 p-6 rounded-3xl border border-amber-200 space-y-3">
             <h4 className="font-bold text-amber-950 text-sm flex items-center gap-2">
-              <Sparkles className="text-amber-600" size={18} /> Consigli per Andres
+              <Sparkles className="text-amber-600" size={18} /> Consigli per lo Studio
             </h4>
             <ul className="text-xs text-amber-900 space-y-2 list-disc pl-4 leading-relaxed font-medium">
-              <li>I primi due giorni (Giorno 1 e Giorno 2) presentano un carico maggiore per coprire le basi fondamentali della grammatica B2 (4 obiettivi ciascuno).</li>
+              <li>I primi due giorni (Giorno 1 e Giorno 2) presentano un carico maggiore per coprire le basi fondamentali della grammatica B2.</li>
               <li>I restanti 6 giorni dividono il lavoro in modo equilibrato per darti tempo di esercitarti senza affaticarti.</li>
-              <li>Tieni d'occhio i giorni rimasti sul pannello superiore. Forza, Andres! Puoi farcela!</li>
+              <li>Tieni d'occhio i giorni rimasti sul pannello superiore. In bocca al lupo!</li>
             </ul>
           </div>
         </div>

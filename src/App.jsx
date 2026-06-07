@@ -19,6 +19,7 @@ import { ErrorReviewSection } from './components/ErrorReviewSection';
 import { CongiuntivoImperfettoSection } from './components/CongiuntivoImperfettoSection';
 import { Modulo12Section } from './components/Modulo12Section';
 import { StrategieB2Section } from './components/StrategieB2Section';
+import { SyllabusModuliB2Section } from './components/SyllabusModuliB2Section';
 import { useAuth } from './contexts/AuthContext';
 import { TensePractice } from './components/TensePractice';
 import { 
@@ -1758,6 +1759,7 @@ export default function App() {
         {activeTab === 'modulo11' && <Modulo11Section />}
         {activeTab === 'modulo12' && <Modulo12Section />}
         {activeTab === 'strategie' && <StrategieB2Section />}
+        {activeTab === 'syllabus' && <SyllabusModuliB2Section />}
         {activeTab === 'futuroAnteriore' && <FuturoAnterioreSection />}
         {activeTab === 'profilo' && <ProfiloSection />}
         {activeTab === 'simulazione' && <SimulazioneEsame />}
@@ -1792,21 +1794,25 @@ export default function App() {
 function NavigationContent({ activeTab, selectTab, errorCount }) {
   return (
     <div className="flex flex-col select-none">
-      <NavItem icon={<BookOpen size={20} />} label="Modulo 1" isActive={activeTab === 'modulo1'} onClick={() => selectTab('modulo1')} />
-      <NavItem icon={<BookOpen size={20} />} label="Modulo 2" isActive={activeTab === 'modulo2'} onClick={() => selectTab('modulo2')} />
-      <NavItem icon={<BookOpen size={20} />} label="Modulo 3" isActive={activeTab === 'modulo3'} onClick={() => selectTab('modulo3')} />
-      <NavItem icon={<BookOpen size={20} />} label="Modulo 4" isActive={activeTab === 'modulo4'} onClick={() => selectTab('modulo4')} />
-      <NavItem icon={<BookOpen size={20} />} label="Modulo 5" isActive={activeTab === 'modulo5'} onClick={() => selectTab('modulo5')} />
-      <NavItem icon={<BookOpen size={20} />} label="Modulo 6" isActive={activeTab === 'modulo6'} onClick={() => selectTab('modulo6')} />
-      <NavItem icon={<BookOpen size={20} />} label="Modulo 7" isActive={activeTab === 'modulo7'} onClick={() => selectTab('modulo7')} />
-      <NavItem icon={<BookOpen size={20} />} label="Modulo 8" isActive={activeTab === 'modulo8'} onClick={() => selectTab('modulo8')} />
-      <NavItem icon={<Headphones size={20} />} label="Modulo 9" isActive={activeTab === 'modulo9'} onClick={() => selectTab('modulo9')} />
-      <NavItem icon={<PenTool size={20} />} label="Modulo 10" isActive={activeTab === 'modulo10'} onClick={() => selectTab('modulo10')} />
-      <NavItem icon={<Layers size={20} />} label="Modulo 11" isActive={activeTab === 'modulo11'} onClick={() => selectTab('modulo11')} />
-      <NavItem icon={<Sparkles size={20} />} label="Modulo 12 (Extra)" isActive={activeTab === 'modulo12'} onClick={() => selectTab('modulo12')} />
+      <div className="pb-2">
+        <p className="px-6 text-[10px] font-black uppercase tracking-wider text-indigo-400 mb-2">Moduli B2</p>
+        <NavItem icon={<LayoutDashboard size={20} />} label="Syllabus Moduli B2" isActive={activeTab === 'syllabus'} onClick={() => selectTab('syllabus')} />
+        <NavItem icon={<BookOpen size={20} />} label="Modulo 1" isActive={activeTab === 'modulo1'} onClick={() => selectTab('modulo1')} />
+        <NavItem icon={<BookOpen size={20} />} label="Modulo 2" isActive={activeTab === 'modulo2'} onClick={() => selectTab('modulo2')} />
+        <NavItem icon={<BookOpen size={20} />} label="Modulo 3" isActive={activeTab === 'modulo3'} onClick={() => selectTab('modulo3')} />
+        <NavItem icon={<BookOpen size={20} />} label="Modulo 4" isActive={activeTab === 'modulo4'} onClick={() => selectTab('modulo4')} />
+        <NavItem icon={<BookOpen size={20} />} label="Modulo 5" isActive={activeTab === 'modulo5'} onClick={() => selectTab('modulo5')} />
+        <NavItem icon={<BookOpen size={20} />} label="Modulo 6" isActive={activeTab === 'modulo6'} onClick={() => selectTab('modulo6')} />
+        <NavItem icon={<BookOpen size={20} />} label="Modulo 7" isActive={activeTab === 'modulo7'} onClick={() => selectTab('modulo7')} />
+        <NavItem icon={<BookOpen size={20} />} label="Modulo 8" isActive={activeTab === 'modulo8'} onClick={() => selectTab('modulo8')} />
+        <NavItem icon={<Headphones size={20} />} label="Modulo 9" isActive={activeTab === 'modulo9'} onClick={() => selectTab('modulo9')} />
+        <NavItem icon={<PenTool size={20} />} label="Modulo 10" isActive={activeTab === 'modulo10'} onClick={() => selectTab('modulo10')} />
+        <NavItem icon={<Layers size={20} />} label="Modulo 11" isActive={activeTab === 'modulo11'} onClick={() => selectTab('modulo11')} />
+        <NavItem icon={<Sparkles size={20} />} label="Modulo 12 (Extra)" isActive={activeTab === 'modulo12'} onClick={() => selectTab('modulo12')} />
+      </div>
       
       <div className="pt-4 pb-2 border-t border-white/5">
-        <p className="px-6 text-[10px] font-black uppercase tracking-wider text-indigo-400 mb-2">Grammatica B2</p>
+        <p className="px-6 text-[10px] font-black uppercase tracking-wider text-indigo-400 mb-2">Verbi</p>
         <NavItem icon={<LayoutDashboard size={20} />} label="Panoramica B2" isActive={activeTab === 'panoramica'} onClick={() => selectTab('panoramica')} />
         <NavItem icon={<Sun size={20} />} label="Il Presente" isActive={activeTab === 'presente'} onClick={() => selectTab('presente')} />
         <NavItem icon={<History size={20} />} label="L'Imperfetto" isActive={activeTab === 'imperfetto'} onClick={() => selectTab('imperfetto')} />

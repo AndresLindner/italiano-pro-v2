@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookA, Briefcase, Globe, HeartPulse, ChevronRight, Volume2, Maximize2, X, RefreshCw, Layers } from 'lucide-react';
+import { BookA, Briefcase, Globe, HeartPulse, ChevronRight, Volume2, Maximize2, X, RefreshCw, Layers, GraduationCap, Utensils, Newspaper, Users, Palette } from 'lucide-react';
 import { lessicoTematico } from '../data/lessico_data';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -7,7 +7,12 @@ const categoryIcons = {
   "ambiente": <Globe className="text-emerald-500" size={24} />,
   "lavoro": <Briefcase className="text-blue-500" size={24} />,
   "societa": <BookA className="text-purple-500" size={24} />,
-  "salute": <HeartPulse className="text-rose-500" size={24} />
+  "salute": <HeartPulse className="text-rose-500" size={24} />,
+  "scuola": <GraduationCap className="text-amber-500" size={24} />,
+  "cucina": <Utensils className="text-orange-500" size={24} />,
+  "informazione": <Newspaper className="text-teal-500" size={24} />,
+  "personalita": <Users className="text-pink-500" size={24} />,
+  "arte": <Palette className="text-violet-500" size={24} />
 };
 
 export function LessicoTematicoSection() {
@@ -189,7 +194,7 @@ export function LessicoTematicoSection() {
       </header>
 
       {/* Category Selector */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-8">
         {lessicoTematico.map(category => (
           <button
             key={category.id}

@@ -17,13 +17,15 @@ import { SimulazioneEsame } from './components/SimulazioneEsame';
 import { LessicoTematicoSection } from './components/LessicoTematicoSection';
 import { ErrorReviewSection } from './components/ErrorReviewSection';
 import { CongiuntivoImperfettoSection } from './components/CongiuntivoImperfettoSection';
+import { Modulo12Section } from './components/Modulo12Section';
+import { StrategieB2Section } from './components/StrategieB2Section';
 import { useAuth } from './contexts/AuthContext';
 import { TensePractice } from './components/TensePractice';
 import { 
   eserciziPresente, eserciziImperfetto, eserciziFuturo, eserciziCondizionale, 
   eserciziCondizionalePassato, eserciziCongiuntivoPresente, eserciziCongiuntivoPassato, 
   eserciziCongiuntivoTrapassato, eserciziPassatoProssimo, eserciziTrapassatoProssimo, 
-  eserciziPassatoRemoto, eserciziImperativo 
+  eserciziPassatoRemoto, eserciziImperativo, eserciziFuturoAnteriore
 } from './data/esercizi_tempi';
 import { speakItalian } from './utils/speech';
 
@@ -1754,6 +1756,9 @@ export default function App() {
         {activeTab === 'modulo9' && <Modulo9Section />}
         {activeTab === 'modulo10' && <Modulo10Section />}
         {activeTab === 'modulo11' && <Modulo11Section />}
+        {activeTab === 'modulo12' && <Modulo12Section />}
+        {activeTab === 'strategie' && <StrategieB2Section />}
+        {activeTab === 'futuroAnteriore' && <FuturoAnterioreSection />}
         {activeTab === 'profilo' && <ProfiloSection />}
         {activeTab === 'simulazione' && <SimulazioneEsame />}
         {activeTab === 'panoramica' && <PanoramicaSection />}
@@ -1798,6 +1803,7 @@ function NavigationContent({ activeTab, selectTab, errorCount }) {
       <NavItem icon={<Headphones size={20} />} label="Modulo 9" isActive={activeTab === 'modulo9'} onClick={() => selectTab('modulo9')} />
       <NavItem icon={<PenTool size={20} />} label="Modulo 10" isActive={activeTab === 'modulo10'} onClick={() => selectTab('modulo10')} />
       <NavItem icon={<Layers size={20} />} label="Modulo 11" isActive={activeTab === 'modulo11'} onClick={() => selectTab('modulo11')} />
+      <NavItem icon={<Sparkles size={20} />} label="Modulo 12 (Extra)" isActive={activeTab === 'modulo12'} onClick={() => selectTab('modulo12')} />
       
       <div className="pt-4 pb-2 border-t border-white/5">
         <p className="px-6 text-[10px] font-black uppercase tracking-wider text-indigo-400 mb-2">Grammatica B2</p>
@@ -1805,6 +1811,7 @@ function NavigationContent({ activeTab, selectTab, errorCount }) {
         <NavItem icon={<Sun size={20} />} label="Il Presente" isActive={activeTab === 'presente'} onClick={() => selectTab('presente')} />
         <NavItem icon={<History size={20} />} label="L'Imperfetto" isActive={activeTab === 'imperfetto'} onClick={() => selectTab('imperfetto')} />
         <NavItem icon={<Rocket size={20} />} label="Futuro Semplice" isActive={activeTab === 'futuro'} onClick={() => selectTab('futuro')} />
+        <NavItem icon={<Sparkles size={20} />} label="Futuro Anteriore" isActive={activeTab === 'futuroAnteriore'} onClick={() => selectTab('futuroAnteriore')} />
         <NavItem icon={<Lightbulb size={20} />} label="Condizionale Pres." isActive={activeTab === 'condizionale'} onClick={() => selectTab('condizionale')} />
         <NavItem icon={<Sparkles size={20} />} label="Condizionale Pass." isActive={activeTab === 'condizionalePassato'} onClick={() => selectTab('condizionalePassato')} />
         <NavItem icon={<Brain size={20} />} label="Congiuntivo Pres." isActive={activeTab === 'congiuntivoPresente'} onClick={() => selectTab('congiuntivoPresente')} />
@@ -1820,6 +1827,7 @@ function NavigationContent({ activeTab, selectTab, errorCount }) {
       <div className="pt-4 pb-2 border-t border-white/5">
         <p className="px-6 text-[10px] font-black uppercase tracking-wider text-indigo-400 mb-2">Risorse Extra</p>
         <NavItem icon={<BookA size={20} />} label="Lessico Tematico" isActive={activeTab === 'lessico'} onClick={() => selectTab('lessico')} />
+        <NavItem icon={<Sparkles size={20} />} label="Strategie B2" isActive={activeTab === 'strategie'} onClick={() => selectTab('strategie')} />
         <NavItem icon={<List size={20} />} label="I 100 Verbi" isActive={activeTab === 'topVerbs'} onClick={() => selectTab('topVerbs')} />
         <NavItem icon={<Sliders size={20} />} label="Coniugatore Verbi" isActive={activeTab === 'verbi'} onClick={() => selectTab('verbi')} />
         <NavItem 
@@ -2391,6 +2399,75 @@ function FuturoSempliceSection() {
       icon={BookOpen}
       exercises={eserciziFuturo}
       errorPrefix="Il Futuro Semplice"
+      theoryComponent={theory}
+    />
+  );
+}
+
+function FuturoAnterioreSection() {
+  const theory = (
+    <div className="space-y-8">
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <Info size={20} /> Quando si usa?
+        </h3>
+        <p className="mb-4 text-slate-700">
+          Il <strong>Futuro Anteriore</strong> si forma con il futuro semplice degli ausiliari <em>essere</em> o <em>avere</em> + il <em>participio passato</em> del verbo. Ha due funzioni principali:
+        </p>
+        <ul className="list-disc pl-6 space-y-4 text-slate-700">
+          <li>
+            <strong>Uso Temporale (Azione futura anteriore):</strong><br />
+            Indica un'azione futura che avverrà prima di un'altra azione futura. Spesso è introdotto da congiunzioni temporali come <em>appena, dopo che, quando</em>.<br />
+            <span className="italic text-slate-500">Es: Appena <strong>avrò finito</strong> di pranzare, farò una passeggiata. (Prima pranzo, poi cammino).</span>
+          </li>
+          <li>
+            <strong>Uso Epistemico / Modale (Ipotesi o dubbio sul passato):</strong><br />
+            Serve per esprimere un'ipotesi, una supposizione o un dubbio riferito a un evento avvenuto nel passato.<br />
+            <span className="italic text-slate-500">Es: Ieri non è venuto a scuola. <strong>Avrà avuto</strong> un contrattempo. (Probabilmente ha avuto un contrattempo).</span><br />
+            <span className="italic text-slate-500">Es: Dove sono le mie chiavi? Le <strong>avrò lasciate</strong> in ufficio. (Probabilmente le ho lasciate).</span>
+          </li>
+        </ul>
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-4">Verbi Ausiliari al Futuro Semplice + Participio</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-slate-50 p-5 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 mb-2">Ausiliare AVERE (es. Finire)</h4>
+            <ul className="text-sm space-y-1.5 font-mono">
+              <li>io <strong>avrò</strong> finito</li>
+              <li>tu <strong>avrai</strong> finito</li>
+              <li>lui/lei <strong>avrà</strong> finito</li>
+              <li>noi <strong>avremo</strong> finito</li>
+              <li>voi <strong>avrete</strong> finito</li>
+              <li>loro <strong>avranno</strong> finito</li>
+            </ul>
+          </div>
+          <div className="bg-slate-50 p-5 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 mb-2">Ausiliare ESSERE (es. Partire)</h4>
+            <p className="text-xs text-amber-600 mb-2 font-sans font-bold">⚠️ Il participio concorda in genere e numero col soggetto:</p>
+            <ul className="text-sm space-y-1.5 font-mono">
+              <li>io <strong>sarò</strong> partito/a</li>
+              <li>tu <strong>sarai</strong> partito/a</li>
+              <li>lui/lei <strong>sarà</strong> partito/a</li>
+              <li>noi <strong>saremo</strong> partiti/e</li>
+              <li>voi <strong>sarete</strong> partiti/e</li>
+              <li>loro <strong>saranno</strong> partiti/e</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+
+  return (
+    <TensePractice
+      id="futuroAnteriore"
+      title="Il Futuro Anteriore"
+      subtitle="Esprimere azioni future passate o formulare ipotesi su eventi passati."
+      icon={Sparkles}
+      exercises={eserciziFuturoAnteriore}
+      errorPrefix="Il Futuro Anteriore"
       theoryComponent={theory}
     />
   );

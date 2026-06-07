@@ -425,7 +425,7 @@ export function SyllabusModuliB2Section() {
           <BookMarked className="text-indigo-600" size={36} /> Syllabus Moduli B2
         </h2>
         <p className="text-slate-600 text-lg">
-          La mappa completa delle competenze del manuale <em>Nuovo Espresso 4 (B2)</em>. Esplora la grammatica, il lessico e le funzioni comunicative di ciascun modulo.
+          La mappa completa delle competenze del livello B2. Esplora la grammatica, il lessico e le funzioni comunicative di ciascun modulo.
         </p>
       </header>
 

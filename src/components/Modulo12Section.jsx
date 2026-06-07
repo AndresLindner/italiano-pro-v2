@@ -390,7 +390,7 @@ export function Modulo12Section() {
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
       <header className="mb-8">
         <h2 className="text-4xl font-black text-indigo-950 mb-2">Modulo 12: Grammatica Integrativa</h2>
-        <p className="text-slate-600 text-lg">Argomenti grammaticali avanzati di livello B2 basati su Nuovo Espresso 4.</p>
+        <p className="text-slate-600 text-lg">Argomenti grammaticali avanzati di livello B2.</p>
       </header>
 
       <div className="flex bg-slate-200 p-1 rounded-xl mb-8 w-full max-w-md mx-auto md:mx-0">

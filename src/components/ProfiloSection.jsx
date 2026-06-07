@@ -25,20 +25,56 @@ export function ProfiloSection() {
 
   // Rough estimation of total exercises per module
   const stats = [
-    { id: 'modulo1', name: 'M1: Il Congiuntivo', icon: <Target size={20} className="text-purple-500" />, stats: calculateCompletion('modulo1', 45) }, // 3 sections * 15
-    { id: 'modulo2', name: 'M2: Pronomi Relativi', icon: <Target size={20} className="text-blue-500" />, stats: calculateCompletion('modulo2', 20) }, // 2 sections * 10
-    { id: 'modulo3', name: 'M3: Passivo e Impersonale', icon: <Target size={20} className="text-emerald-500" />, stats: calculateCompletion('modulo3', 20) },
-    { id: 'modulo4', name: 'M4: La Pragmatica', icon: <Target size={20} className="text-amber-500" />, stats: calculateCompletion('modulo4', 20) },
-    { id: 'modulo6', name: 'M6: Preposizioni', icon: <Target size={20} className="text-rose-500" />, stats: calculateCompletion('modulo6', 40) }, // 30 + 10
-    { id: 'modulo7', name: 'M7: Connettivi', icon: <Target size={20} className="text-indigo-500" />, stats: calculateCompletion('modulo7', 15) },
-    { id: 'modulo8', name: 'M8: Comprensione Testo', icon: <BookOpenIcon color="text-sky-500" />, stats: calculateCompletion('modulo8', 15) },
-    { id: 'modulo9', name: 'M9: Ascolto', icon: <HeadphonesIcon color="text-fuchsia-500" />, stats: calculateCompletion('modulo9', 10) },
-    { id: 'modulo11', name: 'M11: Sintassi Avanzata', icon: <Target size={20} className="text-teal-500" />, stats: calculateCompletion('modulo11', 30) },
+    { id: 'modulo1', name: 'Modulo 1: Il Congiuntivo', icon: <Target size={20} className="text-purple-500" />, stats: calculateCompletion('modulo1', 150) },
+    { id: 'modulo2', name: 'Modulo 2: Pronomi Relativi', icon: <Target size={20} className="text-blue-500" />, stats: calculateCompletion('modulo2', 150) },
+    { id: 'modulo3', name: 'Modulo 3: Passivo e Impersonale', icon: <Target size={20} className="text-emerald-500" />, stats: calculateCompletion('modulo3', 150) },
+    { id: 'modulo4', name: 'Modulo 4: La Pragmatica', icon: <Target size={20} className="text-amber-500" />, stats: calculateCompletion('modulo4', 150) },
+    { id: 'modulo5', name: 'Modulo 5: Pronomi Combinati', icon: <Target size={20} className="text-orange-500" />, stats: calculateCompletion('modulo5', 150) },
+    { id: 'modulo6', name: 'Modulo 6: Le Preposizioni', icon: <Target size={20} className="text-rose-500" />, stats: calculateCompletion('modulo6', 95) },
+    { id: 'modulo7', name: 'Modulo 7: I Connettivi', icon: <Target size={20} className="text-indigo-500" />, stats: calculateCompletion('modulo7', 45) },
+    { id: 'modulo8', name: 'Modulo 8: Comprensione Testo', icon: <BookOpenIcon color="text-sky-500" />, stats: calculateCompletion('modulo8', 18) },
+    { id: 'modulo9', name: 'Modulo 9: Comprensione Ascolto', icon: <HeadphonesIcon color="text-fuchsia-500" />, stats: calculateCompletion('modulo9', 12) },
+    { id: 'modulo10', name: 'Modulo 10: Produzione Scritta', icon: <Target size={20} className="text-pink-500" />, stats: calculateCompletion('modulo10', 12) },
+    { id: 'modulo11', name: 'Modulo 11: Sintassi Avanzata', icon: <Target size={20} className="text-teal-500" />, stats: calculateCompletion('modulo11', 150) },
+    { id: 'modulo12', name: 'Modulo 12: Doppio Ausiliare', icon: <Target size={20} className="text-violet-500" />, stats: calculateCompletion('modulo12', 300) },
   ];
 
   const totalCompleted = stats.reduce((acc, curr) => acc + curr.stats.completed, 0);
   const totalExercises = stats.reduce((acc, curr) => acc + curr.stats.total, 0);
   const globalPercent = Math.round((totalCompleted / totalExercises) * 100);
+
+  // B2 Readiness calculations
+  const grammarPercent = Math.round(
+    (calculateCompletion('modulo1', 150).percent +
+     calculateCompletion('modulo2', 150).percent +
+     calculateCompletion('modulo3', 150).percent +
+     calculateCompletion('modulo5', 150).percent +
+     calculateCompletion('modulo6', 95).percent +
+     calculateCompletion('modulo7', 45).percent +
+     calculateCompletion('modulo11', 150).percent +
+     calculateCompletion('modulo12', 300).percent) / 8
+  );
+  
+  const listeningPercent = calculateCompletion('modulo9', 12).percent;
+  const readingPercent = calculateCompletion('modulo8', 18).percent;
+  const writingPercent = calculateCompletion('modulo10', 12).percent;
+
+  const exam = userProgress?.esame?.lastExam;
+  
+  const finalGrammar = exam 
+    ? Math.round(grammarPercent * 0.4 + (exam.grammar / exam.grammarMax) * 100 * 0.6) 
+    : grammarPercent;
+  const finalListening = exam 
+    ? Math.round(listeningPercent * 0.4 + (exam.ascolto / exam.ascoltoMax) * 100 * 0.6) 
+    : listeningPercent;
+  const finalReading = exam 
+    ? Math.round(readingPercent * 0.4 + (exam.lettura / exam.letturaMax) * 100 * 0.6) 
+    : readingPercent;
+  const finalWriting = exam 
+    ? Math.round(writingPercent * 0.4 + (exam.scrittura / exam.scritturaMax) * 100 * 0.6) 
+    : writingPercent;
+
+  const readinessIndex = Math.round((finalGrammar + finalListening + finalReading + finalWriting) / 4);
 
   // Gamification logic
   let level = "Studente Principiante";
@@ -96,6 +132,77 @@ export function ProfiloSection() {
         <div className="flex-shrink-0 relative z-10 bg-indigo-50 p-6 rounded-2xl border border-indigo-100 text-center">
           <div className="mb-2 flex justify-center">{badgeIcon}</div>
           <p className="font-bold text-indigo-900 text-sm">Livello Attuale</p>
+        </div>
+      </div>
+
+      {/* B2 Readiness Dashboard */}
+      <h3 className="text-2xl font-black text-slate-800 mt-12 mb-6 flex items-center gap-2">
+        <TrendingUp className="text-indigo-600" size={24} /> Dashboard Idoneità B2 (B2 Readiness)
+      </h3>
+      
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12 animate-in fade-in duration-300">
+        {/* Overall Score */}
+        <div className="md:col-span-4 bg-gradient-to-br from-indigo-900 to-indigo-950 text-white p-6 rounded-3xl shadow-sm border border-indigo-950 flex flex-col items-center justify-center text-center relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+          <span className="text-xs font-bold uppercase tracking-widest text-indigo-300 mb-4 font-sans">Indice Idoneità B2</span>
+          
+          <div className="w-28 h-28 rounded-full border-4 border-indigo-800 flex items-center justify-center mb-4 relative">
+            <span className="text-4xl font-black text-white">{readinessIndex}%</span>
+          </div>
+
+          <h4 className="font-bold text-sm text-indigo-200">
+            {readinessIndex >= 85 ? "Eccellente Preparazione" : readinessIndex >= 60 ? "Pronto per l'Esame" : "Necessita di Ripasso"}
+          </h4>
+          <p className="text-[11px] text-indigo-300 mt-2 max-w-[200px] leading-relaxed">
+            Calcolato combinando il completamento dei moduli (40%) e i punteggi dell'esame simulato (60%).
+          </p>
+        </div>
+
+        {/* Breakdown Gauges */}
+        <div className="md:col-span-8 bg-white p-6 rounded-3xl shadow-sm border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <div className="flex justify-between items-center text-xs font-bold text-slate-500 uppercase font-sans">
+              <span>Grammatica e Verbi</span>
+              <span>{finalGrammar}%</span>
+            </div>
+            <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+              <div className="bg-purple-600 h-full rounded-full transition-all duration-500" style={{ width: `${finalGrammar}%` }}></div>
+            </div>
+            <p className="text-[10px] text-slate-400">Moduli: 1-3, 5-7, 11-12</p>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex justify-between items-center text-xs font-bold text-slate-500 uppercase font-sans">
+              <span>Comprensione Ascolto</span>
+              <span>{finalListening}%</span>
+            </div>
+            <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+              <div className="bg-fuchsia-600 h-full rounded-full transition-all duration-500" style={{ width: `${finalListening}%` }}></div>
+            </div>
+            <p className="text-[10px] text-slate-400">Modulo: 9</p>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex justify-between items-center text-xs font-bold text-slate-500 uppercase font-sans">
+              <span>Comprensione Lettura</span>
+              <span>{finalReading}%</span>
+            </div>
+            <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+              <div className="bg-sky-600 h-full rounded-full transition-all duration-500" style={{ width: `${finalReading}%` }}></div>
+            </div>
+            <p className="text-[10px] text-slate-400">Modulo: 8</p>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex justify-between items-center text-xs font-bold text-slate-500 uppercase font-sans">
+              <span>Produzione Scritta</span>
+              <span>{finalWriting}%</span>
+            </div>
+            <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+              <div className="bg-pink-600 h-full rounded-full transition-all duration-500" style={{ width: `${finalWriting}%` }}></div>
+            </div>
+            <p className="text-[10px] text-slate-400">Modulo: 10</p>
+          </div>
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { PenTool, Headphones, BookOpen, Clock, Play, Square, RotateCcw, Check, Copy, AlertCircle, Info, ChevronRight, MessageSquare, Sparkles } from 'lucide-react';
+import { PenTool, Headphones, BookOpen, Clock, Play, Square, RotateCcw, Check, Copy, AlertCircle, Info, ChevronRight, MessageSquare, Sparkles, Mic, MicOff } from 'lucide-react';
 
 export function StrategieB2Section() {
   const [activeStrategyTab, setActiveStrategyTab] = useState('scrittura'); // 'scrittura' or 'parlato'
@@ -10,8 +10,12 @@ export function StrategieB2Section() {
   const [timeLeft, setTimeLeft] = useState(120); // 2 minutes in seconds
   const [selectedPrompt, setSelectedPrompt] = useState(0);
   const [usedConnectors, setUsedConnectors] = useState({});
+  const [isListening, setIsListening] = useState(false);
+  const [transcript, setTranscript] = useState('');
+  const [speechSupported, setSpeechSupported] = useState(true);
 
   const timerRef = useRef(null);
+  const recognitionRef = useRef(null);
 
   const prompts = [
     { title: "Smart Working", text: "Esprimi la tua opinione sullo smart working in Italia. Quali sono i vantaggi per l'azienda e per il dipendente? Quali sono le criticità?" },
@@ -60,12 +64,119 @@ export function StrategieB2Section() {
     return () => clearInterval(timerRef.current);
   }, [isTimerRunning]);
 
-  const startTimer = () => setIsTimerRunning(true);
-  const stopTimer = () => setIsTimerRunning(false);
+  // Check Speech Recognition support
+  useEffect(() => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      setSpeechSupported(false);
+    }
+  }, []);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.stop();
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (activeStrategyTab !== 'parlato' && isListening) {
+      stopListening();
+    }
+  }, [activeStrategyTab, isListening]);
+
+  const startListening = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      setSpeechSupported(false);
+      return;
+    }
+
+    try {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = 'it-IT';
+
+      recognition.onstart = () => {
+        setIsListening(true);
+      };
+
+      recognition.onerror = (event) => {
+        console.error("Speech recognition error", event.error);
+        setIsListening(false);
+      };
+
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+
+      recognition.onresult = (event) => {
+        let fullTranscript = '';
+        for (let i = 0; i < event.results.length; i++) {
+          fullTranscript += event.results[i][0].transcript + ' ';
+        }
+        setTranscript(fullTranscript);
+        checkConnectorsInText(fullTranscript);
+      };
+
+      recognitionRef.current = recognition;
+      recognition.start();
+    } catch (e) {
+      console.error(e);
+      setIsListening(false);
+    }
+  };
+
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      try {
+        recognitionRef.current.stop();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    setIsListening(false);
+  };
+
+  const checkConnectorsInText = (text) => {
+    const lowercaseText = text.toLowerCase();
+    connectors.forEach(conn => {
+      const cleanWord = conn.word.toLowerCase();
+      if (lowercaseText.includes(cleanWord)) {
+        setUsedConnectors(prev => ({ ...prev, [conn.id]: true }));
+      }
+    });
+  };
+
+  const startTimer = () => {
+    setIsTimerRunning(true);
+    if (speechSupported && !isListening) {
+      startListening();
+    }
+  };
+
+  const stopTimer = () => {
+    setIsTimerRunning(false);
+    if (isListening) {
+      stopListening();
+    }
+  };
+
   const resetTimer = () => {
     setIsTimerRunning(false);
     setTimeLeft(120);
     setUsedConnectors({});
+    setTranscript('');
+    if (isListening) {
+      stopListening();
+    }
   };
 
   const toggleConnector = (id) => {
@@ -261,6 +372,68 @@ export function StrategieB2Section() {
                   <RotateCcw size={16} />
                 </button>
               </div>
+            </div>
+
+            {/* Speech-to-Text Card */}
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 animate-in fade-in duration-300">
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-bold bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full flex items-center gap-1.5 w-fit font-sans">
+                  <Mic size={14} className={isListening ? "animate-pulse text-red-500" : ""} /> Tracciamento Vocale (STT)
+                </span>
+                {isListening && (
+                  <span className="flex items-center gap-1.5 text-xs text-red-500 font-bold">
+                    <span className="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                    In ascolto...
+                  </span>
+                )}
+              </div>
+              
+              {!speechSupported ? (
+                <div className="p-3 bg-amber-50 text-amber-800 text-xs rounded-xl flex items-start gap-2 border border-amber-200">
+                  <AlertCircle size={16} className="mt-0.5 flex-shrink-0" />
+                  <div>
+                    Il tuo browser non supporta il riconoscimento vocale. Consigliamo <strong>Chrome, Safari o Edge</strong>. Puoi comunque cliccare sui connettivi per segnarli manualmente.
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <div className="flex gap-2">
+                    <button
+                      onClick={isListening ? stopListening : startListening}
+                      className={`flex-1 py-2 rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-sm shadow-xs
+                        ${isListening 
+                          ? 'bg-red-500 hover:bg-red-600 text-white ring-4 ring-red-100' 
+                          : 'bg-indigo-600 hover:bg-indigo-700 text-white ring-4 ring-indigo-100'}`}
+                    >
+                      {isListening ? (
+                        <>
+                          <MicOff size={16} /> Spegni Microfono
+                        </>
+                      ) : (
+                        <>
+                          <Mic size={16} /> Accendi Microfono
+                        </>
+                      )}
+                    </button>
+                    {transcript && (
+                      <button
+                        onClick={() => setTranscript('')}
+                        className="px-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl transition-all font-bold text-xs"
+                      >
+                        Cancella
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200 h-28 overflow-y-auto text-xs text-slate-700 leading-relaxed font-sans">
+                    {transcript ? (
+                      <span className="text-slate-800 font-medium">{transcript}</span>
+                    ) : (
+                      <span className="text-slate-400 italic">Clicca su "Accendi Microfono" o "Avvia" e parla. Rileveremo automaticamente i connettivi usati...</span>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 

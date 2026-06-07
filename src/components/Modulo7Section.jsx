@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { BookOpen, CheckCircle2, XCircle, BrainCircuit } from 'lucide-react';
+import { BookOpen, CheckCircle2, XCircle, BrainCircuit, Volume2 } from 'lucide-react';
 import { modulo7Data } from '../data/modulo7_data';
 import { useAuth } from '../contexts/AuthContext';
+import { speakItalian } from '../utils/speech';
 
 export function Modulo7Section() {
+  const speakText = (text) => {
+    speakItalian(text);
+  };
   const [activeTab, setActiveTab] = useState('teoria'); 
   const [activeExerciseSection, setActiveExerciseSection] = useState('section7_1');
   const [userAnswers, setUserAnswers] = useState({});
@@ -126,6 +130,7 @@ export function Modulo7Section() {
               const userAnswer = userAnswers[ex.id] || '';
               const isChecked = showResults || checkedAnswers[ex.id];
               const isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
+              const textToSpeak = ex.sentence.replace('{blank}', isChecked ? ex.answer : (userAnswer || '...'));
               
               return (
                 <div key={ex.id} className={`p-4 rounded-lg border ${isChecked ? (isCorrect ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200') : 'bg-slate-50 border-slate-200 hover:border-indigo-300'} transition-colors`}>
@@ -156,21 +161,31 @@ export function Modulo7Section() {
                       <span>{parts[1]}</span>
                     </div>
                     
-                    {!isChecked && (
+                    <div className="flex items-center gap-2 flex-shrink-0">
                       <button
-                        onClick={() => checkSingleAnswer(ex)}
-                        disabled={!userAnswer.trim()}
-                        className="flex-shrink-0 text-slate-400 hover:text-indigo-600 disabled:opacity-30 transition-colors"
-                        title="Controlla risposta"
+                        onClick={() => speakText(textToSpeak)}
+                        className="p-1.5 bg-white rounded-lg shadow-sm border border-slate-100 hover:border-indigo-300 text-slate-400 hover:text-indigo-600 transition-colors"
+                        title="Ascolta la pronuncia"
                       >
-                        <CheckCircle2 size={24} />
+                        <Volume2 size={16} />
                       </button>
-                    )}
-                    {isChecked && (
-                      <div className="flex-shrink-0 w-8 flex justify-center">
-                        {isCorrect ? <CheckCircle2 className="text-emerald-500" size={24} /> : <XCircle className="text-red-500" size={24} />}
-                      </div>
-                    )}
+
+                      {!isChecked && (
+                        <button
+                          onClick={() => checkSingleAnswer(ex)}
+                          disabled={!userAnswer.trim()}
+                          className="flex-shrink-0 text-slate-400 hover:text-indigo-600 disabled:opacity-30 transition-colors"
+                          title="Controlla risposta"
+                        >
+                          <CheckCircle2 size={24} />
+                        </button>
+                      )}
+                      {isChecked && (
+                        <div className="flex-shrink-0 w-8 flex justify-center">
+                          {isCorrect ? <CheckCircle2 className="text-emerald-500" size={24} /> : <XCircle className="text-red-500" size={24} />}
+                        </div>
+                      )}
+                    </div>
                   </div>
                   
                   {isChecked && !isCorrect && (

@@ -69,7 +69,13 @@ export function SimulazioneEsame() {
   const finishExam = () => {
     let grammarScore = 0;
     examData.grammar.forEach(q => {
-      if ((answers[q.id] || '').trim().toLowerCase() === q.answer.toLowerCase()) {
+      const rawAns = answers[q.id] || '';
+      const qParts = q.sentence.split('{blank}');
+      const userAnswer = qParts.length <= 2 
+        ? rawAns 
+        : rawAns.split('|||').map(s => s.trim()).join(' ');
+
+      if (userAnswer.trim().toLowerCase() === q.answer.toLowerCase()) {
         grammarScore++;
       }
     });
@@ -167,18 +173,42 @@ export function SimulazioneEsame() {
           <div className="space-y-6">
             {examData.grammar.map((q, index) => {
               const parts = q.sentence.split('{blank}');
+              const numBlanks = parts.length - 1;
+              const rawAnswer = answers[q.id] || '';
+              const answerArray = numBlanks > 1 ? rawAnswer.split('|||') : [rawAnswer];
+
               return (
                 <div key={q.id} className="flex flex-col md:flex-row gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors">
                   <span className="font-bold text-slate-400 w-6 flex-shrink-0">{index + 1}.</span>
                   <div className="flex-1 text-slate-700 leading-relaxed flex flex-wrap items-center gap-1">
-                    <span>{parts[0]}</span>
-                    <input
-                      type="text"
-                      value={answers[q.id] || ''}
-                      onChange={(e) => handleInputChange(q.id, e.target.value)}
-                      className="w-32 md:w-40 px-3 py-1 text-center font-semibold rounded-md border-2 border-slate-200 focus:border-indigo-500 outline-none"
-                    />
-                    <span>{parts[1]}</span>
+                    {parts.map((part, partIdx) => {
+                      const isLast = partIdx === parts.length - 1;
+                      return (
+                        <React.Fragment key={partIdx}>
+                          <span>{part}</span>
+                          {!isLast && (
+                            <input
+                              type="text"
+                              value={answerArray[partIdx] || ''}
+                              onChange={(e) => {
+                                const val = e.target.value;
+                                if (numBlanks > 1) {
+                                  const newArr = [...answerArray];
+                                  for (let k = 0; k < numBlanks; k++) {
+                                    if (newArr[k] === undefined) newArr[k] = '';
+                                  }
+                                  newArr[partIdx] = val;
+                                  handleInputChange(q.id, newArr.join('|||'));
+                                } else {
+                                  handleInputChange(q.id, val);
+                                }
+                              }}
+                              className="w-32 md:w-40 px-3 py-1 text-center font-semibold rounded-md border-2 border-slate-200 focus:border-indigo-500 outline-none"
+                            />
+                          )}
+                        </React.Fragment>
+                      );
+                    })}
                   </div>
                 </div>
               );

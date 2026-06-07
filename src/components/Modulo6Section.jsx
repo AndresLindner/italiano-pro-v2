@@ -320,6 +320,38 @@ export function Modulo6Section() {
             </div>
           </div>
         </section>
+
+        <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+          <h3 className="text-2xl font-black text-indigo-900 mb-4 border-b pb-2">6.4 Preposizioni "SU" e "PER"</h3>
+          <p className="text-slate-700 mb-4 leading-relaxed">
+            Le preposizioni <strong>su</strong> e <strong>per</strong> (semplici o articolate) hanno ruoli fondamentali sia in contesti spaziali che figurati.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="p-4 bg-amber-50 border border-amber-100 rounded-lg">
+              <h4 className="font-bold text-amber-900 mb-2">La preposizione "SU" (sopra, circa, argomento)</h4>
+              <p className="text-sm text-amber-900 mb-2">Indica una posizione elevata (contatto), l'argomento di cui si parla, o una stima approssimativa.</p>
+              <ul className="space-y-1.5 text-xs text-amber-800">
+                <li>• <strong>Stato / Moto in luogo (sopra):</strong> "Il gatto dorme <strong>sul</strong> letto" / "Sali <strong>sul</strong> tavolo".</li>
+                <li>• <strong>Argomento (about):</strong> "Ho letto un articolo <strong>sul</strong> giornale" / "Lezione <strong>sulla</strong> letteratura".</li>
+                <li>• <strong>Stima o approssimazione:</strong> "Un uomo <strong>sulla</strong> cinquantina" / "Costa <strong>sui</strong> dieci euro".</li>
+                <li>• <strong>Reggenza verbale:</strong> "Non ti preoccupare, puoi contare <strong>su</strong> di me".</li>
+              </ul>
+            </div>
+            
+            <div className="p-4 bg-emerald-50 border border-emerald-100 rounded-lg">
+              <h4 className="font-bold text-emerald-900 mb-2">La preposizione "PER" (destinazione, scopo, causa, durata)</h4>
+              <p className="text-sm text-emerald-900 mb-2">Esprime il fine di un'azione, il tragitto/destinazione, il motivo di un evento, o una durata temporale.</p>
+              <ul className="space-y-1.5 text-xs text-emerald-800">
+                <li>• <strong>Destinazione (con partire/dirigersi):</strong> "Questo treno parte <strong>per</strong> Milano".</li>
+                <li>• <strong>Scopo / Fine (in order to):</strong> "Studiamo l'italiano <strong>per</strong> superare l'esame".</li>
+                <li>• <strong>Causa (due to):</strong> "La scuola è chiusa <strong>per</strong> il maltempo".</li>
+                <li>• <strong>Passaggio (through):</strong> "Siamo passati <strong>per</strong> il parco".</li>
+                <li>• <strong>Durata di tempo (for):</strong> "Ho camminato <strong>per</strong> ore sotto la pioggia".</li>
+              </ul>
+            </div>
+          </div>
+        </section>
       </div>
     );
   };

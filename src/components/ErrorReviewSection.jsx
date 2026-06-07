@@ -92,7 +92,7 @@ export function ErrorReviewSection() {
   };
 
   const checkSingleAnswer = (ex) => {
-    const userAnswer = userAnswers[ex.id] || '';
+    const rawAnswer = userAnswers[ex.id] || '';
     
     let isCorrect = false;
     if (ex.type === 'quiz_verb') {
@@ -108,9 +108,13 @@ export function ErrorReviewSection() {
       } else {
         options = [correctAns];
       }
-      isCorrect = options.map(o => o.toLowerCase()).includes(userAnswer.trim().toLowerCase());
+      isCorrect = options.map(o => o.toLowerCase()).includes(rawAnswer.trim().toLowerCase());
     } else {
-      isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
+      const parts = ex.sentence.split('{blank}');
+      const combinedUserAnswer = parts.length <= 2 
+        ? rawAnswer 
+        : rawAnswer.split('|||').map(s => s.trim()).join(' ');
+      isCorrect = combinedUserAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
     }
     
     setCheckedAnswers(prev => ({ ...prev, [ex.id]: true }));
@@ -189,10 +193,25 @@ export function ErrorReviewSection() {
             }
           } else {
             parts = ex.sentence.split('{blank}');
-            isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
+            const numBlanks = parts.length - 1;
+            const combinedUserAnswer = numBlanks > 1 
+              ? userAnswer.split('|||').map(s => s.trim()).join(' ')
+              : userAnswer;
+            isCorrect = combinedUserAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
             correctAnswerDisplay = ex.answer;
             
-            textToSpeak = ex.sentence.replace('{blank}', isChecked ? ex.answer : (userAnswer || '...'));
+            if (numBlanks > 1) {
+              let spokenText = ex.sentence;
+              const answerArray = userAnswer.split('|||');
+              const correctAnswersList = ex.answer.split(' ');
+              for (let i = 0; i < numBlanks; i++) {
+                const fill = isChecked ? (correctAnswersList[i] || '') : (answerArray[i] || '...');
+                spokenText = spokenText.replace('{blank}', fill);
+              }
+              textToSpeak = spokenText;
+            } else {
+              textToSpeak = ex.sentence.replace('{blank}', isChecked ? ex.answer : (userAnswer || '...'));
+            }
           }
           
           return (
@@ -212,37 +231,99 @@ export function ErrorReviewSection() {
               <div className="flex flex-col md:flex-row md:items-center gap-3">
                 <span className="font-bold text-slate-400 w-6 flex-shrink-0">{index + 1}.</span>
                 <div className="flex-1 text-slate-700 leading-relaxed flex flex-wrap items-center gap-1.5">
-                  <span>{parts[0]}</span>
-                  <div className="relative inline-flex items-center">
-                    <input
-                      type="text"
-                      value={userAnswer}
-                      onChange={(e) => handleInputChange(ex.id, e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && userAnswer.trim()) {
-                          checkSingleAnswer(ex);
-                        }
-                      }}
-                      disabled={isChecked && isCorrect}
-                      className={`w-32 md:w-48 px-3 py-1 pr-8 text-center font-semibold rounded-md border-2 outline-none transition-all
-                        ${isChecked 
-                          ? (isCorrect ? 'border-emerald-500 bg-emerald-100 text-emerald-800' : 'border-red-500 bg-red-100 text-red-800')
-                          : 'border-amber-200 focus:border-amber-500 text-amber-900 bg-amber-50'
-                        }
-                      `}
-                      placeholder="..."
-                    />
-                    {!(isChecked && isCorrect) && speechSupported && (
-                      <button
-                        onClick={() => startListening(ex.id)}
-                        className={`absolute right-1.5 p-1 rounded-full transition-all ${isListening ? 'text-red-500 bg-red-50 animate-pulse border border-red-200 scale-110' : 'text-slate-400 hover:text-indigo-600'}`}
-                        title={isListening ? "Sto ascoltando... premi per interrompere" : "Rispondi a voce (in italiano)"}
-                      >
-                        {isListening ? <Square size={12} fill="currentColor" /> : <Mic size={12} />}
-                      </button>
-                    )}
-                  </div>
-                  <span>{parts[1]}</span>
+                  {ex.type === 'quiz_verb' ? (
+                    <>
+                      <span>{parts[0]}</span>
+                      <div className="relative inline-flex items-center">
+                        <input
+                          type="text"
+                          value={userAnswer}
+                          onChange={(e) => handleInputChange(ex.id, e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' && userAnswer.trim()) {
+                              checkSingleAnswer(ex);
+                            }
+                          }}
+                          disabled={isChecked && isCorrect}
+                          className={`w-32 md:w-48 px-3 py-1 pr-8 text-center font-semibold rounded-md border-2 outline-none transition-all
+                            ${isChecked 
+                              ? (isCorrect ? 'border-emerald-500 bg-emerald-100 text-emerald-800' : 'border-red-500 bg-red-100 text-red-800')
+                              : 'border-amber-200 focus:border-amber-500 text-amber-900 bg-amber-50'
+                            }
+                          `}
+                          placeholder="..."
+                        />
+                        {!(isChecked && isCorrect) && speechSupported && (
+                          <button
+                            onClick={() => startListening(ex.id)}
+                            className={`absolute right-1.5 p-1 rounded-full transition-all ${isListening ? 'text-red-500 bg-red-50 animate-pulse border border-red-200 scale-110' : 'text-slate-400 hover:text-indigo-600'}`}
+                            title={isListening ? "Sto ascoltando... premi per interrompere" : "Rispondi a voce (in italiano)"}
+                          >
+                            {isListening ? <Square size={12} fill="currentColor" /> : <Mic size={12} />}
+                          </button>
+                        )}
+                      </div>
+                      <span>{parts[1]}</span>
+                    </>
+                  ) : (
+                    parts.map((part, partIdx) => {
+                      const isLast = partIdx === parts.length - 1;
+                      const numBlanks = parts.length - 1;
+                      const answerArray = numBlanks > 1 ? userAnswer.split('|||') : [userAnswer];
+                      
+                      return (
+                        <React.Fragment key={partIdx}>
+                          <span>{part}</span>
+                          {!isLast && (
+                            <div className="relative inline-flex items-center">
+                              <input
+                                type="text"
+                                value={answerArray[partIdx] || ''}
+                                onChange={(e) => {
+                                  const val = e.target.value;
+                                  if (numBlanks > 1) {
+                                    const newArr = [...answerArray];
+                                    for (let k = 0; k < numBlanks; k++) {
+                                      if (newArr[k] === undefined) newArr[k] = '';
+                                    }
+                                    newArr[partIdx] = val;
+                                    handleInputChange(ex.id, newArr.join('|||'));
+                                  } else {
+                                    handleInputChange(ex.id, val);
+                                  }
+                                }}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') {
+                                    const combined = numBlanks > 1 ? answerArray.map(s => s.trim()).join(' ').trim() : userAnswer.trim();
+                                    if (combined) {
+                                      checkSingleAnswer(ex);
+                                    }
+                                  }
+                                }}
+                                disabled={isChecked && isCorrect}
+                                className={`w-32 md:w-40 px-3 py-1 pr-8 text-center font-semibold rounded-md border-2 outline-none transition-all
+                                  ${isChecked 
+                                    ? (isCorrect ? 'border-emerald-500 bg-emerald-100 text-emerald-800' : 'border-red-500 bg-red-100 text-red-800')
+                                    : 'border-amber-200 focus:border-amber-500 text-amber-900 bg-amber-50'
+                                  }
+                                `}
+                                placeholder="..."
+                              />
+                              {!(isChecked && isCorrect) && speechSupported && (
+                                <button
+                                  onClick={() => startListening(ex.id)}
+                                  className={`absolute right-1.5 p-1 rounded-full transition-all ${isListening ? 'text-red-500 bg-red-50 animate-pulse border border-red-200 scale-110' : 'text-slate-400 hover:text-indigo-600'}`}
+                                  title={isListening ? "Sto ascoltando... premi per interrompere" : "Rispondi a voce (in italiano)"}
+                                >
+                                  {isListening ? <Square size={12} fill="currentColor" /> : <Mic size={12} />}
+                                </button>
+                              )}
+                            </div>
+                          )}
+                        </React.Fragment>
+                      );
+                    })
+                  )}
                 </div>
                 
                 <div className="flex items-center gap-2 flex-shrink-0">

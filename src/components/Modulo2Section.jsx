@@ -37,8 +37,17 @@ export function Modulo2Section() {
     });
   };
 
+  const getCombinedAnswer = (exId, sentence) => {
+    const rawAnswer = userAnswers[exId] || '';
+    const parts = sentence.split('{blank}');
+    if (parts.length <= 2) {
+      return rawAnswer;
+    }
+    return rawAnswer.split('|||').map(s => s.trim()).join(' ');
+  };
+
   const checkSingleAnswer = (ex) => {
-    const userAnswer = userAnswers[ex.id] || '';
+    const userAnswer = getCombinedAnswer(ex.id, ex.sentence);
     const isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
     
     if (isCorrect) {
@@ -55,7 +64,7 @@ export function Modulo2Section() {
   const checkAnswers = () => {
     let currentScore = 0;
     currentExercises.forEach(ex => {
-      const userAnswer = (userAnswers[ex.id] || '').trim().toLowerCase();
+      const userAnswer = getCombinedAnswer(ex.id, ex.sentence).trim().toLowerCase();
       const correctAnswer = ex.answer.toLowerCase();
       if (userAnswer === correctAnswer) {
         currentScore++;
@@ -123,43 +132,69 @@ export function Modulo2Section() {
           <div className="space-y-4">
             {currentExercises.map((ex, index) => {
               const parts = ex.sentence.split('{blank}');
-              const userAnswer = userAnswers[ex.id] || '';
+              const numBlanks = parts.length - 1;
+              const rawAnswer = userAnswers[ex.id] || '';
+              const answerArray = numBlanks > 1 ? rawAnswer.split('|||') : [rawAnswer];
+              const combinedUserAnswer = getCombinedAnswer(ex.id, ex.sentence);
               const isChecked = showResults || checkedAnswers[ex.id];
-              const isCorrect = userAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
+              const isCorrect = combinedUserAnswer.trim().toLowerCase() === ex.answer.toLowerCase();
               
               return (
                 <div key={ex.id} className={`p-4 rounded-lg border ${isChecked ? (isCorrect ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200') : 'bg-slate-50 border-slate-200 hover:border-indigo-300'} transition-colors`}>
                   <div className="flex flex-col md:flex-row md:items-center gap-3">
                     <span className="font-bold text-slate-400 w-6 flex-shrink-0">{index + 1}.</span>
                     <div className="flex-1 text-slate-700 leading-relaxed flex flex-wrap items-center gap-1">
-                      <span>{parts[0]}</span>
-                      <div className="relative inline-block">
-                        <input
-                          type="text"
-                          value={userAnswer}
-                          onChange={(e) => handleInputChange(ex.id, e.target.value)}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' && userAnswer.trim()) {
-                              checkSingleAnswer(ex);
-                            }
-                          }}
-                          disabled={isChecked}
-                          className={`w-32 md:w-48 px-3 py-1 text-center font-semibold rounded-md border-2 outline-none transition-all
-                            ${isChecked 
-                              ? (isCorrect ? 'border-emerald-500 bg-emerald-100 text-emerald-800' : 'border-red-500 bg-red-100 text-red-800')
-                              : 'border-indigo-200 focus:border-indigo-500 text-indigo-900 bg-white'
-                            }
-                          `}
-                          placeholder="..."
-                        />
-                      </div>
-                      <span>{parts[1]}</span>
+                      {parts.map((part, partIdx) => {
+                        const isLast = partIdx === parts.length - 1;
+                        return (
+                          <React.Fragment key={partIdx}>
+                            <span>{part}</span>
+                            {!isLast && (
+                              <div className="relative inline-block">
+                                <input
+                                  type="text"
+                                  value={answerArray[partIdx] || ''}
+                                  onChange={(e) => {
+                                    const val = e.target.value;
+                                    if (numBlanks > 1) {
+                                      const newArr = [...answerArray];
+                                      for (let k = 0; k < numBlanks; k++) {
+                                        if (newArr[k] === undefined) newArr[k] = '';
+                                      }
+                                      newArr[partIdx] = val;
+                                      handleInputChange(ex.id, newArr.join('|||'));
+                                    } else {
+                                      handleInputChange(ex.id, val);
+                                    }
+                                  }}
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                      const combined = numBlanks > 1 ? answerArray.map(s => s.trim()).join(' ').trim() : rawAnswer.trim();
+                                      if (combined) {
+                                        checkSingleAnswer(ex);
+                                      }
+                                    }
+                                  }}
+                                  disabled={isChecked}
+                                  className={`w-32 md:w-40 px-3 py-1 text-center font-semibold rounded-md border-2 outline-none transition-all
+                                    ${isChecked 
+                                      ? (isCorrect ? 'border-emerald-500 bg-emerald-100 text-emerald-800' : 'border-red-500 bg-red-100 text-red-800')
+                                      : 'border-indigo-200 focus:border-indigo-500 text-indigo-900 bg-white'
+                                    }
+                                  `}
+                                  placeholder="..."
+                                />
+                              </div>
+                            )}
+                          </React.Fragment>
+                        );
+                      })}
                     </div>
                     
                     {!isChecked && (
                       <button
                         onClick={() => checkSingleAnswer(ex)}
-                        disabled={!userAnswer.trim()}
+                        disabled={!combinedUserAnswer.trim()}
                         className="flex-shrink-0 text-slate-400 hover:text-indigo-600 disabled:opacity-30 transition-colors"
                         title="Controlla risposta"
                       >

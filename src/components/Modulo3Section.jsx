@@ -138,6 +138,11 @@ export function Modulo3Section() {
                           type="text"
                           value={userAnswer}
                           onChange={(e) => handleInputChange(ex.id, e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' && userAnswer.trim()) {
+                              checkSingleAnswer(ex);
+                            }
+                          }}
                           disabled={isChecked}
                           className={`w-32 md:w-40 px-3 py-1 text-center font-semibold rounded-md border-2 outline-none transition-all
                             ${isChecked 

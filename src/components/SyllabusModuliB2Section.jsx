@@ -451,7 +451,7 @@ export function SyllabusModuliB2Section() {
                 >
                   <div className="flex flex-col min-w-0 pr-2">
                     <span className={`text-[10px] uppercase font-black tracking-wider ${isSelected ? 'text-indigo-200' : 'text-indigo-500'}`}>
-                      {modKey === 'modulo12' ? 'Extra' : `Unità ${modKey.replace('modulo', '')}`}
+                      {modKey === 'modulo12' ? 'Extra' : `Modulo ${modKey.replace('modulo', '')}`}
                     </span>
                     <span className="truncate font-semibold text-sm mt-0.5">{mod.title.split(': ')[1]}</span>
                   </div>

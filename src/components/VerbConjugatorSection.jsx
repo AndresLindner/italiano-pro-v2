@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Volume2, Shield, ShieldAlert, BookOpen, Layers, Milestone, HelpCircle, Activity, Sparkles, ChevronRight } from 'lucide-react';
+import { speakItalian } from '../utils/speech';
 
 const pronouns = ["io", "tu", "lui/lei", "noi", "voi", "loro"];
 
@@ -18,12 +19,14 @@ export function VerbConjugatorSection({ verbs = [] }) {
     const isIrregular = 
       verb.typePres === "Irregolare" || 
       verb.typeImperf === "Irregolare" || 
-      verb.typePR === "Irregolare" || 
-      verb.typeFut === "Irregolare" || 
-      verb.typeCond === "Irregolare";
+      verb.typePassatoProssimo === "Irregolare" ||
+      verb.typeFuturo === "Irregolare" ||
+      verb.typeCondizionale === "Irregolare" ||
+      verb.typeCongiuntivoPres === "Irregolare" ||
+      verb.typeCongiuntivoImperf === "Irregolare";
 
-    if (filterType === 'regular') return matchesSearch && !isIrregular;
-    if (filterType === 'irregular') return matchesSearch && isIrregular;
+    if (filterType === 'regular') return !isIrregular && matchesSearch;
+    if (filterType === 'irregular') return isIrregular && matchesSearch;
     return matchesSearch;
   });
 
@@ -40,21 +43,7 @@ export function VerbConjugatorSection({ verbs = [] }) {
       cleanWord = word.split('/')[0].trim();
     }
 
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(cleanWord);
-      utterance.lang = 'it-IT';
-      utterance.rate = 0.78;
-
-      const voices = window.speechSynthesis.getVoices();
-      const itVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-') === 'it-it') || 
-                      voices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith('it'));
-      if (itVoice) {
-        utterance.voice = itVoice;
-      }
-
-      window.speechSynthesis.speak(utterance);
-    }
+    speakItalian(cleanWord);
   };
 
   const renderConjugationCard = (title, forms, type, colorClasses) => {

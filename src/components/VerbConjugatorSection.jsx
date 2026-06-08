@@ -70,11 +70,36 @@ export function VerbConjugatorSection({ verbs = [] }) {
 
     const isIrregular = type === "Irregolare";
     const isSubjunctive = title.toLowerCase().includes("congiuntivo");
+    const isPresentOrImperfettoSubjunctive = isSubjunctive && (title.toLowerCase().includes("presente") || title.toLowerCase().includes("imperfetto"));
+
+    let fullTTS = "";
+    if (isPresentOrImperfettoSubjunctive) {
+      fullTTS = pronouns
+        .map((p, idx) => {
+          const form = forms[idx];
+          if (!form || form === "-") return "";
+          const pronoun = p === "lui/lei" ? "lui" : p;
+          return `che ${pronoun} ${form}`;
+        })
+        .filter(Boolean)
+        .join(". ") + ".";
+    }
 
     return (
       <div className={`p-5 rounded-2xl border ${colorClasses.border} ${colorClasses.bg} backdrop-blur-md transition-all duration-300 shadow-sm hover:shadow-md`}>
         <div className="flex justify-between items-center mb-4 border-b pb-2 border-slate-100">
-          <h4 className={`font-bold ${colorClasses.text} text-lg`}>{title}</h4>
+          <div className="flex items-center gap-1.5">
+            <h4 className={`font-bold ${colorClasses.text} text-lg`}>{title}</h4>
+            {isPresentOrImperfettoSubjunctive && fullTTS && (
+              <button
+                onClick={() => speakWord(fullTTS)}
+                className="p-1 rounded-md text-slate-300 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-200"
+                title="Ascolta la pronuncia completa"
+              >
+                <Volume2 size={15} />
+              </button>
+            )}
+          </div>
           <span className={`text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-0.5 rounded-full border ${
             isIrregular 
               ? 'bg-amber-50 text-amber-600 border-amber-200' 

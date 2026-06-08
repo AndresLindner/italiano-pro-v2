@@ -2772,45 +2772,45 @@ function CongiuntivoPresenteSection() {
             <tbody>
               <tr>
                 <td className="p-3 border font-semibold">io</td>
-                {renderCell(<>parl-<strong>i</strong></>, "parli")}
-                {renderCell(<>cred-<strong>a</strong></>, "creda")}
-                {renderCell(<>dorm-<strong>a</strong></>, "dorma")}
-                {renderCell(<>fin-<strong>isca</strong></>, "finisca")}
+                {renderCell(<>parl-<strong>i</strong></>, "che io parli")}
+                {renderCell(<>cred-<strong>a</strong></>, "che io creda")}
+                {renderCell(<>dorm-<strong>a</strong></>, "che io dorma")}
+                {renderCell(<>fin-<strong>isca</strong></>, "che io finisca")}
               </tr>
               <tr className="bg-slate-50">
                 <td className="p-3 border font-semibold">tu</td>
-                {renderCell(<>parl-<strong>i</strong></>, "parli")}
-                {renderCell(<>cred-<strong>a</strong></>, "creda")}
-                {renderCell(<>dorm-<strong>a</strong></>, "dorma")}
-                {renderCell(<>fin-<strong>isca</strong></>, "finisca")}
+                {renderCell(<>parl-<strong>i</strong></>, "che tu parli")}
+                {renderCell(<>cred-<strong>a</strong></>, "che tu creda")}
+                {renderCell(<>dorm-<strong>a</strong></>, "che tu dorma")}
+                {renderCell(<>fin-<strong>isca</strong></>, "che tu finisca")}
               </tr>
               <tr>
                 <td className="p-3 border font-semibold">lui/lei</td>
-                {renderCell(<>parl-<strong>i</strong></>, "parli")}
-                {renderCell(<>cred-<strong>a</strong></>, "creda")}
-                {renderCell(<>dorm-<strong>a</strong></>, "dorma")}
-                {renderCell(<>fin-<strong>isca</strong></>, "finisca")}
+                {renderCell(<>parl-<strong>i</strong></>, "che lui parli")}
+                {renderCell(<>cred-<strong>a</strong></>, "che lui creda")}
+                {renderCell(<>dorm-<strong>a</strong></>, "che lui dorma")}
+                {renderCell(<>fin-<strong>isca</strong></>, "che lui finisca")}
               </tr>
               <tr className="bg-slate-50">
                 <td className="p-3 border font-semibold">noi</td>
-                {renderCell(<>parl-<strong>iamo</strong></>, "parliamo")}
-                {renderCell(<>cred-<strong>iamo</strong></>, "crediamo")}
-                {renderCell(<>dorm-<strong>iamo</strong></>, "dormiamo")}
-                {renderCell(<>fin-<strong>iamo</strong></>, "finiamo")}
+                {renderCell(<>parl-<strong>iamo</strong></>, "che noi parliamo")}
+                {renderCell(<>cred-<strong>iamo</strong></>, "che noi crediamo")}
+                {renderCell(<>dorm-<strong>iamo</strong></>, "che noi dormiamo")}
+                {renderCell(<>fin-<strong>iamo</strong></>, "che noi finiamo")}
               </tr>
               <tr>
                 <td className="p-3 border font-semibold">voi</td>
-                {renderCell(<>parl-<strong>iate</strong></>, "parliate")}
-                {renderCell(<>cred-<strong>iate</strong></>, "crediate")}
-                {renderCell(<>dorm-<strong>iate</strong></>, "dormiate")}
-                {renderCell(<>fin-<strong>iate</strong></>, "finiate")}
+                {renderCell(<>parl-<strong>iate</strong></>, "che voi parliate")}
+                {renderCell(<>cred-<strong>iate</strong></>, "che voi crediate")}
+                {renderCell(<>dorm-<strong>iate</strong></>, "che voi dormiate")}
+                {renderCell(<>fin-<strong>iate</strong></>, "che voi finiate")}
               </tr>
               <tr className="bg-slate-50">
                 <td className="p-3 border font-semibold">loro</td>
-                {renderCell(<>parl-<strong>ino</strong></>, "parlino")}
-                {renderCell(<>cred-<strong>ano</strong></>, "credano")}
-                {renderCell(<>dorm-<strong>ano</strong></>, "dormano")}
-                {renderCell(<>fin-<strong>iscano</strong></>, "finiscano")}
+                {renderCell(<>parl-<strong>ino</strong></>, "che loro parlino")}
+                {renderCell(<>cred-<strong>ano</strong></>, "che loro credano")}
+                {renderCell(<>dorm-<strong>ano</strong></>, "che loro dormano")}
+                {renderCell(<>fin-<strong>iscano</strong></>, "che loro finiscano")}
               </tr>
             </tbody>
           </table>
@@ -2930,16 +2930,16 @@ function CongiuntivoPassatoSection() {
           <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-indigo-400 mb-1">Esempio con Avere</span>
             <div className="flex items-center gap-2">
-              <p className="text-xl font-bold text-indigo-900">Io abbia mangiato</p>
-              <PlayButton text="io abbia mangiato" />
+              <p className="text-xl font-bold text-indigo-900">che io abbia mangiato</p>
+              <PlayButton text="che io abbia mangiato" />
             </div>
             <p className="text-sm text-indigo-600 mt-1">(Congiuntivo di avere + Participio)</p>
           </div>
           <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-emerald-400 mb-1">Esempio con Essere</span>
             <div className="flex items-center gap-2">
-              <p className="text-xl font-bold text-emerald-900">Lui sia andato</p>
-              <PlayButton text="lui sia andato" />
+              <p className="text-xl font-bold text-emerald-900">che lui sia andato</p>
+              <PlayButton text="che lui sia andato" />
             </div>
             <p className="text-sm text-emerald-600 mt-1">(Congiuntivo di essere + Participio)</p>
           </div>
@@ -3001,16 +3001,16 @@ function CongiuntivoTrapassatoSection() {
           <div className="flex-1 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-indigo-400 mb-1">Esempio con Avere</span>
             <div className="flex items-center gap-2">
-              <p className="text-xl font-bold text-indigo-900">Io avessi mangiato</p>
-              <PlayButton text="io avessi mangiato" />
+              <p className="text-xl font-bold text-indigo-900">che io avessi mangiato</p>
+              <PlayButton text="che io avessi mangiato" />
             </div>
             <p className="text-sm text-indigo-600 mt-1">(Congiuntivo Imperfetto di avere + Participio)</p>
           </div>
           <div className="flex-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center flex flex-col items-center justify-center">
             <span className="block text-xs uppercase font-bold text-emerald-400 mb-1">Esempio con Essere</span>
             <div className="flex items-center gap-2">
-              <p className="text-xl font-bold text-emerald-900">Lui fosse andato</p>
-              <PlayButton text="lui fosse andato" />
+              <p className="text-xl font-bold text-emerald-900">che lui fosse andato</p>
+              <PlayButton text="che lui fosse andato" />
             </div>
             <p className="text-sm text-emerald-600 mt-1">(Congiuntivo Imperfetto di essere + Participio)</p>
           </div>

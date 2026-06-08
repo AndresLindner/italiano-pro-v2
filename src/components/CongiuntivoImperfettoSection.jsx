@@ -79,34 +79,34 @@ export function CongiuntivoImperfettoSection() {
         <p className="text-slate-700 text-lg leading-relaxed mb-6">
           Il congiuntivo imperfetto è facilissimo da formare! Per quasi tutti i verbi (regolari e irregolari), basta prendere la prima persona dell'indicativo imperfetto (es. <strong>parlavo</strong>, <strong>leggevo</strong>, <strong>sentivo</strong>), togliere "vo" e aggiungere le desinenze del congiuntivo imperfetto:
         </p>
-
+ 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div className="bg-indigo-50 rounded-xl p-6 border border-indigo-100">
             <h4 className="font-bold text-indigo-800 text-xl mb-4 text-center border-b border-indigo-200 pb-2">Parlare</h4>
             <ul className="space-y-2 text-indigo-900 text-lg">
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">io</span> parlassi</span>
-                <PlayButton text="parlassi" />
+                <PlayButton text="che io parlassi" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">tu</span> parlassi</span>
-                <PlayButton text="parlassi" />
+                <PlayButton text="che tu parlassi" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">lui</span> parlasse</span>
-                <PlayButton text="parlasse" />
+                <PlayButton text="che lui parlasse" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">noi</span> parlassimo</span>
-                <PlayButton text="parlassimo" />
+                <PlayButton text="che noi parlassimo" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">voi</span> parlaste</span>
-                <PlayButton text="parlaste" />
+                <PlayButton text="che voi parlaste" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">loro</span> parlassero</span>
-                <PlayButton text="parlassero" />
+                <PlayButton text="che loro parlassero" />
               </li>
             </ul>
           </div>
@@ -115,27 +115,27 @@ export function CongiuntivoImperfettoSection() {
             <ul className="space-y-2 text-indigo-900 text-lg">
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">io</span> credessi</span>
-                <PlayButton text="credessi" />
+                <PlayButton text="che io credessi" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">tu</span> credessi</span>
-                <PlayButton text="credessi" />
+                <PlayButton text="che tu credessi" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">lui</span> credesse</span>
-                <PlayButton text="credesse" />
+                <PlayButton text="che lui credesse" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">noi</span> credessimo</span>
-                <PlayButton text="credessimo" />
+                <PlayButton text="che noi credessimo" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">voi</span> credeste</span>
-                <PlayButton text="credeste" />
+                <PlayButton text="che voi credeste" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">loro</span> credessero</span>
-                <PlayButton text="credessero" />
+                <PlayButton text="che loro credessero" />
               </li>
             </ul>
           </div>
@@ -144,32 +144,32 @@ export function CongiuntivoImperfettoSection() {
             <ul className="space-y-2 text-indigo-900 text-lg">
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">io</span> sentissi</span>
-                <PlayButton text="sentissi" />
+                <PlayButton text="che io sentissi" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">tu</span> sentissi</span>
-                <PlayButton text="sentissi" />
+                <PlayButton text="che tu sentissi" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">lui</span> sentisse</span>
-                <PlayButton text="sentisse" />
+                <PlayButton text="che lui sentisse" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">noi</span> sentissimo</span>
-                <PlayButton text="sentissimo" />
+                <PlayButton text="che noi sentissimo" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">voi</span> sentiste</span>
-                <PlayButton text="sentiste" />
+                <PlayButton text="che voi sentiste" />
               </li>
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">loro</span> sentissero</span>
-                <PlayButton text="sentissero" />
+                <PlayButton text="che loro sentissero" />
               </li>
             </ul>
           </div>
         </div>
-
+ 
         <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-lg">
           <h4 className="font-bold text-amber-800 text-lg mb-2">Le 3 Eccezioni Assolute!</h4>
           <p className="text-amber-900 mb-4">
@@ -181,27 +181,27 @@ export function CongiuntivoImperfettoSection() {
               <ul className="space-y-1 text-slate-800 text-base">
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">io</span> fossi</span>
-                  <PlayButton text="fossi" />
+                  <PlayButton text="che io fossi" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">tu</span> fossi</span>
-                  <PlayButton text="fossi" />
+                  <PlayButton text="che tu fossi" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">lui</span> fosse</span>
-                  <PlayButton text="fosse" />
+                  <PlayButton text="che lui fosse" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">noi</span> fossimo</span>
-                  <PlayButton text="fossimo" />
+                  <PlayButton text="che noi fossimo" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">voi</span> foste</span>
-                  <PlayButton text="foste" />
+                  <PlayButton text="che voi foste" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">loro</span> fossero</span>
-                  <PlayButton text="fossero" />
+                  <PlayButton text="che loro fossero" />
                 </li>
               </ul>
             </div>
@@ -210,27 +210,27 @@ export function CongiuntivoImperfettoSection() {
               <ul className="space-y-1 text-slate-800 text-base">
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">io</span> dessi</span>
-                  <PlayButton text="dessi" />
+                  <PlayButton text="che io dessi" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">tu</span> dessi</span>
-                  <PlayButton text="dessi" />
+                  <PlayButton text="che tu dessi" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">lui</span> desse</span>
-                  <PlayButton text="desse" />
+                  <PlayButton text="che lui desse" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">noi</span> dessimo</span>
-                  <PlayButton text="dessimo" />
+                  <PlayButton text="che noi dessimo" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">voi</span> deste</span>
-                  <PlayButton text="deste" />
+                  <PlayButton text="che voi deste" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">loro</span> dessero</span>
-                  <PlayButton text="dessero" />
+                  <PlayButton text="che loro dessero" />
                 </li>
               </ul>
             </div>
@@ -239,27 +239,27 @@ export function CongiuntivoImperfettoSection() {
               <ul className="space-y-1 text-slate-800 text-base">
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">io</span> stessi</span>
-                  <PlayButton text="stessi" />
+                  <PlayButton text="che io stessi" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">tu</span> stessi</span>
-                  <PlayButton text="stessi" />
+                  <PlayButton text="che tu stessi" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">lui</span> stesse</span>
-                  <PlayButton text="stesse" />
+                  <PlayButton text="che lui stesse" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">noi</span> stessimo</span>
-                  <PlayButton text="stessimo" />
+                  <PlayButton text="che noi stessimo" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">voi</span> steste</span>
-                  <PlayButton text="steste" />
+                  <PlayButton text="che voi steste" />
                 </li>
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">loro</span> stessero</span>
-                  <PlayButton text="stessero" />
+                  <PlayButton text="che loro stessero" />
                 </li>
               </ul>
             </div>

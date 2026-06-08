@@ -69,6 +69,7 @@ export function VerbConjugatorSection({ verbs = [] }) {
     }
 
     const isIrregular = type === "Irregolare";
+    const isSubjunctive = title.toLowerCase().includes("congiuntivo");
 
     return (
       <div className={`p-5 rounded-2xl border ${colorClasses.border} ${colorClasses.bg} backdrop-blur-md transition-all duration-300 shadow-sm hover:shadow-md`}>
@@ -96,7 +97,11 @@ export function VerbConjugatorSection({ verbs = [] }) {
                       <div className="flex items-center justify-between gap-2 group">
                         <span className="text-slate-800 font-bold leading-tight">{form}</span>
                         <button
-                          onClick={() => speakWord(form)}
+                          onClick={() => {
+                            const pronoun = p === "lui/lei" ? "lui" : p;
+                            const wordToSpeak = isSubjunctive ? `che ${pronoun} ${form}` : form;
+                            speakWord(wordToSpeak);
+                          }}
                           className="p-1 rounded-md text-slate-300 hover:text-indigo-600 hover:bg-indigo-50 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-200"
                           title="Ascolta la pronuncia"
                         >

@@ -272,33 +272,124 @@ export function Modulo1Section() {
           <h3 className="text-2xl font-black text-indigo-900 mb-4 border-b pb-2">1.2 I "Trigger" del Congiuntivo</h3>
           <p className="text-slate-700 mb-4 leading-relaxed">Il congiuntivo è obbligatorio dopo verbi e espressioni che indicano soggettività:</p>
           
-          <ul className="space-y-4">
+          <ul className="space-y-6">
+            {/* Opinione e dubbio */}
             <li className="flex items-start gap-3">
-              <div className="mt-1 text-indigo-500"><Info size={20} /></div>
-              <div>
-                <strong className="text-slate-800">Opinione e dubbio:</strong>
-                <p className="text-sm text-slate-600 mt-1">credere, pensare, dubitare, supporre, ritenere.</p>
+              <div className="mt-1 text-indigo-500 flex-shrink-0"><Info size={20} /></div>
+              <div className="space-y-2 flex-1">
+                <strong className="text-slate-800 block text-base">Opinione e dubbio:</strong>
+                <p className="text-sm text-slate-600 font-medium">credere, pensare, dubitare, supporre, ritenere.</p>
+                <ul className="mt-2 space-y-2 pl-3 border-l border-indigo-200 text-xs md:text-sm text-slate-700">
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Credo che lui abbia ragione.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>credere:</strong> Credo che lui <strong>abbia</strong> ragione. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I believe that he is right.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Penso che faccia troppo caldo oggi.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>pensare:</strong> Penso che <strong>faccia</strong> troppo caldo oggi. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I think that it is too hot today.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Dubito che loro arrivino in tempo.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>dubitare:</strong> Dubito che loro <strong>arrivino</strong> in tempo. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I doubt that they will arrive on time.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Suppongo che l'esame sia difficile.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>supporre:</strong> Suppongo che l'esame <strong>sia</strong> difficile. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I suppose that the exam is difficult.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Ritengo che questo metodo sia efficace.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>ritenere:</strong> Ritengo che questo metodo <strong>sia</strong> efficace. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I consider that this method is effective.)</span></span>
+                  </li>
+                </ul>
               </div>
             </li>
+
+            {/* Volontà e desiderio */}
             <li className="flex items-start gap-3">
-              <div className="mt-1 text-indigo-500"><Info size={20} /></div>
-              <div>
-                <strong className="text-slate-800">Volontà e desiderio:</strong>
-                <p className="text-sm text-slate-600 mt-1">volere, sperare, preferire, desiderare, pretendere.</p>
+              <div className="mt-1 text-indigo-500 flex-shrink-0"><Info size={20} /></div>
+              <div className="space-y-2 flex-1">
+                <strong className="text-slate-800 block text-base">Volontà e desiderio:</strong>
+                <p className="text-sm text-slate-600 font-medium">volere, sperare, preferire, desiderare, pretendere.</p>
+                <ul className="mt-2 space-y-2 pl-3 border-l border-indigo-200 text-xs md:text-sm text-slate-700">
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Voglio che tu studi di più.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>volere:</strong> Voglio che tu <strong>studi</strong> di più. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I want you to study more.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Spero che domani faccia bel tempo.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>sperare:</strong> Spero che domani <strong>faccia</strong> bel tempo. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I hope that tomorrow the weather is good.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Preferisco che tu rimanga qui.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>preferire:</strong> Preferisco che tu <strong>rimanga</strong> qui. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I prefer that you stay here.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Desidero che tutto vada bene.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>desiderare:</strong> Desidero che tutto <strong>vada</strong> bene. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I wish that everything goes well.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Pretende che io faccia tutto da solo.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>pretendere:</strong> Pretende che io <strong>faccia</strong> tutto da solo. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(He demands that I do everything on my own.)</span></span>
+                  </li>
+                </ul>
               </div>
             </li>
+
+            {/* Emozioni e stati d'animo */}
             <li className="flex items-start gap-3">
-              <div className="mt-1 text-indigo-500"><Info size={20} /></div>
-              <div>
-                <strong className="text-slate-800">Emozioni e stati d'animo:</strong>
-                <p className="text-sm text-slate-600 mt-1">essere felice, essere triste, dispiacere, avere paura.</p>
+              <div className="mt-1 text-indigo-500 flex-shrink-0"><Info size={20} /></div>
+              <div className="space-y-2 flex-1">
+                <strong className="text-slate-800 block text-base">Emozioni e stati d'animo:</strong>
+                <p className="text-sm text-slate-600 font-medium">essere felice, essere triste, dispiacere, avere paura.</p>
+                <ul className="mt-2 space-y-2 pl-3 border-l border-indigo-200 text-xs md:text-sm text-slate-700">
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Sono felice che tu sia qui.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>essere felice:</strong> Sono felice che tu <strong>sia</strong> qui. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I am happy that you are here.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Sono triste che tu te ne vada.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>essere triste:</strong> Sono triste che tu te ne <strong>vada</strong>. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I am sad that you are leaving.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Mi dispiace che tu non possa venire.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>dispiacere:</strong> Mi dispiace che tu non <strong>possa</strong> venire. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I am sorry that you cannot come.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Ho paura che piova nel pomeriggio.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>avere paura:</strong> Ho paura che <strong>piova</strong> nel pomeriggio. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I am afraid that it will rain in the afternoon.)</span></span>
+                  </li>
+                </ul>
               </div>
             </li>
+
+            {/* Espressioni impersonali */}
             <li className="flex items-start gap-3">
-              <div className="mt-1 text-indigo-500"><Info size={20} /></div>
-              <div>
-                <strong className="text-slate-800">Espressioni impersonali:</strong>
-                <p className="text-sm text-slate-600 mt-1">è necessario, è importante, sembra, pare, bisogna.</p>
+              <div className="mt-1 text-indigo-500 flex-shrink-0"><Info size={20} /></div>
+              <div className="space-y-2 flex-1">
+                <strong className="text-slate-800 block text-base">Espressioni impersonali:</strong>
+                <p className="text-sm text-slate-600 font-medium">è necessario, è importante, sembra, pare, bisogna.</p>
+                <ul className="mt-2 space-y-2 pl-3 border-l border-indigo-200 text-xs md:text-sm text-slate-700">
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("È necessario che tutti partecipino.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>è necessario:</strong> È necessario che tutti <strong>partecipino</strong>. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(It is necessary that everyone participates.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("È importante che tu ti riposi.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>è importante:</strong> È importante che tu ti <strong>riposi</strong>. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(It is important that you rest.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Sembra che il treno sia in ritardo.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>sembra:</strong> Sembra che il treno <strong>sia</strong> in ritardo. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(It seems that the train is late.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Pare che ci sia stato un malinteso.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>pare:</strong> Pare che ci <strong>sia</strong> stato un malinteso. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(It appears that there has been a misunderstanding.)</span></span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <button onClick={() => speakText("Bisogna che ognuno faccia la sua parte.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                    <span><strong>bisogna:</strong> Bisogna che ognuno <strong>faccia</strong> la sua parte. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(It is necessary that everyone does their part.)</span></span>
+                  </li>
+                </ul>
               </div>
             </li>
           </ul>

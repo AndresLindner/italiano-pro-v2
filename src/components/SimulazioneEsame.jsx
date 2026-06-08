@@ -622,9 +622,33 @@ export function SimulazioneEsame() {
     return (
       <div className="flex flex-col items-center justify-center py-12 animate-in fade-in slide-in-from-bottom-8 duration-700 max-w-3xl mx-auto pb-20">
         <div className="w-32 h-32 bg-white rounded-full shadow-lg flex items-center justify-center mb-6 relative">
-          <div className="absolute inset-0 rounded-full border-4 border-slate-100"></div>
-          <div className={`absolute inset-0 rounded-full border-4 border-t-transparent ${outcomeColor.replace('text-', 'border-')}`} style={{ transform: `rotate(${(score.percent / 100) * 360}deg)` }}></div>
-          <span className={`text-4xl font-black ${outcomeColor}`}>{score.percent}%</span>
+          <svg className="w-full h-full transform -rotate-90 p-1" viewBox="0 0 36 36">
+            {/* Background circle */}
+            <path
+              className="text-slate-100"
+              strokeWidth="3.5"
+              stroke="currentColor"
+              fill="none"
+              d="M18 2.0845
+                a 15.9155 15.9155 0 0 1 0 31.831
+                a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+            {/* Progress circle */}
+            <path
+              className={`${outcomeColor} transition-all duration-500 ease-out`}
+              strokeWidth="3.5"
+              strokeDasharray={`${score.percent}, 100`}
+              strokeLinecap="round"
+              stroke="currentColor"
+              fill="none"
+              d="M18 2.0845
+                a 15.9155 15.9155 0 0 1 0 31.831
+                a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+          </svg>
+          <div className="absolute flex flex-col items-center justify-center">
+            <span className={`text-4xl font-black ${outcomeColor}`}>{score.percent}%</span>
+          </div>
         </div>
         
         <h2 className="text-4xl font-black text-indigo-950 mb-2">Risultato Simulazione</h2>

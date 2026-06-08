@@ -259,12 +259,34 @@ export function HomeSection({ selectTab }) {
           <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4 text-center">
             <h4 className="font-bold text-slate-800 text-sm uppercase tracking-wider">Avanzamento Programma</h4>
             
-            <div className="w-24 h-24 rounded-full border-4 border-slate-100 flex items-center justify-center mx-auto relative">
-              <span className="text-2xl font-black text-slate-800">{progressPercent}%</span>
-              <div 
-                className="absolute inset-0 rounded-full border-4 border-t-indigo-600 border-r-indigo-600 border-b-transparent border-l-transparent transition-transform duration-500"
-                style={{ transform: `rotate(${(progressPercent / 100) * 360}deg)` }}
-              />
+            <div className="w-24 h-24 mx-auto relative flex items-center justify-center">
+              <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                {/* Background circle */}
+                <path
+                  className="text-slate-100"
+                  strokeWidth="3.5"
+                  stroke="currentColor"
+                  fill="none"
+                  d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                {/* Progress circle */}
+                <path
+                  className="text-indigo-600 transition-all duration-500 ease-out"
+                  strokeWidth="3.5"
+                  strokeDasharray={`${progressPercent}, 100`}
+                  strokeLinecap="round"
+                  stroke="currentColor"
+                  fill="none"
+                  d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+              </svg>
+              <div className="absolute flex flex-col items-center justify-center">
+                <span className="text-2xl font-black text-slate-800">{progressPercent}%</span>
+              </div>
             </div>
 
             <p className="text-xs text-slate-500 leading-relaxed font-medium">

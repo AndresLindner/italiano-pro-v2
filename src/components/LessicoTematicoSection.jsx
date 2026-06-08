@@ -60,7 +60,7 @@ export function LessicoTematicoSection() {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'it-IT';
-      utterance.rate = 0.9;
+      utterance.rate = 0.78;
 
       const voices = window.speechSynthesis.getVoices();
       const itVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-') === 'it-it') || 

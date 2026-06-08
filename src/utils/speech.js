@@ -19,7 +19,7 @@ export const speakItalian = (text) => {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(cleaned);
     utterance.lang = 'it-IT';
-    utterance.rate = 0.9;
+    utterance.rate = 0.78;
     
     // Ensure voices are loaded and find the Italian one
     const voices = window.speechSynthesis.getVoices();

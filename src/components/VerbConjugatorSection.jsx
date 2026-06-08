@@ -44,7 +44,7 @@ export function VerbConjugatorSection({ verbs = [] }) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(cleanWord);
       utterance.lang = 'it-IT';
-      utterance.rate = 0.85;
+      utterance.rate = 0.78;
 
       const voices = window.speechSynthesis.getVoices();
       const itVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-') === 'it-it') || 

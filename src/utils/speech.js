@@ -12,6 +12,7 @@ export const speakItalian = (text) => {
 
     // Clean the text for better pronunciation:
     let cleaned = text
+      .replace(/\bche\s+io\b/gi, "ch'io") // Contract "che io" to "ch'io" for natural vowel blending
       .replace(/-/g, '') // remove dashes (parl-o -> parlo)
       .replace(/\/a\b/g, ' o stata') // sono stato/a -> sono stato o stata
       .replace(/\/e\b/g, ' o state') // sono stati/e -> sono stati o state
@@ -30,8 +31,8 @@ export const speakItalian = (text) => {
                     voices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith('it'));
 
     // Check if it is a list of multiple conjugations
-    // We split by period, semicolon or exclamation mark
-    const parts = cleaned.split(/[.;!]+/).map(p => p.trim()).filter(Boolean);
+    // We split by semicolon or exclamation mark (commas and periods are kept for natural cadence)
+    const parts = cleaned.split(/[;!]+/).map(p => p.trim()).filter(Boolean);
 
     if (parts.length > 1) {
       let index = 0;
@@ -39,12 +40,12 @@ export const speakItalian = (text) => {
         if (index < parts.length) {
           const utterance = new SpeechSynthesisUtterance(parts[index]);
           utterance.lang = 'it-IT';
-          utterance.rate = 0.8; // Set rate control to 0.8
+          utterance.rate = 0.8; // Standardized rate
           if (itVoice) {
             utterance.voice = itVoice;
           }
           utterance.onend = () => {
-            activeSpeechTimeout = setTimeout(speakNext, 300); // 300ms pause between conjugations
+            activeSpeechTimeout = setTimeout(speakNext, 300); // 300ms pause
           };
           utterance.onerror = () => {
             activeSpeechTimeout = null;
@@ -59,7 +60,7 @@ export const speakItalian = (text) => {
     } else {
       const utterance = new SpeechSynthesisUtterance(cleaned);
       utterance.lang = 'it-IT';
-      utterance.rate = 0.8; // Set rate control to 0.8
+      utterance.rate = 0.8; // Standardized rate
       if (itVoice) {
         utterance.voice = itVoice;
       }

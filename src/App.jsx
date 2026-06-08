@@ -2766,25 +2766,25 @@ function CongiuntivoPresenteSection() {
                 <th className="p-3 border">
                   <div className="flex items-center justify-between gap-1">
                     <span>-ARE (Parlare)</span>
-                    <PlayButton text="che io parli. che tu parli. che lui parli. che noi parliamo. che voi parliate. che loro parlino." />
+                    <PlayButton text="che io parli, che tu parli, che lui parli, che noi parliamo, che voi parliate, che loro parlino" />
                   </div>
                 </th>
                 <th className="p-3 border">
                   <div className="flex items-center justify-between gap-1">
                     <span>-ERE (Credere)</span>
-                    <PlayButton text="che io creda. che tu creda. che lui creda. che noi crediamo. che voi crediate. che loro credano." />
+                    <PlayButton text="che io creda, che tu creda, che lui creda, che noi crediamo, che voi crediate, che loro credano" />
                   </div>
                 </th>
                 <th className="p-3 border">
                   <div className="flex items-center justify-between gap-1">
                     <span>-IRE (Dormire)</span>
-                    <PlayButton text="che io dorma. che tu dorma. che lui dorma. che noi dormiamo. che voi dormiate. che loro dormano." />
+                    <PlayButton text="che io dorma, che tu dorma, che lui dorma, che noi dormiamo, che voi dormiate, che loro dormano" />
                   </div>
                 </th>
                 <th className="p-3 border">
                   <div className="flex items-center justify-between gap-1">
                     <span>-IRE (Finire) *</span>
-                    <PlayButton text="che io finisca. che tu finisca. che lui finisca. che noi finiamo. che voi finiate. che loro finiscano." />
+                    <PlayButton text="che io finisca, che tu finisca, che lui finisca, che noi finiamo, che voi finiate, che loro finiscano" />
                   </div>
                 </th>
               </tr>
@@ -2843,7 +2843,7 @@ function CongiuntivoPresenteSection() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {irregularVerbs.map((v) => {
-            const fullTTS = `che io ${v.forms[0]}. che tu ${v.forms[1]}. che lui ${v.forms[2]}. che noi ${v.forms[3]}. che voi ${v.forms[4]}. che loro ${v.forms[5]}.`;
+            const fullTTS = `che io ${v.forms[0]}, che tu ${v.forms[1]}, che lui ${v.forms[2]}, che noi ${v.forms[3]}, che voi ${v.forms[4]}, che loro ${v.forms[5]}`;
             return (
               <div key={v.infinitive} className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
                 <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">

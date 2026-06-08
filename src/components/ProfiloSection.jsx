@@ -50,7 +50,7 @@ export function ProfiloSection() {
     setSelectedVoice(name);
     localStorage.setItem('selectedVoiceName', name);
     setTimeout(() => {
-      speakItalian("ch'io sia, ch'io abbia");
+      speakItalian("che io sia, che io abbia");
     }, 100);
   };
 
@@ -207,7 +207,7 @@ export function ProfiloSection() {
             </select>
           </div>
           <button
-            onClick={() => speakItalian("ch'io sia, ch'io abbia, che tu sia, che tu abbia")}
+            onClick={() => speakItalian("che io sia, che io abbia, che tu sia, che tu abbia")}
             className="w-full sm:w-auto px-5 py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 font-bold rounded-xl transition-all flex items-center justify-center gap-2"
           >
             <Volume2 size={18} /> Prova Audio

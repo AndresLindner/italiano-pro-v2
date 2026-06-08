@@ -28,7 +28,6 @@ export const speakItalian = (text, onEnd) => {
   if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
     // Clean the text for better pronunciation:
     let cleaned = text
-      .replace(/\bche\s+io\b/gi, "ch'io") // Contract "che io" to "ch'io" for natural vowel blending
       .replace(/-/g, '') // remove dashes (parl-o -> parlo)
       .replace(/\/a\b/g, ' o stata') // sono stato/a -> sono stato o stata
       .replace(/\/e\b/g, ' o state') // sono stati/e -> sono stati o state

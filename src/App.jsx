@@ -2766,6 +2766,205 @@ function CongiuntivoPresenteSection() {
         </div>
       </section>
 
+      <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 className="text-xl font-bold text-indigo-800 mb-4">Verbi Irregolari più Comuni</h3>
+        <p className="mb-4 text-slate-700 text-sm">Molti verbi ad alta frequenza presentano forme irregolari al congiuntivo presente. Di seguito le coniugazioni complete per i 12 verbi irregolari più importanti:</p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Essere */}
+          <div className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">
+              <span>ESSERE</span>
+              <PlayButton text="che io sia, che tu sia, che lui sia, che noi siamo, che voi siate, che loro siano" />
+            </h4>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs font-mono text-slate-700">
+              <div>io <strong>sia</strong></div>
+              <div>noi <strong>siamo</strong></div>
+              <div>tu <strong>sia</strong></div>
+              <div>voi <strong>siate</strong></div>
+              <div>lui/lei <strong>sia</strong></div>
+              <div>loro <strong>siano</strong></div>
+            </div>
+          </div>
+
+          {/* Avere */}
+          <div className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">
+              <span>AVERE</span>
+              <PlayButton text="che io abbia, che tu abbia, che lui abbia, che noi abbiamo, che voi abbiate, che loro abbiano" />
+            </h4>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs font-mono text-slate-700">
+              <div>io <strong>abbia</strong></div>
+              <div>noi <strong>abbiamo</strong></div>
+              <div>tu <strong>abbia</strong></div>
+              <div>voi <strong>abbiate</strong></div>
+              <div>lui/lei <strong>abbia</strong></div>
+              <div>loro <strong>abbiano</strong></div>
+            </div>
+          </div>
+
+          {/* Fare */}
+          <div className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">
+              <span>FARE</span>
+              <PlayButton text="che io faccia, che tu faccia, che lui faccia, che noi facciamo, che voi facciate, che loro facciano" />
+            </h4>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs font-mono text-slate-700">
+              <div>io <strong>faccia</strong></div>
+              <div>noi <strong>facciamo</strong></div>
+              <div>tu <strong>faccia</strong></div>
+              <div>voi <strong>facciate</strong></div>
+              <div>lui/lei <strong>faccia</strong></div>
+              <div>loro <strong>facciano</strong></div>
+            </div>
+          </div>
+
+          {/* Dire */}
+          <div className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">
+              <span>DIRE</span>
+              <PlayButton text="che io dica, che tu dica, che lui dica, che noi diciamo, che voi diciate, che loro dicano" />
+            </h4>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs font-mono text-slate-700">
+              <div>io <strong>dica</strong></div>
+              <div>noi <strong>diciamo</strong></div>
+              <div>tu <strong>dica</strong></div>
+              <div>voi <strong>diciate</strong></div>
+              <div>lui/lei <strong>dica</strong></div>
+              <div>loro <strong>dicano</strong></div>
+            </div>
+          </div>
+
+          {/* Andare */}
+          <div className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">
+              <span>ANDARE</span>
+              <PlayButton text="che io vada, che tu vada, che lui vada, che noi andiamo, che voi andiate, che loro vadano" />
+            </h4>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs font-mono text-slate-700">
+              <div>io <strong>vada</strong></div>
+              <div>noi <strong>andiamo</strong></div>
+              <div>tu <strong>vada</strong></div>
+              <div>voi <strong>andiate</strong></div>
+              <div>lui/lei <strong>vada</strong></div>
+              <div>loro <strong>vadano</strong></div>
+            </div>
+          </div>
+
+          {/* Venire */}
+          <div className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">
+              <span>VENIRE</span>
+              <PlayButton text="che io venga, che tu venga, che lui venga, che noi veniamo, che voi veniate, che loro vengano" />
+            </h4>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs font-mono text-slate-700">
+              <div>io <strong>venga</strong></div>
+              <div>noi <strong>veniamo</strong></div>
+              <div>tu <strong>venga</strong></div>
+              <div>voi <strong>veniate</strong></div>
+              <div>lui/lei <strong>venga</strong></div>
+              <div>loro <strong>vengano</strong></div>
+            </div>
+          </div>
+
+          {/* Potere */}
+          <div className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">
+              <span>POTERE</span>
+              <PlayButton text="che io possa, che tu possa, che lui possa, che noi possiamo, che voi possiate, che loro possano" />
+            </h4>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs font-mono text-slate-700">
+              <div>io <strong>possa</strong></div>
+              <div>noi <strong>possiamo</strong></div>
+              <div>tu <strong>possa</strong></div>
+              <div>voi <strong>possiate</strong></div>
+              <div>lui/lei <strong>possa</strong></div>
+              <div>loro <strong>possano</strong></div>
+            </div>
+          </div>
+
+          {/* Volere */}
+          <div className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">
+              <span>VOLERE</span>
+              <PlayButton text="che io voglia, che tu voglia, che lui voglia, che noi vogliamo, che voi vogliate, che loro vogliano" />
+            </h4>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs font-mono text-slate-700">
+              <div>io <strong>voglia</strong></div>
+              <div>noi <strong>vogliamo</strong></div>
+              <div>tu <strong>voglia</strong></div>
+              <div>voi <strong>vogliate</strong></div>
+              <div>lui/lei <strong>voglia</strong></div>
+              <div>loro <strong>vogliano</strong></div>
+            </div>
+          </div>
+
+          {/* Dovere */}
+          <div className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">
+              <span>DOVERE</span>
+              <PlayButton text="che io debba, che tu debba, che lui debba, che noi dobbiamo, che voi dobbiate, che loro debbano" />
+            </h4>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs font-mono text-slate-700">
+              <div>io <strong>debba</strong></div>
+              <div>noi <strong>dobbiamo</strong></div>
+              <div>tu <strong>debba</strong></div>
+              <div>voi <strong>dobbiate</strong></div>
+              <div>lui/lei <strong>debba</strong></div>
+              <div>loro <strong>debbano</strong></div>
+            </div>
+          </div>
+
+          {/* Sapere */}
+          <div className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">
+              <span>SAPERE</span>
+              <PlayButton text="che io sappia, che tu sappia, che lui sappia, che noi sappiamo, che voi sappiate, che loro sappiano" />
+            </h4>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs font-mono text-slate-700">
+              <div>io <strong>sappia</strong></div>
+              <div>noi <strong>sappiamo</strong></div>
+              <div>tu <strong>sappia</strong></div>
+              <div>voi <strong>sappiate</strong></div>
+              <div>lui/lei <strong>sappia</strong></div>
+              <div>loro <strong>sappiano</strong></div>
+            </div>
+          </div>
+
+          {/* Stare */}
+          <div className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">
+              <span>STARE</span>
+              <PlayButton text="che io stia, che tu stia, che lui stia, che noi stiamo, che voi stiate, che loro stiano" />
+            </h4>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs font-mono text-slate-700">
+              <div>io <strong>stia</strong></div>
+              <div>noi <strong>stiamo</strong></div>
+              <div>tu <strong>stia</strong></div>
+              <div>voi <strong>stiate</strong></div>
+              <div>lui/lei <strong>stia</strong></div>
+              <div>loro <strong>stiano</strong></div>
+            </div>
+          </div>
+
+          {/* Dare */}
+          <div className="bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+            <h4 className="font-bold text-indigo-950 border-b pb-1.5 mb-2.5 text-sm flex justify-between items-center">
+              <span>DARE</span>
+              <PlayButton text="che io dia, che tu dia, che lui dia, che noi diamo, che voi diate, che loro diano" />
+            </h4>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs font-mono text-slate-700">
+              <div>io <strong>dia</strong></div>
+              <div>noi <strong>diamo</strong></div>
+              <div>tu <strong>dia</strong></div>
+              <div>voi <strong>diate</strong></div>
+              <div>lui/lei <strong>dia</strong></div>
+              <div>loro <strong>diano</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-violet-50 p-6 rounded-xl border border-violet-200">
         <h3 className="text-xl font-bold text-violet-800 mb-3 flex items-center gap-2">
           💡 Il "Trucco" per memorizzare il Congiuntivo

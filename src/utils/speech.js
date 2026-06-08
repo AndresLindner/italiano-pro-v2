@@ -39,12 +39,12 @@ export const speakItalian = (text) => {
         if (index < parts.length) {
           const utterance = new SpeechSynthesisUtterance(parts[index]);
           utterance.lang = 'it-IT';
-          utterance.rate = 0.68; // Slow down rate for multi-clause list reading
+          utterance.rate = 0.8; // Set rate control to 0.8
           if (itVoice) {
             utterance.voice = itVoice;
           }
           utterance.onend = () => {
-            activeSpeechTimeout = setTimeout(speakNext, 600); // 600ms pause between conjugations
+            activeSpeechTimeout = setTimeout(speakNext, 300); // 300ms pause between conjugations
           };
           utterance.onerror = () => {
             activeSpeechTimeout = null;
@@ -59,7 +59,7 @@ export const speakItalian = (text) => {
     } else {
       const utterance = new SpeechSynthesisUtterance(cleaned);
       utterance.lang = 'it-IT';
-      utterance.rate = 0.76; // Regular slow rate for individual words/phrases
+      utterance.rate = 0.8; // Set rate control to 0.8
       if (itVoice) {
         utterance.voice = itVoice;
       }

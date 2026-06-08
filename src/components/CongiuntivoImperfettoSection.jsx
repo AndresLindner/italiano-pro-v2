@@ -82,7 +82,10 @@ export function CongiuntivoImperfettoSection() {
  
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div className="bg-indigo-50 rounded-xl p-6 border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-xl mb-4 text-center border-b border-indigo-200 pb-2">Parlare</h4>
+            <h4 className="font-bold text-indigo-800 text-xl mb-4 flex items-center justify-between border-b border-indigo-200 pb-2">
+              <span>Parlare</span>
+              <PlayButton text="che io parlassi, che tu parlassi, che lui parlasse, che noi parlassimo, che voi parlaste, che loro parlassero" />
+            </h4>
             <ul className="space-y-2 text-indigo-900 text-lg">
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">io</span> parlassi</span>
@@ -111,7 +114,10 @@ export function CongiuntivoImperfettoSection() {
             </ul>
           </div>
           <div className="bg-indigo-50 rounded-xl p-6 border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-xl mb-4 text-center border-b border-indigo-200 pb-2">Credere</h4>
+            <h4 className="font-bold text-indigo-800 text-xl mb-4 flex items-center justify-between border-b border-indigo-200 pb-2">
+              <span>Credere</span>
+              <PlayButton text="che io credessi, che tu credessi, che lui credesse, che noi credessimo, che voi credeste, che loro credessero" />
+            </h4>
             <ul className="space-y-2 text-indigo-900 text-lg">
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">io</span> credessi</span>
@@ -140,7 +146,10 @@ export function CongiuntivoImperfettoSection() {
             </ul>
           </div>
           <div className="bg-indigo-50 rounded-xl p-6 border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-xl mb-4 text-center border-b border-indigo-200 pb-2">Sentire</h4>
+            <h4 className="font-bold text-indigo-800 text-xl mb-4 flex items-center justify-between border-b border-indigo-200 pb-2">
+              <span>Sentire</span>
+              <PlayButton text="che io sentissi, che tu sentissi, che lui sentisse, che noi sentissimo, che voi sentiste, che loro sentissero" />
+            </h4>
             <ul className="space-y-2 text-indigo-900 text-lg">
               <li className="flex items-center justify-between">
                 <span><span className="text-slate-500 inline-block w-12">io</span> sentissi</span>
@@ -177,7 +186,10 @@ export function CongiuntivoImperfettoSection() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white rounded-xl p-4 border border-amber-200">
-              <h5 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-2">Essere</h5>
+              <h5 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-2 flex items-center justify-between">
+                <span>Essere</span>
+                <PlayButton text="che io fossi, che tu fossi, che lui fosse, che noi fossimo, che voi foste, che loro fossero" />
+              </h5>
               <ul className="space-y-1 text-slate-800 text-base">
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">io</span> fossi</span>
@@ -206,7 +218,10 @@ export function CongiuntivoImperfettoSection() {
               </ul>
             </div>
             <div className="bg-white rounded-xl p-4 border border-amber-200">
-              <h5 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-2">Dare</h5>
+              <h5 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-2 flex items-center justify-between">
+                <span>Dare</span>
+                <PlayButton text="che io dessi, che tu dessi, che lui desse, che noi dessimo, che voi deste, che loro dessero" />
+              </h5>
               <ul className="space-y-1 text-slate-800 text-base">
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">io</span> dessi</span>
@@ -235,7 +250,10 @@ export function CongiuntivoImperfettoSection() {
               </ul>
             </div>
             <div className="bg-white rounded-xl p-4 border border-amber-200">
-              <h5 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-2">Stare</h5>
+              <h5 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-2 flex items-center justify-between">
+                <span>Stare</span>
+                <PlayButton text="che io stessi, che tu stessi, che lui stesse, che noi stessimo, che voi steste, che loro stessero" />
+              </h5>
               <ul className="space-y-1 text-slate-800 text-base">
                 <li className="flex items-center justify-between">
                   <span><span className="text-slate-500 inline-block w-12 text-sm">io</span> stessi</span>

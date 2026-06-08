@@ -2763,10 +2763,30 @@ function CongiuntivoPresenteSection() {
             <thead>
               <tr className="bg-indigo-50 text-indigo-900">
                 <th className="p-3 border">Persona</th>
-                <th className="p-3 border">-ARE (Parlare)</th>
-                <th className="p-3 border">-ERE (Credere)</th>
-                <th className="p-3 border">-IRE (Dormire)</th>
-                <th className="p-3 border">-IRE (Finire) *</th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-1">
+                    <span>-ARE (Parlare)</span>
+                    <PlayButton text="che io parli, che tu parli, che lui parli, che noi parliamo, che voi parliate, che loro parlino" />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-1">
+                    <span>-ERE (Credere)</span>
+                    <PlayButton text="che io creda, che tu creda, che lui creda, che noi crediamo, che voi crediate, che loro credano" />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-1">
+                    <span>-IRE (Dormire)</span>
+                    <PlayButton text="che io dorma, che tu dorma, che lui dorma, che noi dormiamo, che voi dormiate, che loro dormano" />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-1">
+                    <span>-IRE (Finire) *</span>
+                    <PlayButton text="che io finisca, che tu finisca, che lui finisca, che noi finiamo, che voi finiate, che loro finiscano" />
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody>

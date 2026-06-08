@@ -1,6 +1,7 @@
 import React from 'react';
-import { User, Trophy, Star, Target, CheckCircle2, TrendingUp, Medal } from 'lucide-react';
+import { User, Trophy, Star, Target, CheckCircle2, TrendingUp, Medal, Volume2 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { speakItalian } from '../utils/speech';
 import { modulo6Data } from '../data/modulo6_data';
 import { modulo7Data } from '../data/modulo7_data';
 import { modulo8Data } from '../data/modulo8_data';
@@ -9,6 +10,49 @@ import { modulo11Data } from '../data/modulo11_data';
 
 export function ProfiloSection() {
   const { currentUser, userProgress, userFlashcards } = useAuth();
+  const [voices, setVoices] = React.useState([]);
+  const [selectedVoice, setSelectedVoice] = React.useState('');
+
+  React.useEffect(() => {
+    const updateVoices = () => {
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        const allVoices = window.speechSynthesis.getVoices();
+        const italianVoices = allVoices.filter(v => {
+          const lang = v.lang.toLowerCase().replace('_', '-');
+          return lang === 'it-it' || lang.startsWith('it-') || lang === 'it';
+        });
+        setVoices(italianVoices);
+        
+        const saved = localStorage.getItem('selectedVoiceName');
+        if (saved && italianVoices.some(v => v.name === saved)) {
+          setSelectedVoice(saved);
+        } else if (italianVoices.length > 0) {
+          const best = 
+            italianVoices.find(v => v.name.toLowerCase().includes('siri')) ||
+            italianVoices.find(v => v.name.toLowerCase().includes('google')) ||
+            italianVoices.find(v => v.name.toLowerCase().includes('alice')) ||
+            italianVoices.find(v => v.name.toLowerCase().includes('premium')) ||
+            italianVoices.find(v => v.name.toLowerCase().includes('enhanced')) ||
+            italianVoices[0];
+          setSelectedVoice(best ? best.name : '');
+        }
+      }
+    };
+
+    updateVoices();
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = updateVoices;
+    }
+  }, []);
+
+  const handleVoiceChange = (e) => {
+    const name = e.target.value;
+    setSelectedVoice(name);
+    localStorage.setItem('selectedVoiceName', name);
+    setTimeout(() => {
+      speakItalian("ch'io sia, ch'io abbia");
+    }, 100);
+  };
 
   // Helper to calculate module completion
   const calculateCompletion = (moduleId, totalExercises) => {
@@ -132,6 +176,42 @@ export function ProfiloSection() {
         <div className="flex-shrink-0 relative z-10 bg-indigo-50 p-6 rounded-2xl border border-indigo-100 text-center">
           <div className="mb-2 flex justify-center">{badgeIcon}</div>
           <p className="font-bold text-indigo-900 text-sm">Livello Attuale</p>
+        </div>
+      </div>
+
+      {/* Impostazioni Sintesi Vocale (TTS Settings) */}
+      <div className="bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+        <h3 className="text-xl font-black text-slate-800 mb-2 flex items-center gap-2">
+          <Volume2 className="text-indigo-600" size={24} /> Impostazioni Voce (Sintesi Vocale)
+        </h3>
+        <p className="text-slate-500 text-sm mb-4">
+          Scegli la voce italiana che preferisci per ascoltare le pronunce. Le voci disponibili dipendono dal tuo browser e dal tuo sistema operativo (es. Siri, Alice Premium, Google Cloud).
+        </p>
+        
+        <div className="flex flex-col sm:flex-row gap-4 items-center">
+          <div className="w-full sm:w-80">
+            <select
+              value={selectedVoice}
+              onChange={handleVoiceChange}
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              {voices.length === 0 ? (
+                <option value="">Voce Predefinita del Sistema</option>
+              ) : (
+                voices.map(v => (
+                  <option key={v.name} value={v.name}>
+                    {v.name} ({v.localService ? 'Offline' : 'Cloud'})
+                  </option>
+                ))
+              )}
+            </select>
+          </div>
+          <button
+            onClick={() => speakItalian("ch'io sia, ch'io abbia, che tu sia, che tu abbia")}
+            className="w-full sm:w-auto px-5 py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 font-bold rounded-xl transition-all flex items-center justify-center gap-2"
+          >
+            <Volume2 size={18} /> Prova Audio
+          </button>
         </div>
       </div>
 

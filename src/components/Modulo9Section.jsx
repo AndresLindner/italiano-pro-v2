@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Headphones, CheckCircle2, XCircle, Play, Square, Info } from 'lucide-react';
 import { modulo9Data } from '../data/modulo9_data';
 import { useAuth } from '../contexts/AuthContext';
+import { speakItalian, cancelSpeech } from '../utils/speech';
 
 export function Modulo9Section() {
   const [activeAudioId, setActiveAudioId] = useState(modulo9Data[0].id);
@@ -21,42 +22,26 @@ export function Modulo9Section() {
     
     // Cleanup speech synthesis on unmount
     return () => {
-      window.speechSynthesis.cancel();
+      cancelSpeech();
     };
   }, [userProgress]);
 
   // Handle Speech Synthesis state changes
   useEffect(() => {
     // When switching active audio, stop current playback
-    window.speechSynthesis.cancel();
+    cancelSpeech();
     setIsPlaying(false);
   }, [activeAudioId]);
 
   const toggleAudio = () => {
     if (isPlaying) {
-      window.speechSynthesis.cancel();
+      cancelSpeech();
       setIsPlaying(false);
     } else {
-      if ('speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(activeAudio.transcript);
-        utterance.lang = 'it-IT';
-        utterance.rate = 0.9;
-        
-        const voices = window.speechSynthesis.getVoices();
-        const itVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-') === 'it-it') || 
-                        voices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith('it'));
-        if (itVoice) {
-          utterance.voice = itVoice;
-        }
-
-        utterance.onend = () => setIsPlaying(false);
-        utterance.onerror = () => setIsPlaying(false);
-        
-        window.speechSynthesis.speak(utterance);
-        setIsPlaying(true);
-      } else {
-        alert("Il tuo browser non supporta la sintesi vocale.");
-      }
+      setIsPlaying(true);
+      speakItalian(activeAudio.transcript, () => {
+        setIsPlaying(false);
+      });
     }
   };
 

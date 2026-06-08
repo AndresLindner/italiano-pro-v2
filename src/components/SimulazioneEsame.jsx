@@ -11,7 +11,7 @@ import { modulo9Data } from '../data/modulo9_data';
 import { modulo10Data } from '../data/modulo10_data';
 import { modulo11Data } from '../data/modulo11_data';
 import { useAuth } from '../contexts/AuthContext';
-import { speakItalian } from '../utils/speech';
+import { speakItalian, cancelSpeech } from '../utils/speech';
 
 const getRandomElements = (arr, num) => {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
@@ -45,7 +45,7 @@ export function SimulazioneEsame() {
 
   useEffect(() => {
     return () => {
-      window.speechSynthesis.cancel();
+      cancelSpeech();
     };
   }, []);
 
@@ -89,7 +89,7 @@ export function SimulazioneEsame() {
   };
 
   const stopAudio = () => {
-    window.speechSynthesis.cancel();
+    cancelSpeech();
     setIsPlayingAudio(false);
   };
 
@@ -105,7 +105,7 @@ export function SimulazioneEsame() {
   };
 
   const finishExam = () => {
-    window.speechSynthesis.cancel();
+    cancelSpeech();
     setIsPlayingAudio(false);
 
     // 1. Ascolto

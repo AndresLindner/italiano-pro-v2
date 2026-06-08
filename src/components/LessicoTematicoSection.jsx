@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BookA, Briefcase, Globe, HeartPulse, ChevronRight, Volume2, Maximize2, X, RefreshCw, Layers, GraduationCap, Utensils, Newspaper, Users, Palette } from 'lucide-react';
 import { lessicoTematico } from '../data/lessico_data';
 import { useAuth } from '../contexts/AuthContext';
+import { speakItalian } from '../utils/speech';
 
 const categoryIcons = {
   "ambiente": <Globe className="text-emerald-500" size={24} />,
@@ -56,21 +57,7 @@ export function LessicoTematicoSection() {
 
   const speakWord = (text, e) => {
     if (e) e.stopPropagation();
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'it-IT';
-      utterance.rate = 0.78;
-
-      const voices = window.speechSynthesis.getVoices();
-      const itVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-') === 'it-it') || 
-                      voices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith('it'));
-      if (itVoice) {
-        utterance.voice = itVoice;
-      }
-
-      window.speechSynthesis.speak(utterance);
-    }
+    speakItalian(text);
   };
 
   const handleSRSResponse = (quality) => {

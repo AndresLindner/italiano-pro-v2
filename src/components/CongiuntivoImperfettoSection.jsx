@@ -84,7 +84,7 @@ export function CongiuntivoImperfettoSection() {
           <div className="bg-indigo-50 rounded-xl p-6 border border-indigo-100">
             <h4 className="font-bold text-indigo-800 text-xl mb-4 flex items-center justify-between border-b border-indigo-200 pb-2">
               <span>Parlare</span>
-              <PlayButton text="che io parlassi, che tu parlassi, che lui parlasse, che noi parlassimo, che voi parlaste, che loro parlassero" />
+              <PlayButton text="che io parlassi. che tu parlassi. che lui parlasse. che noi parlassimo. che voi parlaste. che loro parlassero." />
             </h4>
             <ul className="space-y-2 text-indigo-900 text-lg">
               <li className="flex items-center justify-between">
@@ -116,7 +116,7 @@ export function CongiuntivoImperfettoSection() {
           <div className="bg-indigo-50 rounded-xl p-6 border border-indigo-100">
             <h4 className="font-bold text-indigo-800 text-xl mb-4 flex items-center justify-between border-b border-indigo-200 pb-2">
               <span>Credere</span>
-              <PlayButton text="che io credessi, che tu credessi, che lui credesse, che noi credessimo, che voi credeste, che loro credessero" />
+              <PlayButton text="che io credessi. che tu credessi. che lui credesse. che noi credessimo. che voi credeste. che loro credessero." />
             </h4>
             <ul className="space-y-2 text-indigo-900 text-lg">
               <li className="flex items-center justify-between">
@@ -148,7 +148,7 @@ export function CongiuntivoImperfettoSection() {
           <div className="bg-indigo-50 rounded-xl p-6 border border-indigo-100">
             <h4 className="font-bold text-indigo-800 text-xl mb-4 flex items-center justify-between border-b border-indigo-200 pb-2">
               <span>Sentire</span>
-              <PlayButton text="che io sentissi, che tu sentissi, che lui sentisse, che noi sentissimo, che voi sentiste, che loro sentissero" />
+              <PlayButton text="che io sentissi. che tu sentissi. che lui sentisse. che noi sentissimo. che voi sentiste. che loro sentissero." />
             </h4>
             <ul className="space-y-2 text-indigo-900 text-lg">
               <li className="flex items-center justify-between">
@@ -188,7 +188,7 @@ export function CongiuntivoImperfettoSection() {
             <div className="bg-white rounded-xl p-4 border border-amber-200">
               <h5 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-2 flex items-center justify-between">
                 <span>Essere</span>
-                <PlayButton text="che io fossi, che tu fossi, che lui fosse, che noi fossimo, che voi foste, che loro fossero" />
+                <PlayButton text="che io fossi. che tu fossi. che lui fosse. che noi fossimo. che voi foste. che loro fossero." />
               </h5>
               <ul className="space-y-1 text-slate-800 text-base">
                 <li className="flex items-center justify-between">
@@ -220,7 +220,7 @@ export function CongiuntivoImperfettoSection() {
             <div className="bg-white rounded-xl p-4 border border-amber-200">
               <h5 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-2 flex items-center justify-between">
                 <span>Dare</span>
-                <PlayButton text="che io dessi, che tu dessi, che lui desse, che noi dessimo, che voi deste, che loro dessero" />
+                <PlayButton text="che io dessi. che tu dessi. che lui desse. che noi dessimo. che voi deste. che loro dessero." />
               </h5>
               <ul className="space-y-1 text-slate-800 text-base">
                 <li className="flex items-center justify-between">
@@ -252,7 +252,7 @@ export function CongiuntivoImperfettoSection() {
             <div className="bg-white rounded-xl p-4 border border-amber-200">
               <h5 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-2 flex items-center justify-between">
                 <span>Stare</span>
-                <PlayButton text="che io stessi, che tu stessi, che lui stesse, che noi stessimo, che voi steste, che loro stessero" />
+                <PlayButton text="che io stessi. che tu stessi. che lui stesse. che noi stessimo. che voi steste. che loro stessero." />
               </h5>
               <ul className="space-y-1 text-slate-800 text-base">
                 <li className="flex items-center justify-between">

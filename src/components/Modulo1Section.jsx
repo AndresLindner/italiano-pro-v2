@@ -310,24 +310,273 @@ export function Modulo1Section() {
 
         <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
           <h3 className="text-2xl font-black text-indigo-900 mb-4 border-b pb-2">1.3 Congiunzioni Subordinanti</h3>
-          <p className="text-slate-700 mb-4 leading-relaxed">Alcune congiunzioni richiedono <strong>sempre</strong> il congiuntivo, indipendentemente dal verbo della frase principale:</p>
+          <p className="text-slate-700 mb-6 leading-relaxed">Alcune congiunzioni richiedono <strong>sempre</strong> il congiuntivo, indipendentemente dal verbo della frase principale:</p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="border border-slate-200 rounded-lg p-4 hover:border-indigo-300 transition-colors">
-              <strong className="text-indigo-800 block mb-2">Concessive</strong>
-              <p className="text-sm text-slate-600">sebbene, benché, malgrado, nonostante</p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Concessive */}
+            <div className="border border-slate-200 rounded-xl p-5 hover:border-indigo-300 transition-colors bg-slate-50/50 space-y-4">
+              <strong className="text-indigo-800 text-lg block border-b pb-1">Concessive</strong>
+              <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Esprimono una concessione (sebbene, benché, malgrado, nonostante):</p>
+              
+              <div className="space-y-4 text-xs md:text-sm">
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">sebbene</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Sebbene sia stanco, continuerò a studiare.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span><strong>Sebbene sia</strong> stanco, continuerò a studiare. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Although I am tired, I will continue studying.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Ha comprato quel libro, sebbene costi molto.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Ha comprato quel libro, <strong>sebbene costi</strong> molto. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(He bought that book, although it costs a lot.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Sebbene faccia freddo, faremo una passeggiata.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span><strong>Sebbene faccia</strong> freddo, faremo una passeggiata. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Although it is cold, we will take a walk.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">benché</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Benché sia tardi, preferisco finire il lavoro.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span><strong>Benché sia</strong> tardi, preferisco finire il lavoro. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Even though it is late, I prefer to finish the work.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Non siamo andati al mare benché ci fosse il sole.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Non siamo andati al mare <strong>benché ci fosse</strong> il sole. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(We didn't go to the beach even though it was sunny.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Benché dica il contrario, so che ha paura.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span><strong>Benché dica</strong> il contrario, so che ha paura. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Even though he says the opposite, I know he is afraid.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">malgrado</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Malgrado sia difficile, risolveremo il problema.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span><strong>Malgrado sia</strong> difficile, risolveremo il problema. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(In spite of it being difficult, we will solve the problem.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Continuava a sorridere malgrado fosse molto triste.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Continuava a sorridere <strong>malgrado fosse</strong> molto triste. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(She kept smiling in spite of being very sad.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Malgrado abbiano studiato molto, non hanno superato il test.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span><strong>Malgrado abbiano</strong> studiato molto, non hanno superato il test. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Despite having studied a lot, they didn't pass the test.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">nonostante</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Nonostante piova, usciremo a correre.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span><strong>Nonostante piova</strong>, usciremo a correre. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Despite it raining, we will go out for a run.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Ha accettato l'offerta nonostante lo stipendio fosse basso.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Ha accettato l'offerta <strong>nonostante lo stipendio fosse</strong> basso. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(He accepted the offer despite the salary being low.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Nonostante avesse poco tempo, mi ha aiutato.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span><strong>Nonostante avesse</strong> poco tempo, mi ha aiutato. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Despite having little time, he helped me.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div className="border border-slate-200 rounded-lg p-4 hover:border-indigo-300 transition-colors">
-              <strong className="text-indigo-800 block mb-2">Condizionali</strong>
-              <p className="text-sm text-slate-600">purché, a patto che, a condizione che, nel caso in cui</p>
+
+            {/* Condizionali */}
+            <div className="border border-slate-200 rounded-xl p-5 hover:border-indigo-300 transition-colors bg-slate-50/50 space-y-4">
+              <strong className="text-indigo-800 text-lg block border-b pb-1">Condizionali</strong>
+              <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Esprimono una condizione (purché, a patto che, a condizione che, nel caso in cui):</p>
+              
+              <div className="space-y-4 text-xs md:text-sm">
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">purché</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Puoi venire con noi, purché tu faccia silenzio.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Puoi venire con noi, <strong>purché tu faccia</strong> silenzio. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(You can come with us, provided you keep quiet.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Ti presterò la macchina purché tu la riporti domani.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Ti presterò la macchina <strong>purché tu la riporti</strong> domani. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I will lend you the car provided you bring it back tomorrow.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Farò qualsiasi lavoro purché sia ben pagato.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Farò qualsiasi lavoro <strong>purché sia</strong> ben pagato. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I will do any job provided it is well paid.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">a patto che</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Ti perdono, a patto che tu non lo faccia più.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Ti perdono, <strong>a patto che tu</strong> non lo <strong>faccia</strong> più. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I forgive you, on condition that you don't do it again.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Accetto l'invito a patto che cucini tu.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Accetto l'invito <strong>a patto che cucini</strong> tu. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I accept the invitation on condition that you cook.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Possiamo firmare l'accordo a patto che vengano rispettati i termini.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Possiamo firmare l'accordo <strong>a patto che vengano</strong> rispettati i termini. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(We can sign the agreement on condition that the terms are respected.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">a condizione che</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Ti aiuterò a condizione che tu mi ascolti.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Ti aiuterò <strong>a condizione che tu</strong> mi <strong>ascolti</strong>. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I will help you on condition that you listen to me.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Verrò alla cena a condizione che ci sia anche Maria.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Verrò alla cena <strong>a condizione che ci sia</strong> anche Maria. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I will come to the dinner on condition that Maria is also there.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Gli daranno il permesso a condizione che finisca i compiti.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Gli daranno il permesso <strong>a condizione che finisca</strong> i compiti. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(They will give him permission on condition that he finishes his homework.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">nel caso in cui</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Nel caso in cui tu abbia bisogno, chiamami.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span><strong>Nel caso in cui tu abbia</strong> bisogno, chiamami. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(In case you need anything, call me.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Portati l'ombrello nel caso in cui piova.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Portati l'ombrello <strong>nel caso in cui piova</strong>. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Take an umbrella in case it rains.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Nel caso in cui ci fossero problemi, contattate la reception.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span><strong>Nel caso in cui ci fossero</strong> problemi, contattate la reception. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(In case there are any problems, contact reception.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div className="border border-slate-200 rounded-lg p-4 hover:border-indigo-300 transition-colors">
-              <strong className="text-indigo-800 block mb-2">Finali</strong>
-              <p className="text-sm text-slate-600">affinché, in modo che</p>
+
+            {/* Finali */}
+            <div className="border border-slate-200 rounded-xl p-5 hover:border-indigo-300 transition-colors bg-slate-50/50 space-y-4">
+              <strong className="text-indigo-800 text-lg block border-b pb-1">Finali</strong>
+              <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Esprimono uno scopo o fine (affinché, in modo che):</p>
+              
+              <div className="space-y-4 text-xs md:text-sm">
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">affinché</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Ti spiego la regola affinché tu capisca l'errore.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Ti spiego la regola <strong>affinché tu capisca</strong> l'errore. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I explain the rule to you so that you understand the mistake.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Ha parlato a voce alta affinché tutti lo sentissero.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Ha parlato a voce alta <strong>affinché</strong> tutti lo <strong>sentissero</strong>. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(He spoke in a loud voice so that everyone could hear him.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Dobbiamo agire subito affinché la situazione non peggiori.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Dobbiamo agire subito <strong>affinché</strong> la situazione non <strong>peggiori</strong>. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(We must act immediately so that the situation doesn't get worse.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">in modo che</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Scrivilo in modo che tu non lo dimentichi.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Scrivilo <strong>in modo che tu</strong> non lo <strong>dimentichi</strong>. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Write it down so that you don't forget it.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Sposta la sedia in modo che io possa passare.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Sposta la sedia <strong>in modo che io possa</strong> passare. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Move the chair so that I can pass.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Organizziamo tutto in modo che non ci siano ritardi.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Organizziamo tutto <strong>in modo che</strong> non ci <strong>siano</strong> ritardi. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Let's organize everything so that there are no delays.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div className="border border-slate-200 rounded-lg p-4 hover:border-indigo-300 transition-colors">
-              <strong className="text-indigo-800 block mb-2">Temporali & Esclusive</strong>
-              <p className="text-sm text-slate-600">prima che, senza che, tranne che</p>
+
+            {/* Temporali & Esclusive */}
+            <div className="border border-slate-200 rounded-xl p-5 hover:border-indigo-300 transition-colors bg-slate-50/50 space-y-4">
+              <strong className="text-indigo-800 text-lg block border-b pb-1">Temporali & Esclusive</strong>
+              <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Esprimono tempo o esclusione (prima che, senza che, tranne che):</p>
+              
+              <div className="space-y-4 text-xs md:text-sm">
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">prima che</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Usciamo prima che inizi a piovere.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Usciamo <strong>prima che inizi</strong> a piovere. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Let's go out before it starts raining.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Voglio parlarti prima che tu prenda una decisione.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Voglio parlarti <strong>prima che tu prenda</strong> una decisione. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I want to talk to you before you make a decision.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Finisci il pranzo prima che si raffreddi.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Finisci il pranzo <strong>prima che</strong> si <strong>raffreddi</strong>. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Finish your lunch before it gets cold.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">senza che</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("È partito senza che nessuno lo sapesse.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>È partito <strong>senza che</strong> nessuno lo <strong>sapesse</strong>. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(He left without anyone knowing it.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Ha risolto il problema senza che io dicessi nulla.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Ha risolto il problema <strong>senza che io dicessi</strong> nulla. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(He solved the problem without me saying anything.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Il tempo passa senza che ce ne accorgiamo.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Il tempo passa <strong>senza che</strong> ce ne <strong>accorgiamo</strong>. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Time passes without us noticing it.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <span className="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">tranne che</span>
+                  <ul className="mt-2 space-y-1.5 pl-2 border-l border-indigo-200">
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Farò di tutto tranne che venire a quel concerto.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Farò di tutto <strong>tranne che venire</strong> a quel concerto. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I will do anything except come to that concert.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Accetto qualsiasi soluzione tranne che si perda tempo.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span>Accetto qualsiasi soluzione <strong>tranne che</strong> si <strong>perda</strong> tempo. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(I accept any solution except that time is wasted.)</span></span>
+                    </li>
+                    <li className="flex items-start gap-1.5 text-slate-700">
+                      <button onClick={() => speakText("Tranne che tu non preferisca rimanere a casa, noi andiamo.")} className="text-slate-400 hover:text-indigo-600 mt-0.5 flex-shrink-0" title="Ascolta"><Volume2 size={14} /></button>
+                      <span><strong>Tranne che tu</strong> non <strong>preferisca</strong> rimanere a casa, noi andiamo. <span className="text-slate-400 text-xs italic block md:inline md:ml-1">(Unless you prefer to stay home, we are going.)</span></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </section>

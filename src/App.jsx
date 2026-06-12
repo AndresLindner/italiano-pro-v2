@@ -3245,6 +3245,97 @@ function TrapassatoProssimoSection() {
   );
 }
 
+const irregularEreVerbs = [
+  {
+    verb: "Chiedere",
+    meaning: "to ask",
+    regularRoot: "chied-",
+    irregularRoot: "chies-",
+    forms: { io: "chiesi", lui: "chiese", loro: "chiesero" },
+    fullConjugation: "io chiesi, tu chiedesti, lui chiese, noi chiedemmo, voi chiedeste, loro chiesero"
+  },
+  {
+    verb: "Decidere",
+    meaning: "to decide",
+    regularRoot: "decid-",
+    irregularRoot: "decis-",
+    forms: { io: "decisi", lui: "decise", loro: "decisero" },
+    fullConjugation: "io decisi, tu decidesti, lui decise, noi decidemmo, voi decideste, loro decisero"
+  },
+  {
+    verb: "Leggere",
+    meaning: "to read",
+    regularRoot: "legg-",
+    irregularRoot: "less-",
+    forms: { io: "lessi", lui: "lesse", loro: "lessero" },
+    fullConjugation: "io lessi, tu leggesti, lui lesse, noi leggemmo, voi leggeste, loro lessero"
+  },
+  {
+    verb: "Rispondere",
+    meaning: "to answer",
+    regularRoot: "rispond-",
+    irregularRoot: "rispos-",
+    forms: { io: "risposi", lui: "rispose", loro: "risposero" },
+    fullConjugation: "io risposi, tu rispondesti, lui rispose, noi rispondemmo, voi rispondeste, loro risposero"
+  },
+  {
+    verb: "Rimanere",
+    meaning: "to remain",
+    regularRoot: "riman-",
+    irregularRoot: "rimas-",
+    forms: { io: "rimasi", lui: "rimase", loro: "rimasero" },
+    fullConjugation: "io rimasi, tu rimanesti, lui rimase, noi rimanemmo, voi rimaneste, loro rimasero"
+  },
+  {
+    verb: "Chiudere",
+    meaning: "to close",
+    regularRoot: "chiud-",
+    irregularRoot: "chius-",
+    forms: { io: "chiusi", lui: "chiuse", loro: "chiusero" },
+    fullConjugation: "io chiusi, tu chiudesti, lui chiuse, noi chiudemmo, voi chiudeste, loro chiusero"
+  },
+  {
+    verb: "Correre",
+    meaning: "to run",
+    regularRoot: "corr-",
+    irregularRoot: "cors-",
+    forms: { io: "corsi", lui: "corse", loro: "corsero" },
+    fullConjugation: "io corsi, tu corresti, lui corse, noi corremmo, voi correste, loro corsero"
+  },
+  {
+    verb: "Nascere",
+    meaning: "to be born",
+    regularRoot: "nasc-",
+    irregularRoot: "nacqu-",
+    forms: { io: "nacqui", lui: "nacque", loro: "nacquero" },
+    fullConjugation: "io nacqui, tu nascesti, lui nacque, noi nascemmo, voi nasceste, loro nacquero"
+  },
+  {
+    verb: "Vincere",
+    meaning: "to win",
+    regularRoot: "vinc-",
+    irregularRoot: "vins-",
+    forms: { io: "vinsi", lui: "vinse", loro: "vinsero" },
+    fullConjugation: "io vinsi, tu vincesti, lui vinse, noi vincemmo, voi vinceste, loro vinsero"
+  },
+  {
+    verb: "Conoscere",
+    meaning: "to know",
+    regularRoot: "conosc-",
+    irregularRoot: "conobb-",
+    forms: { io: "conobbi", lui: "conobbe", loro: "conobbero" },
+    fullConjugation: "io conobbi, tu conoscesti, lui conobbe, noi conoscemmo, voi conosceste, loro conobbero"
+  },
+  {
+    verb: "Dipingere",
+    meaning: "to paint",
+    regularRoot: "diping-",
+    irregularRoot: "dipins-",
+    forms: { io: "dipinsi", lui: "dipinse", loro: "dipinsero" },
+    fullConjugation: "io dipinsi, tu dipingesti, lui dipinse, noi dipingemmo, voi dipingeste, loro dipinsero"
+  }
+];
+
 function PassatoRemotoSection() {
   const theory = (
     <div className="space-y-8">
@@ -3346,6 +3437,47 @@ function PassatoRemotoSection() {
             <li className="flex items-center justify-between"><span><span className="inline-block w-6 text-slate-400">5</span> Voi prend-este (Regolare)</span><PlayButton text="prendeste" /></li>
             <li className="flex items-center justify-between"><span><span className="inline-block w-6 text-amber-600 font-bold">6</span> <strong>Loro pres-ero</strong> (Irregolare)</span><PlayButton text="presero" /></li>
           </ul>
+        </div>
+
+        <div className="mt-6 border-t border-amber-200 pt-6">
+          <h4 className="font-bold text-amber-900 mb-1 text-lg flex items-center gap-2">
+            <span>📚 Esempi di altri verbi irregolari in <em>-ere</em> (1-3-6)</span>
+          </h4>
+          <p className="text-amber-800 text-sm mb-4">
+            Usa il tasto audio per ascoltare l'intera coniugazione! Le persone 1ª, 3ª e 6ª usano la radice irregolare (indicata in grassetto), le altre mantengono la radice regolare.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {irregularEreVerbs.map((item, idx) => (
+              <div key={idx} className="bg-white p-4 rounded-lg shadow-sm border border-amber-100 flex flex-col justify-between">
+                <div className="flex justify-between items-center border-b pb-2 mb-2">
+                  <div>
+                    <span className="font-bold text-amber-900 text-base">{item.verb}</span>
+                    <span className="text-xs text-slate-500 ml-2">({item.meaning})</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-medium">
+                      {item.regularRoot} ➔ <strong>{item.irregularRoot}</strong>
+                    </span>
+                    <PlayButton text={item.fullConjugation} size={15} />
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 gap-2 text-xs text-center">
+                  <div className="bg-slate-50 p-2 rounded flex flex-col justify-center">
+                    <span className="text-slate-400 text-[10px] uppercase">io (1ª)</span>
+                    <span className="text-amber-800 font-semibold mt-0.5">{item.forms.io}</span>
+                  </div>
+                  <div className="bg-slate-50 p-2 rounded flex flex-col justify-center">
+                    <span className="text-slate-400 text-[10px] uppercase">lui/lei (3ª)</span>
+                    <span className="text-amber-800 font-semibold mt-0.5">{item.forms.lui}</span>
+                  </div>
+                  <div className="bg-slate-50 p-2 rounded flex flex-col justify-center">
+                    <span className="text-slate-400 text-[10px] uppercase">loro (6ª)</span>
+                    <span className="text-amber-800 font-semibold mt-0.5">{item.forms.loro}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

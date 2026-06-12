@@ -41,7 +41,7 @@ export function Modulo9Section() {
       setIsPlaying(true);
       speakItalian(activeAudio.transcript, () => {
         setIsPlaying(false);
-      });
+      }, 1.0);
     }
   };
 

@@ -16,7 +16,7 @@ export const cancelSpeech = () => {
   }
 };
 
-export const speakItalian = (text, onEnd) => {
+export const speakItalian = (text, onEnd, rate = 0.8) => {
   if (!text) {
     if (onEnd) onEnd();
     return;
@@ -75,7 +75,7 @@ export const speakItalian = (text, onEnd) => {
         if (index < parts.length) {
           const utterance = new SpeechSynthesisUtterance(parts[index]);
           utterance.lang = 'it-IT';
-          utterance.rate = 0.8; // Standardized rate
+          utterance.rate = rate; // Custom/Standardized rate
           if (itVoice) {
             utterance.voice = itVoice;
           }
@@ -105,7 +105,7 @@ export const speakItalian = (text, onEnd) => {
     } else {
       const utterance = new SpeechSynthesisUtterance(cleaned);
       utterance.lang = 'it-IT';
-      utterance.rate = 0.8; // Standardized rate
+      utterance.rate = rate; // Custom/Standardized rate
       if (itVoice) {
         utterance.voice = itVoice;
       }

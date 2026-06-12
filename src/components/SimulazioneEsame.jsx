@@ -85,7 +85,7 @@ export function SimulazioneEsame() {
     setIsPlayingAudio(true);
     speakItalian(examData.listening.transcript, () => {
       setIsPlayingAudio(false);
-    });
+    }, 1.0);
   };
 
   const stopAudio = () => {

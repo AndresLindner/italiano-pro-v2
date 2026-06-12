@@ -248,32 +248,94 @@ export function Modulo12Section() {
       <div className="space-y-8">
         {/* Doppio Ausiliare */}
         <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-          <h3 className="text-2xl font-black text-indigo-900 mb-4 border-b pb-2">12.1 Doppio Ausiliare e Accordo al Passato</h3>
+          <h3 className="text-2xl font-black text-indigo-900 mb-4 border-b pb-2">
+            12.1 Doppio Ausiliare e Accordo al Passato
+          </h3>
           <p className="text-slate-700 mb-4 leading-relaxed font-medium">
-            Alcuni verbi cambiano ausiliare nei tempi composti a seconda della loro transitività:
+            Alcuni verbi cambiano ausiliare nei tempi composti a seconda della loro transitività o del significato specifico della frase:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div className="bg-blue-50 p-5 rounded-xl border border-blue-200">
               <h4 className="font-bold text-blue-800 mb-2">Con AVERE (Transitivo)</h4>
-              <p className="text-sm text-slate-700">Quando c'è un complemento oggetto diretto.</p>
-              <ul className="text-sm italic text-slate-600 space-y-1.5 mt-2">
-                <li>• "Ho cambiato la macchina." (La macchina = oggetto)</li>
-                <li>• "Ho salito le scale." (Le scale = oggetto)</li>
-                <li>• "Ho finito i compiti." (I compiti = oggetto)</li>
+              <p className="text-sm text-slate-700 mb-3">Si usa quando il verbo regge un complemento oggetto diretto (risponde alla domanda: chi? che cosa?).</p>
+              <ul className="text-sm space-y-2.5">
+                <li className="flex flex-col">
+                  <span>• <strong>Cambiare:</strong> "Ho cambiato la macchina."</span>
+                  <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-xs" onClick={() => speakText("Ho cambiato la macchina.")}>
+                    Ascolta <Volume2 size={12} className="inline ml-1" />
+                  </span>
+                </li>
+                <li className="flex flex-col">
+                  <span>• <strong>Salire:</strong> "Ho salito le scale di corsa."</span>
+                  <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-xs" onClick={() => speakText("Ho salito le scale di corsa.")}>
+                    Ascolta <Volume2 size={12} className="inline ml-1" />
+                  </span>
+                </li>
+                <li className="flex flex-col">
+                  <span>• <strong>Finire:</strong> "Ho finito i compiti alle otto."</span>
+                  <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-xs" onClick={() => speakText("Ho finito i compiti alle otto.")}>
+                    Ascolta <Volume2 size={12} className="inline ml-1" />
+                  </span>
+                </li>
+                <li className="flex flex-col">
+                  <span>• <strong>Passare:</strong> "Ho passato un pomeriggio stupendo."</span>
+                  <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-xs" onClick={() => speakText("Ho passato un pomeriggio stupendo.")}>
+                    Ascolta <Volume2 size={12} className="inline ml-1" />
+                  </span>
+                </li>
+                <li className="flex flex-col">
+                  <span>• <strong>Correre:</strong> "Marco ha corso una maratona."</span>
+                  <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-xs" onClick={() => speakText("Marco ha corso una maratona.")}>
+                    Ascolta <Volume2 size={12} className="inline ml-1" />
+                  </span>
+                </li>
               </ul>
             </div>
             <div className="bg-emerald-50 p-5 rounded-xl border border-emerald-200">
               <h4 className="font-bold text-emerald-800 mb-2">Con ESSERE (Intransitivo)</h4>
-              <p className="text-sm text-slate-700">Quando NON c'è un oggetto diretto. Il participio concorda col soggetto.</p>
-              <ul className="text-sm italic text-slate-600 space-y-1.5 mt-2">
-                <li>• "Il tempo è cambiat<strong>o</strong>." (No oggetto)</li>
-                <li>• "Sono salit<strong>a</strong> sul treno." (No oggetto)</li>
-                <li>• "La lezione è finit<strong>a</strong>." (No oggetto)</li>
+              <p className="text-sm text-slate-700 mb-3">Si usa quando non c'è un oggetto diretto. Il participio passato concorda sempre in genere e numero con il soggetto.</p>
+              <ul className="text-sm space-y-2.5">
+                <li className="flex flex-col">
+                  <span>• <strong>Cambiare:</strong> "Il tempo è cambiat<strong>o</strong> in peggio."</span>
+                  <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-xs" onClick={() => speakText("Il tempo è cambiato in peggio.")}>
+                    Ascolta <Volume2 size={12} className="inline ml-1" />
+                  </span>
+                </li>
+                <li className="flex flex-col">
+                  <span>• <strong>Salire:</strong> "Sono salit<strong>a</strong> sul treno in orario."</span>
+                  <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-xs" onClick={() => speakText("Sono salita sul treno in orario.")}>
+                    Ascolta <Volume2 size={12} className="inline ml-1" />
+                  </span>
+                </li>
+                <li className="flex flex-col">
+                  <span>• <strong>Finire:</strong> "La lezione è finit<strong>a</strong> da dieci minuti."</span>
+                  <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-xs" onClick={() => speakText("La lezione è finita da dieci minuti.")}>
+                    Ascolta <Volume2 size={12} className="inline ml-1" />
+                  </span>
+                </li>
+                <li className="flex flex-col">
+                  <span>• <strong>Passare:</strong> "Il tempo è passat<strong>o</strong> in fretta."</span>
+                  <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-xs" onClick={() => speakText("Il tempo è passato in fretta.")}>
+                    Ascolta <Volume2 size={12} className="inline ml-1" />
+                  </span>
+                </li>
+                <li className="flex flex-col">
+                  <span>• <strong>Correre:</strong> "Sono cors<strong>o</strong> subito in ufficio."</span>
+                  <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-xs" onClick={() => speakText("Sono corso subito in ufficio.")}>
+                    Ascolta <Volume2 size={12} className="inline ml-1" />
+                  </span>
+                </li>
               </ul>
             </div>
           </div>
-          <div className="bg-amber-50 p-4 border-l-4 border-amber-500 text-amber-900 rounded-r-lg text-sm">
-            <strong>Accordo col clitico:</strong> Quando l'ausiliare è *avere*, il participio concorda obbligatoriamente se preceduto da pronomi diretti di 3a persona (lo, la, li, le): *Le chiavi? Le ho lasciat<strong>e</strong> sul tavolo*.
+          <div className="bg-amber-50 p-4 border-l-4 border-amber-500 text-amber-900 rounded-r-lg text-sm space-y-2">
+            <p><strong>💡 Regola dell'Accordo con i Pronomi Diretti (Clitici):</strong></p>
+            <p>Con l'ausiliare <em>avere</em> il participio di solito non cambia, ma concorda obbligatoriamente in genere e numero se preceduto dai pronomi diretti di 3ª persona (<strong>lo, la, li, le</strong>) o dal pronome partitivo <strong>ne</strong>.</p>
+            <ul className="pl-4 list-disc space-y-1 text-xs italic text-slate-700">
+              <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Le chiavi? Le ho lasciate sul tavolo.")}>"Le chiavi? Le ho lasciat<strong>e</strong> sul tavolo." (accordo con "le")</li>
+              <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Il libro? L'ho comprato ieri.")}>"Il libro? L'ho comprat<strong>o</strong> ieri." (L' = lo, accordo con "lo")</li>
+              <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Di mele, ne ho mangiate due.")}>"Di mele, ne ho mangiat<strong>e</strong> due." (accordo con il partitivo "ne" riferito a due mele)</li>
+            </ul>
           </div>
         </section>
 
@@ -281,56 +343,195 @@ export function Modulo12Section() {
         <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
           <h3 className="text-2xl font-black text-indigo-900 mb-4 border-b pb-2">12.2 I Verbi Pronominali Complessi</h3>
           <p className="text-slate-700 mb-4 leading-relaxed font-medium">
-            Verbi clitici idiomatici tipici del registro parlato e delle conversazioni formali:
+            Questi verbi integrano pronomi clitici (<em>ci, vi, ne, la, le, si</em>) modificando radicalmente il significato originario del verbo base. Sono diffusissimi nella lingua quotidiana e nei contesti formali del B2:
           </p>
-          <ul className="space-y-4 text-sm text-slate-700">
-            <li className="p-3 bg-slate-50 rounded-lg border border-slate-100">
-              <strong className="text-indigo-800">Cavarsela:</strong> Uscire da una situazione difficile o superare un esame in modo dignitoso.<br />
-              <span className="italic text-slate-500">Es: "All'esame di italiano me la sono cavata bene."</span>
-            </li>
-            <li className="p-3 bg-slate-50 rounded-lg border border-slate-100">
-              <strong className="text-indigo-800">Entrarci:</strong> Avere pertinenza o essere collegato a qualcosa.<br />
-              <span className="italic text-slate-500">Es: "Questo non c'entra niente con quello che ho detto."</span>
-            </li>
-            <li className="p-3 bg-slate-50 rounded-lg border border-slate-100">
-              <strong className="text-indigo-800">Andarsene:</strong> Andare via da un luogo.<br />
-              <span className="italic text-slate-500">Es: "Me ne vado a dormire, sono stanco."</span>
-            </li>
-            <li className="p-3 bg-slate-50 rounded-lg border border-slate-100">
-              <strong className="text-indigo-800">Prendersela:</strong> Offendersi o arrabbiarsi per qualcosa.<br />
-              <span className="italic text-slate-500">Es: "Non prendertela con lui, è solo un malinteso."</span>
-            </li>
-          </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 flex flex-col justify-between">
+              <div>
+                <strong className="text-indigo-800 text-base">Cavarsela (cavarsi + la)</strong>
+                <p className="text-xs text-slate-600 mt-1">Uscire indenni da una difficoltà, superare una prova in modo sufficiente o positivo.</p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-slate-200">
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-sm block" onClick={() => speakText("All'esame di italiano me la sono cavata con un bel trenta.")}>
+                  Es: "All'esame di italiano me la sono cavata con un bel 30." <Volume2 size={13} className="inline ml-1" />
+                </span>
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-sm block mt-1" onClick={() => speakText("Non ti preoccupare, vedrai che te la caverai.")}>
+                  Es: "Non ti preoccupare, vedrai che te la caverai." <Volume2 size={13} className="inline ml-1" />
+                </span>
+              </div>
+            </div>
+
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 flex flex-col justify-between">
+              <div>
+                <strong className="text-indigo-800 text-base">Entrarci (entrare + ci)</strong>
+                <p className="text-xs text-slate-600 mt-1">Avere relazione, pertinenza o responsabilità in un fatto.</p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-slate-200">
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-sm block" onClick={() => speakText("Questo argomento non c'entra nulla con la lezione di oggi.")}>
+                  Es: "Questo non c'entra nulla con la lezione." <Volume2 size={13} className="inline ml-1" />
+                </span>
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-sm block mt-1" onClick={() => speakText("Io non c'entro niente in questa discussione!")}>
+                  Es: "Io non c'entro niente in questa discussione!" <Volume2 size={13} className="inline ml-1" />
+                </span>
+              </div>
+            </div>
+
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 flex flex-col justify-between">
+              <div>
+                <strong className="text-indigo-800 text-base">Andarsene (andarsi + ne)</strong>
+                <p className="text-xs text-slate-600 mt-1">Allontanarsi, andare via da un posto (spesso con stizza, fretta o stanchezza).</p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-slate-200">
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-sm block" onClick={() => speakText("Me ne vado prima che inizi a piovere.")}>
+                  Es: "Me ne vado prima che inizi a piovere." <Volume2 size={13} className="inline ml-1" />
+                </span>
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-sm block mt-1" onClick={() => speakText("Se ne sono andati senza dire una parola.")}>
+                  Es: "Se ne sono andati senza salutare." <Volume2 size={13} className="inline ml-1" />
+                </span>
+              </div>
+            </div>
+
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 flex flex-col justify-between">
+              <div>
+                <strong className="text-indigo-800 text-base">Prendersela (prendersi + la)</strong>
+                <p className="text-xs text-slate-600 mt-1">Offendersi, arrabbiarsi o sentirsi feriti per qualcosa.</p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-slate-200">
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-sm block" onClick={() => speakText("Non prendertela per così poco!")}>
+                  Es: "Non prendertela per così poco!" <Volume2 size={13} className="inline ml-1" />
+                </span>
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-sm block mt-1" onClick={() => speakText("Giulia se l'è presa perché non l'hai invitata.")}>
+                  Es: "Giulia se l'è presa per il ritardo." <Volume2 size={13} className="inline ml-1" />
+                </span>
+              </div>
+            </div>
+
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 flex flex-col justify-between">
+              <div>
+                <strong className="text-indigo-800 text-base">Farcela (fare + ci + la)</strong>
+                <p className="text-xs text-slate-600 mt-1">Riuscire a raggiungere un obiettivo, tollerare una situatione difficile.</p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-slate-200">
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-sm block" onClick={() => speakText("Sì, ce l'ho fatta a superare il test di livello!")}>
+                  Es: "Sì, ce l'ho fatta a superare il test!" <Volume2 size={13} className="inline ml-1" />
+                </span>
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-sm block mt-1" onClick={() => speakText("Non ce la faccio più a lavorare con questo rumore.")}>
+                  Es: "Non ce la faccio più con questa confusione." <Volume2 size={13} className="inline ml-1" />
+                </span>
+              </div>
+            </div>
+
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 flex flex-col justify-between">
+              <div>
+                <strong className="text-indigo-800 text-base">Metterci vs Volerci</strong>
+                <p className="text-xs text-slate-600 mt-1"><strong>Metterci:</strong> tempo impiegato da un soggetto specifico. <strong>Volerci:</strong> tempo oggettivo necessario in generale.</p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-slate-200">
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-sm block" onClick={() => speakText("Io ci metto un'ora ad arrivare in ufficio.")}>
+                  Es: "Io ci metto un'ora ad arrivare in ufficio." <Volume2 size={13} className="inline ml-1" />
+                </span>
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors text-sm block mt-1" onClick={() => speakText("Ci vogliono due ore di macchina da Milano a Torino.")}>
+                  Es: "Ci vogliono due ore da qui a Milano." <Volume2 size={13} className="inline ml-1" />
+                </span>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Indefiniti */}
         <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
           <h3 className="text-2xl font-black text-indigo-900 mb-4 border-b pb-2">12.3 Aggettivi e Pronomi Indefiniti</h3>
           <p className="text-slate-700 mb-4 leading-relaxed">
-            Esprimono una quantità o qualità imprecisata. La padronanza sintattica è fondamentale al B2:
+            Gli indefiniti servono a indicare quantità o identità generiche. È importante saper distinguere tra aggettivi (accompagnano un nome) e pronomi (lo sostituiscono):
           </p>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto mb-6">
             <table className="w-full text-left border-collapse text-sm">
               <thead>
                 <tr className="bg-indigo-50 text-indigo-900 font-bold">
                   <th className="p-3 border">Solo Aggettivi</th>
                   <th className="p-3 border">Solo Pronomi</th>
-                  <th className="p-3 border">Entrambi</th>
+                  <th className="p-3 border">Sia Aggettivi sia Pronomi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="p-3 border font-semibold">Qualche (+ nome singolare)<br /><span className="text-xs text-slate-500">Es: qualche giorno</span></td>
-                  <td className="p-3 border font-semibold">Qualcuno / Qualcosa<br /><span className="text-xs text-slate-500">Es: qualcuno bussa</span></td>
-                  <td className="p-3 border font-semibold">Nessuno / Ciascuno<br /><span className="text-xs text-slate-500">Es: nessun aiuto</span></td>
+                  <td className="p-3 border font-semibold">
+                    <span className="text-indigo-700">Qualche</span> (+ nome singolare)<br />
+                    <span className="text-xs text-slate-500 italic">Es: "Ho qualche dubbio."</span>
+                  </td>
+                  <td className="p-3 border font-semibold">
+                    <span className="text-indigo-700">Qualcuno / Qualcosa</span><br />
+                    <span className="text-xs text-slate-500 italic">Es: "Qualcuno ha chiamato."</span>
+                  </td>
+                  <td className="p-3 border font-semibold">
+                    <span className="text-indigo-700">Nessuno / Ciascuno</span><br />
+                    <span className="text-xs text-slate-500 italic">Es: "Nessuno studente sapeva." / "Nessuno è venuto."</span>
+                  </td>
                 </tr>
                 <tr className="bg-slate-50">
-                  <td className="p-3 border font-semibold">Ogni (+ nome singolare)<br /><span className="text-xs text-slate-500">Es: ogni volta</span></td>
-                  <td className="p-3 border font-semibold">Chiunque (+ congiuntivo se concessivo)<br /><span className="text-xs text-slate-500">Es: chiunque venga</span></td>
-                  <td className="p-3 border font-semibold">Alcuno (plurale = qualche)<br /><span className="text-xs text-slate-500">Es: alcuni amici</span></td>
+                  <td className="p-3 border font-semibold">
+                    <span className="text-indigo-700">Ogni</span> (+ nome singolare)<br />
+                    <span className="text-xs text-slate-500 italic">Es: "Ogni giorno studio."</span>
+                  </td>
+                  <td className="p-3 border font-semibold">
+                    <span className="text-indigo-700">Chiunque</span><br />
+                    <span className="text-xs text-slate-500 italic">Es: "Chiunque può capirlo."</span>
+                  </td>
+                  <td className="p-3 border font-semibold">
+                    <span className="text-indigo-700">Alcuno / Tutto / Molto / Poco</span><br />
+                    <span className="text-xs text-slate-500 italic">Es: "Alcuni amici" / "Ne conosco alcuni."</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="p-3 border font-semibold">
+                    <span className="text-indigo-700">Qualsiasi / Qualunque</span><br />
+                    <span className="text-xs text-slate-500 italic">Es: "Scegli un giorno qualsiasi."</span>
+                  </td>
+                  <td className="p-3 border font-semibold">
+                    <span className="text-indigo-700">Niente / Nulla</span><br />
+                    <span className="text-xs text-slate-500 italic">Es: "Non c'è niente da dire."</span>
+                  </td>
+                  <td className="p-3 border font-semibold">
+                    <span className="text-indigo-700">Tanto / Troppo / Diverso / Vario</span><br />
+                    <span className="text-xs text-slate-500 italic">Es: "Troppe risposte" / "Ce ne sono troppe."</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          <div className="bg-slate-50 p-5 rounded-xl border border-slate-200 text-sm">
+            <h4 className="font-bold text-slate-800 mb-3">Esempi pratici a confronto (Clicca per ascoltare):</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <ul className="space-y-2.5">
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Ho comprato qualche libro interessante.")}>
+                  • <strong>Qualche (sing.) vs Alcuni (plur.):</strong><br />
+                  <span className="italic text-slate-600">"Ho comprato <strong>qualche</strong> libro." (sing.)</span> / <span className="italic text-slate-600">"Ho comprato <strong>alcuni</strong> libri." (plur.)</span>
+                </li>
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Non ho visto nessuno studente in aula.")}>
+                  • <strong>Nessuno (Doppia Negazione):</strong><br />
+                  <span className="italic text-slate-600">"Non ho visto <strong>nessuno</strong>."</span> (Con "non" a inizio frase, "nessuno" va dopo il verbo).
+                </li>
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Nessuno mi ha avvisato dell'orario.")}>
+                  • <strong>Nessuno (Soggetto):</strong><br />
+                  <span className="italic text-slate-600">"<strong>Nessuno</strong> mi ha avvisato."</span> (Se precede il verbo, non serve il "non").
+                </li>
+              </ul>
+              <ul className="space-y-2.5">
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Qualunque decisione tu prenda, ti sosterrò.")}>
+                  • <strong>Qualunque / Qualsiasi (Indifferenza):</strong><br />
+                  <span className="italic text-slate-600">"Accetto <strong>qualsiasi</strong> consiglio."</span> / <span className="italic text-slate-600">"<strong>Qualunque</strong> cosa dica, ha torto."</span>
+                </li>
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Chiunque può partecipare al corso gratuito.")}>
+                  • <strong>Chiunque (Valore Concessivo):</strong><br />
+                  <span className="italic text-slate-600">"<strong>Chiunque</strong> voglia entrare, deve registrarsi."</span> (Chiunque vuole/voglia).
+                </li>
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Ciascuno studente deve presentarsi all'esame.")}>
+                  • <strong>Ciascuno (Distributivo singolare):</strong><br />
+                  <span className="italic text-slate-600">"<strong>Ciascuno</strong> ha le proprie idee."</span> / <span className="italic text-slate-600">"<strong>Ciascun</strong> partecipante."</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -338,48 +539,205 @@ export function Modulo12Section() {
         <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
           <h3 className="text-2xl font-black text-indigo-900 mb-4 border-b pb-2">12.4 Modi Indefiniti e Posizione dei Clitici</h3>
           <p className="text-slate-700 mb-4 leading-relaxed">
-            Uso di Gerundio, Participio e Infinito per riassumere frasi secondarie ed evitare ripetizioni.
+            L'uso delle forme implicite (Gerundio, Participio, Infinito) permette di condensare il discorso eliminando le congiunzioni e i pronomi soggetto, tipico della scrittura formale B2:
           </p>
-          <ul className="list-disc pl-6 space-y-3 text-sm text-slate-700">
-            <li><strong>Gerundio Causale:</strong> *Sapendo di non farcela, ha chiesto aiuto.* (= Poiché sapeva...)</li>
-            <li><strong>Gerundio Concessivo:</strong> *Pur lavorando molto, guadagna poco.* (= Anche se lavora molto...)</li>
-            <li><strong>Gerundio Ipotetico:</strong> *Studiando di più, passeresti l'esame.* (= Se tu studiassi...)</li>
-            <li><strong>Infinito Sostantivato:</strong> *L'essere puntuali è importante.*</li>
-          </ul>
-          <div className="bg-sky-50 p-4 border border-sky-200 rounded-lg text-sky-900 mt-4 text-sm">
-            <strong>Posizione Pronomi (Enclisi):</strong> Nelle forme non finite i pronomi clitici si attaccano *sempre alla fine* del verbo: *guardando**la***, *aver**gli** parlato*, *salutar**lo***.
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <h4 className="font-bold text-indigo-800 mb-2">Gerundio (Presente / Passato)</h4>
+              <ul className="text-xs space-y-2">
+                <li>
+                  <strong className="block text-slate-700">Causale:</strong>
+                  <span className="italic text-slate-600 cursor-pointer hover:text-indigo-600 block mt-1" onClick={() => speakText("Sapendo che eri malato, sono venuto a trovarti.")}>
+                    "<strong>Sapendo</strong> che eri malato, sono venuto." (= Poiché sapevo...) <Volume2 size={11} className="inline ml-1" />
+                  </span>
+                </li>
+                <li>
+                  <strong className="block text-slate-700 mt-2">Concessivo:</strong>
+                  <span className="italic text-slate-600 cursor-pointer hover:text-indigo-600 block mt-1" onClick={() => speakText("Pur avendo studiato molto, non ha superato l'esame.")}>
+                    "<strong>Pur avendo studiato</strong>, non ha superato il test." (= Anche se ha studiato...) <Volume2 size={11} className="inline ml-1" />
+                  </span>
+                </li>
+                <li>
+                  <strong className="block text-slate-700 mt-2">Temporale/Causale Passato:</strong>
+                  <span className="italic text-slate-600 cursor-pointer hover:text-indigo-600 block mt-1" onClick={() => speakText("Avendo finito il lavoro, sono andata a casa.")}>
+                    "<strong>Avendo finito</strong> il lavoro, sono andata." (= Dopo aver finito...) <Volume2 size={11} className="inline ml-1" />
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <h4 className="font-bold text-indigo-800 mb-2">Participio Assoluto</h4>
+              <p className="text-[11px] text-slate-500 mb-2">Costruzione in cui il participio passato si concorda con il nome che funge da soggetto della frase implicita.</p>
+              <ul className="text-xs space-y-2">
+                <li>
+                  <span className="italic text-slate-600 cursor-pointer hover:text-indigo-600 block" onClick={() => speakText("Finiti i compiti, siamo andati a giocare.")}>
+                    "<strong>Finiti i compiti</strong>, siamo andati al parco." (= Una volta che furono finiti i compiti) <Volume2 size={11} className="inline ml-1" />
+                  </span>
+                </li>
+                <li>
+                  <span className="italic text-slate-600 cursor-pointer hover:text-indigo-600 block mt-2" onClick={() => speakText("Partiti gli ospiti, abbiamo pulito la cucina.")}>
+                    "<strong>Partiti gli ospiti</strong>, abbiamo pulito casa." (= Dopo che gli ospiti se ne furono andati) <Volume2 size={11} className="inline ml-1" />
+                  </span>
+                </li>
+                <li>
+                  <span className="italic text-slate-600 cursor-pointer hover:text-indigo-600 block mt-2" onClick={() => speakText("Approvata la legge, il parlamento si è sciolto.")}>
+                    "<strong>Approvata la legge</strong>, si è festeggiato." (= Dopo che la legge fu approvata) <Volume2 size={11} className="inline ml-1" />
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <h4 className="font-bold text-indigo-800 mb-2">Infinito Sostantivato</h4>
+              <p className="text-[11px] text-slate-500 mb-2">L'infinito preceduto dall'articolo determinativo assume il valore di un sostantivo astratto.</p>
+              <ul className="text-xs space-y-2">
+                <li>
+                  <span className="italic text-slate-600 cursor-pointer hover:text-indigo-600 block" onClick={() => speakText("L'essere puntuali è un segno di rispetto.")}>
+                    "<strong>L'essere puntuali</strong> è fondamentale." (= Il fatto di essere puntuali) <Volume2 size={11} className="inline ml-1" />
+                  </span>
+                </li>
+                <li>
+                  <span className="italic text-slate-600 cursor-pointer hover:text-indigo-600 block mt-2" onClick={() => speakText("Il viaggiare apre la mente a nuove culture.")}>
+                    "<strong>Il viaggiare</strong> apre la mente." (= L'attività del viaggiare) <Volume2 size={11} className="inline ml-1" />
+                  </span>
+                </li>
+                <li>
+                  <span className="italic text-slate-600 cursor-pointer hover:text-indigo-600 block mt-2" onClick={() => speakText("Il mangiare sano allunga la vita.")}>
+                    "<strong>Il mangiare sano</strong> previene le malattie." (= Un'alimentazione sana) <Volume2 size={11} className="inline ml-1" />
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-sky-50 p-4 border border-sky-200 rounded-lg text-sky-900 text-sm">
+            <p className="font-bold">⚠️ Regola dell'Enclisi (Posizione dei Pronomi Clitici):</p>
+            <p className="mt-1">Nelle forme verbali di modo indefinito (Gerundio, Participio, Infinito) e nell'imperativo, i pronomi clitici si saldano obbligatoriamente <strong>alla fine del verbo</strong> formando una sola parola:</p>
+            <ul className="pl-4 list-disc space-y-1.5 text-xs italic text-slate-700 mt-2">
+              <li className="cursor-pointer hover:text-indigo-600" onClick={() => speakText("Guardandola attentamente, notai un piccolo dettaglio.")}>
+                "Guardando + la ➔ <strong>Guardandola</strong> con attenzione, ho notato..." (Gerundio)
+              </li>
+              <li className="cursor-pointer hover:text-indigo-600" onClick={() => speakText("Dopo avergli parlato, mi sono sentito subito meglio.")}>
+                "Avere + gli + parlato ➔ <strong>Avergli</strong> parlato è stato utile." (Infinito Passato)
+              </li>
+              <li className="cursor-pointer hover:text-indigo-600" onClick={() => speakText("Per dirla tutta, non sono d'accordo con la decisione.")}>
+                "Dire + la + tutta ➔ <strong>Dirla</strong> tutta, non mi interessa." (Infinito Presente)
+              </li>
+              <li className="cursor-pointer hover:text-indigo-600" onClick={() => speakText("Fattosi tardi, salutò tutti e se ne andò.")}>
+                "Fatto + si + tardi ➔ <strong>Fattosi</strong> tardi, è andato via." (Participio Passato)
+              </li>
+            </ul>
           </div>
         </section>
 
         {/* Relativi Possessivi e Neutri */}
         <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
           <h3 className="text-2xl font-black text-indigo-900 mb-4 border-b pb-2">12.5 Pronomi Relativi Complessi</h3>
+          <p className="text-slate-700 mb-4 leading-relaxed font-medium">
+            Nel livello B2, l'uso corretto di connettori relativi complessi garantisce fluidità e coesione testuale:
+          </p>
           <ul className="space-y-4 text-sm text-slate-700">
-            <li>
-              <strong className="text-indigo-800">Il cui / La cui / I cui / Le cui (Relativo Possessivo):</strong>
-              <p className="mt-1">Si interpone tra l'articolo e il sostantivo posseduto, e si accorda con quest'ultimo.</p>
-              <span className="italic text-slate-500">Es: "L'insegnante, le cui spiegazioni sono famose, è stimato." (le spiegazioni = femminile plurale)</span>
+            <li className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <strong className="text-indigo-800 block text-base">Il cui / La cui / I cui / Le cui (Relativo Possessivo)</strong>
+              <p className="text-xs text-slate-600 mt-1 mb-2">Esprime possesso e si colloca tra l'articolo determinativo e il sostantivo a cui si riferisce, concordandosi con quest'ultimo in genere e numero (non con il possessore!).</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("L'insegnante, le cui spiegazioni sono famose, è stimato.")}>
+                  Es (femm. plur.): "L'insegnante, <strong>le cui</strong> spiegazion<strong>i</strong> sono chiare..." <Volume2 size={13} className="inline ml-1" />
+                </span>
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Lo scrittore, il cui romanzo ha vinto il premio, è giovane.")}>
+                  Es (masch. sing.): "Lo scrittore, <strong>il cui</strong> romanz<strong>o</strong> ha vinto..." <Volume2 size={13} className="inline ml-1" />
+                </span>
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("I ragazzi, i cui genitori sono all'estero, vivono qui.")}>
+                  Es (masch. plur.): "I ragazzi, <strong>i cui</strong> genitor<strong>i</strong> lavorano..." <Volume2 size={13} className="inline ml-1" />
+                </span>
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("La città, la cui storia è millenaria, attira turisti.")}>
+                  Es (femm. sing.): "La città, <strong>la cui</strong> stori<strong>a</strong> è antica..." <Volume2 size={13} className="inline ml-1" />
+                </span>
+              </div>
             </li>
-            <li>
-              <strong className="text-indigo-800">Il che (Relativo Neutro):</strong>
-              <p className="mt-1">Si usa per riferirsi a un'intera proposizione precedente con valore di "la qual cosa".</p>
-              <span className="italic text-slate-500">Es: "Ha preso 30 all'esame, il che ha reso tutti felici."</span>
+            <li className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <strong className="text-indigo-800 block text-base">Il che / La qual cosa (Relativo Neutro)</strong>
+              <p className="text-xs text-slate-600 mt-1 mb-2">Si usa per riferirsi non a un singolo sostantivo, bensì all'intera proposizione precedente. Equivale a "questo fatto" o "la qual cosa".</p>
+              <div className="space-y-1.5 mt-2">
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors block" onClick={() => speakText("Ha superato l'esame con trenta, il che ha reso felici tutti.")}>
+                  Es: "Ha superato l'esame con 30, <strong>il che</strong> ha reso felici tutti." <Volume2 size={13} className="inline ml-1" />
+                </span>
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors block" onClick={() => speakText("Non si è presentato all'appuntamento, la qual cosa mi ha insospettito.")}>
+                  Es: "Ha dimenticato l'appuntamento, <strong>la qual cosa</strong> mi fa arrabbiare." <Volume2 size={13} className="inline ml-1" />
+                </span>
+              </div>
+            </li>
+            <li className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <strong className="text-indigo-800 block text-base">Chi (Pronome Relativo Misto / Doppio)</strong>
+              <p className="text-xs text-slate-600 mt-1 mb-2">Funge contemporaneamente da pronome dimostrativo e relativo (significa: "colui che", "colei che", "coloro che", "tutti quelli che").</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Chi dorme non piglia pesci.")}>
+                  Es: "<strong>Chi</strong> dorme non piglia pesci." (= Colui che dorme...) <Volume2 size={13} className="inline ml-1" />
+                </span>
+                <span className="italic text-slate-500 cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Cerca chi ti capisce davvero.")}>
+                  Es: "Cerca <strong>chi</strong> ti capisce veramente." (= Coloro che ti capiscono...) <Volume2 size={13} className="inline ml-1" />
+                </span>
+              </div>
             </li>
           </ul>
         </section>
 
         {/* Si Impersonale Avanzato */}
         <section className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-          <h3 className="text-2xl font-black text-indigo-900 mb-4 border-b pb-2">12.6 Si Impersonale con Aggettivi</h3>
-          <p className="text-slate-700 mb-3 leading-relaxed">
-            Quando la costruzione impersonale coinvolge il verbo *essere* o *diventare* seguito da un aggettivo qualificativo, quest'ultimo va concordato obbligatoriamente al **PLURALE MASCHILE**:
+          <h3 className="text-2xl font-black text-indigo-900 mb-4 border-b pb-2">12.6 Si Impersonale Avanzato</h3>
+          <p className="text-slate-700 mb-4 leading-relaxed font-medium">
+            La costruzione impersonale con il pronome <em>si</em> segue regole d'accordo rigidissime nel B2, soprattutto in combinazione con aggettivi o verbi riflessivi:
           </p>
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm">
-            <ul className="space-y-2">
-              <li>• Correct: "Quando si è <strong className="text-emerald-600">stanchi</strong>, si dorme male."</li>
-              <li>• Incorrect: "Quando si è stanco, si dorme male."</li>
-              <li>• Correct: "Se si diventa <strong className="text-emerald-600">adulti</strong>, le cose cambiano."</li>
-            </ul>
+          
+          <div className="space-y-4">
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <strong className="text-indigo-800 block text-base">Accordo degli Aggettivi (Si è + Aggettivo)</strong>
+              <p className="text-xs text-slate-600 mt-1 mb-2">Quando la costruzione impersonale coinvolge il verbo ausiliare <em>essere</em> o <em>diventare</em> seguito da un aggettivo qualificativo, quest'ultimo deve essere coniugato rigorosamente al <strong>PLURALE MASCHILE</strong> (anche se ci si riferisce a una sola persona generica):</p>
+              <ul className="text-sm space-y-2 mt-2">
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Quando si è stanchi, si dorme male.")}>
+                  • Correct: "Quando si è <strong className="text-emerald-600">stanchi</strong>, si dorme meglio." <Volume2 size={13} className="inline ml-1" />
+                </li>
+                <li className="text-red-500 select-none font-medium text-xs pl-2.5">
+                  • Incorrect: "Quando si è stanco, si dorme meglio." (errore comune di accordo singolare)
+                </li>
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Se si diventa adulti, si hanno più responsabilità.")}>
+                  • Correct: "Se si diventa <strong className="text-emerald-600">adulti</strong>, le cose cambiano." <Volume2 size={13} className="inline ml-1" />
+                </li>
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Quando si è felici, tutto sembra più bello.")}>
+                  • Correct: "Quando si è <strong className="text-emerald-600">felici</strong>, si sorride spesso." <Volume2 size={13} className="inline ml-1" />
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <strong className="text-indigo-800 block text-base">Costruzione con i Verbi Riflessivi (Ci si)</strong>
+              <p className="text-xs text-slate-600 mt-1 mb-2">Quando si rende impersonale un verbo riflessivo (es. <em>svegliarsi, lavarsi, trovarsi</em>), per evitare la cacofonia del doppio "si" (*si si lava*), la particella riflessiva muta in <strong>ci</strong>. La struttura corretta diventa quindi <strong>ci si</strong>:</p>
+              <ul className="text-sm space-y-2 mt-2">
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("In vacanza ci si sveglia tardi la mattina.")}>
+                  • "Svegliarsi ➔ La mattina <strong>ci si</strong> sveglia tardi." (invece di *si si sveglia*) <Volume2 size={13} className="inline ml-1" />
+                </li>
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Ci si lava le mani prima di mangiare.")}>
+                  • "Lavarsi ➔ Prima di mangiare <strong>ci si</strong> lava le mani." <Volume2 size={13} className="inline ml-1" />
+                </li>
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("Ci si pente sempre degli errori passati.")}>
+                  • "Pentirsi ➔ Spesso <strong>ci si</strong> pente dei propri errori." <Volume2 size={13} className="inline ml-1" />
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <strong className="text-indigo-800 block text-base">Si Passivante (Accordo col Sostantivo)</strong>
+              <p className="text-xs text-slate-600 mt-1 mb-2">Se il verbo è seguito da un sostantivo che funge da soggetto grammaticale della frase, il verbo concorda in numero con quest'ultimo (singolare o plurale):</p>
+              <ul className="text-sm space-y-2 mt-2">
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("In Italia si mangia molta pasta ogni giorno.")}>
+                  • "In Italia <strong>si mangia</strong> molta pasta." (pasta = singolare, verbo singolare) <Volume2 size={13} className="inline ml-1" />
+                </li>
+                <li className="cursor-pointer hover:text-indigo-600 transition-colors" onClick={() => speakText("In questo ufficio si vendono biglietti per il concerto.")}>
+                  • "Qui <strong>si vendono</strong> biglietti." (biglietti = plurale, verbo plurale) <Volume2 size={13} className="inline ml-1" />
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
       </div>

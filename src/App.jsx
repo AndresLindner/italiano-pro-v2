@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Gamepad2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User, Sliders, Menu, Home } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User, Sliders, Menu, Home } from 'lucide-react';
 import { Modulo1Section } from './components/Modulo1Section';
 import { VerbConjugatorSection } from './components/VerbConjugatorSection';
 import { Modulo2Section } from './components/Modulo2Section';
@@ -3267,9 +3267,24 @@ function PassatoRemotoSection() {
             <thead>
               <tr className="bg-indigo-50 text-indigo-900">
                 <th className="p-3 border">Persona</th>
-                <th className="p-3 border">-ARE (es. Parlare)</th>
-                <th className="p-3 border">-ERE (es. Credere)</th>
-                <th className="p-3 border">-IRE (es. Dormire)</th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-1">
+                    <span>-ARE (es. Parlare)</span>
+                    <PlayButton text="io parlai, tu parlasti, lui parlò, noi parlammo, voi parlaste, loro parlarono" size={15} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-1">
+                    <span>-ERE (es. Credere)</span>
+                    <PlayButton text="io credei, tu credesti, lui credé, noi credemmo, voi credeste, loro crederono" size={15} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-1">
+                    <span>-IRE (es. Dormire)</span>
+                    <PlayButton text="io dormii, tu dormisti, lui dormì, noi dormimmo, voi dormiste, loro dormirono" size={15} />
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -3301,7 +3316,7 @@ function PassatoRemotoSection() {
                 <td className="p-3 border font-semibold">voi</td>
                 <VerbCell display={<>parl-<strong>aste</strong></>} speakText="parlaste" />
                 <VerbCell display={<>cred-<strong>este</strong></>} speakText="credeste" />
-                <VerbCell display={<>dorm-<strong>iste</strong></>} speakText="dormisti" />
+                <VerbCell display={<>dorm-<strong>iste</strong></>} speakText="dormiste" />
               </tr>
               <tr className="bg-slate-50">
                 <td className="p-3 border font-semibold">loro</td>
@@ -3314,8 +3329,9 @@ function PassatoRemotoSection() {
         </div>
       </section>
       <section className="bg-amber-50 p-6 rounded-xl border border-amber-200">
-        <h3 className="text-xl font-bold text-amber-800 mb-3 flex items-center gap-2">
-          La Regola Magica (1-3-6) per gli Irregolari
+        <h3 className="text-xl font-bold text-amber-800 mb-3 flex items-center justify-between">
+          <span className="flex items-center gap-2">La Regola Magica (1-3-6) per gli Irregolari</span>
+          <PlayButton text="io presi, tu prendesti, lui prese, noi prendemmo, voi prendeste, loro presero" size={15} />
         </h3>
         <p className="mb-4 text-amber-900">
           Molti verbi italiani (soprattutto in <em>-ere</em>) sono irregolari al passato remoto. Ma c'è un trucco meraviglioso! L'irregolarità si presenta <strong>SOLO</strong> in tre persone (la 1ª, la 3ª e la 6ª). Le altre rimangono perfettamente regolari.
@@ -3343,7 +3359,10 @@ function PassatoRemotoSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {/* Card Essere */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Essere</h4>
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Essere</h4>
+              <PlayButton text="io fui, tu fosti, lui fu, noi fummo, voi foste, loro furono" size={15} />
+            </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>io <strong>fui</strong></span><PlayButton text="fui" /></li>
               <li className="flex items-center justify-between"><span>tu fosti</span><PlayButton text="fosti" /></li>
@@ -3355,7 +3374,10 @@ function PassatoRemotoSection() {
           </div>
           {/* Card Avere */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Avere</h4>
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Avere</h4>
+              <PlayButton text="io ebbi, tu avesti, lui ebbe, noi avemmo, voi aveste, loro ebbero" size={15} />
+            </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>io <strong>ebbi</strong></span><PlayButton text="ebbi" /></li>
               <li className="flex items-center justify-between"><span>tu avesti</span><PlayButton text="avesti" /></li>
@@ -3367,7 +3389,10 @@ function PassatoRemotoSection() {
           </div>
           {/* Card Fare */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Fare</h4>
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Fare</h4>
+              <PlayButton text="io feci, tu facesti, lui fece, noi facemmo, voi faceste, loro fecero" size={15} />
+            </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>io <strong>feci</strong></span><PlayButton text="feci" /></li>
               <li className="flex items-center justify-between"><span>tu facesti</span><PlayButton text="facesti" /></li>
@@ -3379,7 +3404,10 @@ function PassatoRemotoSection() {
           </div>
           {/* Card Dire */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Dire</h4>
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Dire</h4>
+              <PlayButton text="io dissi, tu dicesti, lui disse, noi dicemmo, voi diceste, loro dissero" size={15} />
+            </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>io <strong>dissi</strong></span><PlayButton text="dissi" /></li>
               <li className="flex items-center justify-between"><span>tu dicesti</span><PlayButton text="dicesti" /></li>
@@ -3391,7 +3419,10 @@ function PassatoRemotoSection() {
           </div>
           {/* Card Venire */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Venire</h4>
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Venire</h4>
+              <PlayButton text="io venni, tu venisti, lui venne, noi venimmo, voi veniste, loro vennero" size={15} />
+            </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>io <strong>venni</strong></span><PlayButton text="venni" /></li>
               <li className="flex items-center justify-between"><span>tu venisti</span><PlayButton text="venisti" /></li>
@@ -3403,7 +3434,10 @@ function PassatoRemotoSection() {
           </div>
           {/* Card Vedere */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Vedere</h4>
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Vedere</h4>
+              <PlayButton text="io vidi, tu vedesti, lui vide, noi vedemmo, voi vedeste, loro videro" size={15} />
+            </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>io <strong>vidi</strong></span><PlayButton text="vidi" /></li>
               <li className="flex items-center justify-between"><span>tu vedesti</span><PlayButton text="vedesti" /></li>
@@ -3415,7 +3449,10 @@ function PassatoRemotoSection() {
           </div>
           {/* Card Volere */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Volere</h4>
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Volere</h4>
+              <PlayButton text="io volli, tu volesti, lui volle, noi volemmo, voi voleste, loro vollero" size={15} />
+            </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>io <strong>volli</strong></span><PlayButton text="volli" /></li>
               <li className="flex items-center justify-between"><span>tu volesti</span><PlayButton text="volesti" /></li>
@@ -3427,7 +3464,10 @@ function PassatoRemotoSection() {
           </div>
           {/* Card Dare */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Dare</h4>
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Dare</h4>
+              <PlayButton text="io diedi, tu desti, lui diede, noi demmo, voi deste, loro diedero" size={15} />
+            </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>io <strong>diedi</strong> <span className="text-[10px] text-slate-400">(detti)</span></span><PlayButton text="diedi" /></li>
               <li className="flex items-center justify-between"><span>tu desti</span><PlayButton text="desti" /></li>
@@ -3439,7 +3479,10 @@ function PassatoRemotoSection() {
           </div>
           {/* Card Stare */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Stare</h4>
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Stare</h4>
+              <PlayButton text="io stetti, tu stesti, lui stette, noi stemmo, voi steste, loro stettero" size={15} />
+            </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>io <strong>stetti</strong></span><PlayButton text="stetti" /></li>
               <li className="flex items-center justify-between"><span>tu stesti</span><PlayButton text="stesti" /></li>
@@ -3451,7 +3494,10 @@ function PassatoRemotoSection() {
           </div>
           {/* Card Bere */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Bere</h4>
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Bere</h4>
+              <PlayButton text="io bevvi, tu bevesti, lui bevve, noi bevemmo, voi beveste, loro bevvero" size={15} />
+            </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>io <strong>bevvi</strong></span><PlayButton text="bevvi" /></li>
               <li className="flex items-center justify-between"><span>tu bevesti</span><PlayButton text="bevesti" /></li>
@@ -3463,7 +3509,10 @@ function PassatoRemotoSection() {
           </div>
           {/* Card Mettere */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Mettere</h4>
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Mettere</h4>
+              <PlayButton text="io misi, tu mettesti, lui mise, noi mettemmo, voi metteste, loro misero" size={15} />
+            </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>io <strong>misi</strong></span><PlayButton text="misi" /></li>
               <li className="flex items-center justify-between"><span>tu mettesti</span><PlayButton text="mettesti" /></li>
@@ -3475,7 +3524,10 @@ function PassatoRemotoSection() {
           </div>
           {/* Card Scrivere */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
-            <h4 className="font-bold text-indigo-800 text-center border-b pb-2 mb-2">Scrivere</h4>
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Scrivere</h4>
+              <PlayButton text="io scrissi, tu scrivesti, lui scrisse, noi scrivemmo, voi scriveste, loro scrissero" size={15} />
+            </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>io <strong>scrissi</strong></span><PlayButton text="scrissi" /></li>
               <li className="flex items-center justify-between"><span>tu scrivesti</span><PlayButton text="scrivesti" /></li>
@@ -3658,6 +3710,27 @@ function TopVerbsSection() {
     }
 
     speakItalian(cleanWord);
+  };
+
+  const speakFullConjugation = (forms) => {
+    const parts = pronouns.map((p, i) => {
+      const form = forms[i];
+      if (!form || form === "-" || form.includes("N/A")) return "";
+      
+      let cleanForm = form;
+      if (form.endsWith('/a') || form.endsWith('/e')) {
+        cleanForm = form.slice(0, -2);
+      } else if (form.includes('/')) {
+        cleanForm = form.split('/')[0].trim();
+      }
+      
+      const pronoun = p === "lui/lei" ? "lui" : p;
+      return `${pronoun} ${cleanForm}`;
+    }).filter(Boolean);
+    
+    if (parts.length > 0) {
+      speakItalian(parts.join("; "));
+    }
   };
 
   return (
@@ -4022,7 +4095,16 @@ function TopVerbsSection() {
                   {/* Passato Remoto */}
                   <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
                     <div className="flex justify-between items-center mb-3 border-b border-slate-200 pb-2">
-                      <h4 className="font-bold text-indigo-800 text-lg">Passato Remoto</h4>
+                      <div className="flex items-center gap-1.5">
+                        <h4 className="font-bold text-indigo-800 text-lg">Passato Remoto</h4>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); speakFullConjugation(verb.passatoRemoto); }}
+                          className="p-1 rounded text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-colors flex-shrink-0"
+                          title="Ascolta la coniugazione completa"
+                        >
+                          <Volume2 size={16} />
+                        </button>
+                      </div>
                       <TypeBadge type={verb.typePR} />
                     </div>
                     <table className="w-full text-sm">

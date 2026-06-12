@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Search, Volume2, Shield, ShieldAlert, BookOpen, Layers, Milestone, HelpCircle, Activity, Sparkles, ChevronRight } from 'lucide-react';
 import { speakItalian } from '../utils/speech';
 
@@ -60,6 +60,7 @@ export function VerbConjugatorSection({ verbs = [] }) {
     const isIrregular = type === "Irregolare";
     const isSubjunctive = title.toLowerCase().includes("congiuntivo");
     const isPresentOrImperfettoSubjunctive = isSubjunctive && (title.toLowerCase().includes("presente") || title.toLowerCase().includes("imperfetto"));
+    const isPassatoRemoto = title.toLowerCase().includes("passato remoto");
 
     let fullTTS = "";
     if (isPresentOrImperfettoSubjunctive) {
@@ -72,6 +73,24 @@ export function VerbConjugatorSection({ verbs = [] }) {
         })
         .filter(Boolean)
         .join(". ") + ".";
+    } else if (isPassatoRemoto) {
+      fullTTS = pronouns
+        .map((p, idx) => {
+          const form = forms[idx];
+          if (!form || form === "-" || form.toLowerCase().includes("non ha") || form.includes("N/A")) return "";
+          
+          let cleanForm = form;
+          if (form.endsWith('/a') || form.endsWith('/e')) {
+            cleanForm = form.slice(0, -2);
+          } else if (form.includes('/')) {
+            cleanForm = form.split('/')[0].trim();
+          }
+          
+          const pronoun = p === "lui/lei" ? "lui" : p;
+          return `${pronoun} ${cleanForm}`;
+        })
+        .filter(Boolean)
+        .join("; ");
     }
 
     return (
@@ -79,7 +98,7 @@ export function VerbConjugatorSection({ verbs = [] }) {
         <div className="flex justify-between items-center mb-4 border-b pb-2 border-slate-100">
           <div className="flex items-center gap-1.5">
             <h4 className={`font-bold ${colorClasses.text} text-lg`}>{title}</h4>
-            {isPresentOrImperfettoSubjunctive && fullTTS && (
+            {(isPresentOrImperfettoSubjunctive || isPassatoRemoto) && fullTTS && (
               <button
                 onClick={() => speakWord(fullTTS)}
                 className="p-1 rounded-md text-slate-300 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-200"

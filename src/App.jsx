@@ -3662,140 +3662,130 @@ function ImperativoSection() {
           <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
             <div className="flex justify-between items-center border-b pb-2 mb-2">
               <h4 className="font-bold text-emerald-800">Essere</h4>
-              <PlayButton text="tu sii, lei sia, noi siamo, voi siate, loro siano" size={15} />
+              <PlayButton text="tu sii, lei sia, noi siamo, voi siate" size={15} />
             </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>tu <strong>sii</strong></span><PlayButton text="sii" /></li>
               <li className="flex items-center justify-between"><span>Lei (formale) <strong>sia</strong></span><PlayButton text="sia" /></li>
               <li className="flex items-center justify-between"><span>noi <strong>siamo</strong></span><PlayButton text="siamo" /></li>
               <li className="flex items-center justify-between"><span>voi <strong>siate</strong></span><PlayButton text="siate" /></li>
-              <li className="flex items-center justify-between"><span>loro <strong>siano</strong></span><PlayButton text="siano" /></li>
             </ul>
           </div>
           {/* Card Avere */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
             <div className="flex justify-between items-center border-b pb-2 mb-2">
               <h4 className="font-bold text-emerald-800">Avere</h4>
-              <PlayButton text="tu abbi, lei abbia, noi abbiamo, voi abbiate, loro abbiano" size={15} />
+              <PlayButton text="tu abbi, lei abbia, noi abbiamo, voi abbiate" size={15} />
             </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>tu <strong>abbi</strong></span><PlayButton text="abbi" /></li>
               <li className="flex items-center justify-between"><span>Lei (formale) <strong>abbia</strong></span><PlayButton text="abbia" /></li>
               <li className="flex items-center justify-between"><span>noi <strong>abbiamo</strong></span><PlayButton text="abbiamo" /></li>
               <li className="flex items-center justify-between"><span>voi <strong>abbiate</strong></span><PlayButton text="abbiate" /></li>
-              <li className="flex items-center justify-between"><span>loro <strong>abbiano</strong></span><PlayButton text="abbiano" /></li>
             </ul>
           </div>
           {/* Card Fare */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
             <div className="flex justify-between items-center border-b pb-2 mb-2">
               <h4 className="font-bold text-emerald-800">Fare</h4>
-              <PlayButton text="tu fa' o fai, lei faccia, noi facciamo, voi fate, loro facciano" size={15} />
+              <PlayButton text="tu fa' o fai, lei faccia, noi facciamo, voi fate" size={15} />
             </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>tu <strong>fa' / fai</strong></span><PlayButton text="fa'" /></li>
               <li className="flex items-center justify-between"><span>Lei (formale) <strong>faccia</strong></span><PlayButton text="faccia" /></li>
               <li className="flex items-center justify-between"><span>noi <strong>facciamo</strong></span><PlayButton text="facciamo" /></li>
               <li className="flex items-center justify-between"><span>voi <strong>fate</strong></span><PlayButton text="fate" /></li>
-              <li className="flex items-center justify-between"><span>loro <strong>facciano</strong></span><PlayButton text="facciano" /></li>
             </ul>
           </div>
           {/* Card Dire */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
             <div className="flex justify-between items-center border-b pb-2 mb-2">
               <h4 className="font-bold text-emerald-800">Dire</h4>
-              <PlayButton text="tu di', lei dica, noi diciamo, voi dite, loro dicano" size={15} />
+              <PlayButton text="tu di', lei dica, noi diciamo, voi dite" size={15} />
             </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>tu <strong>di'</strong></span><PlayButton text="di'" /></li>
               <li className="flex items-center justify-between"><span>Lei (formale) <strong>dica</strong></span><PlayButton text="dica" /></li>
               <li className="flex items-center justify-between"><span>noi <strong>diciamo</strong></span><PlayButton text="diciamo" /></li>
               <li className="flex items-center justify-between"><span>voi <strong>dite</strong></span><PlayButton text="dite" /></li>
-              <li className="flex items-center justify-between"><span>loro <strong>dicano</strong></span><PlayButton text="dicano" /></li>
             </ul>
           </div>
           {/* Card Andare */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
             <div className="flex justify-between items-center border-b pb-2 mb-2">
               <h4 className="font-bold text-emerald-800">Andare</h4>
-              <PlayButton text="tu va' o vai, lei vada, noi andiamo, voi andate, loro vadano" size={15} />
+              <PlayButton text="tu va' o vai, lei vada, noi andiamo, voi andate" size={15} />
             </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>tu <strong>va' / vai</strong></span><PlayButton text="va'" /></li>
               <li className="flex items-center justify-between"><span>Lei (formale) <strong>vada</strong></span><PlayButton text="vada" /></li>
               <li className="flex items-center justify-between"><span>noi <strong>andiamo</strong></span><PlayButton text="andiamo" /></li>
               <li className="flex items-center justify-between"><span>voi <strong>andate</strong></span><PlayButton text="andate" /></li>
-              <li className="flex items-center justify-between"><span>loro <strong>vadano</strong></span><PlayButton text="vadano" /></li>
             </ul>
           </div>
           {/* Card Stare */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
             <div className="flex justify-between items-center border-b pb-2 mb-2">
               <h4 className="font-bold text-emerald-800">Stare</h4>
-              <PlayButton text="tu sta' o stai, lei stia, noi stiamo, voi state, loro stiano" size={15} />
+              <PlayButton text="tu sta' o stai, lei stia, noi stiamo, voi state" size={15} />
             </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>tu <strong>sta' / stai</strong></span><PlayButton text="sta'" /></li>
               <li className="flex items-center justify-between"><span>Lei (formale) <strong>stia</strong></span><PlayButton text="stia" /></li>
               <li className="flex items-center justify-between"><span>noi <strong>stiamo</strong></span><PlayButton text="stiamo" /></li>
               <li className="flex items-center justify-between"><span>voi <strong>state</strong></span><PlayButton text="state" /></li>
-              <li className="flex items-center justify-between"><span>loro <strong>stiano</strong></span><PlayButton text="stiano" /></li>
             </ul>
           </div>
           {/* Card Dare */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
             <div className="flex justify-between items-center border-b pb-2 mb-2">
               <h4 className="font-bold text-emerald-800">Dare</h4>
-              <PlayButton text="tu da' o dai, lei dia, noi diamo, voi date, loro diano" size={15} />
+              <PlayButton text="tu da' o dai, lei dia, noi diamo, voi date" size={15} />
             </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>tu <strong>da' / dai</strong></span><PlayButton text="da'" /></li>
               <li className="flex items-center justify-between"><span>Lei (formale) <strong>dia</strong></span><PlayButton text="dia" /></li>
               <li className="flex items-center justify-between"><span>noi <strong>diamo</strong></span><PlayButton text="diamo" /></li>
               <li className="flex items-center justify-between"><span>voi <strong>date</strong></span><PlayButton text="date" /></li>
-              <li className="flex items-center justify-between"><span>loro <strong>diano</strong></span><PlayButton text="diano" /></li>
             </ul>
           </div>
           {/* Card Venire */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
             <div className="flex justify-between items-center border-b pb-2 mb-2">
               <h4 className="font-bold text-emerald-800">Venire</h4>
-              <PlayButton text="tu vieni, lei venga, noi veniamo, voi venite, loro vengano" size={15} />
+              <PlayButton text="tu vieni, lei venga, noi veniamo, voi venite" size={15} />
             </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>tu <strong>vieni</strong></span><PlayButton text="vieni" /></li>
               <li className="flex items-center justify-between"><span>Lei (formale) <strong>venga</strong></span><PlayButton text="venga" /></li>
               <li className="flex items-center justify-between"><span>noi <strong>veniamo</strong></span><PlayButton text="veniamo" /></li>
               <li className="flex items-center justify-between"><span>voi <strong>venite</strong></span><PlayButton text="venite" /></li>
-              <li className="flex items-center justify-between"><span>loro <strong>vengano</strong></span><PlayButton text="vengano" /></li>
             </ul>
           </div>
           {/* Card Sapere */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
             <div className="flex justify-between items-center border-b pb-2 mb-2">
               <h4 className="font-bold text-emerald-800">Sapere</h4>
-              <PlayButton text="tu sappi, lei sappia, noi sappiamo, voi sappiate, loro sappiano" size={15} />
+              <PlayButton text="tu sappi, lei sappia, noi sappiamo, voi sappiate" size={15} />
             </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>tu <strong>sappi</strong></span><PlayButton text="sappi" /></li>
               <li className="flex items-center justify-between"><span>Lei (formale) <strong>sappia</strong></span><PlayButton text="sappia" /></li>
               <li className="flex items-center justify-between"><span>noi <strong>sappiamo</strong></span><PlayButton text="sappiamo" /></li>
               <li className="flex items-center justify-between"><span>voi <strong>sappiate</strong></span><PlayButton text="sappiate" /></li>
-              <li className="flex items-center justify-between"><span>loro <strong>sappiano</strong></span><PlayButton text="sappiano" /></li>
             </ul>
           </div>
           {/* Card Volere */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
             <div className="flex justify-between items-center border-b pb-2 mb-2">
               <h4 className="font-bold text-emerald-800">Volere</h4>
-              <PlayButton text="tu vogli, lei voglia, noi vogliamo, voi vogliate, loro vogliano" size={15} />
+              <PlayButton text="tu vogli, lei voglia, noi vogliamo, voi vogliate" size={15} />
             </div>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>tu <strong>vogli</strong></span><PlayButton text="vogli" /></li>
               <li className="flex items-center justify-between"><span>Lei (formale) <strong>voglia</strong></span><PlayButton text="voglia" /></li>
               <li className="flex items-center justify-between"><span>noi <strong>vogliamo</strong></span><PlayButton text="vogliamo" /></li>
               <li className="flex items-center justify-between"><span>voi <strong>vogliate</strong></span><PlayButton text="vogliate" /></li>
-              <li className="flex items-center justify-between"><span>loro <strong>vogliano</strong></span><PlayButton text="vogliano" /></li>
             </ul>
           </div>
         </div>
@@ -3905,7 +3895,7 @@ function TopVerbsSection() {
   };
 
   const speakFullImperativo = (forms) => {
-    const pronounsList = ["(io)", "tu", "lei", "noi", "voi", "loro"];
+    const pronounsList = ["(io)", "tu", "lei", "noi", "voi"];
     const parts = pronounsList.map((p, i) => {
       if (i === 0) return ""; // Skip io
       const form = forms[i];

@@ -95,7 +95,7 @@ export function VerbConjugatorSection({ verbs = [] }) {
     } else if (isImperativo) {
       fullTTS = pronouns
         .map((p, idx) => {
-          if (idx === 0) return ""; // Skip io
+          if (idx === 0 || idx === 5) return ""; // Skip io and loro
           const form = forms[idx];
           if (!form || form === "-" || form.toLowerCase().includes("non ha") || form.includes("N/A")) return "";
           
@@ -140,6 +140,7 @@ export function VerbConjugatorSection({ verbs = [] }) {
         <table className="w-full text-sm">
           <tbody>
             {pronouns.map((p, i) => {
+              if (isImperativo && p === "loro") return null;
               const form = forms[i] || '-';
               const hasForm = form !== "-";
               return (

@@ -3581,10 +3581,30 @@ function ImperativoSection() {
             <thead>
               <tr className="bg-indigo-50 text-indigo-900">
                 <th className="p-3 border">Persona</th>
-                <th className="p-3 border">-ARE (Guardare)</th>
-                <th className="p-3 border">-ERE (Prendere)</th>
-                <th className="p-3 border">-IRE (Aprire)</th>
-                <th className="p-3 border">-IRE (Finire)*</th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-1">
+                    <span>-ARE (Guardare)</span>
+                    <PlayButton text="tu guarda, lei guardi, noi guardiamo, voi guardate" size={15} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-1">
+                    <span>-ERE (Prendere)</span>
+                    <PlayButton text="tu prendi, lei prenda, noi prendiamo, voi prendete" size={15} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-1">
+                    <span>-IRE (Aprire)</span>
+                    <PlayButton text="tu apri, lei apra, noi apriamo, voi aprite" size={15} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-1">
+                    <span>-IRE (Finire)*</span>
+                    <PlayButton text="tu finisci, lei finisca, noi finiamo, voi finite" size={15} />
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -3726,6 +3746,28 @@ function TopVerbsSection() {
       
       const pronoun = p === "lui/lei" ? "lui" : p;
       return `${pronoun} ${cleanForm}`;
+    }).filter(Boolean);
+    
+    if (parts.length > 0) {
+      speakItalian(parts.join("; "));
+    }
+  };
+
+  const speakFullImperativo = (forms) => {
+    const pronounsList = ["(io)", "tu", "lei", "noi", "voi", "loro"];
+    const parts = pronounsList.map((p, i) => {
+      if (i === 0) return ""; // Skip io
+      const form = forms[i];
+      if (!form || form === "-" || form.toLowerCase().includes("non ha") || form.includes("N/A")) return "";
+      
+      let cleanForm = form;
+      if (form.endsWith('/a') || form.endsWith('/e')) {
+        cleanForm = form.slice(0, -2);
+      } else if (form.includes('/')) {
+        cleanForm = form.split('/')[0].trim();
+      }
+      
+      return `${p} ${cleanForm}`;
     }).filter(Boolean);
     
     if (parts.length > 0) {
@@ -4133,7 +4175,18 @@ function TopVerbsSection() {
                   {/* Imperativo */}
                   <div className="bg-emerald-50 p-4 rounded-lg border border-emerald-100">
                     <div className="flex justify-between items-center mb-3 border-b border-emerald-200 pb-2">
-                      <h4 className="font-bold text-emerald-800 text-lg">Imperativo</h4>
+                      <div className="flex items-center gap-1.5">
+                        <h4 className="font-bold text-emerald-800 text-lg">Imperativo</h4>
+                        {verb.imperativo[1] !== "Non ha imperativo" && (
+                          <button
+                            onClick={(e) => { e.stopPropagation(); speakFullImperativo(verb.imperativo); }}
+                            className="p-1 rounded text-emerald-500 hover:text-emerald-700 hover:bg-emerald-100 transition-colors flex-shrink-0"
+                            title="Ascolta la coniugazione completa"
+                          >
+                            <Volume2 size={16} />
+                          </button>
+                        )}
+                      </div>
                       {verb.imperativo[1] !== "Non ha imperativo" && <TypeBadge type={verb.typeImp} />}
                     </div>
                     {verb.imperativo[1] === "Non ha imperativo" ? (

@@ -4223,6 +4223,14 @@ const irregularEreVerbs = [
     irregularRoot: "dipins-",
     forms: { io: "dipinsi", lui: "dipinse", loro: "dipinsero" },
     fullConjugation: "io dipinsi, tu dipingesti, lui dipinse, noi dipingemmo, voi dipingeste, loro dipinsero"
+  },
+  {
+    verb: "Prendere",
+    meaning: "to take",
+    regularRoot: "prend-",
+    irregularRoot: "pres-",
+    forms: { io: "presi", lui: "prese", loro: "presero" },
+    fullConjugation: "io presi, tu prendesti, lui prese, noi prendemmo, voi prendeste, loro presero"
   }
 ];
 

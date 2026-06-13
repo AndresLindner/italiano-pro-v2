@@ -3561,6 +3561,88 @@ function PassatoProssimoSection() {
         </section>
       </div>
 
+      <section className="bg-purple-50 p-6 rounded-xl border border-purple-200">
+        <h3 className="text-xl font-bold text-purple-800 mb-3 flex items-center gap-2">
+          <Sparkles size={20} /> ✨ Altri Casi Importanti con "ESSERE"
+        </h3>
+        <p className="mb-4 text-purple-900 text-sm">
+          Oltre ai verbi di movimento e stato, ci sono altre strutture grammaticali fondamentali che richiedono sempre l'ausiliare <strong>essere</strong>:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* 1. Verbi Riflessivi e Reciproci */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">1. Verbi Riflessivi & Reciproci</span>
+              <p className="text-xs text-slate-500 mt-0.5">Tutti i verbi riflessivi (azione su se stessi) e reciproci (azione tra più persone).</p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-slate-100 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-purple-700">Mi sono svegliato/a</span>
+                <PlayButton text="mi sono svegliato, mi sono svegliata" size={12} />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-purple-700">Ci siamo incontrati/e</span>
+                <PlayButton text="ci siamo incontrati, ci siamo incontrate" size={12} />
+              </div>
+            </div>
+          </div>
+
+          {/* 2. Verbi Pronominali */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">2. Verbi Pronominali</span>
+              <p className="text-xs text-slate-500 mt-0.5">Verbi che contengono particelle pronominali che ne alterano il significato.</p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-slate-100 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-purple-700">Mi sono accorto/a</span>
+                <PlayButton text="mi sono accorto, mi sono accorta" size={12} />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-purple-700">Me ne sono andato/a</span>
+                <PlayButton text="me ne sono andato, me ne sono andata" size={12} />
+              </div>
+            </div>
+          </div>
+
+          {/* 3. Costruzioni Impersonali */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">3. Costruzioni Impersonali</span>
+              <p className="text-xs text-slate-500 mt-0.5">Frasi con il <strong>si impersonale</strong> richiedono sempre l'ausiliare essere.</p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-slate-100 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-purple-700">Si è mangiato bene</span>
+                <PlayButton text="si è mangiato bene" size={12} />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-purple-700">Si è andati al cinema</span>
+                <PlayButton text="si è andati al cinema" size={12} />
+              </div>
+            </div>
+          </div>
+
+          {/* 4. Forma Passiva */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">4. Forma Passiva</span>
+              <p className="text-xs text-slate-500 mt-0.5">La forma passiva si costruisce sempre con il verbo essere come ausiliare.</p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-slate-100 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-purple-700">La pizza è stata mangiata</span>
+                <PlayButton text="la pizza è stata mangiata" size={12} />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-purple-700">I libri sono stati letti</span>
+                <PlayButton text="i libri sono stati letti" size={12} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-emerald-50 p-6 rounded-xl border border-emerald-200">
         <h3 className="text-xl font-bold text-emerald-800 mb-3 flex items-center gap-2">
           <span>🏠 I 30 Verbi con "ESSERE" più Importanti</span>

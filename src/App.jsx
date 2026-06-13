@@ -4983,6 +4983,32 @@ function ImperativoSection() {
               <li className="flex items-center justify-between"><span>voi <strong>vogliate</strong></span><PlayButton text="vogliate" /></li>
             </ul>
           </div>
+          {/* Card Tenere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-emerald-800">Tenere</h4>
+              <PlayButton text="tu tieni, lei tenga, noi teniamo, voi tenete" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>tu <strong>tieni</strong></span><PlayButton text="tieni" /></li>
+              <li className="flex items-center justify-between"><span>Lei (formale) <strong>tenga</strong></span><PlayButton text="tenga" /></li>
+              <li className="flex items-center justify-between"><span>noi <strong>teniamo</strong></span><PlayButton text="teniamo" /></li>
+              <li className="flex items-center justify-between"><span>voi <strong>tenete</strong></span><PlayButton text="tenete" /></li>
+            </ul>
+          </div>
+          {/* Card Uscire */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-emerald-800">Uscire</h4>
+              <PlayButton text="tu esci, lei esca, noi usciamo, voi uscite" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>tu <strong>esci</strong></span><PlayButton text="esci" /></li>
+              <li className="flex items-center justify-between"><span>Lei (formale) <strong>esca</strong></span><PlayButton text="esca" /></li>
+              <li className="flex items-center justify-between"><span>noi <strong>usciamo</strong></span><PlayButton text="usciamo" /></li>
+              <li className="flex items-center justify-between"><span>voi <strong>uscite</strong></span><PlayButton text="uscite" /></li>
+            </ul>
+          </div>
         </div>
       </section>
 

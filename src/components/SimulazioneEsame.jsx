@@ -28,6 +28,7 @@ export function SimulazioneEsame() {
   const [writingText, setWritingText] = useState('');
   const [score, setScore] = useState(null);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [checkedSections, setCheckedSections] = useState({});
 
   useEffect(() => {
     let timer;
@@ -77,6 +78,7 @@ export function SimulazioneEsame() {
     setTimeLeft(3600);
     setScore(null);
     setCurrentPhase(0);
+    setCheckedSections({});
     setExamState('running');
   };
 
@@ -329,39 +331,77 @@ export function SimulazioneEsame() {
 
             {/* Questions */}
             <div className="space-y-6 pt-4">
-              {examData.listening.questions.map((q, qIdx) => (
-                <div key={q.id} className="border-l-4 border-indigo-200 pl-4 space-y-3">
-                  <p className="font-bold text-slate-800 text-sm md:text-base">{qIdx + 1}. {q.question}</p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {q.options.map((opt, oIdx) => {
-                      const letter = opt.charAt(0);
-                      const isSelected = answers[q.id] === letter;
-                      return (
-                        <label 
-                          key={oIdx} 
-                          className={`flex items-start gap-2.5 p-3 rounded-xl border cursor-pointer transition-all text-xs md:text-sm
-                            ${isSelected 
-                              ? 'border-indigo-600 bg-indigo-50/50 text-indigo-900 font-semibold shadow-xs' 
-                              : 'border-slate-200 hover:border-indigo-300 bg-white text-slate-700'}`}
-                        >
-                          <input
-                            type="radio"
-                            name={q.id}
-                            value={letter}
-                            checked={isSelected}
-                            onChange={(e) => handleInputChange(q.id, e.target.value)}
-                            className="mt-0.5"
-                          />
-                          <span>{opt}</span>
-                        </label>
-                      );
-                    })}
+              {examData.listening.questions.map((q, qIdx) => {
+                const isChecked = checkedSections[0];
+                const isCorrect = answers[q.id] === q.correctAnswer;
+                return (
+                  <div key={q.id} className="border-l-4 border-indigo-200 pl-4 space-y-3">
+                    <p className="font-bold text-slate-800 text-sm md:text-base">{qIdx + 1}. {q.question}</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      {q.options.map((opt, oIdx) => {
+                        const letter = opt.charAt(0);
+                        const isSelected = answers[q.id] === letter;
+                        const isActuallyCorrect = q.correctAnswer === letter;
+                        return (
+                          <label 
+                            key={oIdx} 
+                            className={`flex items-start justify-between gap-2.5 p-3 rounded-xl border transition-all text-xs md:text-sm
+                              ${isChecked
+                                ? isActuallyCorrect
+                                  ? 'border-emerald-500 bg-emerald-50 text-emerald-900 font-semibold ring-1 ring-emerald-500 cursor-not-allowed'
+                                  : isSelected
+                                    ? 'border-red-500 bg-red-50 text-red-900 font-semibold ring-1 ring-red-500 opacity-70 line-through cursor-not-allowed'
+                                    : 'border-slate-100 bg-slate-50 text-slate-400 opacity-50 cursor-not-allowed'
+                                : isSelected 
+                                  ? 'border-indigo-600 bg-indigo-50/50 text-indigo-900 font-semibold shadow-xs cursor-pointer' 
+                                  : 'border-slate-200 hover:border-indigo-300 bg-white text-slate-700 cursor-pointer'}`}
+                          >
+                            <div className="flex items-start gap-2.5">
+                              <input
+                                type="radio"
+                                name={q.id}
+                                value={letter}
+                                checked={isSelected}
+                                disabled={isChecked}
+                                onChange={(e) => handleInputChange(q.id, e.target.value)}
+                                className="mt-0.5"
+                              />
+                              <span>{opt}</span>
+                            </div>
+                            {isChecked && isActuallyCorrect && <CheckCircle2 size={16} className="text-emerald-600 flex-shrink-0 mt-0.5" />}
+                            {isChecked && isSelected && !isActuallyCorrect && <XCircle size={16} className="text-red-600 flex-shrink-0 mt-0.5" />}
+                          </label>
+                        );
+                      })}
+                    </div>
+                    {isChecked && !isCorrect && (
+                      <div className="mt-2 text-xs md:text-sm p-2.5 bg-red-50/50 border border-red-200 rounded-lg text-red-800 flex items-center gap-1.5 w-fit">
+                        <AlertCircle size={14} className="text-red-600 flex-shrink-0" />
+                        <span>
+                          {answers[q.id] ? "Risposta errata." : "Non risposto."} La risposta corretta è <strong className="text-emerald-600 font-bold">{q.correctAnswer}</strong>.
+                        </span>
+                      </div>
+                    )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
-            <div className="flex justify-end pt-4 border-t">
+            <div className="flex justify-between items-center pt-4 border-t gap-3">
+              <div>
+                {!checkedSections[0] ? (
+                  <button
+                    onClick={() => setCheckedSections(prev => ({ ...prev, 0: true }))}
+                    className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm shadow-sm"
+                  >
+                    <CheckCircle2 size={16} /> Controlla Risposte
+                  </button>
+                ) : (
+                  <span className="text-emerald-700 font-bold text-sm flex items-center gap-1 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200">
+                    <CheckCircle2 size={16} /> Risposte controllate
+                  </span>
+                )}
+              </div>
               <button
                 onClick={() => setCurrentPhase(1)}
                 className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm shadow-sm"
@@ -391,43 +431,81 @@ export function SimulazioneEsame() {
 
             {/* Questions */}
             <div className="space-y-6 pt-4">
-              {examData.reading.questions.map((q, qIdx) => (
-                <div key={q.id} className="border-l-4 border-indigo-200 pl-4 space-y-3">
-                  <p className="font-bold text-slate-800 text-sm md:text-base">{qIdx + 1}. {q.question}</p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {q.options.map((opt, oIdx) => {
-                      const isSelected = answers[q.id] === oIdx;
-                      return (
-                        <label 
-                          key={oIdx} 
-                          className={`flex items-start gap-2.5 p-3 rounded-xl border cursor-pointer transition-all text-xs md:text-sm
-                            ${isSelected 
-                              ? 'border-indigo-600 bg-indigo-50/50 text-indigo-900 font-semibold shadow-xs' 
-                              : 'border-slate-200 hover:border-indigo-300 bg-white text-slate-700'}`}
-                        >
-                          <input
-                            type="radio"
-                            name={q.id}
-                            checked={isSelected}
-                            onChange={() => handleInputChange(q.id, oIdx)}
-                            className="mt-0.5"
-                          />
-                          <span>{opt}</span>
-                        </label>
-                      );
-                    })}
+              {examData.reading.questions.map((q, qIdx) => {
+                const isChecked = checkedSections[1];
+                const isCorrect = answers[q.id] === q.answerIndex;
+                return (
+                  <div key={q.id} className="border-l-4 border-indigo-200 pl-4 space-y-3">
+                    <p className="font-bold text-slate-800 text-sm md:text-base">{qIdx + 1}. {q.question}</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      {q.options.map((opt, oIdx) => {
+                        const isSelected = answers[q.id] === oIdx;
+                        const isActuallyCorrect = q.answerIndex === oIdx;
+                        return (
+                          <label 
+                            key={oIdx} 
+                            className={`flex items-start justify-between gap-2.5 p-3 rounded-xl border transition-all text-xs md:text-sm
+                              ${isChecked
+                                ? isActuallyCorrect
+                                  ? 'border-emerald-500 bg-emerald-50 text-emerald-900 font-semibold ring-1 ring-emerald-500 cursor-not-allowed'
+                                  : isSelected
+                                    ? 'border-red-500 bg-red-50 text-red-900 font-semibold ring-1 ring-red-500 opacity-70 line-through cursor-not-allowed'
+                                    : 'border-slate-100 bg-slate-50 text-slate-400 opacity-50 cursor-not-allowed'
+                                : isSelected 
+                                  ? 'border-indigo-600 bg-indigo-50/50 text-indigo-900 font-semibold shadow-xs cursor-pointer' 
+                                  : 'border-slate-200 hover:border-indigo-300 bg-white text-slate-700 cursor-pointer'}`}
+                          >
+                            <div className="flex items-start gap-2.5">
+                              <input
+                                type="radio"
+                                name={q.id}
+                                checked={isSelected}
+                                disabled={isChecked}
+                                onChange={() => handleInputChange(q.id, oIdx)}
+                                className="mt-0.5"
+                              />
+                              <span>{opt}</span>
+                            </div>
+                            {isChecked && isActuallyCorrect && <CheckCircle2 size={16} className="text-emerald-600 flex-shrink-0 mt-0.5" />}
+                            {isChecked && isSelected && !isActuallyCorrect && <XCircle size={16} className="text-red-600 flex-shrink-0 mt-0.5" />}
+                          </label>
+                        );
+                      })}
+                    </div>
+                    {isChecked && !isCorrect && (
+                      <div className="mt-2 text-xs md:text-sm p-2.5 bg-red-50/50 border border-red-200 rounded-lg text-red-800 flex items-center gap-1.5">
+                        <AlertCircle size={14} className="text-red-600 flex-shrink-0" />
+                        <span>
+                          {answers[q.id] !== undefined ? "Risposta errata." : "Non risposto."} La risposta corretta è: <strong className="text-emerald-600 font-bold">{q.options[q.answerIndex]}</strong>
+                        </span>
+                      </div>
+                    )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
-            <div className="flex justify-between pt-4 border-t">
+            <div className="flex justify-between items-center pt-4 border-t gap-3">
               <button
                 onClick={() => setCurrentPhase(0)}
                 className="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all text-sm"
               >
                 Indietro
               </button>
+              <div>
+                {!checkedSections[1] ? (
+                  <button
+                    onClick={() => setCheckedSections(prev => ({ ...prev, 1: true }))}
+                    className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm shadow-sm"
+                  >
+                    <CheckCircle2 size={16} /> Controlla Risposte
+                  </button>
+                ) : (
+                  <span className="text-emerald-700 font-bold text-sm flex items-center gap-1 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200">
+                    <CheckCircle2 size={16} /> Risposte controllate
+                  </span>
+                )}
+              </div>
               <button
                 onClick={() => setCurrentPhase(2)}
                 className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm shadow-sm"
@@ -455,52 +533,104 @@ export function SimulazioneEsame() {
                 const rawAnswer = answers[q.id] || '';
                 const answerArray = numBlanks > 1 ? rawAnswer.split('|||') : [rawAnswer];
 
+                const isChecked = checkedSections[2];
+                const userAnswer = numBlanks > 1 
+                  ? rawAnswer.split('|||').map(s => s.trim()).join(' ') 
+                  : rawAnswer.trim();
+                const isCorrect = userAnswer.toLowerCase() === q.answer.toLowerCase();
+
+                const inputBorderClass = isChecked
+                  ? isCorrect
+                    ? 'border-emerald-500 bg-emerald-50 text-emerald-950'
+                    : 'border-red-500 bg-red-50 text-red-950 line-through'
+                  : 'border-slate-200 focus:border-indigo-500 bg-white';
+
                 return (
-                  <div key={q.id} className="flex flex-col md:flex-row gap-3 p-3 bg-slate-50 hover:bg-slate-100/50 rounded-xl border border-slate-200/60 transition-all">
-                    <span className="font-bold text-slate-400 w-6 flex-shrink-0">{index + 1}.</span>
-                    <div className="flex-1 text-slate-700 leading-relaxed flex flex-wrap items-center gap-1.5 text-sm md:text-base">
-                      {parts.map((part, partIdx) => {
-                        const isLast = partIdx === parts.length - 1;
-                        return (
-                          <React.Fragment key={partIdx}>
-                            <span>{part}</span>
-                            {!isLast && (
-                              <input
-                                type="text"
-                                value={answerArray[partIdx] || ''}
-                                onChange={(e) => {
-                                  const val = e.target.value;
-                                  if (numBlanks > 1) {
-                                    const newArr = [...answerArray];
-                                    for (let k = 0; k < numBlanks; k++) {
-                                      if (newArr[k] === undefined) newArr[k] = '';
+                  <div 
+                    key={q.id} 
+                    className={`flex flex-col gap-2.5 p-3 rounded-xl border transition-all
+                      ${isChecked 
+                        ? isCorrect 
+                          ? 'border-emerald-200 bg-emerald-50/20' 
+                          : 'border-red-200 bg-red-50/20' 
+                        : 'bg-slate-50 hover:bg-slate-100/50 border-slate-200/60'}`}
+                  >
+                    <div className="flex flex-col md:flex-row gap-3 items-start md:items-center">
+                      <span className="font-bold text-slate-400 w-6 flex-shrink-0 flex items-center gap-1">
+                        {index + 1}.
+                        {isChecked && (
+                          isCorrect 
+                            ? <Check className="text-emerald-600" size={16} />
+                            : <XCircle className="text-red-600" size={16} />
+                        )}
+                      </span>
+                      <div className="flex-1 text-slate-700 leading-relaxed flex flex-wrap items-center gap-1.5 text-sm md:text-base">
+                        {parts.map((part, partIdx) => {
+                          const isLast = partIdx === parts.length - 1;
+                          return (
+                            <React.Fragment key={partIdx}>
+                              <span>{part}</span>
+                              {!isLast && (
+                                <input
+                                  type="text"
+                                  value={answerArray[partIdx] || ''}
+                                  disabled={isChecked}
+                                  onChange={(e) => {
+                                    const val = e.target.value;
+                                    if (numBlanks > 1) {
+                                      const newArr = [...answerArray];
+                                      for (let k = 0; k < numBlanks; k++) {
+                                        if (newArr[k] === undefined) newArr[k] = '';
+                                      }
+                                      newArr[partIdx] = val;
+                                      handleInputChange(q.id, newArr.join('|||'));
+                                    } else {
+                                      handleInputChange(q.id, val);
                                     }
-                                    newArr[partIdx] = val;
-                                    handleInputChange(q.id, newArr.join('|||'));
-                                  } else {
-                                    handleInputChange(q.id, val);
-                                  }
-                                }}
-                                className="w-32 md:w-40 px-3 py-1 text-center font-bold text-indigo-900 rounded-lg border-2 border-slate-200 focus:border-indigo-500 bg-white outline-none text-sm"
-                                placeholder="..."
-                              />
-                            )}
-                          </React.Fragment>
-                        );
-                      })}
+                                  }}
+                                  className={`w-32 md:w-40 px-3 py-1 text-center font-bold text-indigo-900 rounded-lg border-2 ${inputBorderClass} outline-none text-sm`}
+                                  placeholder="..."
+                                />
+                              )}
+                            </React.Fragment>
+                          );
+                        })}
+                      </div>
                     </div>
+                    {isChecked && !isCorrect && (
+                      <div className="mt-1.5 ml-0 md:ml-9 text-xs md:text-sm text-red-800 flex items-center gap-1.5 bg-red-50/50 p-2 rounded-lg border border-red-200 w-fit">
+                        <AlertCircle size={14} className="text-red-600 flex-shrink-0" />
+                        <span>
+                          {userAnswer.trim() ? "Risposta errata." : "Non risposto."} Risposta corretta: <strong className="text-emerald-600 font-bold">{q.answer}</strong>
+                        </span>
+                      </div>
+                    )}
                   </div>
                 );
               })}
             </div>
 
-            <div className="flex justify-between pt-4 border-t">
+            <div className="flex justify-between items-center pt-4 border-t gap-3">
               <button
                 onClick={() => setCurrentPhase(1)}
                 className="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all text-sm"
               >
                 Indietro
               </button>
+              <div>
+                {!checkedSections[2] ? (
+                  <button
+                    onClick={() => setCheckedSections(prev => ({ ...prev, 2: true }))}
+                    className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm shadow-sm"
+                  >
+                    <CheckCircle2 size={16} /> Controlla Risposte
+                  </button>
+                ) : (
+                  <span className="text-emerald-700 font-bold text-sm flex items-center gap-1 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200">
+                    <CheckCircle2 size={16} /> Risposte controllate
+                  </span>
+                )}
+              </div>
               <button
                 onClick={() => setCurrentPhase(3)}
                 className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm shadow-sm"

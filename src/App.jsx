@@ -2133,6 +2133,168 @@ function PresenteSection() {
           </ul>
         </div>
       </section>
+
+      <section className="bg-amber-50 p-6 rounded-xl border border-amber-200">
+        <h3 className="text-xl font-bold text-amber-800 mb-3 flex items-center gap-2">
+          <span>💡 I 10 Verbi Irregolari Fondamentali</span>
+          <PlayButton text="io sono, tu sei, lui è, noi siamo, voi siete, loro sono; io ho, tu hai, lui ha, noi abbiamo, voi avete, loro hanno; io faccio, tu fai, lui fa, noi facciamo, voi fate, loro fanno; io vado, tu vai, lui va, noi andiamo, voi andate, loro vanno; io dico, tu dici, lui dice, noi diciamo, voi dite, loro dicono; io devo, tu devi, lui deve, noi dobbiamo, voi dovete, loro devono; io posso, tu puoi, lui può, noi possiamo, voi potete, loro possono; io voglio, tu vuoi, lui vuole, noi vogliamo, voi volete, loro vogliono; io so, tu sai, lui sa, noi sappiamo, voi sapete, loro sanno; io vengo, tu vieni, lui viene, noi veniamo, voi venite, loro vengono" size={16} />
+        </h3>
+        <p className="mb-4 text-amber-900">
+          Questi verbi sono usati continuamente in italiano. Imparare la loro coniugazione al presente indicativo è indispensabile per la comunicazione quotidiana.
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          {/* Essere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+            <h4 className="font-bold text-amber-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Essere</span>
+              <PlayButton text="io sono; tu sei; lui è; noi siamo; voi siete; loro sono" size={13} />
+            </h4>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span>sono</span><PlayButton text="sono" /></li>
+              <li className="flex items-center justify-between"><span>sei</span><PlayButton text="sei" /></li>
+              <li className="flex items-center justify-between"><span>è</span><PlayButton text="è" /></li>
+              <li className="flex items-center justify-between"><span>siamo</span><PlayButton text="siamo" /></li>
+              <li className="flex items-center justify-between"><span>siete</span><PlayButton text="siete" /></li>
+              <li className="flex items-center justify-between"><span>sono</span><PlayButton text="sono" /></li>
+            </ul>
+          </div>
+          {/* Avere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+            <h4 className="font-bold text-amber-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Avere</span>
+              <PlayButton text="io ho; tu hai; lui ha; noi abbiamo; voi avete; loro hanno" size={13} />
+            </h4>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span>ho</span><PlayButton text="ho" /></li>
+              <li className="flex items-center justify-between"><span>hai</span><PlayButton text="hai" /></li>
+              <li className="flex items-center justify-between"><span>ha</span><PlayButton text="ha" /></li>
+              <li className="flex items-center justify-between"><span>abbiamo</span><PlayButton text="abbiamo" /></li>
+              <li className="flex items-center justify-between"><span>avete</span><PlayButton text="avete" /></li>
+              <li className="flex items-center justify-between"><span>hanno</span><PlayButton text="hanno" /></li>
+            </ul>
+          </div>
+          {/* Fare */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+            <h4 className="font-bold text-amber-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Fare</span>
+              <PlayButton text="io faccio; tu fai; lui fa; noi facciamo; voi fate; loro fanno" size={13} />
+            </h4>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span>faccio</span><PlayButton text="faccio" /></li>
+              <li className="flex items-center justify-between"><span>fai</span><PlayButton text="fai" /></li>
+              <li className="flex items-center justify-between"><span>fa</span><PlayButton text="fa" /></li>
+              <li className="flex items-center justify-between"><span>facciamo</span><PlayButton text="facciamo" /></li>
+              <li className="flex items-center justify-between"><span>fate</span><PlayButton text="fate" /></li>
+              <li className="flex items-center justify-between"><span>fanno</span><PlayButton text="fanno" /></li>
+            </ul>
+          </div>
+          {/* Andare */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+            <h4 className="font-bold text-amber-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Andare</span>
+              <PlayButton text="io vado; tu vai; lui va; noi andiamo; voi andate; loro vanno" size={13} />
+            </h4>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span>vado</span><PlayButton text="vado" /></li>
+              <li className="flex items-center justify-between"><span>vai</span><PlayButton text="vai" /></li>
+              <li className="flex items-center justify-between"><span>va</span><PlayButton text="va" /></li>
+              <li className="flex items-center justify-between"><span>andiamo</span><PlayButton text="andiamo" /></li>
+              <li className="flex items-center justify-between"><span>andate</span><PlayButton text="andate" /></li>
+              <li className="flex items-center justify-between"><span>vanno</span><PlayButton text="vanno" /></li>
+            </ul>
+          </div>
+          {/* Dire */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+            <h4 className="font-bold text-amber-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Dire</span>
+              <PlayButton text="io dico; tu dici; lui dice; noi diciamo; voi dite; loro dicono" size={13} />
+            </h4>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span>dico</span><PlayButton text="dico" /></li>
+              <li className="flex items-center justify-between"><span>dici</span><PlayButton text="dici" /></li>
+              <li className="flex items-center justify-between"><span>dice</span><PlayButton text="dice" /></li>
+              <li className="flex items-center justify-between"><span>diciamo</span><PlayButton text="diciamo" /></li>
+              <li className="flex items-center justify-between"><span>dite</span><PlayButton text="dite" /></li>
+              <li className="flex items-center justify-between"><span>dicono</span><PlayButton text="dicono" /></li>
+            </ul>
+          </div>
+          {/* Dovere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+            <h4 className="font-bold text-amber-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Dovere</span>
+              <PlayButton text="io devo; tu devi; lui deve; noi dobbiamo; voi dovete; loro devono" size={13} />
+            </h4>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span>devo</span><PlayButton text="devo" /></li>
+              <li className="flex items-center justify-between"><span>devi</span><PlayButton text="devi" /></li>
+              <li className="flex items-center justify-between"><span>deve</span><PlayButton text="deve" /></li>
+              <li className="flex items-center justify-between"><span>dobbiamo</span><PlayButton text="dobbiamo" /></li>
+              <li className="flex items-center justify-between"><span>dovete</span><PlayButton text="dovete" /></li>
+              <li className="flex items-center justify-between"><span>devono</span><PlayButton text="devono" /></li>
+            </ul>
+          </div>
+          {/* Potere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+            <h4 className="font-bold text-amber-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Potere</span>
+              <PlayButton text="io posso; tu puoi; lui può; noi possiamo; voi potete; loro possono" size={13} />
+            </h4>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span>posso</span><PlayButton text="posso" /></li>
+              <li className="flex items-center justify-between"><span>puoi</span><PlayButton text="puoi" /></li>
+              <li className="flex items-center justify-between"><span>può</span><PlayButton text="può" /></li>
+              <li className="flex items-center justify-between"><span>possiamo</span><PlayButton text="possiamo" /></li>
+              <li className="flex items-center justify-between"><span>potete</span><PlayButton text="potete" /></li>
+              <li className="flex items-center justify-between"><span>possono</span><PlayButton text="possono" /></li>
+            </ul>
+          </div>
+          {/* Volere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+            <h4 className="font-bold text-amber-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Volere</span>
+              <PlayButton text="io voglio; tu vuoi; lui vuole; noi vogliamo; voi volete; loro vogliono" size={13} />
+            </h4>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span>voglio</span><PlayButton text="voglio" /></li>
+              <li className="flex items-center justify-between"><span>vuoi</span><PlayButton text="vuoi" /></li>
+              <li className="flex items-center justify-between"><span>vuole</span><PlayButton text="vuole" /></li>
+              <li className="flex items-center justify-between"><span>vogliamo</span><PlayButton text="vogliamo" /></li>
+              <li className="flex items-center justify-between"><span>volete</span><PlayButton text="volete" /></li>
+              <li className="flex items-center justify-between"><span>vogliono</span><PlayButton text="vogliono" /></li>
+            </ul>
+          </div>
+          {/* Sapere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+            <h4 className="font-bold text-amber-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Sapere</span>
+              <PlayButton text="io so; tu sai; lui sa; noi sappiamo; voi sapete; loro sanno" size={13} />
+            </h4>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span>so</span><PlayButton text="so" /></li>
+              <li className="flex items-center justify-between"><span>sai</span><PlayButton text="sai" /></li>
+              <li className="flex items-center justify-between"><span>sa</span><PlayButton text="sa" /></li>
+              <li className="flex items-center justify-between"><span>sappiamo</span><PlayButton text="sappiamo" /></li>
+              <li className="flex items-center justify-between"><span>sapete</span><PlayButton text="sapete" /></li>
+              <li className="flex items-center justify-between"><span>sanno</span><PlayButton text="sanno" /></li>
+            </ul>
+          </div>
+          {/* Venire */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+            <h4 className="font-bold text-amber-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Venire</span>
+              <PlayButton text="io vengo; tu vieni; lui viene; noi veniamo; voi venite; loro vengono" size={13} />
+            </h4>
+            <ul className="text-sm space-y-1.5 text-slate-700">
+              <li className="flex items-center justify-between"><span>vengo</span><PlayButton text="vengo" /></li>
+              <li className="flex items-center justify-between"><span>vieni</span><PlayButton text="vieni" /></li>
+              <li className="flex items-center justify-between"><span>viene</span><PlayButton text="viene" /></li>
+              <li className="flex items-center justify-between"><span>veniamo</span><PlayButton text="veniamo" /></li>
+              <li className="flex items-center justify-between"><span>venite</span><PlayButton text="venite" /></li>
+              <li className="flex items-center justify-between"><span>vengono</span><PlayButton text="vengono" /></li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </div>
   );
 

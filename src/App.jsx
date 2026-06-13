@@ -4657,6 +4657,21 @@ function PassatoRemotoSection() {
               <li className="flex items-center justify-between"><span>loro <strong>caddero</strong></span><PlayButton text="caddero" /></li>
             </ul>
           </div>
+          {/* Card Dovere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Dovere</h4>
+              <PlayButton text="io dovetti, tu dovesti, lui dovette, noi dovemmo, voi doveste, loro dovettero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>dovetti</strong> <span className="text-[10px] text-slate-400">(dovei)</span></span><PlayButton text="dovetti" /></li>
+              <li className="flex items-center justify-between"><span>tu dovesti</span><PlayButton text="dovesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>dovette</strong> <span className="text-[10px] text-slate-400">(dové)</span></span><PlayButton text="dovette" /></li>
+              <li className="flex items-center justify-between"><span>noi dovemmo</span><PlayButton text="dovemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi doveste</span><PlayButton text="doveste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>dovettero</strong> <span className="text-[10px] text-slate-400">(doverono)</span></span><PlayButton text="dovettero" /></li>
+            </ul>
+          </div>
         </div>
       </section>
     </div>

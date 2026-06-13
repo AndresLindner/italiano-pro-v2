@@ -3561,6 +3561,348 @@ function PassatoProssimoSection() {
         </section>
       </div>
 
+      <section className="bg-emerald-50 p-6 rounded-xl border border-emerald-200">
+        <h3 className="text-xl font-bold text-emerald-800 mb-3 flex items-center gap-2">
+          <span>🏠 I 30 Verbi con "ESSERE" più Importanti</span>
+          <PlayButton text="i trenta verbi con essere più importanti" size={16} />
+        </h3>
+        <p className="mb-4 text-emerald-900 text-sm">
+          Questi verbi formano il passato prossimo con l'ausiliare <strong>essere</strong>. Ricorda che il loro participio passato concorda sempre in genere e numero col soggetto (es. <em>lui è andato</em>, <em>lei è andata</em>).
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+          {/* 1. Andare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Andare</span>
+              <span className="block text-xs text-slate-500 italic">to go</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">andato/a</span>
+              <PlayButton text="sono andato, sono andata" size={12} />
+            </div>
+          </div>
+          {/* 2. Venire */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Venire</span>
+              <span className="block text-xs text-slate-500 italic">to come</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">venuto/a</span>
+              <PlayButton text="sono venuto, sono venuta" size={12} />
+            </div>
+          </div>
+          {/* 3. Arrivare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Arrivare</span>
+              <span className="block text-xs text-slate-500 italic">to arrive</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">arrivato/a</span>
+              <PlayButton text="sono arrivato, sono arrivata" size={12} />
+            </div>
+          </div>
+          {/* 4. Partire */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Partire</span>
+              <span className="block text-xs text-slate-500 italic">to depart/leave</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">partito/a</span>
+              <PlayButton text="sono partito, sono partita" size={12} />
+            </div>
+          </div>
+          {/* 5. Entrare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Entrare</span>
+              <span className="block text-xs text-slate-500 italic">to enter</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">entrato/a</span>
+              <PlayButton text="sono entrato, sono entrata" size={12} />
+            </div>
+          </div>
+          {/* 6. Uscire */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Uscire</span>
+              <span className="block text-xs text-slate-500 italic">to go out</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">uscito/a</span>
+              <PlayButton text="sono uscito, sono uscita" size={12} />
+            </div>
+          </div>
+          {/* 7. Salire */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Salire</span>
+              <span className="block text-xs text-slate-500 italic">to go up</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">salito/a</span>
+              <PlayButton text="sono salito, sono salita" size={12} />
+            </div>
+          </div>
+          {/* 8. Scendere */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Scendere</span>
+              <span className="block text-xs text-slate-500 italic">to go down</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">sceso/a</span>
+              <PlayButton text="sono sceso, sono scesa" size={12} />
+            </div>
+          </div>
+          {/* 9. Cadere */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Cadere</span>
+              <span className="block text-xs text-slate-500 italic">to fall</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">caduto/a</span>
+              <PlayButton text="sono caduto, sono caduta" size={12} />
+            </div>
+          </div>
+          {/* 10. Tornare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Tornare</span>
+              <span className="block text-xs text-slate-500 italic">to return</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">tornato/a</span>
+              <PlayButton text="sono tornato, sono tornata" size={12} />
+            </div>
+          </div>
+          {/* 11. Rimanere */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Rimanere</span>
+              <span className="block text-xs text-slate-500 italic">to remain</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">rimasto/a</span>
+              <PlayButton text="sono rimasto, sono rimasta" size={12} />
+            </div>
+          </div>
+          {/* 12. Restare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Restare</span>
+              <span className="block text-xs text-slate-500 italic">to stay</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">restato/a</span>
+              <PlayButton text="sono restato, sono restata" size={12} />
+            </div>
+          </div>
+          {/* 13. Stare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Stare</span>
+              <span className="block text-xs text-slate-500 italic">to stay/be</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">stato/a</span>
+              <PlayButton text="sono stato, sono stata" size={12} />
+            </div>
+          </div>
+          {/* 14. Essere */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Essere</span>
+              <span className="block text-xs text-slate-500 italic">to be</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">stato/a</span>
+              <PlayButton text="sono stato, sono stata" size={12} />
+            </div>
+          </div>
+          {/* 15. Nascere */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Nascere</span>
+              <span className="block text-xs text-slate-500 italic">to be born</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">nato/a</span>
+              <PlayButton text="sono nato, sono nata" size={12} />
+            </div>
+          </div>
+          {/* 16. Morire */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Morire</span>
+              <span className="block text-xs text-slate-500 italic">to die</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">morto/a</span>
+              <PlayButton text="sono morto, sono morta" size={12} />
+            </div>
+          </div>
+          {/* 17. Diventare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Diventare</span>
+              <span className="block text-xs text-slate-500 italic">to become</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">diventato/a</span>
+              <PlayButton text="sono diventato, sono diventata" size={12} />
+            </div>
+          </div>
+          {/* 18. Piacere */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Piacere</span>
+              <span className="block text-xs text-slate-500 italic">to like/please</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">piaciuto/a</span>
+              <PlayButton text="mi è piaciuto, mi è piaciuta" size={12} />
+            </div>
+          </div>
+          {/* 19. Succedere */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Succedere</span>
+              <span className="block text-xs text-slate-500 italic">to happen</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">successo/a</span>
+              <PlayButton text="è successo, è successa" size={12} />
+            </div>
+          </div>
+          {/* 20. Crescere */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Crescere</span>
+              <span className="block text-xs text-slate-500 italic">to grow</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">cresciuto/a</span>
+              <PlayButton text="sono cresciuto, sono cresciuta" size={12} />
+            </div>
+          </div>
+          {/* 21. Apparire */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Apparire</span>
+              <span className="block text-xs text-slate-500 italic">to appear</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">apparso/a</span>
+              <PlayButton text="sono apparso, sono apparsa" size={12} />
+            </div>
+          </div>
+          {/* 22. Sparire */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Sparire</span>
+              <span className="block text-xs text-slate-500 italic">to disappear</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">sparito/a</span>
+              <PlayButton text="sono sparito, sono sparita" size={12} />
+            </div>
+          </div>
+          {/* 23. Scomparire */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Scomparire</span>
+              <span className="block text-xs text-slate-500 italic">to disappear/fade</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">scomparso/a</span>
+              <PlayButton text="sono scomparso, sono scomparsa" size={12} />
+            </div>
+          </div>
+          {/* 24. Sembrare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Sembrare</span>
+              <span className="block text-xs text-slate-500 italic">to seem</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">sembrato/a</span>
+              <PlayButton text="sono sembrato, sono sembrata" size={12} />
+            </div>
+          </div>
+          {/* 25. Durare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Durare</span>
+              <span className="block text-xs text-slate-500 italic">to last</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">durato/a</span>
+              <PlayButton text="è durato, è durata" size={12} />
+            </div>
+          </div>
+          {/* 26. Bastare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Bastare</span>
+              <span className="block text-xs text-slate-500 italic">to be enough</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">bastato/a</span>
+              <PlayButton text="è bastato, è bastata" size={12} />
+            </div>
+          </div>
+          {/* 27. Mancare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Mancare</span>
+              <span className="block text-xs text-slate-500 italic">to miss/lack</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">mancato/a</span>
+              <PlayButton text="sono mancato, sono mancata" size={12} />
+            </div>
+          </div>
+          {/* 28. Costare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Costare</span>
+              <span className="block text-xs text-slate-500 italic">to cost</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">costato/a</span>
+              <PlayButton text="è costato, è costata" size={12} />
+            </div>
+          </div>
+          {/* 29. Rientrare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Rientrare</span>
+              <span className="block text-xs text-slate-500 italic">to return/re-enter</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">rientrato/a</span>
+              <PlayButton text="sono rientrato, sono rientrata" size={12} />
+            </div>
+          </div>
+          {/* 30. Scappare */}
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-emerald-100 flex flex-col justify-between">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">Scappare</span>
+              <span className="block text-xs text-slate-500 italic">to run away/escape</span>
+            </div>
+            <div className="flex items-center justify-between mt-2 border-t pt-1.5 border-slate-100">
+              <span className="text-xs font-semibold text-emerald-700">scappato/a</span>
+              <PlayButton text="sono scappato, sono scappata" size={12} />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-amber-50 p-6 rounded-xl border border-amber-200">
         <h3 className="text-xl font-bold text-amber-800 mb-3 flex items-center gap-2">
           💡 La scorciatoia mentale

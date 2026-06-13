@@ -2034,9 +2034,24 @@ function PresenteSection() {
             <thead>
               <tr className="bg-indigo-50 text-indigo-900">
                 <th className="p-3 border">Persona</th>
-                <th className="p-3 border">-ARE (es. Parlare)</th>
-                <th className="p-3 border">-ERE (es. Credere)</th>
-                <th className="p-3 border">-IRE (es. Dormire)</th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-2">
+                    <span>-ARE (es. Parlare)</span>
+                    <PlayButton text="io parlo; tu parli; lui parla; noi parliamo; voi parlate; loro parlano" size={14} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-2">
+                    <span>-ERE (es. Credere)</span>
+                    <PlayButton text="io credo; tu credi; lui crede; noi crediamo; voi credete; loro credono" size={14} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-2">
+                    <span>-IRE (es. Dormire)</span>
+                    <PlayButton text="io dormo; tu dormi; lui dorme; noi dormiamo; voi dormite; loro dormono" size={14} />
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -2083,7 +2098,8 @@ function PresenteSection() {
 
       <section className="bg-purple-50 p-6 rounded-xl border border-purple-200">
         <h3 className="text-xl font-bold text-purple-800 mb-3 flex items-center gap-2">
-          💡 I verbi in -IRE con il suffisso "-ISC-"
+          <span>💡 I verbi in -IRE con il suffisso "-ISC-"</span>
+          <PlayButton text="io capisco; tu capisci; lui capisce; noi capiamo; voi capite; loro capiscono" size={16} />
         </h3>
         <p className="mb-4 text-purple-900">
           Molti verbi che finiscono in <strong>-IRE</strong> (come capire, finire, preferire, pulire) inseriscono il suffisso <strong>-isc-</strong> tra la radice e la desinenza, ma <strong>solo nelle prime tre persone singolari e nella terza plurale</strong>. Noi e Voi rimangono perfettamente normali.
@@ -2167,9 +2183,24 @@ function ImperfettoSection() {
             <thead>
               <tr className="bg-indigo-50 text-indigo-900">
                 <th className="p-3 border">Persona</th>
-                <th className="p-3 border">-ARE (Parlare)</th>
-                <th className="p-3 border">-ERE (Credere)</th>
-                <th className="p-3 border">-IRE (Dormire)</th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-2">
+                    <span>-ARE (Parlare)</span>
+                    <PlayButton text="io parlavo; tu parlavi; lui parlava; noi parlavamo; voi parlavate; loro parlavano" size={14} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-2">
+                    <span>-ERE (Credere)</span>
+                    <PlayButton text="io credevo; tu credevi; lui credeva; noi credevamo; voi credevate; loro credevano" size={14} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-2">
+                    <span>-IRE (Dormire)</span>
+                    <PlayButton text="io dormivo; tu dormivi; lui dormiva; noi dormivamo; voi dormivate; loro dormivano" size={14} />
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -2223,7 +2254,10 @@ function ImperfettoSection() {
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white p-4 rounded-lg shadow-sm border border-teal-100">
-            <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2">Essere</h4>
+            <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Essere</span>
+              <PlayButton text="io ero; tu eri; lui era; noi eravamo; voi eravate; loro erano" size={13} />
+            </h4>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>ero</span><PlayButton text="ero" /></li>
               <li className="flex items-center justify-between"><span>eri</span><PlayButton text="eri" /></li>
@@ -2234,7 +2268,10 @@ function ImperfettoSection() {
             </ul>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm border border-teal-100">
-            <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2">Fare</h4>
+            <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Fare</span>
+              <PlayButton text="io facevo; tu facevi; lui faceva; noi facevamo; voi facevate; loro facevano" size={13} />
+            </h4>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>facevo</span><PlayButton text="facevo" /></li>
               <li className="flex items-center justify-between"><span>facevi</span><PlayButton text="facevi" /></li>
@@ -2245,7 +2282,10 @@ function ImperfettoSection() {
             </ul>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm border border-teal-100">
-            <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2">Dire</h4>
+            <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Dire</span>
+              <PlayButton text="io dicevo; tu dicevi; lui diceva; noi dicevamo; voi dicevate; loro dicevano" size={13} />
+            </h4>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>dicevo</span><PlayButton text="dicevo" /></li>
               <li className="flex items-center justify-between"><span>dicevi</span><PlayButton text="dicevi" /></li>
@@ -2256,7 +2296,10 @@ function ImperfettoSection() {
             </ul>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm border border-teal-100">
-            <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2">Bere</h4>
+            <h4 className="font-bold text-teal-700 text-center border-b pb-2 mb-2 flex items-center justify-center gap-1">
+              <span>Bere</span>
+              <PlayButton text="io bevevo; tu bevevi; lui beveva; noi bevevamo; voi bevevate; loro bevevano" size={13} />
+            </h4>
             <ul className="text-sm space-y-1.5">
               <li className="flex items-center justify-between"><span>bevevo</span><PlayButton text="bevevo" /></li>
               <li className="flex items-center justify-between"><span>bevevi</span><PlayButton text="bevevi" /></li>
@@ -2318,9 +2361,24 @@ function FuturoSempliceSection() {
             <thead>
               <tr className="bg-indigo-50 text-indigo-900">
                 <th className="p-3 border">Persona</th>
-                <th className="p-3 border">-ARE (Parlare)</th>
-                <th className="p-3 border">-ERE (Credere)</th>
-                <th className="p-3 border">-IRE (Dormire)</th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-2">
+                    <span>-ARE (Parlare)</span>
+                    <PlayButton text="io parlerò; tu parlerai; lui parlerà; noi parleremo; voi parlerete; loro parleranno" size={14} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-2">
+                    <span>-ERE (Credere)</span>
+                    <PlayButton text="io crederò; tu crederai; lui crederà; noi crederemo; voi crederete; loro crederanno" size={14} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-2">
+                    <span>-IRE (Dormire)</span>
+                    <PlayButton text="io dormirò; tu dormirai; lui dormirà; noi dormiremo; voi dormirete; loro dormiranno" size={14} />
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -2376,28 +2434,28 @@ function FuturoSempliceSection() {
           <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
             <h4 className="font-bold text-orange-700 border-b pb-2 mb-2">1. Perdono la vocale</h4>
             <ul className="text-sm space-y-1.5 text-slate-700">
-              <li className="flex items-center justify-between"><span><strong>Avere:</strong> avrò, avrai...</span><PlayButton text="avrò, avrai" /></li>
-              <li className="flex items-center justify-between"><span><strong>Andare:</strong> andrò, andrai...</span><PlayButton text="andrò, andrai" /></li>
-              <li className="flex items-center justify-between"><span><strong>Potere:</strong> potrò, potrai...</span><PlayButton text="potrò, potrai" /></li>
-              <li className="flex items-center justify-between"><span><strong>Vedere:</strong> vedrò, vedrai...</span><PlayButton text="vedrò, vedrai" /></li>
+              <li className="flex items-center justify-between"><span><strong>Avere:</strong> avrò, avrai...</span><PlayButton text="io avrò; tu avrai; lui avrà; noi avremo; voi avrete; loro avranno" /></li>
+              <li className="flex items-center justify-between"><span><strong>Andare:</strong> andrò, andrai...</span><PlayButton text="io andrò; tu andrai; lui andrà; noi andremo; voi andrete; loro andranno" /></li>
+              <li className="flex items-center justify-between"><span><strong>Potere:</strong> potrò, potrai...</span><PlayButton text="io potrò; tu potrai; lui potrà; noi potremo; voi potrete; loro potranno" /></li>
+              <li className="flex items-center justify-between"><span><strong>Vedere:</strong> vedrò, vedrai...</span><PlayButton text="io vedrò; tu vedrai; lui vedrà; noi vedremo; voi vedrete; loro vedranno" /></li>
             </ul>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
             <h4 className="font-bold text-orange-700 border-b pb-2 mb-2">2. Raddoppiano la 'R'</h4>
             <ul className="text-sm space-y-1.5 text-slate-700">
-              <li className="flex items-center justify-between"><span><strong>Venire:</strong> verrò, verrai...</span><PlayButton text="verrò, verrai" /></li>
-              <li className="flex items-center justify-between"><span><strong>Volere:</strong> vorrò, vorrai...</span><PlayButton text="vorrò, vorrai" /></li>
-              <li className="flex items-center justify-between"><span><strong>Bere:</strong> berrò, berrai...</span><PlayButton text="berrò, berrai" /></li>
-              <li className="flex items-center justify-between"><span><strong>Rimanere:</strong> rimarrò...</span><PlayButton text="rimarrò, rimarrai" /></li>
+              <li className="flex items-center justify-between"><span><strong>Venire:</strong> verrò, verrai...</span><PlayButton text="io verrò; tu verrai; lui verrà; noi verremo; voi verrete; loro verranno" /></li>
+              <li className="flex items-center justify-between"><span><strong>Volere:</strong> vorrò, vorrai...</span><PlayButton text="io vorrò; tu vorrai; lui vorrà; noi vorremo; voi vorrete; loro vorranno" /></li>
+              <li className="flex items-center justify-between"><span><strong>Bere:</strong> berrò, berrai...</span><PlayButton text="io berrò; tu berrai; lui berrà; noi berremo; voi berrete; loro berranno" /></li>
+              <li className="flex items-center justify-between"><span><strong>Rimanere:</strong> rimarrò...</span><PlayButton text="io rimarrò; tu rimarrai; lui rimarrà; noi rimarremo; voi rimarrete; loro rimarranno" /></li>
             </ul>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
             <h4 className="font-bold text-orange-700 border-b pb-2 mb-2">3. Radici speciali</h4>
             <ul className="text-sm space-y-1.5 text-slate-700">
-              <li className="flex items-center justify-between"><span><strong>Essere:</strong> sarò, sarai...</span><PlayButton text="sarò, sarai" /></li>
-              <li className="flex items-center justify-between"><span><strong>Fare:</strong> farò, farai...</span><PlayButton text="farò, farai" /></li>
-              <li className="flex items-center justify-between"><span><strong>Dare:</strong> darò, darai...</span><PlayButton text="darò, darai" /></li>
-              <li className="flex items-center justify-between"><span><strong>Stare:</strong> starò, starai...</span><PlayButton text="starò, starai" /></li>
+              <li className="flex items-center justify-between"><span><strong>Essere:</strong> sarò, sarai...</span><PlayButton text="io sarò; tu sarai; lui sarà; noi saremo; voi sarete; loro saranno" /></li>
+              <li className="flex items-center justify-between"><span><strong>Fare:</strong> farò, farai...</span><PlayButton text="io farò; tu farai; lui farà; noi faremo; voi farete; loro faranno" /></li>
+              <li className="flex items-center justify-between"><span><strong>Dare:</strong> darò, darai...</span><PlayButton text="io darò; tu darai; lui darà; noi daremo; voi darete; loro daranno" /></li>
+              <li className="flex items-center justify-between"><span><strong>Stare:</strong> starò, starai...</span><PlayButton text="io starò; tu starai; lui starà; noi staremo; voi starete; loro staranno" /></li>
             </ul>
           </div>
         </div>

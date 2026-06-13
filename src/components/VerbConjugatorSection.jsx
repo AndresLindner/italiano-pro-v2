@@ -62,6 +62,7 @@ export function VerbConjugatorSection({ verbs = [] }) {
     const isPresentOrImperfettoSubjunctive = isSubjunctive && (title.toLowerCase().includes("presente") || title.toLowerCase().includes("imperfetto"));
     const isPassatoRemoto = title.toLowerCase().includes("passato remoto");
     const isImperativo = title.toLowerCase().includes("imperativo");
+    const isMainIndicative = title === "Presente" || title === "Imperfetto" || title === "Futuro Semplice";
 
     let fullTTS = "";
     if (isPresentOrImperfettoSubjunctive) {
@@ -74,7 +75,7 @@ export function VerbConjugatorSection({ verbs = [] }) {
         })
         .filter(Boolean)
         .join(". ") + ".";
-    } else if (isPassatoRemoto) {
+    } else if (isPassatoRemoto || isMainIndicative) {
       fullTTS = pronouns
         .map((p, idx) => {
           const form = forms[idx];
@@ -118,7 +119,7 @@ export function VerbConjugatorSection({ verbs = [] }) {
         <div className="flex justify-between items-center mb-4 border-b pb-2 border-slate-100">
           <div className="flex items-center gap-1.5">
             <h4 className={`font-bold ${colorClasses.text} text-lg`}>{title}</h4>
-            {(isPresentOrImperfettoSubjunctive || isPassatoRemoto || isImperativo) && fullTTS && (
+            {(isPresentOrImperfettoSubjunctive || isPassatoRemoto || isImperativo || isMainIndicative) && fullTTS && (
               <button
                 onClick={() => speakWord(fullTTS)}
                 className="p-1 rounded-md text-slate-300 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-200"

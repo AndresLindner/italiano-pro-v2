@@ -51,10 +51,10 @@ export function SimulazioneEsame() {
 
   const startExam = () => {
     const allGrammar = [
-      ...modulo1Data.section1, ...modulo1Data.section2, ...modulo1Data.section3,
-      ...modulo2Data.section1, ...modulo2Data.section2,
-      ...modulo3Data.section1, ...modulo3Data.section2,
-      ...modulo4Data.section1, ...modulo4Data.section2,
+      ...modulo1Data.section1_1, ...modulo1Data.section1_2, ...modulo1Data.section1_3,
+      ...modulo2Data.section2_1, ...modulo2Data.section2_2, ...modulo2Data.section2_3,
+      ...modulo3Data.section3_1, ...modulo3Data.section3_2, ...modulo3Data.section3_3,
+      ...modulo4Data.section4_1, ...modulo4Data.section4_2, ...modulo4Data.section4_3,
       ...modulo6Data.section6_1, ...modulo6Data.section6_2,
       ...modulo7Data.section7_1, ...modulo7Data.section7_2,
       ...modulo11Data.section11_1, ...modulo11Data.section11_2, ...modulo11Data.section11_3

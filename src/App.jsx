@@ -3568,21 +3568,27 @@ function PassatoProssimoSection() {
         <p className="mb-4 text-purple-900 text-sm">
           Oltre ai verbi di movimento e stato, ci sono altre strutture grammaticali fondamentali che richiedono sempre l'ausiliare <strong>essere</strong>:
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* 1. Verbi Riflessivi e Reciproci */}
           <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100 flex flex-col justify-between">
             <div>
               <span className="block font-bold text-slate-800 text-sm">1. Verbi Riflessivi & Reciproci</span>
-              <p className="text-xs text-slate-500 mt-0.5">Tutti i verbi riflessivi (azione su se stessi) e reciproci (azione tra più persone).</p>
+              <p className="text-xs text-slate-500 mt-1">
+                Quando l'azione si rivolge su se stessi (*svegliarsi*) o è condivisa da più persone (*incontrarsi*).
+              </p>
             </div>
-            <div className="mt-3 pt-2 border-t border-slate-100 space-y-1.5">
+            <div className="mt-3 pt-2 border-t border-slate-100 space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-purple-700">Mi sono svegliato/a</span>
+                <span className="text-xs font-mono text-purple-700 font-semibold">Mi sono svegliato/a</span>
                 <PlayButton text="mi sono svegliato, mi sono svegliata" size={12} />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-purple-700">Ci siamo incontrati/e</span>
+                <span className="text-xs font-mono text-purple-700 font-semibold">Ci siamo incontrati/e</span>
                 <PlayButton text="ci siamo incontrati, ci siamo incontrate" size={12} />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-purple-700 font-semibold">Si è vestito/a</span>
+                <PlayButton text="si è vestito, si è vestita" size={12} />
               </div>
             </div>
           </div>
@@ -3591,16 +3597,22 @@ function PassatoProssimoSection() {
           <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100 flex flex-col justify-between">
             <div>
               <span className="block font-bold text-slate-800 text-sm">2. Verbi Pronominali</span>
-              <p className="text-xs text-slate-500 mt-0.5">Verbi che contengono particelle pronominali che ne alterano il significato.</p>
+              <p className="text-xs text-slate-500 mt-1">
+                Verbi che integrano pronomi per assumere un significato specifico (es. *andarsene*, *accorgersi*, *pentirsi*).
+              </p>
             </div>
-            <div className="mt-3 pt-2 border-t border-slate-100 space-y-1.5">
+            <div className="mt-3 pt-2 border-t border-slate-100 space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-purple-700">Mi sono accorto/a</span>
+                <span className="text-xs font-mono text-purple-700 font-semibold">Mi sono accorto/a</span>
                 <PlayButton text="mi sono accorto, mi sono accorta" size={12} />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-purple-700">Me ne sono andato/a</span>
+                <span className="text-xs font-mono text-purple-700 font-semibold">Me ne sono andato/a</span>
                 <PlayButton text="me ne sono andato, me ne sono andata" size={12} />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-purple-700 font-semibold">Si è pentito/a</span>
+                <PlayButton text="si è pentito, si è pentita" size={12} />
               </div>
             </div>
           </div>
@@ -3609,16 +3621,22 @@ function PassatoProssimoSection() {
           <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100 flex flex-col justify-between">
             <div>
               <span className="block font-bold text-slate-800 text-sm">3. Costruzioni Impersonali</span>
-              <p className="text-xs text-slate-500 mt-0.5">Frasi con il <strong>si impersonale</strong> richiedono sempre l'ausiliare essere.</p>
+              <p className="text-xs text-slate-500 mt-1">
+                Quando si usa il <strong>si impersonale</strong> o espressioni come *sembrare* o *accadere* in modo generico.
+              </p>
             </div>
-            <div className="mt-3 pt-2 border-t border-slate-100 space-y-1.5">
+            <div className="mt-3 pt-2 border-t border-slate-100 space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-purple-700">Si è mangiato bene</span>
+                <span className="text-xs font-mono text-purple-700 font-semibold">Si è mangiato bene</span>
                 <PlayButton text="si è mangiato bene" size={12} />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-purple-700">Si è andati al cinema</span>
+                <span className="text-xs font-mono text-purple-700 font-semibold">Si è andati al cinema</span>
                 <PlayButton text="si è andati al cinema" size={12} />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-purple-700 font-semibold">È sembrato strano</span>
+                <PlayButton text="è sembrato strano" size={12} />
               </div>
             </div>
           </div>
@@ -3627,16 +3645,56 @@ function PassatoProssimoSection() {
           <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100 flex flex-col justify-between">
             <div>
               <span className="block font-bold text-slate-800 text-sm">4. Forma Passiva</span>
-              <p className="text-xs text-slate-500 mt-0.5">La forma passiva si costruisce sempre con il verbo essere come ausiliare.</p>
+              <p className="text-xs text-slate-500 mt-1">
+                Quando il soggetto subisce l'azione anziché compierla. La forma passiva si forma sempre con *essere*.
+              </p>
             </div>
-            <div className="mt-3 pt-2 border-t border-slate-100 space-y-1.5">
+            <div className="mt-3 pt-2 border-t border-slate-100 space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-purple-700">La pizza è stata mangiata</span>
+                <span className="text-xs font-mono text-purple-700 font-semibold">La pizza è stata mangiata</span>
                 <PlayButton text="la pizza è stata mangiata" size={12} />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-purple-700">I libri sono stati letti</span>
+                <span className="text-xs font-mono text-purple-700 font-semibold">I libri sono stati letti</span>
                 <PlayButton text="i libri sono stati letti" size={12} />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-purple-700 font-semibold">La casa è stata venduta</span>
+                <PlayButton text="la casa è stata venduta" size={12} />
+              </div>
+            </div>
+          </div>
+
+          {/* 5. Verbi con Doppio Ausiliare (Essere o Avere?) */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100 flex flex-col justify-between md:col-span-2 lg:col-span-2">
+            <div>
+              <span className="block font-bold text-slate-800 text-sm">5. Verbi con Doppio Ausiliare (Transitivo vs Intransitivo)</span>
+              <p className="text-xs text-slate-500 mt-1">
+                Alcuni verbi (es. *finire*, *cambiare*, *cominciare*, *passare*, *salire*) usano <strong>avere</strong> se sono seguiti da un oggetto diretto (rispondono a "chi/cosa?"), e <strong>essere</strong> negli altri casi.
+              </p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+              <div className="space-y-1.5">
+                <span className="block text-[10px] font-bold text-emerald-600 uppercase">Intransitivo (Essere)</span>
+                <div className="flex items-center justify-between bg-emerald-50/50 px-2 py-1 rounded">
+                  <span className="text-xs font-mono text-emerald-800">La lezione è finita.</span>
+                  <PlayButton text="la lezione è finita" size={12} />
+                </div>
+                <div className="flex items-center justify-between bg-emerald-50/50 px-2 py-1 rounded">
+                  <span className="text-xs font-mono text-emerald-800">Il tempo è passato.</span>
+                  <PlayButton text="il tempo è passato" size={12} />
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <span className="block text-[10px] font-bold text-blue-600 uppercase">Transitivo (Avere)</span>
+                <div className="flex items-center justify-between bg-blue-50/50 px-2 py-1 rounded">
+                  <span className="text-xs font-mono text-blue-800">Ho finito i compiti.</span>
+                  <PlayButton text="ho finito i compiti" size={12} />
+                </div>
+                <div className="flex items-center justify-between bg-blue-50/50 px-2 py-1 rounded">
+                  <span className="text-xs font-mono text-blue-800">Ho passato l'esame.</span>
+                  <PlayButton text="ho passato l'esame" size={12} />
+                </div>
               </div>
             </div>
           </div>

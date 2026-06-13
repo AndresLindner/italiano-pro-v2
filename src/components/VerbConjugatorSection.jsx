@@ -62,7 +62,7 @@ export function VerbConjugatorSection({ verbs = [] }) {
     const isPresentOrImperfettoSubjunctive = isSubjunctive && (title.toLowerCase().includes("presente") || title.toLowerCase().includes("imperfetto"));
     const isPassatoRemoto = title.toLowerCase().includes("passato remoto");
     const isImperativo = title.toLowerCase().includes("imperativo");
-    const isMainIndicative = title === "Presente" || title === "Imperfetto" || title === "Futuro Semplice";
+    const isMainIndicative = title === "Presente" || title === "Imperfetto" || title === "Futuro Semplice" || title === "Condizionale Presente";
 
     let fullTTS = "";
     if (isPresentOrImperfettoSubjunctive) {

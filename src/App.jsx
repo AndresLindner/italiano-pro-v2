@@ -2919,9 +2919,24 @@ function CondizionaleSection() {
             <thead>
               <tr className="bg-indigo-50 text-indigo-900">
                 <th className="p-3 border">Persona</th>
-                <th className="p-3 border">-ARE (Parlare)</th>
-                <th className="p-3 border">-ERE (Credere)</th>
-                <th className="p-3 border">-IRE (Dormire)</th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-2">
+                    <span>-ARE (Parlare)</span>
+                    <PlayButton text="io parlerei; tu parleresti; lui parlerebbe; noi parleremmo; voi parlereste; loro parlerebbero" size={14} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-2">
+                    <span>-ERE (Credere)</span>
+                    <PlayButton text="io crederei; tu crederesti; lui crederebbe; noi crederemmo; voi credereste; loro crederebbero" size={14} />
+                  </div>
+                </th>
+                <th className="p-3 border">
+                  <div className="flex items-center justify-between gap-2">
+                    <span>-IRE (Dormire)</span>
+                    <PlayButton text="io dormirei; tu dormiresti; lui dormirebbe; noi dormiremmo; voi dormireste; loro dormirebbero" size={14} />
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody>

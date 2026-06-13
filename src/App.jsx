@@ -4687,6 +4687,21 @@ function PassatoRemotoSection() {
               <li className="flex items-center justify-between"><span>loro <strong>vissero</strong></span><PlayButton text="vissero" /></li>
             </ul>
           </div>
+          {/* Card Scegliere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Scegliere</h4>
+              <PlayButton text="io scelsi, tu scegliesti, lui scelse, noi scegliemmo, voi sceglieste, loro scelsero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>scelsi</strong></span><PlayButton text="scelsi" /></li>
+              <li className="flex items-center justify-between"><span>tu scegliesti</span><PlayButton text="scegliesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>scelse</strong></span><PlayButton text="scelse" /></li>
+              <li className="flex items-center justify-between"><span>noi scegliemmo</span><PlayButton text="scegliemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi sceglieste</span><PlayButton text="sceglieste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>scelsero</strong></span><PlayButton text="scelsero" /></li>
+            </ul>
+          </div>
         </div>
       </section>
     </div>

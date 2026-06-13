@@ -119,7 +119,7 @@ export function SimulazioneEsame() {
     // 2. Lettura
     let letturaScore = 0;
     examData.reading.questions.forEach(q => {
-      if (answers[q.id] === q.correctAnswer) {
+      if (answers[q.id] === q.answerIndex) {
         letturaScore++;
       }
     });
@@ -396,8 +396,7 @@ export function SimulazioneEsame() {
                   <p className="font-bold text-slate-800 text-sm md:text-base">{qIdx + 1}. {q.question}</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {q.options.map((opt, oIdx) => {
-                      const letter = opt.charAt(0);
-                      const isSelected = answers[q.id] === letter;
+                      const isSelected = answers[q.id] === oIdx;
                       return (
                         <label 
                           key={oIdx} 
@@ -409,9 +408,8 @@ export function SimulazioneEsame() {
                           <input
                             type="radio"
                             name={q.id}
-                            value={letter}
                             checked={isSelected}
-                            onChange={(e) => handleInputChange(q.id, e.target.value)}
+                            onChange={() => handleInputChange(q.id, oIdx)}
                             className="mt-0.5"
                           />
                           <span>{opt}</span>

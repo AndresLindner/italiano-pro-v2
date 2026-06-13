@@ -4567,6 +4567,66 @@ function PassatoRemotoSection() {
               <li className="flex items-center justify-between"><span>loro <strong>scrissero</strong></span><PlayButton text="scrissero" /></li>
             </ul>
           </div>
+          {/* Card Sapere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Sapere</h4>
+              <PlayButton text="io seppi, tu sapesti, lui seppe, noi sapemmo, voi sapeste, loro seppero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>seppi</strong></span><PlayButton text="seppi" /></li>
+              <li className="flex items-center justify-between"><span>tu sapesti</span><PlayButton text="sapesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>seppe</strong></span><PlayButton text="seppe" /></li>
+              <li className="flex items-center justify-between"><span>noi sapemmo</span><PlayButton text="sapemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi sapeste</span><PlayButton text="sapeste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>seppero</strong></span><PlayButton text="seppero" /></li>
+            </ul>
+          </div>
+          {/* Card Prendere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Prendere</h4>
+              <PlayButton text="io presi, tu prendesti, lui prese, noi prendemmo, voi prendeste, loro presero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>presi</strong></span><PlayButton text="presi" /></li>
+              <li className="flex items-center justify-between"><span>tu prendesti</span><PlayButton text="prendesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>prese</strong></span><PlayButton text="prese" /></li>
+              <li className="flex items-center justify-between"><span>noi prendemmo</span><PlayButton text="prendemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi prendeste</span><PlayButton text="prendeste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>presero</strong></span><PlayButton text="presero" /></li>
+            </ul>
+          </div>
+          {/* Card Rimanere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Rimanere</h4>
+              <PlayButton text="io rimasi, tu rimanesti, lui rimase, noi rimanemmo, voi rimaneste, loro rimasero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>rimasi</strong></span><PlayButton text="rimasi" /></li>
+              <li className="flex items-center justify-between"><span>tu rimanesti</span><PlayButton text="rimanesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>rimase</strong></span><PlayButton text="rimase" /></li>
+              <li className="flex items-center justify-between"><span>noi rimanemmo</span><PlayButton text="rimanemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi rimaneste</span><PlayButton text="rimaneste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>rimasero</strong></span><PlayButton text="rimasero" /></li>
+            </ul>
+          </div>
+          {/* Card Leggere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Leggere</h4>
+              <PlayButton text="io lessi, tu leggesti, lui lesse, noi leggemmo, voi leggeste, loro lessero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>lessi</strong></span><PlayButton text="lessi" /></li>
+              <li className="flex items-center justify-between"><span>tu leggesti</span><PlayButton text="leggesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>lesse</strong></span><PlayButton text="lesse" /></li>
+              <li className="flex items-center justify-between"><span>noi leggemmo</span><PlayButton text="leggemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi leggeste</span><PlayButton text="leggeste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>lessero</strong></span><PlayButton text="lessero" /></li>
+            </ul>
+          </div>
         </div>
       </section>
     </div>

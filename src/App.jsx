@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User, Sliders, Menu, Home } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User, Sliders, Menu, Home, HelpCircle } from 'lucide-react';
 import { Modulo1Section } from './components/Modulo1Section';
 import { VerbConjugatorSection } from './components/VerbConjugatorSection';
 import { Modulo2Section } from './components/Modulo2Section';
@@ -1844,6 +1844,7 @@ function NavigationContent({ activeTab, selectTab, errorCount }) {
         <NavItem icon={<Brain size={20} />} label="Derivazione Parole" isActive={activeTab === 'derivazione'} onClick={() => selectTab('derivazione')} />
         <NavItem icon={<List size={20} />} label="I 100 Verbi" isActive={activeTab === 'topVerbs'} onClick={() => selectTab('topVerbs')} />
         <NavItem icon={<Sliders size={20} />} label="Coniugatore Verbi" isActive={activeTab === 'verbi'} onClick={() => selectTab('verbi')} />
+        <NavItem icon={<HelpCircle size={20} />} label="Quiz Verbi" isActive={activeTab === 'quiz'} onClick={() => selectTab('quiz')} />
         <NavItem 
           icon={<History size={20} />} 
           label={

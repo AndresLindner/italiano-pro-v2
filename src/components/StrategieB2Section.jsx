@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { PenTool, Headphones, BookOpen, Clock, Play, Square, RotateCcw, Check, Copy, AlertCircle, Info, ChevronRight, MessageSquare, Sparkles, Mic, MicOff } from 'lucide-react';
+import { PenTool, Headphones, BookOpen, Clock, Play, Square, RotateCcw, Check, Copy, AlertCircle, Info, ChevronRight, MessageSquare, Sparkles, Mic, MicOff, Volume2 } from 'lucide-react';
+import { speakItalian, cancelSpeech } from '../utils/speech';
 
 export function StrategieB2Section() {
   const [activeStrategyTab, setActiveStrategyTab] = useState('scrittura'); // 'scrittura' or 'parlato'
   const [copiedText, setCopiedText] = useState('');
 
   // Speaking Simulator States
+  const [showExample, setShowExample] = useState(false);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [timeLeft, setTimeLeft] = useState(120); // 2 minutes in seconds
   const [selectedPrompt, setSelectedPrompt] = useState(0);
@@ -18,11 +20,66 @@ export function StrategieB2Section() {
   const recognitionRef = useRef(null);
 
   const prompts = [
-    { title: "Smart Working", text: "Esprimi la tua opinione sullo smart working in Italia. Quali sono i vantaggi per l'azienda e per il dipendente? Quali sono le criticità?" },
-    { title: "Turismo Sostenibile", text: "Parla dell'impatto ambientale del turismo di massa e spiega come promuovere un turismo più rispettoso dell'ambiente e delle comunità locali." },
-    { title: "Tecnologia e Social Network", text: "I social network hanno cambiato il modo in cui ci relazioniamo. Spiega se a tuo avviso aumentano l'isolamento sociale o facilitano i contatti." },
-    { title: "Cibo Biologico e Alimentazione", text: "L'alimentazione è fondamentale per la salute. Descrivi il trend del cibo biologico e discuti se, secondo te, è una reale necessità o solo una moda." },
-    { title: "Istruzione e Futuro", text: "Discuti l'importanza del tirocinio e dello studio universitario. Pensi che il percorso educativo tradizionale prepari bene al mondo del lavoro?" }
+    { 
+      title: "Smart Working", 
+      text: "Esprimi la tua opinione sullo smart working in Italia. Quali sono i vantaggi per l'azienda e per il dipendente? Quali sono le criticità?",
+      response: "Innanzitutto, ritengo che lo smart working sia una delle più grandi rivoluzioni nel mondo del lavoro moderno. In primo luogo, per il dipendente, i vantaggi sono innegabili: permette una migliore gestione del tempo e un notevole risparmio sui costi di trasporto. Inoltre, si riduce lo stress legato al pendolarismo. D'altronde, anche per l'azienda ci sono benefici, come la riduzione dei costi per il mantenimento degli uffici. Tuttavia, esistono delle criticità importanti. Lavorare da casa può portare all'isolamento sociale e rendere difficile separare la vita privata da quella professionale. Di conseguenza, il rischio di burnout potrebbe aumentare. In conclusione, a mio avviso, la soluzione ideale è un modello ibrido che combini la flessibilità del lavoro a distanza con i momenti di socialità in presenza.",
+      explanation: "Ottima struttura logica (introduzione, vantaggi, svantaggi, conclusione). Uso efficace di numerosi connettivi: 'Innanzitutto', 'In primo luogo', 'Inoltre', 'D'altronde', 'Tuttavia', 'Di conseguenza'. Il lessico è preciso e pertinente al tema ('pendolarismo', 'modello ibrido', 'burnout')."
+    },
+    { 
+      title: "Turismo Sostenibile", 
+      text: "Parla dell'impatto ambientale del turismo di massa e spiega come promuovere un turismo più rispettoso dell'ambiente e delle comunità locali.",
+      response: "Il turismo di massa ha, senza dubbio, un impatto devastante sull'ambiente. In primo luogo, l'eccessivo afflusso di visitatori porta al degrado del patrimonio culturale e all'aumento dell'inquinamento, specialmente nelle città d'arte. Inoltre, le comunità locali spesso subiscono un aumento insostenibile del costo della vita. Ciononostante, viaggiare rimane un'esperienza fondamentale. Pertanto, è essenziale promuovere un turismo sostenibile. A mio avviso, i viaggiatori dovrebbero scegliere destinazioni meno note o viaggiare in bassa stagione. Oltre a ciò, è importante supportare l'economia locale acquistando prodotti a chilometro zero e rispettando le tradizioni del posto. Tirando le somme, ritengo che con una maggiore consapevolezza individuale sia possibile viaggiare senza distruggere il nostro pianeta.",
+      explanation: "L'esposizione affronta in modo bilanciato sia il problema che le possibili soluzioni. Dimostra una buona padronanza di connettivi concessivi e conclusivi ('Ciononostante', 'Pertanto', 'Oltre a ciò', 'Tirando le somme'). Il vocabolario è specifico ('afflusso', 'degrado', 'consapevolezza', 'chilometro zero')."
+    },
+    { 
+      title: "Tecnologia e Social", 
+      text: "I social network hanno cambiato il modo in cui ci relazioniamo. Spiega se a tuo avviso aumentano l'isolamento sociale o facilitano i contatti.",
+      response: "Dal mio punto di vista, i social network rappresentano un'arma a doppio taglio per le relazioni umane. Innanzitutto, è innegabile che abbiano facilitato i contatti: ci permettono di mantenere i legami con persone lontane e di fare nuove conoscenze basate su interessi comuni. Inoltre, sono strumenti utilissimi per la diffusione di informazioni. Tuttavia, l'uso eccessivo può portare a un forte isolamento sociale. Molte persone tendono a sostituire le interazioni faccia a faccia con quelle virtuali. Eppure, il calore di una vera conversazione non può essere replicato attraverso uno schermo. Di conseguenza, si rischia di perdere l'empatia e la capacità di ascolto attivo. In conclusione, credo che la tecnologia non sia né buona né cattiva; tutto dipende dall'uso che ne facciamo. Pertanto, dovremmo imparare a usarla con moderazione.",
+      explanation: "Il candidato presenta un'argomentazione equilibrata valutando i pro e i contro. Ottimo uso delle espressioni di opinione ('Dal mio punto di vista', 'credo che') e dei connettivi di contrasto ('Tuttavia', 'Eppure'). Uso di espressioni idiomatiche calzanti come 'arma a doppio taglio'."
+    },
+    { 
+      title: "Cibo Biologico", 
+      text: "L'alimentazione è fondamentale per la salute. Descrivi il trend del cibo biologico e discuti se, secondo te, è una reale necessità o solo una moda.",
+      response: "Negli ultimi anni, il consumo di cibo biologico ha registrato un aumento significativo in Italia. In primo luogo, molte persone scelgono questi prodotti poiché sono coltivati senza l'uso di pesticidi chimici, risultando quindi più salutari e sicuri. Oltre a ciò, l'agricoltura biologica ha un impatto molto inferiore sull'ambiente, rispettando i cicli naturali del terreno. D'altronde, i detrattori sostengono che si tratti spesso di una semplice strategia di marketing per vendere prodotti a prezzi più elevati. Personalmente, ritengo che non sia solo una moda passeggera, ma una reale presa di coscienza verso uno stile di vita più sano. Eppure, bisogna ammettere che il costo elevato rende questi alimenti non accessibili a tutti. In conclusione, spero che in futuro il cibo biologico diventi più economico e alla portata di ogni famiglia.",
+      explanation: "Risposta articolata che analizza le cause del fenomeno e presenta posizioni contrastanti prima di esprimere un'opinione personale. Utilizzo di connettivi causali e aggiuntivi ('poiché', 'Oltre a ciò', 'D'altronde', 'Eppure'). Vocabolario pertinente e accurato ('pesticidi chimici', 'detrattori', 'presa di coscienza')."
+    },
+    { 
+      title: "Istruzione e Futuro", 
+      text: "Discuti l'importanza del tirocinio e dello studio universitario. Pensi che il percorso educativo tradizionale prepari bene al mondo del lavoro?",
+      response: "A mio avviso, l'istruzione universitaria in Italia offre una preparazione teorica eccellente, ma spesso risulta carente dal punto di vista pratico. Innanzitutto, lo studio sui libri fornisce le basi fondamentali e sviluppa il pensiero critico. Tuttavia, il mondo del lavoro odierno richiede competenze molto più specifiche e trasversali, le cosiddette 'soft skills'. Poiché l'università fatica a stare al passo con le rapide evoluzioni del mercato, i giovani si trovano spesso disorientati al termine degli studi. Pertanto, ritengo che il tirocinio sia uno strumento di vitale importanza. Oltre a ciò, permette agli studenti di mettere in pratica la teoria e di creare una rete di contatti professionali. Di conseguenza, le aziende dovrebbero collaborare più strettamente con le università. Tirando le somme, solo unendo una solida teoria a esperienze pratiche mirate potremo preparare adeguatamente le nuove generazioni.",
+      explanation: "La risposta è convincente perché identifica chiaramente una problematica (la distanza tra teoria e pratica) e propone una soluzione (il tirocinio). Ottimo l'inserimento di termini legati al mondo del lavoro ('soft skills', 'rete di contatti', 'mercato'). Eccellente la coesione garantita da connettivi appropriati ('Tuttavia', 'Poiché', 'Pertanto', 'Di conseguenza')."
+    },
+    {
+      title: "Clima e Ambiente",
+      text: "Il riscaldamento globale è una delle sfide più grandi del nostro tempo. Quali azioni quotidiane possono fare la differenza?",
+      response: "Il cambiamento climatico è, senza dubbio, l'emergenza più pressante della nostra epoca. In primo luogo, è fondamentale riconoscere che ognuno di noi ha una responsabilità diretta. Spesso pensiamo che spetti solo ai governi prendere decisioni, ma le azioni quotidiane dei singoli cittadini possono avere un impatto enorme. Innanzitutto, dovremmo ridurre il consumo di carne, poiché gli allevamenti intensivi sono una delle principali fonti di gas serra. Inoltre, possiamo privilegiare i mezzi pubblici, l'uso della bicicletta o il car sharing al posto dell'auto privata. Eppure, cambiare le proprie abitudini non è facile e richiede impegno costante. Ciononostante, è l'unica strada percorribile. Di conseguenza, è essenziale educare i più giovani al rispetto dell'ambiente fin dalla scuola. In conclusione, solo attraverso uno sforzo collettivo e quotidiano potremo sperare di arginare i danni al nostro pianeta.",
+      explanation: "Il monologo è fluido e persuasivo. L'uso dei connettivi ('In primo luogo', 'Innanzitutto', 'Inoltre', 'Eppure', 'Ciononostante', 'Di conseguenza') crea una forte struttura argomentativa. Buona varietà lessicale ('emergenza pressante', 'gas serra', 'arginare i danni')."
+    },
+    {
+      title: "Città vs. Campagna",
+      text: "Sempre più persone decidono di abbandonare le metropoli per trasferirsi in piccoli centri o in campagna. Quali sono i pro e i contro?",
+      response: "Negli ultimi anni, si è registrata una vera e propria fuga dalle grandi città verso le zone rurali. Dal mio punto di vista, questa scelta presenta numerosi benefici. Innanzitutto, vivere in campagna offre una qualità della vita superiore: l'aria è più pulita, i ritmi sono più lenti e c'è un contatto diretto con la natura, il che riduce notevolmente lo stress. Inoltre, il costo degli affitti e delle abitazioni è decisamente più basso. D'altronde, non mancano i lati negativi. I piccoli centri spesso mancano di servizi essenziali come ospedali attrezzati, scuole superiori e, soprattutto, opportunità di lavoro. Pertanto, chi sceglie di trasferirsi deve spesso affrontare lunghi spostamenti per recarsi in ufficio, a meno che non lavori in smart working. Tirando le somme, ritengo che la decisione dipenda dalle priorità di ciascuno: chi cerca tranquillità sceglierà la campagna, mentre chi preferisce stimoli culturali e comodità opterà per la città.",
+      explanation: "Esposizione molto ben strutturata che bilancia perfettamente vantaggi e svantaggi. L'uso dei connettivi è puntuale ('Innanzitutto', 'Inoltre', 'D'altronde', 'Pertanto', 'Tirando le somme'). Ottima la conclusione che sintetizza il ragionamento offrendo una prospettiva neutra."
+    },
+    {
+      title: "Valori dello Sport",
+      text: "Oltre al benessere fisico, quali valori importanti può trasmettere la pratica di uno sport, soprattutto ai più giovani?",
+      response: "Personalmente, considero lo sport uno strumento educativo di inestimabile valore, specialmente per i giovani. In primo luogo, la pratica sportiva insegna la disciplina e il rispetto delle regole, competenze essenziali non solo in campo, ma in ogni ambito della vita. Inoltre, gli sport di squadra favoriscono la socializzazione e insegnano l'importanza della collaborazione per raggiungere un obiettivo comune. D'altronde, lo sport insegna anche ad affrontare la sconfitta. Poiché non si può sempre vincere, i ragazzi imparano la resilienza e la capacità di rialzarsi dopo un fallimento. Tuttavia, è preoccupante notare come a volte la pressione agonistica da parte dei genitori o degli allenatori possa trasformare un'attività ludica in fonte di forte stress. Di conseguenza, il focus dovrebbe sempre rimanere sul divertimento e sulla crescita personale. In conclusione, se praticato in un ambiente sano, lo sport è una vera e propria 'palestra di vita'.",
+      explanation: "L'esposizione tocca aspetti fisici, psicologici e sociali in modo molto chiaro. Fa un ottimo uso dei connettivi per collegare le diverse tesi ('In primo luogo', 'Inoltre', 'D'altronde', 'Poiché', 'Tuttavia', 'Di conseguenza'). Molto bella la metafora finale ('palestra di vita') che denota una buona padronanza della lingua."
+    },
+    {
+      title: "Ruolo dei Nonni",
+      text: "Nella società italiana moderna, i nonni hanno un ruolo fondamentale all'interno della famiglia. Esprimi la tua opinione a riguardo.",
+      response: "A mio avviso, i nonni rappresentano una vera e propria istituzione all'interno della società e della famiglia italiana. Innanzitutto, in un contesto in cui entrambi i genitori lavorano a tempo pieno, i nonni si prendono spesso cura dei nipoti, svolgendo una funzione di supporto indispensabile. Oltre a ciò, fungono da ammortizzatore sociale ed economico per le famiglie in difficoltà. Eppure, il loro contributo non è meramente pratico. I nonni sono i custodi della memoria storica e delle tradizioni familiari, trasmettendo valori e affetto alle nuove generazioni. Ciononostante, ritengo che a volte si approfitti eccessivamente della loro disponibilità, dimenticando che anche loro hanno il diritto di godersi il riposo durante la terza età. Di conseguenza, le istituzioni dovrebbero fornire maggiori servizi per l'infanzia, come asili nido più accessibili. In conclusione, i nonni sono un tesoro inestimabile, ma non dovrebbero sostituirsi ai doveri dello Stato.",
+      explanation: "La risposta affronta in profondità la tematica, non fermandosi solo agli aspetti affettivi ma analizzando anche il contesto socio-economico ('ammortizzatore sociale', 'doveri dello Stato'). Notevole l'utilizzo di connettivi avversativi e conclusivi ('Eppure', 'Ciononostante', 'Di conseguenza', 'In conclusione')."
+    },
+    {
+      title: "Globalizzazione",
+      text: "La globalizzazione sta portando a un'omogeneizzazione delle culture. Discuti se questo fenomeno rappresenta una minaccia per le tradizioni locali o un'opportunità di arricchimento.",
+      response: "Il dibattito sulla globalizzazione e i suoi effetti sulle culture locali è estremamente attuale. In primo luogo, è innegabile che questo fenomeno abbia favorito la diffusione di idee, conoscenze e diritti, avvicinando popoli un tempo lontanissimi. Grazie a internet e ai viaggi, oggi abbiamo l'opportunità di arricchirci confrontandoci con stili di vita diversi. D'altronde, esiste un rischio concreto di omogeneizzazione culturale. Le grandi multinazionali impongono in tutto il mondo gli stessi prodotti, dagli abiti al cibo, minacciando le identità locali e le tradizioni secolari. Tuttavia, non credo che le tradizioni siano destinate a scomparire. Al contrario, stiamo assistendo a un rinnovato interesse per i prodotti tipici e per la riscoperta delle proprie radici in risposta all'omologazione. Pertanto, la globalizzazione non è una minaccia in sé. In conclusione, la sfida consiste nel trovare un equilibrio: accogliere le novità del mondo globale senza però perdere la nostra unicità culturale.",
+      explanation: "Monologo molto sofisticato su un tema complesso. Il candidato struttura perfettamente il confronto tra vantaggi (arricchimento) e svantaggi (omologazione). Uso magistrale dei connettivi ('In primo luogo', 'D'altronde', 'Tuttavia', 'Pertanto', 'In conclusione'). Il lessico è elevato ('omogeneizzazione', 'secolari', 'omologazione', 'unicità')."
+    }
   ];
 
   const connectors = [
@@ -82,6 +139,7 @@ export function StrategieB2Section() {
           console.error(e);
         }
       }
+      cancelSpeech();
     };
   }, []);
 
@@ -193,6 +251,10 @@ export function StrategieB2Section() {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  };
+
+  const playAudio = (text) => {
+    speakItalian(text, null, 0.9);
   };
 
   const renderScrittura = () => {
@@ -325,12 +387,17 @@ export function StrategieB2Section() {
               
               <div className="flex justify-between items-center">
                 <h4 className="text-xl font-bold text-slate-800">{activePrompt.title}</h4>
-                <div className="flex gap-1">
+                <div className="flex gap-1.5 flex-wrap justify-end max-w-[50%]">
                   {prompts.map((p, idx) => (
                     <button 
                       key={idx}
-                      onClick={() => { setSelectedPrompt(idx); resetTimer(); }}
-                      className={`w-3 h-3 rounded-full ${selectedPrompt === idx ? 'bg-indigo-600' : 'bg-slate-200'}`}
+                      onClick={() => { 
+                        setSelectedPrompt(idx); 
+                        resetTimer(); 
+                        setShowExample(false);
+                        cancelSpeech();
+                      }}
+                      className={`w-3 h-3 rounded-full mb-1 transition-colors ${selectedPrompt === idx ? 'bg-indigo-600 scale-110' : 'bg-slate-200 hover:bg-slate-300'}`}
                       title={p.title}
                     />
                   ))}
@@ -340,6 +407,43 @@ export function StrategieB2Section() {
               <p className="bg-slate-50 p-4 rounded-xl text-slate-700 text-sm md:text-base leading-relaxed border border-slate-100">
                 {activePrompt.text}
               </p>
+
+              {/* Example Response Accordion */}
+              <div className="border border-indigo-100 rounded-xl overflow-hidden bg-white mt-4">
+                <button 
+                  onClick={() => setShowExample(prev => !prev)}
+                  className="w-full bg-indigo-50/50 p-3.5 flex justify-between items-center hover:bg-indigo-50 transition-colors"
+                >
+                  <span className="font-bold text-indigo-800 text-sm flex items-center gap-2">
+                    <BookOpen size={16} /> Esempio di Risposta B2
+                  </span>
+                  <ChevronRight size={16} className={`text-indigo-600 transition-transform duration-200 ${showExample ? 'rotate-90' : ''}`} />
+                </button>
+                
+                {showExample && (
+                  <div className="p-4 space-y-4 animate-in slide-in-from-top-2 border-t border-indigo-50">
+                    <div className="flex justify-end">
+                      <button 
+                        onClick={() => playAudio(activePrompt.response)}
+                        className="flex items-center gap-1.5 text-xs font-bold bg-indigo-100 text-indigo-700 px-3 py-1.5 rounded-full hover:bg-indigo-200 transition-colors shadow-sm"
+                      >
+                        <Volume2 size={14} /> Ascolta Esempio
+                      </button>
+                    </div>
+                    <p className="text-slate-700 text-sm italic border-l-2 border-indigo-300 pl-3 leading-relaxed">
+                      "{activePrompt.response}"
+                    </p>
+                    <div className="bg-emerald-50 p-3 rounded-lg border border-emerald-100 mt-4">
+                      <span className="text-xs font-bold text-emerald-800 flex items-center gap-1 mb-1.5">
+                        <Check size={14} /> Perché è una buona risposta?
+                      </span>
+                      <p className="text-emerald-700 text-xs leading-relaxed">
+                        {activePrompt.explanation}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Timer card */}

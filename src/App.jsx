@@ -22,6 +22,7 @@ import { StrategieB2Section } from './components/StrategieB2Section';
 import { SyllabusModuliB2Section } from './components/SyllabusModuliB2Section';
 import { WordFormationSection } from './components/WordFormationSection';
 import { HomeSection } from './components/HomeSection';
+import ShadowingTab from './components/ShadowingTab';
 import { useAuth } from './contexts/AuthContext';
 import { TensePractice } from './components/TensePractice';
 import { 
@@ -1784,6 +1785,7 @@ export default function App() {
         {activeTab === 'verbi' && <VerbConjugatorSection verbs={top100Verbs} />}
         {activeTab === 'topVerbs' && <TopVerbsSection />}
         {activeTab === 'lessico' && <LessicoTematicoSection />}
+        {activeTab === 'shadowing' && <ShadowingTab />}
         {activeTab === 'quiz' && <QuizSection />}
       </main>
 
@@ -1839,6 +1841,7 @@ function NavigationContent({ activeTab, selectTab, errorCount }) {
 
       <div className="pt-4 pb-2 border-t border-white/5">
         <p className="px-6 text-[10px] font-black uppercase tracking-wider text-indigo-400 mb-2">Risorse Extra</p>
+        <NavItem icon={<Headphones size={20} />} label="Shadowing" isActive={activeTab === 'shadowing'} onClick={() => selectTab('shadowing')} />
         <NavItem icon={<BookA size={20} />} label="Lessico Tematico" isActive={activeTab === 'lessico'} onClick={() => selectTab('lessico')} />
         <NavItem icon={<Sparkles size={20} />} label="Strategie B2" isActive={activeTab === 'strategie'} onClick={() => selectTab('strategie')} />
         <NavItem icon={<Brain size={20} />} label="Derivazione Parole" isActive={activeTab === 'derivazione'} onClick={() => selectTab('derivazione')} />

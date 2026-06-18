@@ -4238,6 +4238,110 @@ const irregularEreVerbs = [
     irregularRoot: "pres-",
     forms: { io: "presi", lui: "prese", loro: "presero" },
     fullConjugation: "io presi, tu prendesti, lui prese, noi prendemmo, voi prendeste, loro presero"
+  },
+  {
+    verb: "Scrivere",
+    meaning: "to write",
+    regularRoot: "scriv-",
+    irregularRoot: "scriss-",
+    forms: { io: "scrissi", lui: "scrisse", loro: "scrissero" },
+    fullConjugation: "io scrissi, tu scrivesti, lui scrisse, noi scrivemmo, voi scriveste, loro scrissero"
+  },
+  {
+    verb: "Rompere",
+    meaning: "to break",
+    regularRoot: "romp-",
+    irregularRoot: "rupp-",
+    forms: { io: "ruppi", lui: "ruppe", loro: "ruppero" },
+    fullConjugation: "io ruppi, tu rompesti, lui ruppe, noi rompemmo, voi rompeste, loro ruppero"
+  },
+  {
+    verb: "Piangere",
+    meaning: "to cry",
+    regularRoot: "piang-",
+    irregularRoot: "pians-",
+    forms: { io: "piansi", lui: "pianse", loro: "piansero" },
+    fullConjugation: "io piansi, tu piangesti, lui pianse, noi piangemmo, voi piangeste, loro piansero"
+  },
+  {
+    verb: "Ridere",
+    meaning: "to laugh",
+    regularRoot: "rid-",
+    irregularRoot: "ris-",
+    forms: { io: "risi", lui: "rise", loro: "risero" },
+    fullConjugation: "io risi, tu ridesti, lui rise, noi ridemmo, voi rideste, loro risero"
+  },
+  {
+    verb: "Esprimere",
+    meaning: "to express",
+    regularRoot: "esprim-",
+    irregularRoot: "espress-",
+    forms: { io: "espressi", lui: "espresse", loro: "espressero" },
+    fullConjugation: "io espressi, tu esprimesti, lui espresse, noi esprimemmo, voi esprimeste, loro espressero"
+  },
+  {
+    verb: "Scendere",
+    meaning: "to go down",
+    regularRoot: "scend-",
+    irregularRoot: "sces-",
+    forms: { io: "scesi", lui: "scese", loro: "scesero" },
+    fullConjugation: "io scesi, tu scendesti, lui scese, noi scendemmo, voi scendeste, loro scesero"
+  },
+  {
+    verb: "Accendere",
+    meaning: "to turn on",
+    regularRoot: "accend-",
+    irregularRoot: "acces-",
+    forms: { io: "accesi", lui: "accese", loro: "accesero" },
+    fullConjugation: "io accesi, tu accendesti, lui accese, noi accendemmo, voi accendeste, loro accesero"
+  },
+  {
+    verb: "Perdere",
+    meaning: "to lose",
+    regularRoot: "perd-",
+    irregularRoot: "pers-",
+    forms: { io: "persi", lui: "perse", loro: "persero" },
+    fullConjugation: "io persi, tu perdesti, lui perse, noi perdemmo, voi perdeste, loro persero"
+  },
+  {
+    verb: "Distruggere",
+    meaning: "to destroy",
+    regularRoot: "distrugg-",
+    irregularRoot: "distruss-",
+    forms: { io: "distrussi", lui: "distrusse", loro: "distrussero" },
+    fullConjugation: "io distrussi, tu distruggesti, lui distrusse, noi distruggemmo, voi distruggeste, loro distrussero"
+  },
+  {
+    verb: "Offendere",
+    meaning: "to offend",
+    regularRoot: "offend-",
+    irregularRoot: "offes-",
+    forms: { io: "offesi", lui: "offese", loro: "offesero" },
+    fullConjugation: "io offesi, tu offendesti, lui offese, noi offendemmo, voi offendeste, loro offesero"
+  },
+  {
+    verb: "Spingere",
+    meaning: "to push",
+    regularRoot: "sping-",
+    irregularRoot: "spins-",
+    forms: { io: "spinsi", lui: "spinse", loro: "spinsero" },
+    fullConjugation: "io spinsi, tu spingesti, lui spinse, noi spingemmo, voi spingeste, loro spinsero"
+  },
+  {
+    verb: "Difendere",
+    meaning: "to defend",
+    regularRoot: "difend-",
+    irregularRoot: "difes-",
+    forms: { io: "difesi", lui: "difese", loro: "difesero" },
+    fullConjugation: "io difesi, tu difendesti, lui difese, noi difendemmo, voi difendeste, loro difesero"
+  },
+  {
+    verb: "Stringere",
+    meaning: "to tighten",
+    regularRoot: "string-",
+    irregularRoot: "strins-",
+    forms: { io: "strinsi", lui: "strinse", loro: "strinsero" },
+    fullConjugation: "io strinsi, tu stringesti, lui strinse, noi stringemmo, voi stringeste, loro strinsero"
   }
 ];
 
@@ -4737,6 +4841,201 @@ function PassatoRemotoSection() {
               <li className="flex items-center justify-between"><span>noi cuocemmo</span><PlayButton text="cuocemmo" /></li>
               <li className="flex items-center justify-between"><span>voi cuoceste</span><PlayButton text="cuoceste" /></li>
               <li className="flex items-center justify-between"><span>loro <strong>cossero</strong></span><PlayButton text="cossero" /></li>
+            </ul>
+          </div>
+          {/* Card Piacere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Piacere</h4>
+              <PlayButton text="io piacqui, tu piacesti, lui piacque, noi piacemmo, voi piaceste, loro piacquero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>piacqui</strong></span><PlayButton text="piacqui" /></li>
+              <li className="flex items-center justify-between"><span>tu piacesti</span><PlayButton text="piacesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>piacque</strong></span><PlayButton text="piacque" /></li>
+              <li className="flex items-center justify-between"><span>noi piacemmo</span><PlayButton text="piacemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi piaceste</span><PlayButton text="piaceste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>piacquero</strong></span><PlayButton text="piacquero" /></li>
+            </ul>
+          </div>
+          {/* Card Tenere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Tenere</h4>
+              <PlayButton text="io tenni, tu tenesti, lui tenne, noi tenemmo, voi teneste, loro tennero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>tenni</strong></span><PlayButton text="tenni" /></li>
+              <li className="flex items-center justify-between"><span>tu tenesti</span><PlayButton text="tenesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>tenne</strong></span><PlayButton text="tenne" /></li>
+              <li className="flex items-center justify-between"><span>noi tenemmo</span><PlayButton text="tenemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi teneste</span><PlayButton text="teneste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>tennero</strong></span><PlayButton text="tennero" /></li>
+            </ul>
+          </div>
+          {/* Card Trarre */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Trarre</h4>
+              <PlayButton text="io trassi, tu traesti, lui trasse, noi traemmo, voi traeste, loro trassero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>trassi</strong></span><PlayButton text="trassi" /></li>
+              <li className="flex items-center justify-between"><span>tu traesti</span><PlayButton text="traesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>trasse</strong></span><PlayButton text="trasse" /></li>
+              <li className="flex items-center justify-between"><span>noi traemmo</span><PlayButton text="traemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi traeste</span><PlayButton text="traeste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>trassero</strong></span><PlayButton text="trassero" /></li>
+            </ul>
+          </div>
+          {/* Card Porre */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Porre</h4>
+              <PlayButton text="io posi, tu ponesti, lui pose, noi ponemmo, voi poneste, loro posero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>posi</strong></span><PlayButton text="posi" /></li>
+              <li className="flex items-center justify-between"><span>tu ponesti</span><PlayButton text="ponesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>pose</strong></span><PlayButton text="pose" /></li>
+              <li className="flex items-center justify-between"><span>noi ponemmo</span><PlayButton text="ponemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi poneste</span><PlayButton text="poneste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>posero</strong></span><PlayButton text="posero" /></li>
+            </ul>
+          </div>
+          {/* Card Nascere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Nascere</h4>
+              <PlayButton text="io nacqui, tu nascesti, lui nacque, noi nascemmo, voi nasceste, loro nacquero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>nacqui</strong></span><PlayButton text="nacqui" /></li>
+              <li className="flex items-center justify-between"><span>tu nascesti</span><PlayButton text="nascesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>nacque</strong></span><PlayButton text="nacque" /></li>
+              <li className="flex items-center justify-between"><span>noi nascemmo</span><PlayButton text="nascemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi nasceste</span><PlayButton text="nasceste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>nacquero</strong></span><PlayButton text="nacquero" /></li>
+            </ul>
+          </div>
+          {/* Card Piangere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Piangere</h4>
+              <PlayButton text="io piansi, tu piangesti, lui pianse, noi piangemmo, voi piangeste, loro piansero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>piansi</strong></span><PlayButton text="piansi" /></li>
+              <li className="flex items-center justify-between"><span>tu piangesti</span><PlayButton text="piangesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>pianse</strong></span><PlayButton text="pianse" /></li>
+              <li className="flex items-center justify-between"><span>noi piangemmo</span><PlayButton text="piangemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi piangeste</span><PlayButton text="piangeste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>piansero</strong></span><PlayButton text="piansero" /></li>
+            </ul>
+          </div>
+          {/* Card Vincere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Vincere</h4>
+              <PlayButton text="io vinsi, tu vincesti, lui vinse, noi vincemmo, voi vinceste, loro vinsero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>vinsi</strong></span><PlayButton text="vinsi" /></li>
+              <li className="flex items-center justify-between"><span>tu vincesti</span><PlayButton text="vincesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>vinse</strong></span><PlayButton text="vinse" /></li>
+              <li className="flex items-center justify-between"><span>noi vincemmo</span><PlayButton text="vincemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi vinceste</span><PlayButton text="vinceste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>vinsero</strong></span><PlayButton text="vinsero" /></li>
+            </ul>
+          </div>
+          {/* Card Conoscere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Conoscere</h4>
+              <PlayButton text="io conobbi, tu conoscesti, lui conobbe, noi conoscemmo, voi conosceste, loro conobbero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>conobbi</strong></span><PlayButton text="conobbi" /></li>
+              <li className="flex items-center justify-between"><span>tu conoscesti</span><PlayButton text="conoscesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>conobbe</strong></span><PlayButton text="conobbe" /></li>
+              <li className="flex items-center justify-between"><span>noi conoscemmo</span><PlayButton text="conoscemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi conosceste</span><PlayButton text="conosceste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>conobbero</strong></span><PlayButton text="conobbero" /></li>
+            </ul>
+          </div>
+          {/* Card Rispondere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Rispondere</h4>
+              <PlayButton text="io risposi, tu rispondesti, lui rispose, noi rispondemmo, voi rispondeste, loro risposero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>risposi</strong></span><PlayButton text="risposi" /></li>
+              <li className="flex items-center justify-between"><span>tu rispondesti</span><PlayButton text="rispondesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>rispose</strong></span><PlayButton text="rispose" /></li>
+              <li className="flex items-center justify-between"><span>noi rispondemmo</span><PlayButton text="rispondemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi rispondeste</span><PlayButton text="rispondeste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>risposero</strong></span><PlayButton text="risposero" /></li>
+            </ul>
+          </div>
+          {/* Card Chiudere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Chiudere</h4>
+              <PlayButton text="io chiusi, tu chiudesti, lui chiuse, noi chiudemmo, voi chiudeste, loro chiusero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>chiusi</strong></span><PlayButton text="chiusi" /></li>
+              <li className="flex items-center justify-between"><span>tu chiudesti</span><PlayButton text="chiudesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>chiuse</strong></span><PlayButton text="chiuse" /></li>
+              <li className="flex items-center justify-between"><span>noi chiudemmo</span><PlayButton text="chiudemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi chiudeste</span><PlayButton text="chiudeste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>chiusero</strong></span><PlayButton text="chiusero" /></li>
+            </ul>
+          </div>
+          {/* Card Correre */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Correre</h4>
+              <PlayButton text="io corsi, tu corresti, lui corse, noi corremmo, voi correste, loro corsero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>corsi</strong></span><PlayButton text="corsi" /></li>
+              <li className="flex items-center justify-between"><span>tu corresti</span><PlayButton text="corresti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>corse</strong></span><PlayButton text="corse" /></li>
+              <li className="flex items-center justify-between"><span>noi corremmo</span><PlayButton text="corremmo" /></li>
+              <li className="flex items-center justify-between"><span>voi correste</span><PlayButton text="correste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>corsero</strong></span><PlayButton text="corsero" /></li>
+            </ul>
+          </div>
+          {/* Card Scendere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Scendere</h4>
+              <PlayButton text="io scesi, tu scendesti, lui scese, noi scendemmo, voi scendeste, loro scesero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>scesi</strong></span><PlayButton text="scesi" /></li>
+              <li className="flex items-center justify-between"><span>tu scendesti</span><PlayButton text="scendesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>scese</strong></span><PlayButton text="scese" /></li>
+              <li className="flex items-center justify-between"><span>noi scendemmo</span><PlayButton text="scendemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi scendeste</span><PlayButton text="scendeste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>scesero</strong></span><PlayButton text="scesero" /></li>
+            </ul>
+          </div>
+          {/* Card Ridere */}
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+            <div className="flex justify-between items-center border-b pb-2 mb-2">
+              <h4 className="font-bold text-indigo-800">Ridere</h4>
+              <PlayButton text="io risi, tu ridesti, lui rise, noi ridemmo, voi rideste, loro risero" size={15} />
+            </div>
+            <ul className="text-sm space-y-1.5">
+              <li className="flex items-center justify-between"><span>io <strong>risi</strong></span><PlayButton text="risi" /></li>
+              <li className="flex items-center justify-between"><span>tu ridesti</span><PlayButton text="ridesti" /></li>
+              <li className="flex items-center justify-between"><span>lui/lei <strong>rise</strong></span><PlayButton text="rise" /></li>
+              <li className="flex items-center justify-between"><span>noi ridemmo</span><PlayButton text="ridemmo" /></li>
+              <li className="flex items-center justify-between"><span>voi rideste</span><PlayButton text="rideste" /></li>
+              <li className="flex items-center justify-between"><span>loro <strong>risero</strong></span><PlayButton text="risero" /></li>
             </ul>
           </div>
         </div>

@@ -677,7 +677,12 @@ export const eserciziPassatoRemoto = [
   { id: 'pass_rem_147', sentence: "Io {blank} (difendere) il mio amico dall'accusa ingiusta.", answer: "difesi" },
   { id: 'pass_rem_148', sentence: "Tu {blank} (chiudere) la finestra per via del freddo.", answer: "chiudesti" },
   { id: 'pass_rem_149', sentence: "Il cane {blank} (correre) felice incontro al padrone.", answer: "corse" },
-  { id: 'pass_rem_150', sentence: "Loro {blank} (volere) restare lì per sempre.", answer: "vollero" }
+  { id: 'pass_rem_150', sentence: "Loro {blank} (volere) restare lì per sempre.", answer: "vollero" },
+  { id: 'pass_rem_151', sentence: "I bambini {blank} (ridere) di gusto alla battuta.", answer: "risero" },
+  { id: 'pass_rem_152', sentence: "Lei {blank} (esprimere) il suo dissenso durante la riunione.", answer: "espresse" },
+  { id: 'pass_rem_153', sentence: "Io non lo {blank} (offendere) intenzionalmente.", answer: "offesi" },
+  { id: 'pass_rem_154', sentence: "Noi ci {blank} (stringere) la mano in segno di pace.", answer: "stringemmo" },
+  { id: 'pass_rem_155', sentence: "Il film gli {blank} (piacere) moltissimo.", answer: "piacque" }
 ];
 
 export const eserciziImperativo = [

@@ -1843,7 +1843,7 @@ function NavigationContent({ activeTab, selectTab, errorCount }) {
 
       <div className="pt-4 pb-2 border-t border-white/5">
         <p className="px-6 text-[10px] font-black uppercase tracking-wider text-indigo-400 mb-2">Risorse Extra</p>
-        <NavItem icon={<Headphones size={20} />} label="Shadowing" isActive={activeTab === 'shadowing'} onClick={() => selectTab('shadowing')} />
+        <NavItem icon={<Headphones size={20} />} label="Ascolto Attivo" isActive={activeTab === 'shadowing'} onClick={() => selectTab('shadowing')} />
         <NavItem icon={<Mic size={20} />} label="Ascolta e Ripeti" isActive={activeTab === 'listenrepeat'} onClick={() => selectTab('listenrepeat')} />
         <NavItem icon={<BookA size={20} />} label="Lessico Tematico" isActive={activeTab === 'lessico'} onClick={() => selectTab('lessico')} />
         <NavItem icon={<Sparkles size={20} />} label="Strategie B2" isActive={activeTab === 'strategie'} onClick={() => selectTab('strategie')} />

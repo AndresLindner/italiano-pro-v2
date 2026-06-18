@@ -20,7 +20,7 @@ export default function ShadowingTab() {
   return (
     <div className="flex flex-col h-[calc(100vh-120px)] overflow-hidden">
       <div className="p-4 border-b border-white/10 shrink-0">
-        <h2 className="text-xl font-bold mb-4 text-indigo-400">Pratica di Shadowing</h2>
+        <h2 className="text-xl font-bold mb-4 text-indigo-400">Ascolto Attivo</h2>
         <div className="flex gap-4 items-center">
           <label className="text-sm text-gray-300">Seleziona Video:</label>
           <select 

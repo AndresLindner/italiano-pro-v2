@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Check, X, RefreshCw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User, Sliders, Menu, Home, HelpCircle } from 'lucide-react';
+import { BookOpen, AlertCircle, ScrollText, List, ChevronDown, ChevronUp, Info, Volume2, Check, X, RefreshCw, RotateCcw, Clock, Sun, History, Archive, Rocket, Lightbulb, Sparkles, LayoutDashboard, Brain, Layers, Milestone, Mic, Square, SkipForward, LogIn, LogOut, BookA, Headphones, PenTool, User, Sliders, Menu, Home, HelpCircle } from 'lucide-react';
 import { Modulo1Section } from './components/Modulo1Section';
 import { VerbConjugatorSection } from './components/VerbConjugatorSection';
 import { Modulo2Section } from './components/Modulo2Section';
@@ -6183,6 +6183,31 @@ function QuizSection() {
     generateQuestion(quizMode, newFilter);
   };
 
+  const handleRedo = () => {
+    if (isListening) recognitionRef.current?.stop();
+    if (currentQuestion) {
+      const initialAnswers = Array(currentQuestion.displayPronouns.length).fill("");
+      if (currentQuestion.tense === 'imperativo') {
+        initialAnswers[0] = "-";
+      }
+      setUserAnswers(initialAnswers);
+      setShowResults(false);
+    }
+  };
+
+  const handleSpeakConjugation = () => {
+    if (!currentQuestion) return;
+    const parts = [];
+    currentQuestion.displayPronouns.forEach((p, index) => {
+      const ans = currentQuestion.correctAnswers[index];
+      if (ans && ans !== "-") {
+        const cleanP = p.replace(/\//g, ' o ').replace(/\(io\)/g, 'io');
+        parts.push(`${cleanP} ${ans}`);
+      }
+    });
+    speakItalian(parts.join("; "));
+  };
+
   if (!currentQuestion) {
     if (quizMode === 'ripasso') {
       const filterText = verbFilter === 'regolari' ? 'regolare ' : verbFilter === 'irregolari' ? 'irregolare ' : '';
@@ -6527,12 +6552,26 @@ function QuizSection() {
                 </button>
               </>
             ) : (
-              <button
-                onClick={() => generateQuestion()}
-                className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shadow-sm transition-colors flex items-center gap-2"
-              >
-                <RefreshCw size={20} /> Prossimo verbo
-              </button>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  onClick={handleSpeakConjugation}
+                  className="px-4 py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold rounded-lg border border-indigo-200 shadow-sm transition-colors flex items-center gap-2"
+                >
+                  <Volume2 size={20} /> Ascolta coniugazione
+                </button>
+                <button
+                  onClick={handleRedo}
+                  className="px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg border border-slate-300 shadow-sm transition-colors flex items-center gap-2"
+                >
+                  <RotateCcw size={20} /> Riprova stesso verbo
+                </button>
+                <button
+                  onClick={() => generateQuestion()}
+                  className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shadow-sm transition-colors flex items-center gap-2"
+                >
+                  <RefreshCw size={20} /> Prossimo verbo
+                </button>
+              </div>
             )}
           </div>
         </div>

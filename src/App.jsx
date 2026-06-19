@@ -5904,6 +5904,7 @@ function QuizSection() {
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState({ correct: 0, total: 0 });
   const [quizMode, setQuizMode] = useState('misto');
+  const [verbFilter, setVerbFilter] = useState('tutti'); // 'tutti' | 'regolari' | 'irregolari'
   const { logError, resolveError, userErrors } = useAuth() || {};
 
   const mistakes = Object.values(userErrors || {})
@@ -6014,10 +6015,11 @@ function QuizSection() {
     }
   };
 
-  const generateQuestion = (mode = quizMode) => {
+  const generateQuestion = (mode = quizMode, filter = verbFilter) => {
     if (recognitionRef.current) recognitionRef.current.stop();
 
     const actualMode = typeof mode === 'string' ? mode : quizMode;
+    const actualFilter = typeof filter === 'string' ? filter : verbFilter;
 
     if (actualMode === 'ripasso' && mistakes.length === 0) {
       setCurrentQuestion(null);
@@ -6027,7 +6029,18 @@ function QuizSection() {
     let selectedTense, selectedVerb;
 
     if (actualMode === 'ripasso') {
-      const randomMistake = mistakes[Math.floor(Math.random() * mistakes.length)];
+      let validMistakes = mistakes;
+      if (actualFilter === 'regolari') {
+        validMistakes = mistakes.filter(m => getTenseBadgeType(m) === 'Regolare');
+      } else if (actualFilter === 'irregolari') {
+        validMistakes = mistakes.filter(m => getTenseBadgeType(m) === 'Irregolare');
+      }
+
+      if (validMistakes.length === 0) {
+        setCurrentQuestion(null);
+        return;
+      }
+      const randomMistake = validMistakes[Math.floor(Math.random() * validMistakes.length)];
       selectedVerb = randomMistake.verb;
       selectedTense = randomMistake.tense;
     } else {
@@ -6037,6 +6050,22 @@ function QuizSection() {
       let validVerbs = top100Verbs;
       if (selectedTense === 'imperativo') {
         validVerbs = top100Verbs.filter(v => v.imperativo[1] !== "Non ha imperativo");
+      }
+
+      if (actualFilter === 'regolari') {
+        validVerbs = validVerbs.filter(v => getTenseBadgeType({ tense: selectedTense, verb: v }) === 'Regolare');
+      } else if (actualFilter === 'irregolari') {
+        validVerbs = validVerbs.filter(v => getTenseBadgeType({ tense: selectedTense, verb: v }) === 'Irregolare');
+      }
+
+      // If we filtered down to 0 verbs, use fallback (all verbs for this tense) to prevent crash
+      if (validVerbs.length === 0) {
+        validVerbs = top100Verbs.filter(v => {
+          if (selectedTense === 'imperativo') {
+            return v.imperativo[1] !== "Non ha imperativo";
+          }
+          return true;
+        });
       }
 
       selectedVerb = validVerbs[Math.floor(Math.random() * validVerbs.length)];
@@ -6122,7 +6151,7 @@ function QuizSection() {
 
     if (hasError) {
       if (logError) {
-        logError({
+         logError({
           id: exId,
           type: 'quiz_verb',
           verb: currentQuestion.verb,
@@ -6146,11 +6175,17 @@ function QuizSection() {
 
   const handleModeChange = (newMode) => {
     setQuizMode(newMode);
-    generateQuestion(newMode);
+    generateQuestion(newMode, verbFilter);
+  };
+
+  const handleFilterChange = (newFilter) => {
+    setVerbFilter(newFilter);
+    generateQuestion(quizMode, newFilter);
   };
 
   if (!currentQuestion) {
     if (quizMode === 'ripasso') {
+      const filterText = verbFilter === 'regolari' ? 'regolare ' : verbFilter === 'irregolari' ? 'irregolare ' : '';
       return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 max-w-2xl mx-auto text-center mt-12">
           <div className="bg-white p-12 rounded-2xl shadow-sm border border-emerald-200">
@@ -6158,7 +6193,7 @@ function QuizSection() {
               <Check size={40} />
             </div>
             <h2 className="text-3xl font-bold text-emerald-800 mb-4">Bravissimo!</h2>
-            <p className="text-slate-600 text-lg mb-8">Non hai più nessun errore da ripassare. Ottimo lavoro!</p>
+            <p className="text-slate-600 text-lg mb-8">Non hai più nessun errore {filterText}da ripassare. Ottimo lavoro!</p>
             <button
               onClick={() => handleModeChange('misto')}
               className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-sm transition-colors"
@@ -6313,6 +6348,40 @@ function QuizSection() {
                   {mistakes.length}
                 </span>
               )}
+            </button>
+          </div>
+
+          {/* Toggle Verbi: Tutti / Regolari / Irregolari */}
+          <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 shadow-inner">
+            <button
+              onClick={() => handleFilterChange('tutti')}
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold tracking-wide uppercase transition-all duration-200 ${
+                verbFilter === 'tutti' 
+                  ? 'bg-white text-indigo-900 shadow-sm border border-slate-200/50' 
+                  : 'text-slate-500 hover:text-slate-800'
+              }`}
+            >
+              Tutti i verbi
+            </button>
+            <button
+              onClick={() => handleFilterChange('regolari')}
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold tracking-wide uppercase transition-all duration-200 ${
+                verbFilter === 'regolari' 
+                  ? 'bg-white text-emerald-700 shadow-sm border border-slate-200/50' 
+                  : 'text-slate-500 hover:text-slate-800'
+              }`}
+            >
+              Solo Regolari
+            </button>
+            <button
+              onClick={() => handleFilterChange('irregolari')}
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold tracking-wide uppercase transition-all duration-200 ${
+                verbFilter === 'irregolari' 
+                  ? 'bg-white text-amber-700 shadow-sm border border-slate-200/50' 
+                  : 'text-slate-500 hover:text-slate-800'
+              }`}
+            >
+              Solo Irregolari
             </button>
           </div>
 

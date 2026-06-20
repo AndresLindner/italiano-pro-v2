@@ -1,18 +1,33 @@
 let activeSpeechTimeout = null;
 let currentOnEnd = null;
+let activeUtterances = []; // Keep reference to prevent garbage collection
 
 export const cancelSpeech = () => {
   if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
+    try {
+      // In some browsers (like Chrome), if speaking is paused, cancel() does nothing
+      // unless we resume it first.
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      }
+      window.speechSynthesis.cancel();
+    } catch (e) {
+      console.warn('Error cancelling speech synthesis:', e);
+    }
   }
   if (activeSpeechTimeout) {
     clearTimeout(activeSpeechTimeout);
     activeSpeechTimeout = null;
   }
+  activeUtterances = [];
   if (currentOnEnd) {
     const prevOnEnd = currentOnEnd;
     currentOnEnd = null;
-    try { prevOnEnd(); } catch(e) {}
+    try {
+      prevOnEnd();
+    } catch {
+      // ignore
+    }
   }
 };
 
@@ -50,7 +65,7 @@ export const speakItalian = (text, onEnd, rate = 0.8) => {
       itVoice = voices.find(v => v.name === savedVoiceName);
     }
     
-    if (!itVoice) {
+    if (!itVoice && voices.length > 0) {
       // Prioritize high-quality voices (Siri, Google, Alice, Premium, Enhanced)
       const itVoices = voices.filter(v => {
         const lang = v.lang.toLowerCase().replace('_', '-');
@@ -79,10 +94,16 @@ export const speakItalian = (text, onEnd, rate = 0.8) => {
           if (itVoice) {
             utterance.voice = itVoice;
           }
+
+          // Save the utterance to prevent garbage collection
+          activeUtterances.push(utterance);
+
           utterance.onend = () => {
+            activeUtterances = activeUtterances.filter(u => u !== utterance);
             activeSpeechTimeout = setTimeout(speakNext, 300); // 300ms pause
           };
           utterance.onerror = () => {
+            activeUtterances = activeUtterances.filter(u => u !== utterance);
             activeSpeechTimeout = null;
             if (currentOnEnd) {
               const callback = currentOnEnd;
@@ -109,7 +130,12 @@ export const speakItalian = (text, onEnd, rate = 0.8) => {
       if (itVoice) {
         utterance.voice = itVoice;
       }
+
+      // Save the utterance to prevent garbage collection
+      activeUtterances.push(utterance);
+
       utterance.onend = () => {
+        activeUtterances = activeUtterances.filter(u => u !== utterance);
         if (currentOnEnd) {
           const callback = currentOnEnd;
           currentOnEnd = null;
@@ -117,6 +143,7 @@ export const speakItalian = (text, onEnd, rate = 0.8) => {
         }
       };
       utterance.onerror = () => {
+        activeUtterances = activeUtterances.filter(u => u !== utterance);
         if (currentOnEnd) {
           const callback = currentOnEnd;
           currentOnEnd = null;
@@ -129,3 +156,4 @@ export const speakItalian = (text, onEnd, rate = 0.8) => {
     if (onEnd) onEnd();
   }
 };
+
